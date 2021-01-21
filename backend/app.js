@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
 const { environment } = require('./config');
-const { cookie } = require('express-validator');
+const routes = require('./routes');
 const isProduction = environment === 'production';
 
 //initializing express application:
@@ -37,3 +37,7 @@ app.use(csurf({
         httpOnly: true
     }
 }));
+
+app.use(routes);
+
+module.exports = app;
