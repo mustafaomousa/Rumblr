@@ -1,6 +1,6 @@
 ** DEV LAUNCHING Rumblr APPLICATION**
 
-In order to launch Encephascape please utilize the following:
+In order to launch Rumblr please utilize the following:
 
  1. 
      cd backend/ and create a .env based off .env.example. Fill in the newly created .env file with your PSQL user and database credentials.
