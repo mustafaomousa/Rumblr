@@ -19,10 +19,10 @@ const removeUser = () => {
 };
 
 export const signup = user => async dispatch => {
-    const { username, email, password } = user;
+    const { username, email, header, bio, profilePicture, password } = user;
     const response = await fetch('/api/users', {
         method: 'POST',
-        body: JSON.stringify({ username, email, password })
+        body: JSON.stringify({ username, email, header, bio, profilePicture, password })
     });
 
     if (response.ok) {
