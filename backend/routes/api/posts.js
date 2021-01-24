@@ -10,7 +10,7 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
 
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({ order: [['updatedAt', 'DESC']] });
     return res.json({ posts });
 
 }));
