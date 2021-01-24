@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createNewPost } from '../../store/post';
 
+import './feed.css';
+
 const FeedPage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -37,11 +39,11 @@ const FeedPage = () => {
 
     console.log(allPosts)
     return (
-        <>
+        <div className='feed-body'>
             <h1>FEED</h1>
             {allPosts && allPosts.map((post, idx) => {
                 return (
-                    <div key={idx}>
+                    <div className='post-card' key={idx}>
                         <h3>{post.title}</h3>
                         <img src={post.content} alt='' />
                         <p>{post.body}</p>
@@ -49,7 +51,7 @@ const FeedPage = () => {
                 )
             })}
             <button onClick={createTestPost}>Test create post</button>
-        </>
+        </div >
     )
 
 };
