@@ -24,6 +24,7 @@ const Navigation = () => {
             }
             {sessionUser && (
                 <>
+                    <NavLink to='/'>Feed</NavLink>
                     <button onClick={handleLogout}>Logout</button>
                 </>
             )}

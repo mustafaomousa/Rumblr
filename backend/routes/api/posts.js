@@ -10,8 +10,8 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
 
-    const allPosts = await Post.findAll({});
-    return res.json({ allPosts });
+    const posts = await Post.findAll();
+    return res.json({ posts });
 
 }));
 
@@ -20,7 +20,6 @@ router.post('/', asyncHandler(async (req, res) => {
     const { title, content, body, makeId, modelId, userId } = req.body;
 
     const newPost = await Post.create({ title, content, body, makeId, modelId, userId });
-    newPost.save();
 
     return res.json({ newPost });
 

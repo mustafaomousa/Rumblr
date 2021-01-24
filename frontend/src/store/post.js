@@ -2,19 +2,41 @@ import { fetch } from './csrf';
 
 
 const GET_POSTS = 'post/getAllPosts';
+const CREATE_POST = 'post/createPost';
 
-const getAllPosts = allPosts => {
+
+const getAllPosts = posts => {
     return {
         type: GET_POSTS,
-        payload: allPosts,
+        payload: posts,
     };
 };
 
+const createPost = newPost => {
+    return {
+        type: CREATE_POST,
+        payload: newPost
+    }
+}
+
 export const getPosts = () => async dispatch => {
     const response = await fetch('/api/posts');
+    if (response.ok) {
+        console.log(response)
+        dispatch(getAllPosts(response.data.posts));
+        return response;
+    }
+};
+
+export const createNewPost = payload => async dispatch => {
+    const { title, content, body, makeId, modelId, userId } = payload;
+    const response = await fetch('/api/posts', {
+        method: 'POST',
+        body: JSON.stringify({ title, content, body, makeId, modelId, userId })
+    });
 
     if (response.ok) {
-        dispatch(getAllPosts(response.data.allPosts));
+        dispatch(getPosts());
         return response;
     }
 };
@@ -22,13 +44,13 @@ export const getPosts = () => async dispatch => {
 const initialState = { posts: null };
 
 const postReducer = (state = initialState, action) => {
-    let newState;
-
     switch (action.type) {
         case GET_POSTS:
-            newState = Object.assign({}, state);
-            newState.posts = action.payload;
-            return newState;
+            const allPosts = {};
+            action.payload.forEach(post => {
+                allPosts[post.id] = post;
+            });
+            return allPosts;
         default:
             return state;
     };
