@@ -1,6 +1,26 @@
-.create-post-container {
+.create-post {
     display: flex;
     flex-direction: row;
+
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background-color: purple;
+
+    width: 500px;
+    height: 30px;
+
+    position: relative;
+}
+
+.create-post-container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 
     padding: 10px 0px;
@@ -9,8 +29,9 @@
     border: 1px solid lightgray;
     background-color: lightgray;
     border-radius: 0.5em;
-}
 
+    margin: 20px;
+}
 
 
 .post-information-container {

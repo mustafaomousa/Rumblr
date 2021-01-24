@@ -39,7 +39,7 @@ const Navigation = () => {
                 {sessionUser && (
                     <>
                         <NavLink to='/profile'>Profile</NavLink>
-                        <button onClick={handleLogout}>Logout</button>
+                        <button id='logout' onClick={handleLogout}>Logout</button>
                     </>
                 )}
             </div>

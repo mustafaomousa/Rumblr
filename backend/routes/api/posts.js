@@ -4,13 +4,13 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post } = require('../../db/models');
+const { Post, User } = require('../../db/models');
 
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
 
-    const posts = await Post.findAll({ order: [['updatedAt', 'DESC']] });
+    const posts = await Post.findAll({ include: [{ model: User }], order: [['updatedAt', 'DESC']] });
     return res.json({ posts });
 
 }));

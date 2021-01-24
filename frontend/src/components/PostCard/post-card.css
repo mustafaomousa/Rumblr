@@ -2,15 +2,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    border: 1px lightgray;
-    border-radius: 0.5em;
-
     background-color: lightgray;
+
+    border-radius: 0.5em;
 
     width: 500px;
     height: 400px;
     margin: 20px;
+}
+
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: purple;
+    
+    border-radius: 0.5em 0.5em 0 0;
+
+    width: 500px;
+    height: 30px;
+}
+
+.user-info-container a {
+    color: white
+}
+
+.user-info-container a:hover {
+    color: yellow
 }
 
 img {

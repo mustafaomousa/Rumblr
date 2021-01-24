@@ -45,7 +45,7 @@ const FeedPage = () => {
             <h1>FEED</h1>
             <CreatePost user={sessionUser} makes={makes} models={models} />
             {allPosts && allPosts.map((post, idx) => {
-                return <PostCard post={post} key={idx} />
+                return <PostCard post={post} user={sessionUser} key={idx} />
             })}
             <button onClick={createTestPost}>Test create post</button>
         </div >

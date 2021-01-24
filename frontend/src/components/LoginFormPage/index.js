@@ -15,7 +15,7 @@ const LoginFormPage = () => {
     const updatedPassword = (e) => setPassword(e.target.value);
 
     if (sessionUser) return (
-        <Redirect to='/' />
+        <Redirect to='/feed' />
     );
 
     const onSubmit = (e) => {
