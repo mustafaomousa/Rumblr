@@ -21,7 +21,7 @@ const Navigation = () => {
 
                 {sessionUser && (
                     <>
-                        <NavLink to='/'>Feed</NavLink>
+                        <NavLink to='/feed'>Feed</NavLink>
                     </>
                 )}
             </div>

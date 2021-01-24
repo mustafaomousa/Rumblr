@@ -27,8 +27,8 @@ function App() {
       <Navigation />
       {isLoaded && (
         <Switch>
-          <Route exact path='/' component={FeedPage} />
-          <Route path='/profile' component={ProfilePage} />
+          <Route exact path='/feed' component={FeedPage} />
+          <Route exact path='/profile' component={ProfilePage} />
           <Route path='/login' component={LoginFormPage} />
           <Route path='/signup' component={SignupFormPage} />
         </Switch>)}

@@ -1,3 +1,16 @@
+a {
+    color: whitesmoke;
+    text-decoration: none;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    margin: 0px 30px
+}
+
+a.active {
+    color: yellow
+}
+
 .nav-bar {
     display: grid;
     grid-template-columns: 33.3% 33.3% 33.3%;
@@ -5,7 +18,7 @@
     position: sticky;
     top: 0;
 
-    background-color: rgb(128, 120, 248);
+    background-color: rgb(52, 49, 107);
 
 }
 
@@ -36,5 +49,5 @@
 }
 
 .nav-logo-container h2:hover {
-    text-shadow: black 0px 2px 5px;
+    text-shadow: rgba(245, 240, 255, 0.24) 0px 2px 5px;
 }

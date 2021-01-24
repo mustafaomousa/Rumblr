@@ -1,9 +1,38 @@
 .create-post-container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 
-    width: 95%;
+    padding: 10px 0px;
+    width: 500px;
 
-    border: 1px solid gray;
+    border: 1px solid lightgray;
+    background-color: lightgray;
     border-radius: 0.5em;
+}
+
+
+
+.post-information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.upload-media-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.vehicle-select-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.post-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

@@ -45,26 +45,35 @@ const CreatePost = ({ user, makes, models }) => {
         <div className='create-post-container'>
             <div className='create-post-form'>
                 <form onSubmit={onSubmit}>
-                    <input onChange={updateTitle} value={title} placeholder='title'></input>
-                    <textarea onChange={updateBody} value={body} placeholder="what's on your mind?"></textarea>
-                    <input onChange={updateContent} value={content} placeholder='image url'></input>
-                    <select onChange={updateMake} value={makeId}>
-                        <option value={0}>Select a Make</option>
-                        {makes && makes.map((make, idx) => {
-                            return (
-                                <option value={make.id} key={idx}>{make.name}</option>
-                            )
-                        })}
-                    </select>
-                    <select onChange={updateModel} value={modelId}>
-                        <option value={0}>Select a Model</option>
-                        {models && models.map((model, idx) => {
-                            return (
-                                <option value={model.id} key={idx}>{model.name}</option>
-                            )
-                        })}
-                    </select>
-                    <button>Create Post</button>
+                    <div className='post-information-container'>
+                        <input onChange={updateTitle} value={title} placeholder='title'></input>
+                        <textarea onChange={updateBody} value={body} placeholder="what's on your mind?"></textarea>
+
+                    </div>
+                    <div className='upload-media-container'>
+                        <input onChange={updateContent} value={content} placeholder='image url'></input>
+                    </div>
+                    <div className='vehicle-select-container'>
+                        <select onChange={updateMake} value={makeId}>
+                            <option value={0}>Select a Make</option>
+                            {makes && makes.map((make, idx) => {
+                                return (
+                                    <option value={make.id} key={idx}>{make.name}</option>
+                                )
+                            })}
+                        </select>
+                        <select onChange={updateModel} value={modelId}>
+                            <option value={0}>Select a Model</option>
+                            {models && models.map((model, idx) => {
+                                return (
+                                    <option value={model.id} key={idx}>{model.name}</option>
+                                )
+                            })}
+                        </select>
+                    </div>
+                    <div className='post-button-container'>
+                        <button>Create Post</button>
+                    </div>
                 </form>
             </div>
         </div>
