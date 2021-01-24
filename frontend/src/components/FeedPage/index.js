@@ -1,19 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { createNewPost, getPosts } from '../../store/post';
+import { createNewPost } from '../../store/post';
 
 const FeedPage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-
-
-    useEffect(() => {
-        dispatch(getPosts());
-
-    }, [dispatch])
-
-    const allPosts = useSelector(state => state.session.posts)
+    const allPosts = useSelector(state => state.posts.allPosts);
 
     if (!sessionUser) return (
         <Redirect to='/welcome' />
@@ -43,10 +36,18 @@ const FeedPage = () => {
     };
 
     console.log(allPosts)
-
     return (
         <>
             <h1>FEED</h1>
+            {allPosts && allPosts.map((post, idx) => {
+                return (
+                    <div key={idx}>
+                        <h3>{post.title}</h3>
+                        <img src={post.content} alt='' />
+                        <p>{post.body}</p>
+                    </div>
+                )
+            })}
             <button onClick={createTestPost}>Test create post</button>
         </>
     )
