@@ -1,23 +1,40 @@
 .nav-bar {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 33.3% 33.3% 33.3%;
 
     position: sticky;
     top: 0;
 
     background-color: rgb(128, 120, 248);
 
-    height: 50px;
 }
 
 .nav-buttons-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .profile-buttons-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-logo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-logo-container h2 {
+    color: whitesmoke;
+    font-style: oblique;
+}
+
+.nav-logo-container h2:hover {
+    text-shadow: black 0px 2px 5px;
 }
