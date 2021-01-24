@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createNewPost } from '../../store/post';
+import CreatePost from '../CreatePost';
 
 import './feed.css';
 
@@ -41,6 +42,7 @@ const FeedPage = () => {
     return (
         <div className='feed-body'>
             <h1>FEED</h1>
+            <CreatePost user={sessionUser} />
             {allPosts && allPosts.map((post, idx) => {
                 return (
                     <div className='post-card' key={idx}>

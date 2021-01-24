@@ -1,0 +1,9 @@
+.create-post-container {
+    display: flex;
+    flex-direction: row;
+
+    width: 95%;
+
+    border: 1px solid gray;
+    border-radius: 0.5em;
+}
