@@ -1,0 +1,21 @@
+.profile-body {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px black solid;
+    border-radius: 0.5em;
+    width: 500px;
+    height: 400px;
+    margin: 20px;
+}
+
+img {
+    max-width: 400px;
+    max-height: 250px;
+}

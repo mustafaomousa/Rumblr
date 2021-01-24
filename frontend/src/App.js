@@ -6,6 +6,7 @@ import Navigation from './components/Navigation';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import FeedPage from './components/FeedPage';
+import ProfilePage from './components/ProfilePage';
 import * as sessionActions from './store/session';
 import { getPosts } from './store/post';
 import { getAllVehicles } from './store/vehicle';
@@ -27,6 +28,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/' component={FeedPage} />
+          <Route path='/profile' component={ProfilePage} />
           <Route path='/login' component={LoginFormPage} />
           <Route path='/signup' component={SignupFormPage} />
         </Switch>)}

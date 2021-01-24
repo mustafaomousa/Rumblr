@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { createNewPost } from '../../store/post';
 import CreatePost from '../CreatePost';
-
+import PostCard from '../PostCard';
 import './feed.css';
 
 const FeedPage = () => {
@@ -45,13 +45,7 @@ const FeedPage = () => {
             <h1>FEED</h1>
             <CreatePost user={sessionUser} makes={makes} models={models} />
             {allPosts && allPosts.map((post, idx) => {
-                return (
-                    <div className='post-card' key={idx}>
-                        <h3>{post.title}</h3>
-                        <img src={post.content} alt='' />
-                        <p>{post.body}</p>
-                    </div>
-                )
+                return <PostCard post={post} key={idx} />
             })}
             <button onClick={createTestPost}>Test create post</button>
         </div >
