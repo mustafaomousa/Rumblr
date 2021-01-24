@@ -1,0 +1,23 @@
+.nav-bar {
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    position: sticky;
+    top: 0;
+
+    background-color: rgb(128, 120, 248);
+
+    height: 50px;
+}
+
+.nav-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.profile-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

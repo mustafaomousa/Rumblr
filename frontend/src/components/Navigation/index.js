@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import * as sessionActions from '../../store/session';
 
+import './navigation.css';
+
 const Navigation = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -14,20 +16,31 @@ const Navigation = () => {
     };
 
     return (
-        <div>
-            {!sessionUser && (
-                <>
-                    <NavLink to='/login'>Login</NavLink>
-                    <NavLink to='/signup'>Sign up</NavLink>
-                </>
-            )
-            }
-            {sessionUser && (
-                <>
-                    <NavLink to='/'>Feed</NavLink>
-                    <button onClick={handleLogout}>Logout</button>
-                </>
-            )}
+        <div className='nav-bar'>
+            <div className='nav-buttons-container'>
+
+                {sessionUser && (
+                    <>
+                        <NavLink to='/'>Feed</NavLink>
+                    </>
+                )}
+            </div>
+            <div className='profile-buttons-container'>
+                {!sessionUser && (
+                    <>
+                        <NavLink to='/login'>Login</NavLink>
+                        <NavLink to='/signup'>Sign up</NavLink>
+                    </>
+                )
+                }
+                {sessionUser && (
+                    <>
+                        <NavLink to='/profile'>Profile</NavLink>
+                        <button onClick={handleLogout}>Logout</button>
+                    </>
+                )}
+            </div>
+
 
         </div >
     )
