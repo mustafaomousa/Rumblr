@@ -26,11 +26,24 @@ module.exports = (sequelize, DataTypes) => {
     modelId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
   }, {});
+
   Post.associate = function (models) {
     Post.belongsTo(models.Make, { foreignKey: 'makeId' });
     Post.belongsTo(models.Model, { foreignKey: 'modelId' });
     Post.belongsTo(models.User, { foreignKey: 'userId' });
     Post.hasMany(models.Tag, { foreignKey: 'postId' });
+  };
+
+  Post.create = async function ({ title, content, body, makeId, modelId, userId }) {
+    const post = await Post.create({
+      title,
+      content,
+      body,
+      makeId,
+      modelId,
+      userId,
+    });
+    return post;
   };
   return Post;
 };
