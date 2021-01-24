@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Post } = require('../../db/models');
+const { Post } = require('../../db/models');
 
 const router = express.Router();
 
@@ -12,6 +12,17 @@ router.get('/', asyncHandler(async (req, res) => {
 
     const allPosts = await Post.findAll({});
     return res.json({ allPosts });
+
+}));
+
+router.post('/', asyncHandler(async (req, res) => {
+
+    const { title, content, body, makeId, modelId, userId } = req.body;
+
+    const newPost = await Post.create({ title, content, body, makeId, modelId, userId });
+    newPost.save();
+
+    return res.json({ newPost });
 
 }));
 
