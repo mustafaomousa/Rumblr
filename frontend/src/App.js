@@ -8,13 +8,16 @@ import SignupFormPage from './components/SignupFormPage';
 import FeedPage from './components/FeedPage';
 import * as sessionActions from './store/session';
 import { getPosts } from './store/post';
+import { getAllVehicles } from './store/vehicle';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+
     dispatch(getPosts())
+    dispatch(getAllVehicles())
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true))
   }, [dispatch]);

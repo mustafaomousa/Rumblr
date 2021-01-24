@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 
 import sessionReducer from './session';
 import postReducer from './post';
+import vehicleReducer from "./vehicle";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts: postReducer,
+  vehicles: vehicleReducer
 });
 
 let enhancer;

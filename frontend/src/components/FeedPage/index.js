@@ -38,7 +38,6 @@ const FeedPage = () => {
 
     };
 
-    console.log(allPosts)
     return (
         <div className='feed-body'>
             <h1>FEED</h1>

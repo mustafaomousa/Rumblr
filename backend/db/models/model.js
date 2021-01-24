@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Model.associate = function (models) {
     Model.belongsTo(models.Make, { foreignKey: 'makeId' });
-    Model.hasMany(models.Post, { foreignKey: 'makeId' });
+    Model.hasMany(models.Post, { foreignKey: 'modelId' });
   };
   return Model;
 };

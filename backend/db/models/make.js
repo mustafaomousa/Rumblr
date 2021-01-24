@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Make.associate = function (models) {
     Make.hasMany(models.Post, { foreignKey: 'makeId' });
-    Make.hasMany(models.Model, { foreignKey: 'modelId' });
+    Make.hasMany(models.Model, { foreignKey: 'makeId' });
   };
   return Make;
 };

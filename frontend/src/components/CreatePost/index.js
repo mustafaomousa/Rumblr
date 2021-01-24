@@ -17,7 +17,7 @@ const CreatePost = ({ user }) => {
 
     return (
         <div className='create-post-container'>
-            <div create-post-form>
+            <div className='create-post-form'>
                 <form>
                     <input onChange={updateTitle} value={title} placeholder='title'></input>
                     <textarea onChange={updateBody} value={body} placeholder="what's on your mind?"></textarea>
