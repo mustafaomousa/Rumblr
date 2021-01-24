@@ -14,7 +14,6 @@ export const getAllVehicles = () => async dispatch => {
     const response = await fetch('/api/vehicles');
 
     if (response.ok) {
-        console.log(response.data)
         dispatch(getVehicles(response.data));
         return response;
     }

@@ -10,6 +10,8 @@ const FeedPage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const allPosts = useSelector(state => state.posts.allPosts);
+    const makes = useSelector(state => state.vehicles.makes);
+    const models = useSelector(state => state.vehicles.models)
 
     if (!sessionUser) return (
         <Redirect to='/welcome' />
@@ -41,7 +43,7 @@ const FeedPage = () => {
     return (
         <div className='feed-body'>
             <h1>FEED</h1>
-            <CreatePost user={sessionUser} />
+            <CreatePost user={sessionUser} makes={makes} models={models} />
             {allPosts && allPosts.map((post, idx) => {
                 return (
                     <div className='post-card' key={idx}>
