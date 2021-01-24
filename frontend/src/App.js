@@ -5,22 +5,25 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
+import FeedPage from './components/FeedPage';
 import * as sessionActions from './store/session';
+import { getPosts } from './store/post';
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => dispatch(sessionActions.restoreUser())
-    .then(() => setIsLoaded(true)), [dispatch]);
+  useEffect(() => {
+    dispatch(getPosts())
+    dispatch(sessionActions.restoreUser())
+      .then(() => setIsLoaded(true))
+  }, [dispatch]);
   return (
     <>
       <Navigation />
       {isLoaded && (
         <Switch>
-          <Route exact path='/'>
-            <h1>Home</h1>
-          </Route>
+          <Route exact path='/' component={FeedPage} />
           <Route path='/login' component={LoginFormPage} />
           <Route path='/signup' component={SignupFormPage} />
         </Switch>)}

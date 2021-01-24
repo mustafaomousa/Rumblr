@@ -1,4 +1,7 @@
-const GET_POSTS = 'post/GET_POSTS';
+import { fetch } from './csrf';
+
+
+const GET_POSTS = 'post/getAllPosts';
 
 const getAllPosts = allPosts => {
     return {
