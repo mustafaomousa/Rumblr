@@ -1,7 +1,37 @@
+select {
+    border: 0;
+    height: 30px;
+    width: 150px;
+}
+
+input, textarea {
+    border: 0;
+    width: 100%;
+}
+
+.input-container {
+    margin: 15px;
+}
+
+.input-container div,textarea {
+    margin: 10px 0px;
+}
+
 .create-post {
     display: flex;
     flex-direction: row;
+}
 
+.create-post button {
+    color: whitesmoke;
+    text-decoration: none;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+    margin: 0px 30px;
+
+    border: 0;
+    background-color: cornflowerblue;
 }
 
 .user-info {
@@ -26,8 +56,8 @@
     padding: 10px 0px;
     width: 500px;
 
-    border: 1px solid lightgray;
-    background-color: lightgray;
+    border: 1px solid cornflowerblue;
+    background-color: cornflowerblue;
     border-radius: 0.5em;
 
     margin: 20px;
@@ -49,7 +79,7 @@
 .vehicle-select-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .post-button-container {

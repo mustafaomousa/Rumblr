@@ -14,7 +14,7 @@ const FeedPage = () => {
     const models = useSelector(state => state.vehicles.models)
 
     if (!sessionUser) return (
-        <Redirect to='/welcome' />
+        <Redirect to='/' />
     );
 
     const createTestPost = (e) => {

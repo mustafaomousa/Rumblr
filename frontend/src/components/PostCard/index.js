@@ -16,6 +16,7 @@ const PostCard = ({ post, user, idx }) => {
         like = userLikes.shift()
     };
 
+
     const likePost = (e) => {
         e.preventDefault();
         setLiked(true);
@@ -43,7 +44,7 @@ const PostCard = ({ post, user, idx }) => {
     }, [])
 
     return (
-        <div className='post-card' key={idx}>
+        <div className={'post-card'} key={idx}>
             <div className='user-info-container'>
                 <NavLink to={`/${post.User.username}`}>{post.User.username}</NavLink>
             </div>

@@ -30,7 +30,7 @@ function App() {
       <Navigation />
       {isLoaded && (
         <Switch>
-          <Route path='/welcome' component={WelcomePage} />
+          <Route exact path='/' component={WelcomePage} />
           <Route exact path='/feed' component={FeedPage} />
           <Route exact path='/profile' component={ProfilePage} />
           <Route path='/login' component={LoginFormPage} />
