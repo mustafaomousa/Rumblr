@@ -2,7 +2,7 @@ import { fetch } from './csrf';
 
 
 const LOAD = 'post/getAllPosts';
-const CREATE_POST = 'post/createPost';
+// const CREATE_POST = 'post/createPost';
 
 
 const getAllPosts = posts => {
@@ -12,12 +12,12 @@ const getAllPosts = posts => {
     };
 };
 
-const createPost = newPost => {
-    return {
-        type: CREATE_POST,
-        payload: newPost
-    }
-}
+// const createPost = newPost => {
+//     return {
+//         type: CREATE_POST,
+//         payload: newPost
+//     }
+// }
 
 export const getPosts = () => async dispatch => {
     const response = await fetch('/api/posts');

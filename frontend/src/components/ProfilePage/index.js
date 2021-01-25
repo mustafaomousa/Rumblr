@@ -20,7 +20,7 @@ const ProfilePage = () => {
             <h1>Profile</h1>
             <CreatePost user={sessionUser} makes={makes} models={models} />
             {allPosts && allPosts.map((post, idx) => {
-                if (post.userId === sessionUser.id) return <PostCard post={post} user={sessionUser} key={idx} />
+                if (post.userId === sessionUser.id) return (<PostCard post={post} user={sessionUser} key={idx} />)
             })}
         </div>
     )

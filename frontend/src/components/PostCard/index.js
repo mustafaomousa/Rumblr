@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import ReactPlayer from 'react-player'
+// import ReactPlayer from 'react-player'
 
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
@@ -42,8 +42,7 @@ const PostCard = ({ post, user, idx }) => {
 
     useEffect(() => {
         if (like) setLiked(true);
-        console.log(liked)
-    }, [])
+    }, [like])
 
     return (
         <div className={'post-card'} key={idx}>
@@ -53,15 +52,16 @@ const PostCard = ({ post, user, idx }) => {
             <>
                 <h3>{post.title}</h3>
                 {post.content.includes('youtube') && (
-                    <ReactPlayer width='450px' height='250px' url={post.content} />
+                    <p>Video Player Here</p>
+                    // <ReactPlayer width='450px' height='250px' url={post.content} />
                 )}
                 <img src={post.content} alt='' />
                 <p id='title'>{post.body}</p>
             </>
             <div className='post-info-container'>
                 <div className='post-info-stats'>
-                    <a id='car-type'>{post.Make.name}</a>
-                    <a id='car-type'>{post.Model.name}</a>
+                    <a href='/' id='car-type'>{post.Make.name}</a>
+                    <a href='/' id='car-type'>{post.Model.name}</a>
                 </div>
                 <div className='post-info-control'>
                     {liked && (

@@ -2,7 +2,7 @@ import { fetch } from './csrf';
 
 
 const LOAD = 'likes/getAllLikes';
-const CREATE = 'likes/addLike';
+// const CREATE = 'likes/addLike';
 
 const getAllLikes = likes => {
     return {
@@ -11,12 +11,12 @@ const getAllLikes = likes => {
     };
 };
 
-const addLike = like => {
-    return {
-        type: CREATE,
-        payload: like
-    };
-}
+// const addLike = like => {
+//     return {
+//         type: CREATE,
+//         payload: like
+//     };
+// }
 
 export const getLikes = () => async dispatch => {
     const response = await fetch('/api/likes');

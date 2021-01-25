@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const WelcomePostCard = ({ post, idx }) => {
     const postLikes = useSelector(state => state.likes.likes.filter(like => like.postId === post.id));
@@ -7,7 +6,7 @@ const WelcomePostCard = ({ post, idx }) => {
     return (
         <div className='post-card' key={idx}>
             <div className='user-info-container'>
-                <a>{post.User.username}</a>
+                <a href='/'>{post.User.username}</a>
             </div>
             <>
                 <h3>{post.title}</h3>

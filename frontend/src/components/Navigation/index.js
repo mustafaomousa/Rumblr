@@ -48,13 +48,13 @@ const Navigation = () => {
                 search && (
                     <div className='search-results-container'>
                         <div className='post-results'>
-                            <a>Search posts</a>
+                            <a href='/'>Search posts</a>
                         </div>
                         <div className='tag-results'>
-                            <a>Search tags</a>
+                            <a href='/'>Search tags</a>
                         </div>
                         <div className='user-results'>
-                            <a>Search users</a>
+                            <a href='/'>Search users</a>
                         </div>
                     </div>
                 )
