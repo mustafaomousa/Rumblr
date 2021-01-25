@@ -1,7 +1,8 @@
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import CreatePost from '../CreatePost';
 import PostCard from '../PostCard';
+import ProfilePage from '../ProfilePage';
 import './feed.css';
 
 const FeedPage = () => {

@@ -60,7 +60,7 @@ const PostCard = ({ post, user, idx }) => {
             </>
             <div className='post-info-container'>
                 <div className='post-info-stats'>
-                    <a href='/' id='car-type'>{post.Make.name}</a>
+                    <a href={`/${post.User.username}`} id='car-type'>{post.Make.name}</a>
                     <a href='/' id='car-type'>{post.Model.name}</a>
                 </div>
                 <div className='post-info-control'>

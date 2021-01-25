@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import Navigation from './components/Navigation';
@@ -25,6 +25,9 @@ function App() {
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true))
   }, [dispatch]);
+
+  const user = useSelector(state => state.session.user);
+
   return (
     <>
       <Navigation />
@@ -32,7 +35,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={WelcomePage} />
           <Route exact path='/feed' component={FeedPage} />
-          <Route exact path='/profile' component={ProfilePage} />
+          {user && (<Route path={`/:username`} component={ProfilePage} />)}
           <Route exact path='/results' />
           <Route path='/login' component={LoginFormPage} />
           <Route path='/signup' component={SignupFormPage} />
