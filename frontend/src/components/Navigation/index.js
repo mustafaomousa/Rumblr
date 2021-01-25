@@ -22,6 +22,7 @@ const Navigation = () => {
                 {sessionUser && (
                     <>
                         <NavLink to='/feed'>Feed</NavLink>
+                        <input id='search' placeholder='search'></input>
                     </>
                 )}
             </div>

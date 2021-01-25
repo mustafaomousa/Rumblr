@@ -12,6 +12,10 @@
     background-color: rgb(52, 49, 107);
 }
 
+#search {
+    width: 700px;
+}
+
 a.active {
     color: yellow
 }

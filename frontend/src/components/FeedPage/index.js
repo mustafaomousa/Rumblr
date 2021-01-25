@@ -42,7 +42,7 @@ const FeedPage = () => {
 
     return (
         <div className='feed-body'>
-            <h1>FEED</h1>
+            <h1>Feed</h1>
             <CreatePost user={sessionUser} makes={makes} models={models} />
             {allPosts && allPosts.map((post, idx) => {
                 return <PostCard post={post} user={sessionUser} key={idx} />
