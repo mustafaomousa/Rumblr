@@ -59,17 +59,23 @@ const PostCard = ({ post, user, idx }) => {
                 <p id='title'>{post.body}</p>
             </>
             <div className='post-info-container'>
-                {liked && (
-                    <>
-                        <i onClick={removeLike} id='heart' className="far fa-heart selected"></i>
-                    </>
-                )}
-                {!liked && (
-                    <>
-                        <i onClick={likePost} id='heart' className="far fa-heart"></i>
-                    </>
-                )}
-                <p id='like-count'>{postLikes.length}</p>
+                <div className='post-info-stats'>
+                    <a id='car-type'>{post.Make.name}</a>
+                    <a id='car-type'>{post.Model.name}</a>
+                </div>
+                <div className='post-info-control'>
+                    {liked && (
+                        <>
+                            <i onClick={removeLike} id='heart' className="far fa-heart selected"></i>
+                        </>
+                    )}
+                    {!liked && (
+                        <>
+                            <i onClick={likePost} id='heart' className="far fa-heart"></i>
+                        </>
+                    )}
+                    <p id='like-count'>{postLikes.length}</p>
+                </div>
             </div>
         </div>
 

@@ -6,6 +6,25 @@
     color: black;
 }
 
+#car-type {
+    font-size: 13px;
+}
+
+.post-info-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px;
+}
+
+.post-info-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .post-card {
     display: flex;
     flex-direction: column;
@@ -47,10 +66,8 @@
 }
 
 .post-info-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 80% 20%;
 
     background-color:   rgb(110, 91, 110);
     
