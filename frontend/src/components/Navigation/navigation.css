@@ -73,8 +73,15 @@ a.active {
 }
 
 .divider {
-    border: 1px  rgb(81, 62, 94) solid;
+    border-top: .15px  rgb(74, 59, 83) solid;
     margin: 8px 30px;
+}
+
+.divider.shown {
+    position: sticky;
+    top: 60px;
+    width: 100%;
+    margin: 0;
 }
 
 .search-results-container {

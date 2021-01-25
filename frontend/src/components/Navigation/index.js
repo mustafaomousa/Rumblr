@@ -44,7 +44,9 @@ const Navigation = () => {
                         </>
                     )}
                 </div>
+
             </div >
+            <div className='divider shown' />
             {search && (
                 <div className='search-results-container'>
                     <SearchResultsPage searchTerm={search} posts={allPosts} />
