@@ -2,7 +2,8 @@
 body {
     margin: 0;
 
-    background-color: rgb(211, 210, 233);
+    /* background-color: rgb(211, 210, 233); */
+    background-color: rgb(54, 6, 54);
 }
 
 a, p, h1, h2, h3, h4, h5 {
@@ -16,6 +17,7 @@ a, p, h1, h2, h3, h4, h5 {
 
 input, textarea {
   border-radius: 0.5em;
+  text-align: center;
 }
 
 /* centering input placeholder */

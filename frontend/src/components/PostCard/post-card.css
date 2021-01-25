@@ -24,6 +24,10 @@
     color: red;
 }
 
+.fa-heart {
+    color: white;
+}
+
 .user {
     box-shadow: 0px 0px 10px purple
 }
@@ -34,7 +38,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: rgb(187, 174, 187);
+    background-color: rgb(110, 91, 110);
     
     border-radius: 0.5em 0.5em 0 0;
 
@@ -48,7 +52,7 @@
     align-items: center;
     justify-content: flex-end;
 
-    background-color:  rgb(187, 174, 187);
+    background-color:   rgb(110, 91, 110);
     
     border-radius: 0 0 0.5em 0.5em;
 
