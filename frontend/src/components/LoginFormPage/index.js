@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 
+import './login.css';
+
 import * as sessionActions from '../../store/session';
 
 const LoginFormPage = () => {
@@ -31,16 +33,16 @@ const LoginFormPage = () => {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <label>Username/email
+                <div className='input-container'>
+                    <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                    <label>Username/email</label>
                     <input type='text' onChange={updateCredential} value={credential} placeholder='username/email' required />
-                </label>
-                <label>Password
+                    <label>Password</label>
                     <input type='password' onChange={updatedPassword} placeholder='password' required />
-                </label>
-                <button type='submit' >Submit</button>
+                    <button type='submit' id='submit' >Submit</button>
+                </div>
             </form>
         </div>
     )

@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 
 import * as sessionActions from '../../store/session';
 
+import './signup.css';
+
 const SignupFormPage = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
@@ -48,31 +50,34 @@ const SignupFormPage = () => {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-                <label>Username
+                <div className='input-container'>
+                    <ul>
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                    <label>Username</label>
                     <input type='text' onChange={updateUsername} value={username} placeholder='username/email' required />
-                </label>
-                <label>E-mail
+
+                    <label>E-mail</label>
                     <input type='text' onChange={updateEmail} value={email} placeholder='username/email' required />
-                </label>
-                <label>Header
+
+                    <label>Header</label>
                     <input type='text' onChange={updateHeader} value={header} placeholder='header' required />
-                </label>
-                <label>Bio
+
+                    <label>Bio</label>
                     <textarea onChange={updateBio} value={bio} placeholder='bio' required />
-                </label>
-                <label>Profile Picture URL
+
+                    <label>Profile Picture URL</label>
                     <input type='text' onChange={updateProfilePicture} value={profilePicture} placeholder='Profile Picture' required />
-                </label>
-                <label>Password
+
+                    <label>Password</label>
                     <input type='password' onChange={updatedPassword} placeholder='password' required />
-                </label>
-                <label>Confirm Password
+
+                    <label>Confirm Password</label>
                     <input type='password' onChange={updatedConfirmPassword} placeholder='password' required />
-                </label>
-                <button type='submit' >Submit</button>
+
+                    <button type='submit' id='submit'>Submit</button>
+                </div>
+
             </form>
         </div>
     )

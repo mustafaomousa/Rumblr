@@ -29,13 +29,6 @@ const Navigation = () => {
                 <h2>Rumblr</h2>
             </div>
             <div className='profile-buttons-container'>
-                {!sessionUser && (
-                    <>
-                        <NavLink to='/login'>Login</NavLink>
-                        <NavLink to='/signup'>Sign up</NavLink>
-                    </>
-                )
-                }
                 {sessionUser && (
                     <>
                         <NavLink to='/profile'>Profile</NavLink>
