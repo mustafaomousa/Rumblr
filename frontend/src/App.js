@@ -10,6 +10,7 @@ import ProfilePage from './components/ProfilePage';
 import * as sessionActions from './store/session';
 import { getPosts } from './store/post';
 import { getAllVehicles } from './store/vehicle';
+import { getLikes } from './store/like'
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function App() {
 
     dispatch(getPosts())
     dispatch(getAllVehicles())
+    dispatch(getLikes())
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true))
   }, [dispatch]);
