@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import SearchResultsPage from '../SearchResultsPage';
 import * as sessionActions from '../../store/session';
 
 import './navigation.css';
@@ -10,6 +11,7 @@ const Navigation = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
     const sessionUser = useSelector(state => state.session.user);
+    const allPosts = useSelector(state => state.posts.allPosts)
 
     const updateSearch = (e) => setSearch(e.target.value);
 
@@ -42,23 +44,12 @@ const Navigation = () => {
                     )}
                 </div>
 
-
             </div >
-            {
-                search && (
-                    <div className='search-results-container'>
-                        <div className='post-results'>
-                            <a href='/'>Search posts</a>
-                        </div>
-                        <div className='tag-results'>
-                            <a href='/'>Search tags</a>
-                        </div>
-                        <div className='user-results'>
-                            <a href='/'>Search users</a>
-                        </div>
-                    </div>
-                )
-            }
+            {search && (
+                <div className='search-results-container'>
+                    <SearchResultsPage searchTerm={search} posts={allPosts} />
+                </div>
+            )}
         </>
     )
 };

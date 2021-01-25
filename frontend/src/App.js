@@ -33,6 +33,7 @@ function App() {
           <Route exact path='/' component={WelcomePage} />
           <Route exact path='/feed' component={FeedPage} />
           <Route exact path='/profile' component={ProfilePage} />
+          <Route exact path='/results' />
           <Route path='/login' component={LoginFormPage} />
           <Route path='/signup' component={SignupFormPage} />
         </Switch>)}

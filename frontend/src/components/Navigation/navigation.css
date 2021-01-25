@@ -16,9 +16,17 @@
     width: 700px;
 }
 
+
 a.active {
     color: yellow
 }
+
+
+.single-result {
+    font-size: 15px;
+    margin: 0px 0px 0px 50px;
+}
+
 
 .nav-bar {
     display: grid;
@@ -64,13 +72,16 @@ a.active {
     text-shadow: rgba(245, 240, 255, 0.24) 0px 2px 5px;
 }
 
-.search-results-container, .search-results-container a {
+.divider {
+    border: 1px  rgb(81, 62, 94) solid;
+    margin: 8px 30px;
+}
+
+.search-results-container {
     display: flex;
     flex-direction: column;
-
     position: fixed;
-
-    
+    z-index: 2;
 }
 
 .search-results-container, .search-results-container a {
@@ -81,4 +92,5 @@ a.active {
 
 .post-results, .tag-results, .user-results {
     height: 30px;
+    max-height: 100px;
 }
