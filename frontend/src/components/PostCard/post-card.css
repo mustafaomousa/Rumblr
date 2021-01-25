@@ -1,3 +1,11 @@
+#like-count {
+    color: white;
+}
+
+#title {
+    color: black;
+}
+
 .post-card {
     display: flex;
     flex-direction: column;
@@ -30,7 +38,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 
     background-color: purple;
     

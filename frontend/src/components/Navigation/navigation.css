@@ -1,11 +1,4 @@
-a {
-    color: whitesmoke;
-    text-decoration: none;
 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
-    margin: 0px 30px;
-}
 
 #logout {
     color: whitesmoke;
@@ -29,6 +22,8 @@ a.active {
 
     position: sticky;
     top: 0;
+
+    height: 60px;
 
     background-color: rgb(52, 49, 107);
 

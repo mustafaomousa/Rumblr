@@ -8,14 +8,13 @@ const PostCard = ({ post, user, idx }) => {
     const dispatch = useDispatch();
     const [liked, setLiked] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
+    const postLikes = useSelector(state => state.likes.likes.filter(like => like.postId === post.id));
     const userLikes = useSelector(state => state.likes.likes.filter(like => like.userId === sessionUser.id && like.postId === post.id));
 
     let like = null;
     if (userLikes.shift !== undefined) {
         like = userLikes.shift()
-        // console.log(like)
     };
-    // const { like } = userLikes.shift();
 
     const likePost = (e) => {
         e.preventDefault();
@@ -51,7 +50,7 @@ const PostCard = ({ post, user, idx }) => {
             <>
                 <h3>{post.title}</h3>
                 <img src={post.content} alt='' />
-                <p>{post.body}</p>
+                <p id='title'>{post.body}</p>
             </>
             <div className='post-info-container'>
                 {liked && (
@@ -59,9 +58,8 @@ const PostCard = ({ post, user, idx }) => {
                 )}
                 {!liked && (
                     <button onClick={likePost}>Like</button>
-                )
-
-                }
+                )}
+                <p id='like-count'>{postLikes.length}</p>
             </div>
         </div>
 
