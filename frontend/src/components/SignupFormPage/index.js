@@ -47,7 +47,6 @@ const SignupFormPage = () => {
 
     return (
         <div>
-            <h1>Signup</h1>
             <form onSubmit={onSubmit}>
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
