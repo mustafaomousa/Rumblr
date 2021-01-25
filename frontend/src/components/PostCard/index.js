@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import ReactPlayer from 'react-player'
+
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
 
@@ -50,6 +52,9 @@ const PostCard = ({ post, user, idx }) => {
             </div>
             <>
                 <h3>{post.title}</h3>
+                {post.content.includes('youtube') && (
+                    <ReactPlayer width='450px' height='250px' url={post.content} />
+                )}
                 <img src={post.content} alt='' />
                 <p id='title'>{post.body}</p>
             </>
