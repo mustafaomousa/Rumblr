@@ -31,6 +31,8 @@ a.active {
 
     background-color: rgb(52, 49, 107);
 
+    /* z-index: 1; */
+
 }
 
 .nav-buttons-container {
@@ -61,4 +63,18 @@ a.active {
 
 .nav-logo-container h2:hover {
     text-shadow: rgba(245, 240, 255, 0.24) 0px 2px 5px;
+}
+
+.search-results-container, .search-results-container a {
+    display: flex;
+    flex-direction: column;
+
+    color: purple;
+    background-color: lightgray;
+
+    border-radius: 0 0 0.5em 0.5em ;
+}
+
+.post-results, .tag-results, .user-results {
+    height: 30px;
 }
