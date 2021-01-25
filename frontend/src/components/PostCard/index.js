@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { createNewLike } from '../../store/like';
+import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
 
 const PostCard = ({ post, user, idx }) => {
@@ -27,6 +27,17 @@ const PostCard = ({ post, user, idx }) => {
         dispatch(createNewLike(payload));
     };
 
+    const removeLike = (e) => {
+        e.preventDefault();
+
+        const userId = sessionUser.id;
+        const postId = post.id;
+        const payload = { userId, postId };
+
+        dispatch(deleteLike(payload));
+        setLiked(false);
+    };
+
     useEffect(() => {
         if (like) setLiked(true);
         console.log(liked)
@@ -44,7 +55,7 @@ const PostCard = ({ post, user, idx }) => {
             </>
             <div className='post-info-container'>
                 {liked && (
-                    <button>Un-like</button>
+                    <button onClick={removeLike}>Un-like</button>
                 )}
                 {!liked && (
                     <button onClick={likePost}>Like</button>

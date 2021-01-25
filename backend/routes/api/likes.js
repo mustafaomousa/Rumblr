@@ -18,4 +18,11 @@ router.post('/', asyncHandler(async (req, res) => {
     res.json({ newLike });
 }));
 
+router.delete('/', asyncHandler(async (req, res) => {
+    const { userId, postId } = req.body;
+    const deletedLike = await Like.findOne({ where: [{ userId, postId }] });
+    await deletedLike.destroy();
+    res.json({ deletedLike })
+}))
+
 module.exports = router;

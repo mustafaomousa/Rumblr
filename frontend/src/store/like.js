@@ -39,6 +39,19 @@ export const createNewLike = payload => async dispatch => {
     }
 };
 
+export const deleteLike = payload => async dispatch => {
+    const { userId, postId } = payload;
+    const response = await fetch('/api/likes', {
+        method: 'DELETE',
+        body: JSON.stringify({ userId, postId })
+    });
+
+    if (response.ok) {
+        dispatch(getLikes());
+        return response;
+    }
+}
+
 const initialState = { posts: null };
 
 const likeReducer = (state = initialState, action) => {
