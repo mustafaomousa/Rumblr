@@ -55,10 +55,14 @@ const PostCard = ({ post, user, idx }) => {
             </>
             <div className='post-info-container'>
                 {liked && (
-                    <button onClick={removeLike}>Un-like</button>
+                    <>
+                        <i onClick={removeLike} id='heart' className="far fa-heart selected"></i>
+                    </>
                 )}
                 {!liked && (
-                    <button onClick={likePost}>Like</button>
+                    <>
+                        <i onClick={likePost} id='heart' className="far fa-heart"></i>
+                    </>
                 )}
                 <p id='like-count'>{postLikes.length}</p>
             </div>

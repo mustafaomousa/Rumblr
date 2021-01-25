@@ -9,7 +9,7 @@
     margin: 0px 30px;
 
     border: 0;
-    background-color: rgb(52, 49, 107);
+    background-color: rgb(54, 6, 54);
 }
 
 #search {
@@ -29,7 +29,7 @@ a.active {
 
     height: 60px;
 
-    background-color: rgb(52, 49, 107);
+    background-color: rgb(54, 6, 54);
 
     /* z-index: 1; */
 
@@ -69,9 +69,14 @@ a.active {
     display: flex;
     flex-direction: column;
 
-    color: purple;
-    background-color: lightgray;
+    position: fixed;
 
+    
+}
+
+.search-results-container, .search-results-container a {
+    width: 100%;
+    background-color: rgb(54, 6, 54);
     border-radius: 0 0 0.5em 0.5em ;
 }
 

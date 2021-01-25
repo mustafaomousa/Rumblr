@@ -11,13 +11,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-color: lightgray;
+    background-color: rgb(218, 206, 218);
 
     border-radius: 0.5em;
 
     width: 500px;
     height: 400px;
     margin: 20px;
+}
+
+.fa-heart.selected {
+    color: red;
 }
 
 .user {
@@ -30,7 +34,7 @@
     align-items: center;
     justify-content: center;
 
-    background-color: purple;
+    background-color: rgb(187, 174, 187);
     
     border-radius: 0.5em 0.5em 0 0;
 
@@ -44,7 +48,7 @@
     align-items: center;
     justify-content: flex-end;
 
-    background-color: purple;
+    background-color:  rgb(187, 174, 187);
     
     border-radius: 0 0 0.5em 0.5em;
 

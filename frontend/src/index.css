@@ -2,7 +2,7 @@
 body {
     margin: 0;
 
-    background-color: rgb(52, 49, 107);
+    background-color: rgb(211, 210, 233);
 }
 
 a, p, h1, h2, h3, h4, h5 {
@@ -12,6 +12,10 @@ a, p, h1, h2, h3, h4, h5 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
     margin: 0px 30px;
+}
+
+input, textarea {
+  border-radius: 0.5em;
 }
 
 /* centering input placeholder */
