@@ -8,6 +8,7 @@ import SignupFormPage from './components/SignupFormPage';
 import FeedPage from './components/FeedPage';
 import ProfilePage from './components/ProfilePage';
 import * as sessionActions from './store/session';
+import { getAllUsers } from './store/session';
 import { getPosts } from './store/post';
 import { getAllVehicles } from './store/vehicle';
 import { getLikes } from './store/like'
@@ -22,6 +23,7 @@ function App() {
     dispatch(getPosts())
     dispatch(getAllVehicles())
     dispatch(getLikes())
+    dispatch(getAllUsers())
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true))
   }, [dispatch]);

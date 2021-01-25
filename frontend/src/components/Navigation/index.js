@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 import SearchResultsPage from '../SearchResultsPage';
 import * as sessionActions from '../../store/session';
@@ -19,6 +19,7 @@ const Navigation = () => {
         e.preventDefault();
 
         dispatch(sessionActions.logout());
+        return (<Redirect to='/' />)
     };
 
     return (
