@@ -18,7 +18,8 @@
 
 
 a.active {
-    color: yellow
+    color: rgb(182, 167, 248);
+    text-decoration: underline;
 }
 
 
@@ -40,6 +41,10 @@ a.active {
     background-color: rgb(54, 6, 54);
     /* z-index: 1; */
 
+}
+
+    .nav-bar a {
+    margin: 0px 25px
 }
 
 .nav-buttons-container {

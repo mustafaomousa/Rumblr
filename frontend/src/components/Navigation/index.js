@@ -29,6 +29,7 @@ const Navigation = () => {
                     {sessionUser && (
                         <>
                             <NavLink to='/feed'>Feed</NavLink>
+                            <NavLink to={`/${sessionUser.username}`}>Profile</NavLink>
                             <input onChange={updateSearch} id='search' placeholder='search'></input>
                         </>
                     )}
@@ -39,7 +40,6 @@ const Navigation = () => {
                 <div className='profile-buttons-container'>
                     {sessionUser && (
                         <>
-                            <NavLink to={`/${sessionUser.username}`}>Profile</NavLink>
                             <button id='logout' onClick={handleLogout}>Logout</button>
                         </>
                     )}
