@@ -28,10 +28,10 @@ export const getPosts = () => async dispatch => {
 };
 
 export const createNewPost = payload => async dispatch => {
-    const { title, content, body, makeId, modelId, userId } = payload;
+    const { title, content, body, tags, makeId, modelId, userId } = payload;
     const response = await fetch('/api/posts', {
         method: 'POST',
-        body: JSON.stringify({ title, content, body, makeId, modelId, userId })
+        body: JSON.stringify({ title, content, body, tags, makeId, modelId, userId })
     });
 
     if (response.ok) {

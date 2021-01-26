@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createNewPost } from '../../store/post'
 
@@ -21,10 +21,14 @@ const CreatePost = ({ user, makes, models }) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        const tags = body.match(/#[A-Za-z0-9]*/g)
+
         const payload = {
             title,
             content,
             body,
+            tags,
             makeId,
             modelId,
             userId: user.id
