@@ -6,19 +6,20 @@ body {
     background-color: rgb(54, 6, 54);
 }
 
-a, p, h1, h2, h3, h4, h5 {
+ a, p, h1, h2, h3, h4, h5 {
     color: whitesmoke;
     text-decoration: none;
 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
-    margin: 0px 30px;
+    /* margin: 0px 30px; */
 }
 
 input, textarea {
   border-radius: 0.5em;
   text-align: center;
 }
+
 
 /* centering input placeholder */
 ::-webkit-input-placeholder {

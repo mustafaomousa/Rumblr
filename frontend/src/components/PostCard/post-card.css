@@ -1,5 +1,6 @@
-#like-count {
+/* #like-count {
     color: white;
+    font-size: 12px;
 }
 
 #title {
@@ -25,19 +26,7 @@
     justify-content: flex-end;
 }
 
-.post-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(218, 206, 218);
 
-    border-radius: 0.5em;
-
-    width: 500px;
-    height: 400px;
-    margin: 20px;
-}
 
 .fa-heart.selected {
     color: red;
@@ -53,7 +42,7 @@
 
 .user-info-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 
@@ -65,9 +54,38 @@
     height: 30px;
 }
 
-.post-info-container {
+.post-body {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-rows: 70% 15% 15%;
+}
+
+.post-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+    margin-top: 30px;
+}
+
+.post-stats {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.post-stats a,p {
+    font-size: 10px;
+}
+
+.post-info-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 
     background-color:   rgb(110, 91, 110);
     
@@ -77,6 +95,7 @@
     height: 30px;
 }
 
+
 .user-info-container a {
     color: white
 }
@@ -85,7 +104,101 @@
     color: yellow
 }
 
+
+*/
+
 img {
-    max-width: 400px;
-    max-height: 250px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+.post-card {
+    display: grid;
+    grid-template-rows: 10% 60% 20% 10%;
+    background-color: rgb(206, 206, 206);
+
+    border-radius: 0.25em;
+
+    width: 500px;
+    min-height: 500px;
+    max-height: 900px;
+    margin: 20px 0px;
+
+
+}
+
+.post-media {
+    text-align: center;
+
+    max-width: 100%;
+}
+
+.post-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color:  rgb(207, 207, 207);
+
+
+    border-top-right-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+}
+
+.post-title-container a {
+    color: rgb(72, 72, 99);
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.post-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: scroll;
+
+    background-color: rgb(238, 238, 238);
+}
+
+.user-control-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: rgb(207, 207, 207);
+
+    border-bottom-right-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+
+    padding: 0px 20px;
+}
+
+.post-body a, p {
+    margin: 0px 20px;
+}
+
+.post-body a {
+    font-size: 14px;
+    color: rgb(54, 6, 54)
+}
+
+.post-body p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(72, 72, 99);
+    font-size: 12px;
+    margin: 5px 40px;
+}
+
+.user-control-panel a,p {
+    font-size: 12px;
+    color: rgb(72, 72, 99);
+}
+
+.selected {
+    color: red;
 }
