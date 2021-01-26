@@ -16,7 +16,6 @@ const WelcomePage = () => {
             </div>
             <div className='sample'>
                 <div className='user-controls'>
-                    <h1>Welcome</h1>
                     <div className='input-fields'>
                         <div className={switcher ? 'hidden' : 'active'}>
                             <LoginFormPage />

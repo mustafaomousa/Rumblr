@@ -1,26 +1,43 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    /* text-align: center; */
 }
 
-input {
-    border: 0;
-    height: 30px;
+.errors {   
+    /* display: flex;
+    flex-direction: column; */
+    text-align: center;
+    color: rgb(233, 108, 108);
 }
 
-label {
+li {
+    list-style-type:none;
+}
+
+#input {
+    width: 200px;
+
+    margin: 10px 0px;
+}
+
+#label {
     color: whitesmoke;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
-    font-size: 25px;
+    font-size: 20px;
 }
 
-#submit {
+button#submit {
     border: 0;
-    background-color: cornflowerblue;
+    background-color: rgb(9, 7, 43);
 
     color: white;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
+}
+
+#submit:hover {
+    color: purple;
 }

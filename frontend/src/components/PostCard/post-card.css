@@ -1,112 +1,3 @@
-/* #like-count {
-    color: white;
-    font-size: 12px;
-}
-
-#title {
-    color: black;
-}
-
-#car-type {
-    font-size: 13px;
-}
-
-.post-info-stats {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 5px;
-}
-
-.post-info-control {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-
-
-.fa-heart.selected {
-    color: red;
-}
-
-.fa-heart {
-    color: white;
-}
-
-.user {
-    box-shadow: 0px 0px 10px purple
-}
-
-.user-info-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    background-color: rgb(110, 91, 110);
-    
-    border-radius: 0.5em 0.5em 0 0;
-
-    width: 500px;
-    height: 30px;
-}
-
-.post-body {
-    display: grid;
-    grid-template-rows: 70% 15% 15%;
-}
-
-.post-media {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-
-    width: 100%;
-    margin-top: 30px;
-}
-
-.post-stats {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    width: 100%;
-    height: 100%;
-}
-
-.post-stats a,p {
-    font-size: 10px;
-}
-
-.post-info-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    background-color:   rgb(110, 91, 110);
-    
-    border-radius: 0 0 0.5em 0.5em;
-
-    width: 500px;
-    height: 30px;
-}
-
-
-.user-info-container a {
-    color: white
-}
-
-.user-info-container a:hover {
-    color: yellow
-}
-
-
-*/
-
 img {
     width: 100%;
     height: 100%;
@@ -131,14 +22,14 @@ img {
 }
 
 #user-icon {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
 
     margin-right: 20px;
 
-    border-radius: 0.5em;
+    border-radius: 50%;
 
-    box-shadow: black .05px .0px 10px -0.25px;
+    box-shadow: black 0px 2px 5px 0px;
 }
 
 .post-media {
@@ -161,8 +52,9 @@ img {
     border-top-right-radius: 0.25em;
     border-top-left-radius: 0.25em;
 
-    padding-top: 6px;
-    margin: 0px 10px;
+    padding-top: 4px;
+    margin: 0px 15px;
+
 }
 
 .post-title-container a {
@@ -196,6 +88,7 @@ img {
     border-bottom-right-radius: 0.25em;
     border-bottom-left-radius: 0.25em;
 
+    height: 40px;
     padding: 0px 20px;
 }
 

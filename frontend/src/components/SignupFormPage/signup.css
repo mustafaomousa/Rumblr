@@ -4,16 +4,32 @@
     justify-content: space-between;
 }
 
+.errors {   
+    /* display: flex;
+    flex-direction: column; */
+    text-align: center;
+    color: rgb(233, 108, 108);
+}
+
 input {
     border: 0;
-    height: 30px;
+    max-width: 200px;
+    height: 25px;
 }
 
 label {
     color: whitesmoke;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
-    font-size: 25px;
+    /* margin-top: 2px; */
+    margin-bottom: 5px;
+
+    font-size: 20px;
+}
+
+textarea {
+    min-width: 300px;
+    max-width: 400px;
 }
 
 #submit {
@@ -24,3 +40,4 @@ label {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 20px;
 }
+

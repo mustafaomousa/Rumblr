@@ -34,14 +34,18 @@ const LoginFormPage = () => {
         <div>
             <form onSubmit={onSubmit}>
                 <div className='input-container'>
-                    <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
-                    <label>Username/email</label>
-                    <input type='text' onChange={updateCredential} value={credential} placeholder='username/email' required />
-                    <label>Password</label>
-                    <input type='password' onChange={updatedPassword} placeholder='password' required />
-                    <button type='submit' id='submit' >Submit</button>
+                    <div className='errors'>
+                        <ul>
+                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
+                    </div>
+                    <label id='label'>Username/email</label>
+                    <input id='input' type='text' onChange={updateCredential} value={credential} placeholder='username/email' required />
+                    <label id='label'>Password</label>
+                    <input id='input' type='password' onChange={updatedPassword} placeholder='password' required />
+                    <div id='submit-container'>
+                        <button type='submit' id='submit' >Submit</button>
+                    </div>
                 </div>
             </form>
         </div>

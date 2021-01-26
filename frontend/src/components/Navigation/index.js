@@ -34,7 +34,7 @@ const Navigation = () => {
                         </>
                     )}
                 </div>
-                <div className='nav-logo-container'>
+                <div className={'nav-logo-container'}>
                     <h2>Rumblr</h2>
                 </div>
                 <div className='profile-buttons-container'>

@@ -51,30 +51,25 @@ const SignupFormPage = () => {
         <div>
             <form onSubmit={onSubmit}>
                 <div className='input-container'>
-                    <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
+                    <div className='errors'>
+                        <ul>
+                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
+                    </div>
                     <label>Username</label>
                     <input type='text' onChange={updateUsername} value={username} placeholder='username/email' required />
-
                     <label>E-mail</label>
                     <input type='text' onChange={updateEmail} value={email} placeholder='username/email' required />
-
                     <label>Header</label>
                     <input type='text' onChange={updateHeader} value={header} placeholder='header' required />
-
                     <label>Bio</label>
                     <textarea onChange={updateBio} value={bio} placeholder='bio' required />
-
                     <label>Profile Picture URL</label>
                     <input type='text' onChange={updateProfilePicture} value={profilePicture} placeholder='Profile Picture' required />
-
                     <label>Password</label>
                     <input type='password' onChange={updatedPassword} placeholder='password' required />
-
                     <label>Confirm Password</label>
                     <input type='password' onChange={updatedConfirmPassword} placeholder='password' required />
-
                     <button type='submit' id='submit'>Submit</button>
                 </div>
 
