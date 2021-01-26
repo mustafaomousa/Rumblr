@@ -28,9 +28,14 @@ const Navigation = () => {
                 <div className='nav-buttons-container'>
                     {sessionUser && (
                         <>
-                            <NavLink to='/feed'>Feed</NavLink>
-                            <NavLink to={`/${sessionUser.username}`}>Profile</NavLink>
-                            <input onChange={updateSearch} id='search' placeholder='search'></input>
+                            <div className='buttons-container'>
+                                <NavLink to='/feed'>Feed</NavLink>
+                                <NavLink to={`/${sessionUser.username}`}>Profile</NavLink>
+                            </div>
+                            <div className='search-container'>
+                                <input onChange={updateSearch} id='search' placeholder='search'></input>
+                            </div>
+
                         </>
                     )}
                 </div>

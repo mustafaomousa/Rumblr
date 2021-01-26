@@ -11,13 +11,12 @@
     color: rgb(233, 108, 108);
 }
 
-input {
+.input-container input {
     border: 0;
     max-width: 200px;
-    height: 25px;
 }
 
-label {
+.input-container label {
     color: whitesmoke;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
@@ -27,12 +26,12 @@ label {
     font-size: 20px;
 }
 
-textarea {
+.input-container textarea {
     min-width: 300px;
     max-width: 400px;
 }
 
-#submit {
+.input-container #submit {
     border: 0;
     background-color: cornflowerblue;
 

@@ -19,6 +19,7 @@ body {
 input, textarea {
   border-radius: 0.5em;
   text-align: center;
+  height: 25px;
 }
 
 

@@ -15,7 +15,8 @@
 
 
 #search {
-    width: 700px;
+    min-width: 200px;
+    max-width: 500px;
 }
 
 
@@ -33,7 +34,7 @@ a.active {
 
 .nav-bar {
     display: grid;
-    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-columns: 45% 10% 45%;
 
     position: sticky;
     top: 0;
@@ -51,10 +52,27 @@ a.active {
 }
 
 .nav-buttons-container {
+    /* display: grid;
+    grid-template-columns: 20% 80%; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.buttons-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 800px;
 }
 
 .profile-buttons-container {
@@ -65,10 +83,12 @@ a.active {
 }
 
 .nav-logo-container {
-    display: flex;
+    text-align: center;
+    /* display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-content: center; */
+
 }
 
 .nav-logo-container h2 {
