@@ -47,7 +47,12 @@ const PostCard = ({ post, user, idx }) => {
     return (
         <div className={'post-card'}>
             <div className='post-title-container'>
-                <Link to={`/${post.User.username}`}>{post.title}</Link>
+                <div className='user-icon-container'>
+                    <img id='user-icon' src={post.User.profilePicture}></img>
+                </div>
+                <div className='user-post-link-container'>
+                    <Link to={`/${post.User.username}`}>{post.title}</Link>
+                </div>
             </div>
             <div className='post-media'>
                 {post.content.includes('youtube') && (

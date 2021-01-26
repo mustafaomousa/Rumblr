@@ -117,7 +117,7 @@ img {
 
 .post-card {
     display: grid;
-    grid-template-rows: 10% 60% 20% 10%;
+    grid-template-rows: 12% 58% 23% 7%;
     background-color: rgb(206, 206, 206);
 
     border-radius: 0.25em;
@@ -130,6 +130,17 @@ img {
 
 }
 
+#user-icon {
+    width: 40px;
+    height: 40px;
+
+    margin-right: 20px;
+
+    border-radius: 0.5em;
+
+    box-shadow: black .05px .0px 10px -0.25px;
+}
+
 .post-media {
     text-align: center;
     background-color:  rgb(207, 207, 207);
@@ -140,29 +151,37 @@ img {
 
 .post-title-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 
     background-color:  rgb(207, 207, 207);
 
 
     border-top-right-radius: 0.25em;
     border-top-left-radius: 0.25em;
+
+    padding-top: 6px;
+    margin: 0px 10px;
 }
 
 .post-title-container a {
+    font-size: 15px;
     color: rgb(72, 72, 99);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.post-title-container a:hover {
+    color: rgb(54, 6, 54)
 }
 
 .post-body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    /* justify-content: center; */
     overflow: scroll;
-
+    padding-top: 15px;
     background-color: rgb(238, 238, 238);
 }
 
