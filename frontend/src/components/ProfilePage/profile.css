@@ -1,5 +1,59 @@
-.profile-body {
-    display:flex;
+#profile-picture {
+    width: 120px;
+    height: 100px;
+
+    object-fit: cover;
+
+    border-radius: 0.25em;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.profile-user-info {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0px 30px;
+
+}
+.bio-header {
+    width: 100%;
+}
+
+.profile-body {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: center;
+
+    padding: 15em 5%;
+}
+
+
+.profile-card {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    position: fixed;
+
+    width: 100%;
+    padding: 20px 0px;
+    background-color: #1b1945;
+
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+.profile-card p {
+    color: cornsilk;
 }
