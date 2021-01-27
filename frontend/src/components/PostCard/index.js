@@ -71,7 +71,7 @@ const PostCard = ({ post, user, idx }) => {
                 <Link className='username' to={`/${post.User.username}`}>{post.User.username}:</Link>
                 <p>{post.body.split(' ').map((string, index) => {
                     if (listOfTags.includes(string)) {
-                        return <Link key={index} to={`/tag/${string}`}>{` ${string}`}</Link>
+                        return <Link key={index} to={`/tag/${string.replace('#', '')}`}>{` ${string}`}</Link>
                     } else {
                         return ` ${string}`
                     }
@@ -93,48 +93,6 @@ const PostCard = ({ post, user, idx }) => {
                 <p id='like-count'>{postLikes.length} likes</p>
             </div>
         </div>
-        //      (
-        //     <div className={'post-card'} key={idx}>
-        //         <div className='user-info-container'>
-        //             <Link to={`/${post.User.username}`}>{post.title}</Link>
-        //         </div>
-        //         <div className='post-body'>
-        //             <div className='post-media'>
-        //                 {post.content.includes('youtube') && (
-        //                     <p>Video Player Here</p>
-        //                     // <ReactPlayer width='450px' height='250px' url={post.content} />
-        //                 )}
-        //                 <img src={post.content} alt='' />
-        //             </div>
-        //             <div className='post-content-body'>
-        //                 <p id='title'>{post.body}</p>
-        //             </div>
-        //             <div className='post-stats'>
-        //                 <a href={`/${post.User.username}`} id='car-type'>{post.Make.name}</a>
-        //                 <a href='/' id='car-type'>{post.Model.name}</a>
-        //                 <p>{(new Date(post.createdAt)).toString()}</p>
-        //             </div>
-        //         </div>
-        //         <div className='post-info-container'>
-        //             <>
-        //                 <Link to={`/${post.User.username}`}>{post.User.username}</Link>
-        //             </>
-        //             <div className='post-info-control'>
-        //                 {liked && (
-        //                     <>
-        //                         <i onClick={removeLike} id='heart' className="far fa-heart selected"></i>
-        //                     </>
-        //                 )}
-        //                 {!liked && (
-        //                     <>
-        //                         <i onClick={likePost} id='heart' className="far fa-heart"></i>
-        //                     </>
-        //                 )}
-        //                 <p id='like-count'>{postLikes.length} likes</p>
-        //             </div>
-        //         </div>
-        //     </div>
-
     )
 };
 

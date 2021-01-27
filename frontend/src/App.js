@@ -13,6 +13,7 @@ import { getPosts } from './store/post';
 import { getAllVehicles } from './store/vehicle';
 import { getLikes } from './store/like'
 import WelcomePage from './components/WelcomePage';
+import TagPage from './components/TagPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={WelcomePage} />
           <Route exact path='/feed' component={FeedPage} />
+          <Route path={`/tag/`} component={TagPage} />
           {user && (<Route path={`/:username`} component={ProfilePage} />)}
           <Route exact path='/results' />
           <Route path='/login' component={LoginFormPage} />
