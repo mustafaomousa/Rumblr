@@ -12,20 +12,24 @@ const TagPage = () => {
         <div className='tag'>
             <div className='tag-box'>
                 <div className='tag-box-header'>
-                    <div className='searched-tag-info'>
-                        <h1>'#{searchedTag}'</h1>
-                    </div>
+
                     <div className='tag-box-control'>
-                        <a>Recent</a>
-                        <a>Top</a>
+                        <div className='selector recent'>
+                            <a >Recent</a>
+                        </div>
+                        <div className='selector top'>
+                            <a >Top</a>
+                        </div>
                     </div>
                 </div>
-                <div>
+                <div className='tag-cards'>
                     Render tag posts here
                 </div>
             </div>
             <div>
-                top posts component here
+                <div className='searched-tag-info'>
+                    <h1>' #{searchedTag} '</h1>
+                </div>
             </div>
         </div>
     )

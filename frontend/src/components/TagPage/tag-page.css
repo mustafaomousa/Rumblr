@@ -1,12 +1,23 @@
+.selector {
+    margin: 0px 10px;
+
+}
+
 .tag {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 70% 30%;
+
+    height: 100%;
 }
 
 .tag-box {
-    background-color: rgb(53, 18, 53);
     display: flex;
     flex-direction: column;
+
+    background-color: rgb(53, 18, 53);
+
+    padding: 60px 0px;
+
 }
 
 .tag-box-control {
@@ -15,4 +26,18 @@
     justify-content: flex-start;
 
     margin: 0px 20px;
+}
+
+.tag-cards {
+    margin: 0px 20px;
+    background-color: rgb(9, 7, 43);
+
+    height: 500px;
+}
+
+.searched-tag-info {
+
+    text-align: center;
+    padding: 0px 20px;
+    padding-bottom: 20px;
 }
