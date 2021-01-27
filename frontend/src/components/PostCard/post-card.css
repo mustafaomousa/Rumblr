@@ -1,9 +1,19 @@
-img {
+.post-media img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+
 
     box-shadow: 0 4px 2px -2px gray;
+}
+
+.user-control-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 60px;
 }
 
 .post-card {
@@ -14,22 +24,27 @@ img {
     border-radius: 0.25em;
 
     width: 500px;
-    min-height: 500px;
+    height: 400px;
+    min-height: 400px;
     max-height: 900px;
     margin: 20px 0px;
 
 
 }
 
+.post-body .username {
+    margin: 0px 20px;
+}
+
 #user-icon {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
 
-    margin-right: 20px;
+    /* margin-right: 20px; */
 
-    border-radius: 50%;
+    border-radius: 0.25em;
 
-    box-shadow: black 0px 2px 5px 0px;
+    box-shadow: black 0px 1px 3px 0px;
 }
 
 .post-media {
@@ -53,7 +68,7 @@ img {
     border-top-left-radius: 0.25em;
 
     padding-top: 4px;
-    margin: 0px 15px;
+    margin: 5px 15px;
 
 }
 
@@ -71,10 +86,9 @@ img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* justify-content: center; */
     overflow: scroll;
     padding-top: 15px;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(207, 207, 207);
 }
 
 .user-control-panel {
@@ -92,7 +106,7 @@ img {
     padding: 0px 20px;
 }
 
-.post-body a, p {
+#username {
     margin: 0px 20px;
 }
 
@@ -105,7 +119,6 @@ img {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgb(72, 72, 99);
     font-size: 12px;
-    margin: 5px 40px;
 }
 
 .user-control-panel a,p {
@@ -113,6 +126,15 @@ img {
     color: rgb(72, 72, 99);
 }
 
-.selected {
+#heart::before {
+    font-size: 20px
+}
+
+.fas::before {
+    font-size: 20px;
+}
+
+.selected::before {
     color: red;
+    font-size: 20px;
 }

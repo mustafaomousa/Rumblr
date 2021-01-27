@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     Post.belongsTo(models.Make, { foreignKey: 'makeId' });
     Post.belongsTo(models.Model, { foreignKey: 'modelId' });
     Post.belongsTo(models.User, { foreignKey: 'userId' });
-    Post.hasMany(models.TagJoin, { foreignKey: 'postId' });
+    Post.belongsToMany(models.Tag, { through: 'TagJoins', foreignKey: 'postId', otherKey: 'tagId' });
   };
   return Post;
 };

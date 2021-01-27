@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Tag.associate = function (models) {
-    Tag.hasMany(models.TagJoin, { foreignKey: 'tagId' });
+    Tag.belongsToMany(models.Post, { through: 'TagJoins', foreignKey: 'tagId', otherKey: 'postId' });
   };
   return Tag;
 };

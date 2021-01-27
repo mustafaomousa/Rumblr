@@ -62,7 +62,7 @@ const SinglePost = ({ post }) => {
                 <img src={post.content} alt='' />
             </div>
             <div className='post-body'>
-                <Link to={`/${post.User.username}`}>{post.User.username}:</Link>
+                <Link id='username' to={`/${post.User.username}`}>{post.User.username}:</Link>
                 <p id='title'>{post.body}</p>
             </div>
             <div className='user-control-panel'>

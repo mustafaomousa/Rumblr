@@ -97,7 +97,11 @@ img {
     padding: 0px 20px;
 }
 
-.post-body a, p {
+.post-body #username{
+    margin: 0px 20px;
+}
+
+.post-body  p {
     margin: 0px 20px;
 }
 

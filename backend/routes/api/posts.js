@@ -10,7 +10,11 @@ const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
 
-    const posts = await Post.findAll({ include: [{ model: User }, { model: Make }, { model: Model }], order: [['updatedAt', 'DESC']] });
+    const posts = await Post.findAll({
+        include: [{ model: User }, { model: Make }, { model: Model }, { model: Tag }],
+        order: [['updatedAt', 'DESC']],
+
+    });
     return res.json({ posts });
 
 }));
@@ -21,12 +25,10 @@ router.post('/', asyncHandler(async (req, res) => {
 
     const newPost = await Post.create({ title, content, body, makeId, modelId, userId });
     const postId = newPost.dataValues.id;
-    // console.log(newPost)
-    console.log(tags)
+
     for (let tag in tags) {
         const dbTag = await Tag.findOne({ where: { name: tags[tag] } });
         if (!dbTag) {
-            console.log(tags[tag])
             const newTag = await Tag.create({ name: tags[tag] });
             const tagId = newTag.dataValues.id;
             const newPostTag = await TagJoin.create({ tagId, postId });

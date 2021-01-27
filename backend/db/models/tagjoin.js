@@ -5,8 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     postId: DataTypes.INTEGER
   }, {});
   TagJoin.associate = function (models) {
-    TagJoin.belongsTo(models.Tag, { foreignKey: 'tagId' });
-    TagJoin.belongsTo(models.Post, { foregnKey: 'postId' });
   };
   return TagJoin;
 };
