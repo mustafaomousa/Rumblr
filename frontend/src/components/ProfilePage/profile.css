@@ -57,3 +57,9 @@
 .profile-card p {
     color: cornsilk;
 }
+
+@media (max-width: 900px) {
+    .profile-body {
+        flex-direction: column;
+    }
+}
