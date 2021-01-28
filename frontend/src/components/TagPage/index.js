@@ -1,16 +1,26 @@
+import { useState } from 'react';
 import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getRecentTagPosts } from '../../store/post';
 
 import './tag-page.css';
+import { useEffect } from "react";
+import PostCard from "../PostCard";
 
 const TagPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const location = useLocation();
 
+    const [toggle, setToggle] = useState(false);
+
+    const { tagPosts } = useSelector(state => state.posts);
     const searchedTag = location.pathname.match(/[^\/]*$/)[0]
-    dispatch(getRecentTagPosts(searchedTag))
+
+    useEffect(() => {
+        dispatch(getRecentTagPosts(searchedTag));
+    }, [dispatch])
+
     return (
         <div className='tag'>
             <div className='tag-box'>
@@ -18,18 +28,18 @@ const TagPage = () => {
 
                     <div className='tag-box-control'>
                         <div className='selector recent'>
-                            <a >Recent</a>
+                            <h4 onClick={() => setToggle(false)} className={toggle ? '' : 'active'}>Recent</h4>
                         </div>
                         <div className='selector top'>
-                            <a >Top</a>
+                            <h4 onClick={() => setToggle(true)} className={toggle ? 'active' : ''}>Top</h4>
                         </div>
                     </div>
                 </div>
                 <div className='tag-cards'>
-                    Render tag posts here
+                    {tagPosts && tagPosts.map((post) => <PostCard post={post} />)}
                 </div>
             </div>
-            <div>
+            <div className='side-box'>
                 <div className='searched-tag-info'>
                     <h1>' #{searchedTag} '</h1>
                 </div>

@@ -12,17 +12,17 @@ const getAllPosts = posts => {
     };
 };
 
-const getTagPosts = posts => {
+const getTagPosts = tagPosts => {
     return {
         type: LOAD_TAG_POSTS,
-        payload: posts
+        payload: tagPosts
     }
 }
 
 export const getRecentTagPosts = (tagName) => async dispatch => {
     const response = await fetch(`/api/posts/${tagName}`);
     if (response.ok) {
-        dispatch(getTagPosts(response.data.posts))
+        dispatch(getTagPosts(response.data.tagPosts))
     }
 };
 

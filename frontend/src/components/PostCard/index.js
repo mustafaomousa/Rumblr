@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
 
-const PostCard = ({ post, user, idx }) => {
+const PostCard = ({ post }) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const [liked, setLiked] = useState(false);
@@ -31,9 +31,12 @@ const PostCard = ({ post, user, idx }) => {
     };
 
     let listOfTags = [];
-    for (let i = 0; i < post.Tags.length; i++) {
-        listOfTags.push(post.Tags[i].name)
+    if (post.Tags) {
+        for (let i = 0; i < post.Tags.length; i++) {
+            listOfTags.push(post.Tags[i].name)
+        }
     }
+
 
     const removeLike = (e) => {
         e.preventDefault();
