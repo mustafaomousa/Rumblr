@@ -42,6 +42,12 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json({ users })
 }));
 
+router.get('/newest', asyncHandler(async (req, res) => {
+    const newestUsers = await User.findAll({ limit: 10, order: [['createdAt', 'DESC']] });
+
+    return res.json({ newestUsers });
+}));
+
 router.post('/', validateSignup, asyncHandler(async (req, res) => {
     const { email, password, header, bio, profilePicture, username } = req.body;
     const user = await User.signup({ username, email, header, bio, profilePicture, password });
