@@ -20,6 +20,13 @@ router.get('/', asyncHandler(async (req, res) => {
 
 }));
 
+router.get('/tags', asyncHandler(async (req, res) => {
+    const tags = await Tag.findAll();
+
+    return res.json({ tags });
+
+}));
+
 router.get('/:tag', asyncHandler(async (req, res) => {
     const tagName = req.params.tag;
     console.log(tagName)

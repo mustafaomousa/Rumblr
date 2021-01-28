@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import CreatePost from '../CreatePost';
@@ -10,6 +11,8 @@ const FeedPage = () => {
     const makes = useSelector(state => state.vehicles.makes);
     const models = useSelector(state => state.vehicles.models);
     const newestBlogs = useSelector(state => state.session.newestBlogs);
+    const [count, setCount] = useState(3);
+
 
     if (!sessionUser) return (
         <Redirect to='/' />
@@ -48,8 +51,11 @@ const FeedPage = () => {
                 <h1>Feed</h1>
                 <CreatePost user={sessionUser} makes={makes} models={models} />
                 {allPosts && allPosts.map((post, idx) => {
-                    return <PostCard post={post} user={sessionUser} key={idx} />
+                    if (idx < count) return (<PostCard post={post} user={sessionUser} key={idx} />)
                 })}
+                <div className='load-more'>
+                    <button id='tag-submit-button' onClick={() => setCount(count + 5)}>Load more</button>
+                </div>
             </div >
         </div>
     )

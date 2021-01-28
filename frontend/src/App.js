@@ -9,7 +9,7 @@ import FeedPage from './components/FeedPage';
 import ProfilePage from './components/ProfilePage';
 import * as sessionActions from './store/session';
 import { getAllUsers, getAllNewestUsers } from './store/session';
-import { getPosts } from './store/post';
+import { getPosts, getTags } from './store/post';
 import { getAllVehicles } from './store/vehicle';
 import { getLikes } from './store/like'
 import WelcomePage from './components/WelcomePage';
@@ -26,6 +26,7 @@ function App() {
     dispatch(getLikes())
     dispatch(getAllUsers())
     dispatch(getAllNewestUsers())
+    dispatch(getTags());
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true))
   }, [dispatch]);

@@ -2,8 +2,15 @@ import { fetch } from './csrf';
 
 
 const LOAD = 'post/getAllPosts';
+const LOAD_TAGS = 'post/getAllTags';
 const LOAD_TAG_POSTS = 'post/LOAD_TAG_POSTS';
 
+const getAllTags = tags => {
+    return {
+        type: LOAD_TAGS,
+        payload: tags
+    };
+};
 
 const getAllPosts = posts => {
     return {
@@ -18,6 +25,14 @@ const getTagPosts = tagPosts => {
         payload: tagPosts
     }
 }
+
+export const getTags = () => async dispatch => {
+    const response = await fetch(`/api/posts/tags`);
+
+    if (response.ok) {
+        dispatch(getAllTags(response.data.tags))
+    }
+};
 
 export const getRecentTagPosts = (tagName) => async dispatch => {
     const response = await fetch(`/api/posts/${tagName}`);
@@ -57,6 +72,9 @@ const postReducer = (state = initialState, action) => {
             return newState;
         case LOAD_TAG_POSTS:
             newState = Object.assign({}, state, { tagPosts: action.payload });
+            return newState;
+        case LOAD_TAGS:
+            newState = Object.assign({}, state, { tags: action.payload });
             return newState;
         default:
             return state;
