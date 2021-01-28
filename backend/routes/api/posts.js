@@ -1,5 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+// const { where } = require('sequelize/types');
 // const { check } = require('express-validator');
 // const { handleValidationErrors } = require('../../utils/validation');
 
@@ -17,6 +18,16 @@ router.get('/', asyncHandler(async (req, res) => {
     });
     return res.json({ posts });
 
+}));
+
+router.get('/:tag', asyncHandler(async (req, res) => {
+    const tagName = req.params.tag;
+    console.log(tagName)
+    const posts = await Post.findAll({
+        include: { model: Tag, where: { name: `#${tagName}` } },
+        order: [['updatedAt', 'DESC']]
+    });
+    return res.json({ posts })
 }));
 
 router.post('/', asyncHandler(async (req, res) => {
