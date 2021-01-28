@@ -57,7 +57,7 @@ const PostCard = ({ post }) => {
         <div className={'post-card'}>
             <div className='post-title-container'>
                 <div className='user-icon-container'>
-                    <img id='user-icon' src={post.User.profilePicture}></img>
+                    {/* <img id='user-icon' src={post.User.profilePicture}></img> */}
                 </div>
                 <div className='user-post-link-container'>
                     <Link className='username' to={`/${post.User.username}`} id='tag'>{post.title}</Link>
@@ -93,7 +93,7 @@ const PostCard = ({ post }) => {
                         <i className='fas fa-retweet'></i>
                     </div>
                 )}
-                <p id='like-count'>{postLikes.length} likes</p>
+                <p id='like-count'>{postLikes.length} Rumbles</p>
             </div>
         </div>
     )

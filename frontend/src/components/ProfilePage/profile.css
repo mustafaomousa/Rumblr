@@ -47,7 +47,8 @@
     position: fixed;
 
     width: 100%;
-    padding: 20px 0px;
+    margin-top: 60px;
+    padding-top: 20px;
     background-color: #1b1945;
 
     border-bottom-right-radius: 1em;

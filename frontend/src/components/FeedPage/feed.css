@@ -8,30 +8,35 @@
 }
 
 .update {
-    position: sticky;
-    z-index: 0;
 
     padding: 0px 3%;
-
     width: 50%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
-    border-right: 1px solid  rgba(23, 20, 83, 0.685);
+
+    /* border-right: 1px solid  rgba(23, 20, 83, 0.685); */
 }
 
 .body {
     display: flex;
     flex-direction: row;
+
+    overflow: scroll;
 }
 
 .newest-blogs-container {
-    margin-top: 5%;
-
+    
+position: -webkit-sticky;
     position: fixed;
+    top: 0;
+
+
     text-align: center;
+    margin-top: 10%;
 
     display: flex;
     flex-direction: column;

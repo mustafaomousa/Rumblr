@@ -36,14 +36,13 @@ a.active {
     display: grid;
     grid-template-columns: 45% 10% 45%;
 
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 100;
 
     height: 60px;
-
-    /* background-color: rgb(54, 6, 54); */
+    width: 100%;
     background-color: rgb(9, 7, 43);
-    z-index: 1;
+    z-index: 5;
 
 }
 
