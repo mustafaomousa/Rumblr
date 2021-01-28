@@ -47,7 +47,7 @@ const CreatePost = ({ user, makes, models }) => {
 
     return (
         <div className='create-post'>
-            <div className='create-post-container'>
+            <div className='create-post-container speech-bubble'>
                 {/* <div className='user-info'>
                     <a>{user.username}</a>
                 </div> */}

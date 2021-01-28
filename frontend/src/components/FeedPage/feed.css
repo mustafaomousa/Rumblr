@@ -1,5 +1,49 @@
 .feed-body {
     display:flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+
+    width: 50%;
+    padding: 0px 3%;
+}
+
+.update {
+    position: sticky;
+    z-index: 0;
+
+    padding: 0px 3%;
+
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border-right: 1px solid  rgba(23, 20, 83, 0.685);
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+}
+
+.newest-blogs-container {
+    margin-top: 5%;
+
+    position: fixed;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: #120E57;
+
+    width: 330px;
+
+    border-radius: 0.25em;
+    
+}
+
+.newest-blogs {
+    height: 200px;
 }

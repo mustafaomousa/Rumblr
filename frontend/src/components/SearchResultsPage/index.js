@@ -18,7 +18,7 @@ const SearchResultsPage = ({ posts, searchTerm }) => {
             {results.map((post, idx) => (
 
                 <div className='search-result-each' key={idx}>
-                    <div className='divider' />
+                    <div className='search-divider' />
                     <a href='/' className='single-result'>{post.title}</a>
                 </div>
             ))}
@@ -27,7 +27,7 @@ const SearchResultsPage = ({ posts, searchTerm }) => {
             </div>
             {users.map((user, idx) => (
                 <div className='search-result-each' key={idx}>
-                    <div className='divider' />
+                    <div className='search-divider' />
                     <a href='/' className='single-result'>{user.username}</a>
                 </div>
             ))}

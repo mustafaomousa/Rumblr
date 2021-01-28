@@ -100,7 +100,7 @@ a.active {
     text-shadow: rgba(245, 240, 255, 0.24) 0px 2px 5px;
 }
 
-.divider {
+.search-divider {
     border-top: .15px  rgb(74, 59, 83) solid;
     margin: 8px 30px;
 }
