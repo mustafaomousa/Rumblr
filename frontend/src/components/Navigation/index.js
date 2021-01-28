@@ -23,7 +23,7 @@ const Navigation = () => {
     };
 
     return (
-        <>
+        <div className='nav-bar-holder'>
             <div className='nav-bar'>
                 <div className='nav-buttons-container'>
                     {sessionUser && (
@@ -57,7 +57,7 @@ const Navigation = () => {
                     <SearchResultsPage searchTerm={search} posts={allPosts} />
                 </div>
             )}
-        </>
+        </div>
     )
 };
 

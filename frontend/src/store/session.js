@@ -5,6 +5,14 @@ const initialState = { user: null, allUsers: null };
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const ALL_USER = 'session/getAllUsers';
+const NEWEST_USER = 'session/getNewestUsers';
+
+const getNewestUsers = newestUsers => {
+    return {
+        type: NEWEST_USER,
+        payload: newestUsers
+    }
+};
 
 const getUsers = users => {
     return {
@@ -44,6 +52,14 @@ export const getAllUsers = () => async dispatch => {
 
     if (response.ok) {
         dispatch(getUsers(response.data.users))
+    }
+};
+
+export const getAllNewestUsers = () => async dispatch => {
+    const response = await fetch('/api/users/newest');
+
+    if (response.ok) {
+        dispatch(getNewestUsers(response.data.newestUsers))
     }
 };
 
@@ -94,6 +110,9 @@ const sessionReducer = (state = initialState, action) => {
         case ALL_USER:
             newState = Object.assign({}, state);
             newState.allUsers = action.payload;
+            return newState;
+        case NEWEST_USER:
+            newState = Object.assign({}, state, { newestBlogs: action.payload });
             return newState;
         default:
             return state;
