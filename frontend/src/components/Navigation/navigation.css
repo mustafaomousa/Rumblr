@@ -31,6 +31,30 @@ a.active {
     margin: 0px 0px 0px 50px;
 }
 
+#logout {
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    border: 0;
+
+    color: white;
+
+    font-size: 15px;
+    margin: 15px;
+    padding: 3px 10px;
+    background-color: rgb(99, 90, 129);
+
+    border-radius: 0.25em;
+}
+
+#profile-icon {
+    color: whitesmoke;
+}
+
+#profile-icon:hover {
+    color:rgb(99, 90, 129);
+}
+
 
 .nav-bar {
     display: grid;

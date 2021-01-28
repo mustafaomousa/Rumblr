@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
-import FeedPage from './components/FeedPage';
+import DiscoverPage from './components/DiscoverPage';
 import ProfilePage from './components/ProfilePage';
 import * as sessionActions from './store/session';
 import { getAllUsers, getAllNewestUsers } from './store/session';
@@ -39,7 +39,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/' component={WelcomePage} />
-          <Route exact path='/feed' component={FeedPage} />
+          <Route exact path='/discover' component={DiscoverPage} />
           <Route path={`/tag/`} component={TagPage} />
           {user && (<Route path={`/:username`} component={ProfilePage} />)}
           <Route exact path='/results' />

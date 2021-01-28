@@ -29,7 +29,7 @@ const Navigation = () => {
                     {sessionUser && (
                         <>
                             <div className='buttons-container'>
-                                <NavLink to='/feed'>Feed</NavLink>
+                                <NavLink to='/discover'>Discover</NavLink>
                                 <NavLink to={`/${sessionUser.username}`}>Profile</NavLink>
                             </div>
                             <div className='search-container'>
@@ -45,6 +45,7 @@ const Navigation = () => {
                 <div className='profile-buttons-container'>
                     {sessionUser && (
                         <>
+                            <i id='profile-icon' className='fas fa-id-card'></i>
                             <button id='logout' onClick={handleLogout}>Logout</button>
                         </>
                     )}
