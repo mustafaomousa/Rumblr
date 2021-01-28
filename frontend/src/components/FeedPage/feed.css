@@ -11,7 +11,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0px 3%;
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 .profile-picture {
@@ -29,10 +29,9 @@
     align-items: flex-start;
     justify-content: flex-start;
 
-    padding: 0px 5%;
-    margin-top: 100px;
+    padding: 0px 1%;
     height: auto;
-    margin-top: 150px;
+    margin-top: 120px;
 }
 
 .body {
@@ -55,7 +54,7 @@
 .sticky {
 
     position: sticky;
-    top: 100px;
+    top: 80px;
 
 }
 

@@ -15,7 +15,7 @@ const FeedPage = () => {
         <Redirect to='/' />
     );
 
-    return (
+    if (sessionUser && allPosts && makes && models && newestBlogs) return (
         <div className='body'>
             <div className='update'>
                 <div className='newest-blogs-container sticky'>
@@ -53,6 +53,8 @@ const FeedPage = () => {
             </div >
         </div>
     )
+
+    return (<h1>Loading</h1>)
 
 };
 

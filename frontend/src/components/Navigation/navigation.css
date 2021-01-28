@@ -53,7 +53,7 @@ a.active {
 .nav-bar-holder {
     position: fixed;
     z-index: 2;
-    border-bottom: 1px solid gray;
+    /* border-bottom: 1px solid gray; */
     width: 100%;
 }
 
@@ -88,11 +88,6 @@ a.active {
 
 .nav-logo-container {
     text-align: center;
-    /* display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center; */
-
 }
 
 .nav-logo-container h2 {
