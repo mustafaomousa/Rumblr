@@ -50,7 +50,7 @@ const SignupFormPage = () => {
     return (
         <div>
             <form onSubmit={onSubmit}>
-                <div className='input-container'>
+                <div className='sign-input-container'>
                     <div className='errors'>
                         <ul>
                             {errors.map((error, idx) => <li key={idx}>{error}</li>)}

@@ -9,6 +9,37 @@ input, textarea {
     width: 100%;
 }
 
+.label, .input {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    align-self: start;
+    align-items: flex-end;
+}
+
+.input input {
+    outline: none;
+    width: 260px;
+}
+
+.input textarea {
+    outline: none;
+    resize: none;
+    width: 280px;
+    height: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.label label {
+    color: whitesmoke;
+    font-size: 18px;
+    margin: 5px 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
 .input-container {
     margin: 15px;
 }
@@ -54,7 +85,7 @@ input, textarea {
     justify-content: center;
 
     /* padding: 10px 0px; */
-    width: 500px;
+    width: 400px;
 
     background-color: #120E57;
     border-radius: 0.5em;
@@ -80,8 +111,9 @@ input, textarea {
 
 .post-information-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
 .upload-media-container {

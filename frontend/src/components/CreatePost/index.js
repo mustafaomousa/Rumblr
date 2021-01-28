@@ -48,15 +48,18 @@ const CreatePost = ({ user, makes, models }) => {
     return (
         <div className='create-post'>
             <div className='create-post-container speech-bubble'>
-                {/* <div className='user-info'>
-                    <a>{user.username}</a>
-                </div> */}
                 <div className='create-post-form'>
                     <form onSubmit={onSubmit}>
                         <div className='input-container'>
                             <div className='post-information-container'>
-                                <input onChange={updateTitle} value={title} placeholder='title'></input>
-                                <textarea onChange={updateBody} value={body} placeholder="what's on your mind?"></textarea>
+                                <div className='label'>
+                                    <label>Title:</label>
+                                    <label>Elaborate:</label>
+                                </div>
+                                <div className='input'>
+                                    <input onChange={updateTitle} value={title} placeholder='title'></input>
+                                    <textarea onChange={updateBody} value={body} placeholder="what's on your mind?"></textarea>
+                                </div>
 
                             </div>
                             <div className='upload-media-container'>
