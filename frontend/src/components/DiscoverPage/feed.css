@@ -24,14 +24,16 @@
 }
 
 .update {
-    display: flex;
+    box-sizing: border-box;
+    /* display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: flex-end;
+    justify-content: flex-start; */
 
-    padding: 0px 1%;
-    height: auto;
-    margin-top: 120px;
+    width: auto;
+    height: 400px;
+    margin-top: 100px;
+    margin-bottom: 20px;
 }
 
 .body {
@@ -42,12 +44,13 @@
 .newest-blogs-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: #120E57;
 
     width: 330px;
 
     border-radius: 0.25em;
+
+    /* margin-bottom: 280px; */
     
 }
 
@@ -55,6 +58,7 @@
 
     position: sticky;
     top: 80px;
+    z-index: 1;
 }
 
 .load-more {
@@ -66,12 +70,17 @@
     padding-bottom: 50px;
 }
 
+.tag-day {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .tag-day-container {
     position: sticky;
-    top: 500px;
+    top: 0px;
 
-    margin-top: 50px;
-    margin-bottom: 30px;
+    /* margin-top: 50px;
+    margin-bottom: 30px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,6 +89,8 @@
     width: 330px;
 
     border-radius: 0.25em;
+
+    z-index: 1;
 }
 
 .newest-blogs {
@@ -90,7 +101,8 @@
     padding-left: 30px;
 
     overflow: scroll;
-    height: 300px;
+    height: 200px;
+
 }
 
 .newest-blogs-header {

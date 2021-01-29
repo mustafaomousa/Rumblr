@@ -32,11 +32,20 @@
 }
 
 .sign-input-container #submit {
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
     border: 0;
-    background-color: cornflowerblue;
 
     color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
+
+    width: auto;
+
+    font-size: 15px;
+    margin: 15px;
+    padding: 4px 10px;
+    background-color: rgb(81, 71, 117);
+
+    border-radius: 0.25em;
 }
 

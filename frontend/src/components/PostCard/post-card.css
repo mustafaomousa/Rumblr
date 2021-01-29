@@ -119,6 +119,9 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgb(72, 72, 99);
     font-size: 12px;
+
+    margin-top: 5px;
+    margin-left: 43px;
 }
 
 .user-control-panel a,p {

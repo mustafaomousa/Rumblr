@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 
 import SearchResultsPage from '../SearchResultsPage';
 import * as sessionActions from '../../store/session';
@@ -8,6 +8,7 @@ import * as sessionActions from '../../store/session';
 import './navigation.css';
 
 const Navigation = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
     const [search, setSearch] = useState('');
     const sessionUser = useSelector(state => state.session.user);
@@ -19,7 +20,7 @@ const Navigation = () => {
         e.preventDefault();
 
         dispatch(sessionActions.logout());
-        return (<Redirect to='/' />)
+        return history.push('/')
     };
 
     return (

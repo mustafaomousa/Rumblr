@@ -23,6 +23,7 @@
 a.active {
     color: rgb(182, 167, 248);
     text-decoration: underline;
+    text-underline-offset: 5px;
 }
 
 

@@ -30,12 +30,19 @@ li {
 }
 
 button#submit {
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
     border: 0;
-    background-color: rgb(9, 7, 43);
 
     color: white;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
+
+    font-size: 15px;
+    margin: 15px;
+    padding: 4px 10px;
+    background-color: rgb(81, 71, 117);
+
+    border-radius: 0.25em;
 }
 
 #submit:hover {
