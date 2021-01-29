@@ -69,6 +69,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     User.hasMany(models.Post, { foreignKey: 'userId' });
     User.hasMany(models.Like, { foreignKey: "userId" });
+    User.hasMany(models.RerumbleJoin, { foreignKey: 'userId' });
   };
 
   User.prototype.toSafeObject = function () {

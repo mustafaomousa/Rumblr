@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
+import { createRerumble, removeRerumble } from '../../store/post';
 
 const PostCard = ({ post }) => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const PostCard = ({ post }) => {
     const sessionUser = useSelector(state => state.session.user);
     const postLikes = useSelector(state => state.likes.likes.filter(like => like.postId === post.id));
     const userLikes = useSelector(state => state.likes.likes.filter(like => like.userId === sessionUser.id && like.postId === post.id));
+    const rerumble = useSelector(state => state.posts.rerumbles.find(rerumble => rerumble.userId === sessionUser.id && rerumble.postId === post.id));
 
     let like = null;
     if (userLikes.shift !== undefined) {
@@ -56,11 +58,31 @@ const PostCard = ({ post }) => {
         setLiked(false);
     };
 
+    const addRerumble = (e) => {
+        e.preventDefault();
+
+        const userId = sessionUser.id;
+        const postId = post.id;
+        const payload = { userId, postId };
+
+        dispatch(createRerumble(payload));
+    };
+
+    const deleteRerumble = (e) => {
+        e.preventDefault();
+
+        const userId = sessionUser.id;
+        const postId = post.id;
+        const payload = { userId, postId }
+
+        dispatch(removeRerumble(payload))
+    };
+
     useEffect(() => {
         if (like) setLiked(true);
     }, [like])
 
-    return postLikes && (
+    if (postLikes && sessionUser && userLikes) return (
         <>
             <FontAwesomeIcon onClick={openSelectedPicture} id={'magnify'} icon={faSearch} size={'3x'} />
             <Modal isOpen={pictureIsOpen} className='picture-modal'>
@@ -101,13 +123,15 @@ const PostCard = ({ post }) => {
                     {liked && (
                         <div className='user-control-buttons'>
                             <i onClick={removeLike} id='heart' className="far fa-heart selected"></i>
-                            <i className='fas fa-retweet'></i>
+                            {rerumble && <i onClick={deleteRerumble} className='fas fa-retweet rerumbled'></i>}
+                            {!rerumble && <i onClick={addRerumble} className='fas fa-retweet'></i>}
                         </div>
                     )}
                     {!liked && (
                         <div className='user-control-buttons'>
                             <i onClick={likePost} id='heart' className="far fa-heart"></i>
-                            <i className='fas fa-retweet'></i>
+                            {rerumble && <i onClick={deleteRerumble} className='fas fa-retweet rerumbled'></i>}
+                            {!rerumble && <i onClick={addRerumble} className='fas fa-retweet not-rerumbled'></i>}
                         </div>
                     )}
                     <p id='like-count'>{postLikes.length} Rumbles</p>

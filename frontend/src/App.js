@@ -9,7 +9,7 @@ import DiscoverPage from './components/DiscoverPage';
 import ProfilePage from './components/ProfilePage';
 import * as sessionActions from './store/session';
 import { getAllUsers, getAllNewestUsers } from './store/session';
-import { getPosts, getTags } from './store/post';
+import { getPosts, getRerumbles, getTags } from './store/post';
 import { getAllVehicles } from './store/vehicle';
 import { getLikes } from './store/like'
 import WelcomePage from './components/WelcomePage';
@@ -28,6 +28,7 @@ function App() {
     dispatch(getAllUsers())
     dispatch(getAllNewestUsers())
     dispatch(getTags());
+    dispatch(getRerumbles());
     dispatch(sessionActions.restoreUser())
       .then(() => setIsLoaded(true))
   }, [dispatch]);

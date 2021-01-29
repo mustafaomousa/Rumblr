@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     Post.belongsTo(models.Model, { foreignKey: 'modelId' });
     Post.belongsTo(models.User, { foreignKey: 'userId' });
     Post.belongsToMany(models.Tag, { through: 'TagJoins', foreignKey: 'postId', otherKey: 'tagId' });
+    Post.hasMany(models.RerumbleJoin, { foreignKey: 'postId' });
   };
   return Post;
 };

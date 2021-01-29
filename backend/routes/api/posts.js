@@ -5,9 +5,27 @@ const asyncHandler = require('express-async-handler');
 // const { handleValidationErrors } = require('../../utils/validation');
 
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post, User, Make, Model, Tag, TagJoin } = require('../../db/models');
+const { Post, User, Make, Model, Tag, TagJoin, RerumbleJoin } = require('../../db/models');
 
 const router = express.Router();
+
+router.post('/rerumble', asyncHandler(async (req, res) => {
+    const { userId, postId } = req.body;
+    const rerumble = await RerumbleJoin.create({ userId, postId });
+    return res.json({ rerumble })
+}));
+
+router.delete('/rerumble', asyncHandler(async (req, res) => {
+    const { userId, postId } = req.body;
+    const rerumble = await RerumbleJoin.findOne({ userId, postId });
+    rerumble.destroy();
+    return res.json({ rerumble })
+}));
+
+router.get('/rerumble', asyncHandler(async (req, res) => {
+    const rerumbles = await RerumbleJoin.findAll();
+    return res.json({ rerumbles });
+}));
 
 router.get('/', asyncHandler(async (req, res) => {
 

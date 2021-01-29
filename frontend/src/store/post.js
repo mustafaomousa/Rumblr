@@ -4,6 +4,7 @@ import { fetch } from './csrf';
 const LOAD = 'post/getAllPosts';
 const LOAD_TAGS = 'post/getAllTags';
 const LOAD_TAG_POSTS = 'post/LOAD_TAG_POSTS';
+const LOAD_RERUMBLES = 'post/LOAD_RERUMBLES';
 
 const getAllTags = tags => {
     return {
@@ -25,6 +26,44 @@ const getTagPosts = tagPosts => {
         payload: tagPosts
     }
 }
+
+const getAllRerumbles = rerumbles => {
+    return {
+        type: LOAD_RERUMBLES,
+        payload: rerumbles
+    }
+}
+
+export const getRerumbles = () => async dispatch => {
+    const response = await fetch('/api/posts/rerumble');
+
+    if (response.ok) {
+        dispatch(getAllRerumbles(response.data.rerumbles))
+    }
+};
+
+export const removeRerumble = ({ userId, postId }) => async dispatch => {
+    const response = await fetch('/api/posts/rerumble', {
+        method: 'DELETE',
+        body: JSON.stringify({ userId, postId })
+    });
+
+    if (response.ok) {
+        dispatch(getRerumbles());
+    }
+
+};
+
+export const createRerumble = ({ userId, postId }) => async dispatch => {
+    const response = await fetch('/api/posts/rerumble', {
+        method: 'POST',
+        body: JSON.stringify({ userId, postId })
+    });
+
+    if (response.ok) {
+        dispatch(getRerumbles());
+    };
+};
 
 export const getTags = () => async dispatch => {
     const response = await fetch(`/api/posts/tags`);
@@ -75,6 +114,9 @@ const postReducer = (state = initialState, action) => {
             return newState;
         case LOAD_TAGS:
             newState = Object.assign({}, state, { tags: action.payload });
+            return newState;
+        case LOAD_RERUMBLES:
+            newState = Object.assign({}, state, { rerumbles: action.payload });
             return newState;
         default:
             return state;
