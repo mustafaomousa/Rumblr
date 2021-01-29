@@ -33,6 +33,15 @@ const LoginFormPage = () => {
         return history.push('/discover')
     };
 
+    const demoLogin = (e) => {
+
+        setCredential('demo-user');
+        setPassword('password');
+
+        return onSubmit(e);
+
+    }
+
     return (
         <div>
             <form onSubmit={onSubmit}>
@@ -47,7 +56,8 @@ const LoginFormPage = () => {
                     <label id='label'>Password</label>
                     <input id='input' type='password' onChange={updatedPassword} placeholder='password' required />
                     <div id='submit-container'>
-                        <button type='submit' id='submit' >Submit</button>
+                        <button type='submit' id='submit'>Log in</button>
+                        <button onClick={demoLogin} id='submit'>Demo</button>
                     </div>
                 </div>
             </form>

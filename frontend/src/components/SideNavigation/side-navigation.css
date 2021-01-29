@@ -1,0 +1,32 @@
+.side-navigation-container {
+    background-color: rgb(9, 7, 43);
+    /* background-color: rgb(36, 7, 43); */
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 4;
+
+    width: 80px;
+    height: 100%;
+
+    /* padding-top: 70px; */
+    margin-top: 60px;
+
+}
+
+.hidden-side  {
+    display: none;
+}
+
+.fa-user, .fa-compass, .fa-question {
+    position: sticky;
+    top: 0;
+    margin: 10px 0px;
+    color: white;
+}
+
+.active svg{
+    color: rgb(159, 155, 223);
+}

@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import AccountModal from '../AccountModal';
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
 
 import SearchResultsPage from '../SearchResultsPage';
 import * as sessionActions from '../../store/session';
 
 import './navigation.css';
+import SideNavigation from '../SideNavigation';
 
 const Navigation = () => {
     const history = useHistory();
@@ -16,7 +20,7 @@ const Navigation = () => {
     const [search, setSearch] = useState('');
     const sessionUser = useSelector(state => state.session.user);
     const allPosts = useSelector(state => state.posts.allPosts)
-
+    const [sideOpen, setSideOpen] = useState('false')
 
     const updateSearch = (e) => setSearch(e.target.value);
 
@@ -29,15 +33,13 @@ const Navigation = () => {
 
     return (
         <div className='nav-bar-holder'>
+            <SideNavigation sideOpen={sideOpen} />
             <div className='nav-bar'>
                 <div className='nav-buttons-container'>
                     {sessionUser && (
                         <>
-                            <div className='buttons-container'>
-                                <NavLink to='/discover'>Discover</NavLink>
-                                <NavLink to={`/${sessionUser.username}`}>Profile</NavLink>
-                            </div>
                             <div className='search-container'>
+                                <FontAwesomeIcon onClick={() => setSideOpen(!sideOpen)} icon={faBars} size={'2x'} className={sideOpen ? 'fa fa-bars' : 'fa fa-bars open'} />
                                 <input onChange={updateSearch} id='search' placeholder='search'></input>
                             </div>
 

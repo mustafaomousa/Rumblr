@@ -14,6 +14,7 @@ import { getAllVehicles } from './store/vehicle';
 import { getLikes } from './store/like'
 import WelcomePage from './components/WelcomePage';
 import TagPage from './components/TagPage';
+import SideNavigation from './components/SideNavigation';
 
 function App() {
   const dispatch = useDispatch();

@@ -71,6 +71,15 @@ a.active {
     color:rgb(99, 90, 129);
 }
 
+.fa-bars {
+    color: white;
+    margin: 0px 25px;
+}
+
+.open {
+    color:rgba(104, 105, 151, 0.507)
+}
+
 
 .nav-bar {
     display: grid;
@@ -162,6 +171,7 @@ a.active {
     max-height: 250px;
 
     padding: 10px 0px;
+    margin-left: 80px;
 }
 
 .search-results-container, .search-results-container a {
