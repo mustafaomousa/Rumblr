@@ -23,7 +23,7 @@ router.delete('/rerumble', asyncHandler(async (req, res) => {
 }));
 
 router.get('/rerumble', asyncHandler(async (req, res) => {
-    const rerumbles = await RerumbleJoin.findAll();
+    const rerumbles = await RerumbleJoin.findAll({ include: [{ model: Post, include: [User] }] });
     return res.json({ rerumbles });
 }));
 

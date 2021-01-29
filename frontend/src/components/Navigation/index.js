@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import AccountModal from '../AccountModal';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 import SearchResultsPage from '../SearchResultsPage';
@@ -66,7 +66,8 @@ const Navigation = () => {
                 </div>
             )}
             {sessionUser && <Modal animationType='fade' className={'ReactModal__Content'} isOpen={accountIsOpen}>
-                <i onClick={() => setAccountIsOpen(false)} className='fas fa-times-circle' id='close-button'></i>
+                <FontAwesomeIcon onClick={() => setAccountIsOpen(false)} icon={faTimesCircle} size={'2x'} id='close-button' />
+
                 <AccountModal sessionUser={sessionUser}></AccountModal>
             </Modal>}
         </div>

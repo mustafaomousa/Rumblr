@@ -11,11 +11,11 @@ const ProfilePage = () => {
     const makes = useSelector(state => state.vehicles.makes);
     const models = useSelector(state => state.vehicles.models);
 
-
-
     let { username } = useParams();
 
     const profileUser = useSelector(state => state.session.allUsers.filter((user) => user.username === username))[0];
+    const rerumbles = useSelector(state => state.posts.rerumbles.filter(rerumble => rerumble.userId === profileUser.id))
+    console.log(rerumbles)
 
     if (!sessionUser) return (
         <Redirect to='/' />
@@ -34,13 +34,25 @@ const ProfilePage = () => {
                     <p>{profileUser.bio}</p>
                 </div>
             </div>
-            <div className='profile-body'>
-
-                {/* <CreatePost user={sessionUser} makes={makes} models={models} /> */}
-                {allPosts && allPosts.map((post, idx) => {
-                    if (post.userId === sessionUser.id) return (<PostCard post={post} user={sessionUser} key={idx} />)
-                })}
+            <div className='split-cont'>
+                <div className='profile-body'>
+                    {allPosts && allPosts.map((post, idx) => {
+                        if (post.userId === sessionUser.id) return (<PostCard post={post} user={sessionUser} key={idx} />)
+                    })}
+                </div>
+                <div className='rerumbled'>
+                    <div className='profile-create-post'>
+                        <CreatePost user={sessionUser} makes={makes} models={models} />
+                        <div className='rerumbled-container'>
+                            <h2>{username}'s Rerumble's:</h2>
+                            {rerumbles && rerumbles.map((post, idx) => {
+                                return (<PostCard post={post.Post} user={sessionUser} key={idx} />)
+                            })}
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
     )
@@ -57,11 +69,20 @@ const ProfilePage = () => {
                     <p>{profileUser.bio}</p>
                 </div>
             </div>
-            <div className='profile-body'>
-                {allPosts && allPosts.map((post, idx) => {
-                    if (post.User.username === username) return (<PostCard post={post} user={sessionUser} key={idx} />)
-                })}
+            <div className='split-cont'>
+                <div className='profile-body'>
+                    {allPosts && allPosts.map((post, idx) => {
+                        if (post.User.username === username) return (<PostCard post={post} user={sessionUser} key={idx} />)
+                    })}
+                </div>
+                <div className='rerumbled'>
+                    <div className='rerumbled-container'>
+                        <h2>{username}'s Rerumble's:</h2>
+                        { }
+                    </div>
+                </div>
             </div>
+
         </div>
 
     )

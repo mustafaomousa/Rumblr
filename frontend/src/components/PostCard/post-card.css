@@ -6,6 +6,10 @@
         left: 190px;
 }
 
+.profile-body #magnify {
+        display: none;
+}
+
 #magnify:hover {
     color: rgb(255, 255, 255);
 }
@@ -56,7 +60,7 @@
     height: 400px;
     min-height: 400px;
     max-height: 900px;
-    margin: 20px 0px;
+    margin: 20px 10px;
 
 
 }

@@ -40,11 +40,10 @@ a.active {
 
 #close-button {
     position: relative;
-    bottom: 205px;
-    left: 30px;
+    bottom: 230px;
+    left: 0px;
     text-decoration: none;
     color: red;
-    font-size: 20px;
 }
 
 #logout {

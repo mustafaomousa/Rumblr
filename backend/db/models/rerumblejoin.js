@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     postId: DataTypes.INTEGER
   }, {});
   RerumbleJoin.associate = function (models) {
+    RerumbleJoin.belongsTo(models.Post, { foreignKey: 'postId' })
   };
   return RerumbleJoin;
 };

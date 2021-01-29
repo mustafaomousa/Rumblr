@@ -97,7 +97,7 @@ const PostCard = ({ post }) => {
                         {/* <img id='user-icon' src={post.User.profilePicture}></img> */}
                     </div>
                     <div className='user-post-link-container'>
-                        <Link className='username' to={`/${post.User.username}`} id='tag'>{post.title}</Link>
+                        <Link className='username' to={`/discover`} id='tag'>{post.title}</Link>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@ const PostCard = ({ post }) => {
                         <p>Video Player Here</p>
                         // <ReactPlayer width='450px' height='250px' url={post.content} />
                     )}
-                    <img class='post-image' src={post.content} alt=''></img >
+                    <img onClick={openSelectedPicture} class='post-image' src={post.content} alt=''></img >
 
                 </div>
                 <div className='post-body'>
