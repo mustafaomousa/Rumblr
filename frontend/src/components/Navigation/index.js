@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import AccountModal from '../AccountModal';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -47,7 +47,7 @@ const Navigation = () => {
                     )}
                 </div>
                 <div className={'nav-logo-container'}>
-                    <h2>Rumblr</h2>
+                    <h2 onClick={() => history.push('/discover')}>Rumblr</h2>
                 </div>
                 <div className='profile-buttons-container'>
                     {sessionUser && (
