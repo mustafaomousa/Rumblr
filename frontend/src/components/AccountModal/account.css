@@ -1,0 +1,80 @@
+#picture {
+    width: 150px;
+    height: auto;
+    border-radius: 0.26em;
+}
+
+#account-divider {
+    text-align: center;
+    width: 350px;
+    border-bottom: 1px solid rgb(62, 60, 94);
+    margin: 10px 0px;
+}
+
+.account-container {
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+
+    background-color: rgb(9, 7, 43);
+    width: 400px;
+    height: 450px;
+
+    border-radius: 0.5em;
+}
+
+.account-container-header, .account-container-body, .account-container-footer {
+    height: 100%;
+}
+
+.account-container-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.account-container-footer button {
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    border: 0;
+
+    color: white;
+
+    font-size: 12px;
+    margin: 0px 8px;
+    padding: 4px 10px;
+    background-color: rgb(81, 71, 117);
+
+    border-radius: 0.25em;
+}
+
+.account-container-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 20px;
+}
+
+.account-container-body h4{
+    font-size: 12px;
+    margin: 0;
+}
+
+.account-container-body p {
+    margin: 5px -8px;
+}
+
+.account-container-header {
+    margin: 20px;
+}
+
+.ReactModal__Content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+
+    height: 100%;
+}

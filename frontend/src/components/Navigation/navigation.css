@@ -27,9 +27,24 @@ a.active {
 }
 
 
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
+
 .single-result {
     font-size: 15px;
     margin: 0px 0px 0px 50px;
+}
+
+#close-button {
+    position: relative;
+    bottom: 205px;
+    left: 30px;
+    text-decoration: none;
+    color: red;
+    font-size: 20px;
 }
 
 #logout {
@@ -42,8 +57,8 @@ a.active {
 
     font-size: 15px;
     margin: 15px;
-    padding: 3px 10px;
-    background-color: rgb(99, 90, 129);
+    padding: 4px 10px;
+    background-color: rgb(81, 71, 117);
 
     border-radius: 0.25em;
 }

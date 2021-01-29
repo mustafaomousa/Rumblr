@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { getAllUsers } from '../../store/session';
 import CreatePost from '../CreatePost';
 import PostCard from '../PostCard';
 import './feed.css';
 
 const FeedPage = () => {
+    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const allPosts = useSelector(state => state.posts.allPosts);
     const makes = useSelector(state => state.vehicles.makes);
@@ -13,10 +15,15 @@ const FeedPage = () => {
     const newestBlogs = useSelector(state => state.session.newestBlogs);
     const [count, setCount] = useState(3);
 
+    useEffect(() => {
+        dispatch(getAllUsers());
+    }, [dispatch])
 
     if (!sessionUser) return (
         <Redirect to='/' />
     );
+
+
 
     if (sessionUser && allPosts && makes && models && newestBlogs) return (
         <div className='body'>
