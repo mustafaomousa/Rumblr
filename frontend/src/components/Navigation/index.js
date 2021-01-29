@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import AccountModal from '../AccountModal';
@@ -8,7 +8,6 @@ import SearchResultsPage from '../SearchResultsPage';
 import * as sessionActions from '../../store/session';
 
 import './navigation.css';
-import { set } from 'js-cookie';
 
 const Navigation = () => {
     const history = useHistory();

@@ -52,34 +52,27 @@ const SignupFormPage = () => {
 
     return (
         <div>
+            <div className='errors'>
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+            </div>
             <form onSubmit={onSubmit}>
                 <div className='sign-input-container'>
-                    <div className='errors'>
-                        <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul>
+                    <div className='inputs'>
+                        <div id='logo'>
+                            <h2>R</h2>
+                        </div>
+                        <input type='text' onChange={updateUsername} value={username} placeholder='create a username' required />
+                        <input type='text' onChange={updateEmail} value={email} placeholder='enter email' required />
+                        <input type='text' onChange={updateHeader} value={header} placeholder='create a header' required />
+                        <textarea onChange={updateBio} value={bio} placeholder='create a bio' required />
+                        <input type='text' onChange={updateProfilePicture} value={profilePicture} placeholder='Upload profile picture' required />
+                        <input type='password' onChange={updatedPassword} placeholder='create a password' required />
+                        <input type='password' onChange={updatedConfirmPassword} placeholder='confirm password' required />
                     </div>
-                    <label>Username
-                        <input type='text' onChange={updateUsername} value={username} placeholder='username/email' required />
-                    </label>
-                    <label>E-mail
-                        <input type='text' onChange={updateEmail} value={email} placeholder='username/email' required />
-                    </label>
-                    <label>Header
-                        <input type='text' onChange={updateHeader} value={header} placeholder='header' required />
-                    </label>
-                    <label>Bio
-                        <textarea onChange={updateBio} value={bio} placeholder='bio' required />
-                    </label>
-                    <label>Profile Picture URL</label>
-                    <input type='text' onChange={updateProfilePicture} value={profilePicture} placeholder='Profile Picture' required />
-                    <label>Password</label>
-                    <input type='password' onChange={updatedPassword} placeholder='password' required />
-                    <label>Confirm Password</label>
-                    <input type='password' onChange={updatedConfirmPassword} placeholder='password' required />
                     <button type='submit' id='submit'>Submit</button>
                 </div>
-
             </form>
         </div>
     )

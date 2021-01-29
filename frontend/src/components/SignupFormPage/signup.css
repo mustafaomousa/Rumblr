@@ -1,8 +1,39 @@
+#logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(81, 71, 117);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: fixed;
+    top: -20px;
+}
+
+#logo h2 {
+    font-size: 50px;
+    color: whitesmoke;
+    font-style: oblique;
+}
+
 .sign-input-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-line {
+    display: flex;
+    flex-direction: row;
+}
+
 
 .errors {   
     /* display: flex;
@@ -12,15 +43,15 @@
 }
 
 .sign-input-container input {
+    margin: 0;
     border: 0;
     max-width: 200px;
-}
 
+    margin: 5px 0px;
+}
 .sign-input-container label {
     color: whitesmoke;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-    /* margin-top: 2px; */
     margin-bottom: 5px;
 
     font-size: 20px;
