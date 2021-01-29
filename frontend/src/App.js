@@ -15,6 +15,7 @@ import { getLikes } from './store/like'
 import WelcomePage from './components/WelcomePage';
 import TagPage from './components/TagPage';
 import SideNavigation from './components/SideNavigation';
+import AboutUsPage from './components/AboutUsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/' component={WelcomePage} />
+          <Route path='/about-us' component={AboutUsPage} />
           <Route exact path='/discover' component={DiscoverPage} />
           <Route path={`/tag/`} component={TagPage} />
           {user && (<Route path={`/:username`} component={ProfilePage} />)}
