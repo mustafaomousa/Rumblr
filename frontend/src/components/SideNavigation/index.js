@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 const SideNavigation = ({ sideOpen }) => {
     const sessionUser = useSelector(state => state.session.user)
 
-    return sessionUser && (
+    if (sessionUser) return (
         <div className={sideOpen ? 'hidden-side' : 'side-navigation-container'}>
             <NavLink to={`/${sessionUser.username}`}>
                 <FontAwesomeIcon icon={faUser} size={'2x'} />
@@ -22,6 +22,8 @@ const SideNavigation = ({ sideOpen }) => {
             </NavLink>
         </div>
     )
+
+    if (!sessionUser) return (<div></div>)
 };
 
 export default SideNavigation
