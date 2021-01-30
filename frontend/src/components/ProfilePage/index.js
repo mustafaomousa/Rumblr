@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
@@ -16,6 +17,8 @@ const ProfilePage = () => {
     const profileUser = useSelector(state => state.session.allUsers.filter((user) => user.username === username))[0];
     const rerumbles = useSelector(state => state.posts.rerumbles.filter(rerumble => rerumble.userId === profileUser.id))
     console.log(rerumbles)
+
+    useEffect(() => window.scrollTo(0, 0), [])
 
     if (!sessionUser) return (
         <Redirect to='/' />

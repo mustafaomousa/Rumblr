@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import './about-us.css'
 
 const AboutUsPage = () => {
 
+    useEffect(() => window.scrollTo(0, 0), [])
     return (
         <div className='about-us-body'>
             <div style={{ paddingLeft: '80px' }}>

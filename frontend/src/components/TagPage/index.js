@@ -21,6 +21,8 @@ const TagPage = () => {
         dispatch(getRecentTagPosts(searchedTag));
     }, [dispatch])
 
+    useEffect(() => window.scrollTo(0, 0), [])
+
     return (
         <div className='tag'>
             <div className='tag-box'>

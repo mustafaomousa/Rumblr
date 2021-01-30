@@ -85,7 +85,7 @@ a.active {
     grid-template-columns: 45% 10% 45%;
 
     position: sticky;
-    top: 0;
+    top: -2px;
 
     height: 60px;
     width: 100%;

@@ -19,6 +19,8 @@ const FeedPage = () => {
         dispatch(getAllUsers());
     }, [dispatch])
 
+    useEffect(() => window.scrollTo(0, 0), [])
+
     if (!sessionUser) return (
         <Redirect to='/' />
     );
