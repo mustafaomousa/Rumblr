@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createNewPost } from '../../store/post'
+import { FilePicker, ImagePicker } from 'react-file-picker'
 
+import { createNewPost } from '../../store/post'
+import UploadPictureS3Client from '../../aws/s3';
 import './new-post.css';
 
 const CreatePost = ({ user, makes, models }) => {
@@ -12,12 +14,13 @@ const CreatePost = ({ user, makes, models }) => {
     const [body, setBody] = useState('');
     const [makeId, setMakeId] = useState(0);
     const [modelId, setModelId] = useState(0);
-
     const updateTitle = (e) => setTitle(e.target.value);
     const updateContent = (e) => setContent(e.target.value);
     const updateBody = (e) => setBody(e.target.value);
     const updateMake = (e) => setMakeId(e.target.value);
     const updateModel = (e) => setModelId(e.target.value);
+
+    useEffect(() => alert(content), [content])
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -35,6 +38,14 @@ const CreatePost = ({ user, makes, models }) => {
         };
         dispatch(createNewPost(payload));
         resetFields();
+    };
+
+    const uploadFile = (e) => {
+        e.preventDefault();
+
+        UploadPictureS3Client.uploadFile(e.target.files[0], `${user.id}-${new Date()}`)
+            .then(data => setContent(data.location))
+            .catch(err => alert(err))
     };
 
     const resetFields = () => {
@@ -66,7 +77,11 @@ const CreatePost = ({ user, makes, models }) => {
                                     <label>Show me:</label>
                                 </div>
                                 <div className='input'>
-                                    <input onChange={updateContent} value={content} placeholder='image url'></input>
+                                    <input type='file' onChange={uploadFile} >
+
+                                    </input>
+                                    {/* // <button onClick={() => { UploadPictureS3Client.uploadFile(filePath, 'picture').then(data => alert(data)) }}>Upload</button> */}
+                                    {/* <input onChange={updateContent} value={content} placeholder='image url'></input> */}
                                 </div>
                             </div>
                             <label id='label'>Wow.. which car again?</label>

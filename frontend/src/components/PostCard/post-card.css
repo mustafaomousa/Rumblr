@@ -52,6 +52,10 @@
 
 }
 
+.hidden {
+    display:none
+}
+
 .post-card {
     display: flex;
     flex-direction: column;
@@ -71,7 +75,7 @@
 .post-title-container {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 
     padding: 25px 30px;
 

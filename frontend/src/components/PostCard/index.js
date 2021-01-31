@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTimesCircle, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import Modal from 'react-modal';
 
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
-import { createRerumble, getRerumbles, removeRerumble } from '../../store/post';
+import { createRerumble, removeRerumble } from '../../store/post';
 
 const PostCard = ({ post, rerumbles }) => {
     const dispatch = useDispatch();
     const [liked, setLiked] = useState(false);
     const [pictureIsOpen, setPictureIsOpen] = useState(false);
+    const [toolsOpen, setToolsOpen] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const postLikes = useSelector(state => state.likes.likes.filter(like => like.postId === post.id));
     const userLikes = useSelector(state => state.likes.likes.filter(like => like.userId === sessionUser.id && like.postId === post.id));
@@ -96,11 +97,19 @@ const PostCard = ({ post, rerumbles }) => {
             </Modal>
             <div className={'post-card'}>
                 <div className='post-title-container'>
-                    <div className='user-icon-container'>
-                        {/* <img id='user-icon' src={post.User.profilePicture}></img> */}
-                    </div>
                     <div className='user-post-link-container'>
                         <Link className='username' to={`/discover`} id='tag'>{post.title}</Link>
+                    </div>
+                    <div className='tools-control'>
+                        <button>Like post</button>
+                        <button>Rerumble post</button>
+                        <button>Edit</button>
+                    </div>
+                    <div className={toolsOpen ? 'hidden' : 'tools'}>
+                        <FontAwesomeIcon onClick={() => setToolsOpen(true)} icon={faChevronDown} size={'2x'} />
+                    </div>
+                    <div className={toolsOpen ? 'tools' : 'hidden'}>
+                        <FontAwesomeIcon onClick={() => setToolsOpen(false)} icon={faChevronUp} size={'2x'} />
                     </div>
                 </div>
 

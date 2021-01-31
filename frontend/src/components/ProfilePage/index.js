@@ -2,10 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
-import { getAllUsers, getAllNewestUsers } from '../../store/session';
-import { getPosts, getRerumbles, getTags } from '../../store/post';
-import { getLikes } from '../../store/like'
-
 import CreatePost from '../CreatePost';
 import PostCard from '../PostCard';
 import './profile.css';
