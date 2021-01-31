@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { getPosts } from '../../store/post';
-import { getAllUsers } from '../../store/session';
+
+import { getAllUsers, getAllNewestUsers } from '../../store/session';
+import { getPosts, getRerumbles, getTags } from '../../store/post';
+import { getAllVehicles } from '../../store/vehicle';
+import { getLikes } from '../../store/like'
+
 import CreatePost from '../CreatePost';
 import PostCard from '../PostCard';
 import './feed.css';
@@ -14,10 +18,15 @@ const FeedPage = () => {
     const makes = useSelector(state => state.vehicles.makes);
     const models = useSelector(state => state.vehicles.models);
     const newestBlogs = useSelector(state => state.session.newestBlogs);
+    const rerumbles = useSelector(state => state.posts.rerumbles);
     const [count, setCount] = useState(3);
 
     useEffect(() => {
         dispatch(getAllUsers());
+        dispatch(getLikes());
+        dispatch(getAllNewestUsers());
+        dispatch(getTags());;
+        dispatch(getRerumbles());;
     }, [dispatch])
 
     useEffect(() => window.scrollTo(0, 0), [])
@@ -67,7 +76,7 @@ const FeedPage = () => {
                 <CreatePost user={sessionUser} makes={makes} models={models} />
                 <button onClick={() => getPosts()}>Load newest</button>
                 {allPosts && allPosts.map((post, idx) => {
-                    if (idx < count) return (<PostCard post={post} user={sessionUser} key={idx} />)
+                    if (idx < count) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
                 })}
                 <div className='load-more'>
                     <button id='tag-submit-button' onClick={() => setCount(count + 5)}>Load more</button>

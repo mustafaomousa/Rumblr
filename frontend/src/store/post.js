@@ -101,7 +101,7 @@ export const createNewPost = payload => async dispatch => {
     }
 };
 
-const initialState = { allPosts: null, tagPosts: null };
+const initialState = { allPosts: [], tagPosts: [], rerumbles: [] };
 
 const postReducer = (state = initialState, action) => {
     let newState;

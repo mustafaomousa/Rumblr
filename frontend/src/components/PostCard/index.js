@@ -9,19 +9,22 @@ import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
 import { createRerumble, getRerumbles, removeRerumble } from '../../store/post';
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, rerumbles }) => {
     const dispatch = useDispatch();
     const [liked, setLiked] = useState(false);
     const [pictureIsOpen, setPictureIsOpen] = useState(false);
     const sessionUser = useSelector(state => state.session.user);
     const postLikes = useSelector(state => state.likes.likes.filter(like => like.postId === post.id));
     const userLikes = useSelector(state => state.likes.likes.filter(like => like.userId === sessionUser.id && like.postId === post.id));
+    const rerumble = rerumbles.filter(rerumble => rerumble.userId === sessionUser.id && rerumble.postId === post.id)[0];
+
+    console.log(rerumble)
 
     useEffect(() => {
-        dispatch(getRerumbles())
+        // dispatch(getRerumbles())
+        // dispatch(getAllLikes())
     }, [dispatch])
 
-    const rerumble = useSelector(state => state.posts.rerumbles.find(rerumble => rerumble.userId === sessionUser.id && rerumble.postId === post.id));
 
     let like = null;
     if (userLikes.shift !== undefined) {
@@ -144,6 +147,7 @@ const PostCard = ({ post }) => {
             </div>
         </>
     )
+
 };
 
 export default PostCard;
