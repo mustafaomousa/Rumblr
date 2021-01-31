@@ -10,8 +10,8 @@ const LoginFormPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const [credential, setCredential] = useState('');
-    const [password, setPassword] = useState('');
+    const [credential, setCredential] = useState('demo-user');
+    const [password, setPassword] = useState('password');
     const [errors, setErrors] = useState([]);
 
     const updateCredential = (e) => setCredential(e.target.value);
@@ -34,11 +34,15 @@ const LoginFormPage = () => {
     };
 
     const demoLogin = (e) => {
+        e.preventDefault();
+        setErrors([]);
 
-        setCredential('demo-user');
-        setPassword('password');
+        dispatch(sessionActions.login({ credential, password }))
+            .catch(res => {
+                if (res.data && res.data.errors) setErrors(res.data.errors);
+            })
 
-        return onSubmit(e);
+        return history.push('/discover')
 
     }
 

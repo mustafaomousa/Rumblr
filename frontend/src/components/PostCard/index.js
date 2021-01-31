@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
-import { createRerumble, removeRerumble } from '../../store/post';
+import { createRerumble, getRerumbles, removeRerumble } from '../../store/post';
 
 const PostCard = ({ post }) => {
     const dispatch = useDispatch();
@@ -16,6 +16,11 @@ const PostCard = ({ post }) => {
     const sessionUser = useSelector(state => state.session.user);
     const postLikes = useSelector(state => state.likes.likes.filter(like => like.postId === post.id));
     const userLikes = useSelector(state => state.likes.likes.filter(like => like.userId === sessionUser.id && like.postId === post.id));
+
+    useEffect(() => {
+        dispatch(getRerumbles())
+    }, [dispatch])
+
     const rerumble = useSelector(state => state.posts.rerumbles.find(rerumble => rerumble.userId === sessionUser.id && rerumble.postId === post.id));
 
     let like = null;
