@@ -1,7 +1,10 @@
+
 select {
     border: 0;
     height: 30px;
     width: 150px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: 18px;
 }
 
 input, textarea {
@@ -21,36 +24,34 @@ input, textarea {
 
 .input input {
     outline: none;
-    width: 250px;
+    width: 350px;
+    font-size:18px;
+    padding: 3px;
 }
 
 .input textarea {
     outline: none;
     resize: none;
-    width: 250px;
-    height: 100px;
+    width: 350px;
+    font-size: 18px;
+    height: 150px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .label label {
     color: whitesmoke;
-    font-size: 18px;
+    font-size: 20px;
     margin: 5px 10px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
 
 .input-container {
-    margin: 15px;
+    margin-top: 15px;
 }
 
 .input-container div,textarea {
     margin: 10px 0px;
-}
-
-.create-post {
-    display: flex;
-    flex-direction: row;
 }
 
 .create-post button {
@@ -58,34 +59,18 @@ input, textarea {
     text-decoration: none;
 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 25px;
-    margin: 0px 30px;
+    font-size: 20px;
 
     border: 0;
     background-color: #120E57;
 }
 
-.user-info {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    background-color: purple;
-
-    width: 500px;
-    height: 30px;
-
-    position: relative;
-}
-
 .create-post-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
 
-    /* padding: 10px 0px; */
-    width: 400px;
+    width: 520px;
 
     background-color: #120E57;
     border-radius: 0.5em;
@@ -109,14 +94,7 @@ input, textarea {
 
 
 
-.post-information-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.upload-media-container {
+.post-information-container, .upload-media-container {
     display: flex;
     flex-direction: row;
 }
@@ -128,16 +106,17 @@ select {
 }
 
 #submit-button {
-    font-size: 15px;
-    margin: 15px;
-    padding: 4px 10px;
+    font-size: 18px;
+    margin: 20px 0px;
+    padding: 10px 10px;
     background-color: rgb(81, 71, 117);
 
     border-radius: 0.25em;
 }
 
 .post-button-container {
-    display: flex;
+    text-align: end;
+    /* display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: center; */
 }
