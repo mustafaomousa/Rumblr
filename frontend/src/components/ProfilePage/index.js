@@ -67,35 +67,37 @@ const ProfilePage = () => {
 
     )
 
-    // if (profileUser) return (
-    //     <div className='main'>
-    //         <div className='profile-card'>
-    //             <div className='profile-user-info'>
-    //                 <img id='profile-picture' src={profileUser.profilePicture}></img>
-    //                 <h1>{profileUser.username}</h1>
-    //             </div>
-    //             <div className='bio-header'>
-    //                 <h4>{profileUser.header}</h4>
-    //                 <p>{profileUser.bio}</p>
-    //             </div>
-    //         </div>
-    //         <div className='split-cont'>
-    //             <div className='profile-body'>
-    //                 {allPosts && allPosts.map((post, idx) => {
-    //                     if (post.User.username === username) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
-    //                 })}
-    //             </div>
-    //             <div className='rerumbled'>
-    //                 <div className='rerumbled-container'>
-    //                     <h2>{username}'s Rerumble's:</h2>
-    //                     { }
-    //                 </div>
-    //             </div>
-    //         </div>
+    if (profileUser) return (
+        <div className='main'>
+            <div className='profile-card'>
+                <div className='profile-user-info'>
+                    <img id='profile-picture' src={profileUser.profilePicture}></img>
+                    <h1>{profileUser.username}</h1>
+                </div>
+                <div className='bio-header'>
+                    <h4>{profileUser.header}</h4>
+                    <p>{profileUser.bio}</p>
+                </div>
+            </div>
+            <div className='split-cont'>
+                <div className='profile-body'>
+                    {allPosts && allPosts.map((post, idx) => {
+                        if (post.User.username === username) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
+                    })}
+                </div>
+                <div className='rerumbled'>
+                    <div className='rerumbled-container'>
+                        <h2>{username}'s Rerumble's:</h2>
+                        {rerumbledPosts && rerumbledPosts.map((post, idx) => {
+                            return (<PostCard post={post.Post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
+                        })}
+                    </div>
+                </div>
+            </div>
 
-    //     </div>
+        </div>
 
-    // )
+    )
 
     return <h1>Loading</h1>
 };
