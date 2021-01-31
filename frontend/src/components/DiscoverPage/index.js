@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { getPosts } from '../../store/post';
 import { getAllUsers } from '../../store/session';
 import CreatePost from '../CreatePost';
 import PostCard from '../PostCard';
@@ -64,6 +65,7 @@ const FeedPage = () => {
             <div className='feed-body'>
                 <h1 style={{ textDecoration: 'underline', textUnderlineOffset: '5px', textUnderlinePosition: 'right' }}>Discover</h1>
                 <CreatePost user={sessionUser} makes={makes} models={models} />
+                <button onClick={() => getPosts()}>Load newest</button>
                 {allPosts && allPosts.map((post, idx) => {
                     if (idx < count) return (<PostCard post={post} user={sessionUser} key={idx} />)
                 })}
