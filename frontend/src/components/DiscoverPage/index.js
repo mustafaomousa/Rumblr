@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 
 import { getAllUsers, getAllNewestUsers } from '../../store/session';
 import { getPosts, getRerumbles, getTags } from '../../store/post';
-import { getAllVehicles } from '../../store/vehicle';
 import { getLikes } from '../../store/like'
 
 import CreatePost from '../CreatePost';

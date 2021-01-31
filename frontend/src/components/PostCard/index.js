@@ -18,12 +18,7 @@ const PostCard = ({ post, rerumbles }) => {
     const userLikes = useSelector(state => state.likes.likes.filter(like => like.userId === sessionUser.id && like.postId === post.id));
     const rerumble = rerumbles.filter(rerumble => rerumble.userId === sessionUser.id && rerumble.postId === post.id)[0];
 
-    console.log(rerumble)
 
-    useEffect(() => {
-        // dispatch(getRerumbles())
-        // dispatch(getAllLikes())
-    }, [dispatch])
 
 
     let like = null;
