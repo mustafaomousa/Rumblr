@@ -25,8 +25,8 @@ const WelcomePage = () => {
                         </div>
                     </div>
                     <div className='user-buttons'>
-                        <button id={switcher ? 'hidden' : 'active'} onClick={e => setSwitcher(false)}>Log in</button>
-                        <button id={switcher ? 'active' : 'hidden'} onClick={e => setSwitcher(true)}>Sign Up</button>
+                        <button id={switcher ? 'hidden2' : 'active'} onClick={e => setSwitcher(false)}>Log in</button>
+                        <button id={switcher ? 'active' : 'hidden2'} onClick={e => setSwitcher(true)}>Sign Up</button>
                     </div>
                 </div>
                 {allPosts && allPosts.map((post, idx) => {
