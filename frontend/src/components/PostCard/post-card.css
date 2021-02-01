@@ -2,13 +2,11 @@
 #magnify {
         color: rgba(255, 255, 255, 0.322);
         position: relative;
-        top: 220px;
-        left: 190px;
+        top: 50%;
+        left: 50%;
+        margin: -20px -10px;
 }
 
-.profile-body #magnify {
-        display: none;
-}
 
 #magnify:hover {
     color: rgb(255, 255, 255);
@@ -26,10 +24,16 @@
     display: flex;
 }
 
-.image-modal-container .fa-times-circle {
+.fa-times-circle {
     position: relative;
     top: -25px;
     color: red;
+}
+
+.fa-search {
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
 .post-media {

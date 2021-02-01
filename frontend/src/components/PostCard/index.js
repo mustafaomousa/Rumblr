@@ -107,7 +107,6 @@ const PostCard = ({ post, rerumbles }) => {
 
     if (postLikes && sessionUser && userLikes) return (
         <>
-            <FontAwesomeIcon onClick={openSelectedPicture} id={'magnify'} icon={faSearch} size={'3x'} />
             <Modal isOpen={pictureIsOpen} className='picture-modal'>
                 <div className='image-modal-container'>
                     <FontAwesomeIcon onClick={() => setPictureIsOpen(false)} icon={faTimesCircle} size={'2x'} />
@@ -115,7 +114,6 @@ const PostCard = ({ post, rerumbles }) => {
                 </div>
             </Modal>
             <div className={'post-card'}>
-
                 <div className='post-title-container'>
                     <div className='user-post-link-container'>
                         <Link className={updateOpen ? 'hidden' : ''} to={`/discover`} id='tag'>{post.title}</Link>
@@ -140,6 +138,7 @@ const PostCard = ({ post, rerumbles }) => {
                     {sessionUser.id === post.userId && <p onClick={() => dispatch(deletePost({ postId: post.id }))} id={toolsOpen ? 'tool-select' : 'hidden'}>Delete</p>}
                 </div>
                 <div className='post-media'>
+                    <FontAwesomeIcon onClick={openSelectedPicture} id={'magnify'} icon={faSearch} size={'3x'} />
                     {post.content.includes('youtube') && (
                         <p>Video Player Here</p>
                         // <ReactPlayer width='450px' height='250px' url={post.content} />
