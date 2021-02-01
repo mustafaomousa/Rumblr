@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { FilePicker, ImagePicker } from 'react-file-picker'
 
 import { createNewPost } from '../../store/post'
 import UploadPictureS3Client from '../../aws/s3';
@@ -15,7 +14,6 @@ const CreatePost = ({ user, makes, models }) => {
     const [makeId, setMakeId] = useState(0);
     const [modelId, setModelId] = useState(0);
     const updateTitle = (e) => setTitle(e.target.value);
-    const updateContent = (e) => setContent(e.target.value);
     const updateBody = (e) => setBody(e.target.value);
     const updateMake = (e) => setMakeId(e.target.value);
     const updateModel = (e) => setModelId(e.target.value);

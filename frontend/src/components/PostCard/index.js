@@ -143,7 +143,7 @@ const PostCard = ({ post, rerumbles }) => {
                         <p>Video Player Here</p>
                         // <ReactPlayer width='450px' height='250px' url={post.content} />
                     )}
-                    <img onClick={openSelectedPicture} class='post-image' src={post.content} alt=''></img >
+                    <img onClick={openSelectedPicture} className='post-image' src={post.content} alt=''></img >
                 </div>
                 <div className='post-body'>
                     <Link className='username' to={`/${post.User.username}`}>{post.User.username}:</Link>

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
 import CreatePost from '../CreatePost';
@@ -7,7 +7,6 @@ import PostCard from '../PostCard';
 import './profile.css';
 
 const ProfilePage = () => {
-    const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const allPosts = useSelector(state => state.posts.allPosts);
     const makes = useSelector(state => state.vehicles.makes);
@@ -19,7 +18,6 @@ const ProfilePage = () => {
     const profileUser = useSelector(state => state.session.allUsers.filter((user) => user.username === username))[0];
     let profileUserId = profileUser.id;
     const rerumbledPosts = useSelector(state => state.posts.rerumbles.filter(rerumble => rerumble.userId === profileUserId));
-    console.log(rerumbledPosts)
 
     useEffect(() => window.scrollTo(0, 0), [])
 
@@ -32,7 +30,7 @@ const ProfilePage = () => {
         <div className='main'>
             <div className='profile-card'>
                 <div className='profile-user-info'>
-                    <img id='profile-picture' src={profileUser.profilePicture}></img>
+                    <img id='profile-picture' alt='' src={profileUser.profilePicture}></img>
                     <h1>{sessionUser.username}</h1>
                 </div>
                 <div className='bio-header'>
@@ -67,7 +65,7 @@ const ProfilePage = () => {
         <div className='main'>
             <div className='profile-card'>
                 <div className='profile-user-info'>
-                    <img id='profile-picture' src={profileUser.profilePicture}></img>
+                    <img id='profile-picture' alt='' src={profileUser.profilePicture}></img>
                     <h1>{profileUser.username}</h1>
                 </div>
                 <div className='bio-header'>

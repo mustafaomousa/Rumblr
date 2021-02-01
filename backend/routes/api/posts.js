@@ -81,7 +81,6 @@ router.get('/tags', asyncHandler(async (req, res) => {
 
 router.get('/:tag', asyncHandler(async (req, res) => {
     const tagName = req.params.tag;
-    console.log(tagName)
     const tagPosts = await Post.findAll({
         include: [{ model: Tag, where: { name: `#${tagName}` } }, { model: User }, { model: Make }, { model: Model }],
         order: [['updatedAt', 'DESC']]

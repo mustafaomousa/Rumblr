@@ -1,9 +1,5 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import ReactPlayer from 'react-player'
 
-import { createNewLike, deleteLike } from '../../store/like';
 import './welcome.css'
 
 const WelcomePostCard = ({ post }) => {

@@ -17,7 +17,7 @@ const AccountModal = ({ sessionUser }) => {
     return (
         <div className='account-container'>
             <div className='account-container-header'>
-                <img id='picture' src={user.profilePicture}></img>
+                <img id='picture' alt='' src={user.profilePicture}></img>
             </div>
             <div className='account-container-body'>
                 <p>Header: </p>

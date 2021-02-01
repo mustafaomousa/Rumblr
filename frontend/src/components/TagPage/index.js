@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getRecentTagPosts } from '../../store/post';
 
@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import PostCard from "../PostCard";
 
 const TagPage = () => {
-    const history = useHistory();
     const dispatch = useDispatch();
     const location = useLocation();
 
@@ -20,7 +19,7 @@ const TagPage = () => {
 
     useEffect(() => {
         dispatch(getRecentTagPosts(searchedTag));
-    }, [dispatch])
+    }, [dispatch, searchedTag])
 
     useEffect(() => window.scrollTo(0, 0), [])
 
@@ -38,7 +37,7 @@ const TagPage = () => {
                     </div>
                 </div>
                 <div className='tag-cards'>
-                    {tagPosts && tagPosts.map((post) => <PostCard rerumbles={rerumbles} post={post} />)}
+                    {tagPosts && tagPosts.map((post, idx) => <PostCard key={idx} rerumbles={rerumbles} post={post} />)}
                 </div>
             </div>
             <div className='side-box'>

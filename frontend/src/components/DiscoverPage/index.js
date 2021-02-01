@@ -48,7 +48,7 @@ const FeedPage = () => {
                             {newestBlogs && newestBlogs.map((blog, idx) => {
                                 return (
                                     <div className='newest-blog-box' key={idx}>
-                                        <img className='profile-picture' src={blog.profilePicture} />
+                                        <img className='profile-picture' alt='' src={blog.profilePicture} />
                                         <div className='profile-info'>
                                             <h3>{blog.username}</h3>
                                             <p>{blog.header}</p>
@@ -76,6 +76,8 @@ const FeedPage = () => {
                 <button id='tag-submit-button' onClick={() => dispatch(getPosts())}>Load newest</button>
                 {allPosts && allPosts.map((post, idx) => {
                     if (idx < count) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
+
+                    return
                 })}
                 <div className='load-more'>
                     <button id='tag-submit-button' onClick={() => setCount(count + 5)}>Load more</button>
