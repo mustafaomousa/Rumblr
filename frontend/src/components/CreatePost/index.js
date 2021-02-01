@@ -20,8 +20,6 @@ const CreatePost = ({ user, makes, models }) => {
     const updateMake = (e) => setMakeId(e.target.value);
     const updateModel = (e) => setModelId(e.target.value);
 
-    useEffect(() => alert(content), [content])
-
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -45,7 +43,6 @@ const CreatePost = ({ user, makes, models }) => {
 
         UploadPictureS3Client.uploadFile(e.target.files[0], `${user.id}-${new Date()}`)
             .then(data => setContent(data.location))
-            .catch(err => alert(err))
     };
 
     const resetFields = () => {
@@ -77,11 +74,7 @@ const CreatePost = ({ user, makes, models }) => {
                                     <label>Show me:</label>
                                 </div>
                                 <div className='input'>
-                                    <input type='file' onChange={uploadFile} >
-
-                                    </input>
-                                    {/* // <button onClick={() => { UploadPictureS3Client.uploadFile(filePath, 'picture').then(data => alert(data)) }}>Upload</button> */}
-                                    {/* <input onChange={updateContent} value={content} placeholder='image url'></input> */}
+                                    <input type='file' onChange={uploadFile} />
                                 </div>
                             </div>
                             <label id='label'>Wow.. which car again?</label>
