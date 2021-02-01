@@ -1,4 +1,8 @@
-** DEV LAUNCHING Rumblr APPLICATION**
+**HEROKU LAUNCH**
+
+https://rumblr-solo-project.herokuapp.com/
+
+**DEV LAUNCHING Rumblr APPLICATION**
 
 In order to launch Rumblr please utilize the following:
 
