@@ -34,6 +34,18 @@ const getAllRerumbles = rerumbles => {
     }
 }
 
+export const updatePost = ({ tags, postId, title, body }) => async dispatch => {
+    const response = await fetch(`/api/posts`, {
+        method: 'PUT',
+        body: JSON.stringify({ tags, postId, title, body })
+    });
+
+    if (response.ok) {
+        dispatch(getPosts())
+        dispatch(getTags())
+    }
+};
+
 export const getRerumbles = () => async dispatch => {
     const response = await fetch('/api/posts/rerumble');
 

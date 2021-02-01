@@ -179,3 +179,20 @@
     padding: 7px 0px;
     border-bottom: 1px rgba(99, 90, 129, 0.164) solid;
 }
+
+#edit-textarea {
+    font-size: 18px;
+    color: white;
+    background-color: rgb(99, 90, 129);
+    width: 450px;
+    height: 100px;
+}
+
+#title-input {
+    font-size: 18px;
+    color: white;
+    margin-top: 10px;
+    height: 30px;
+    width: 400px;
+    background-color: rgb(99, 90, 129);
+}

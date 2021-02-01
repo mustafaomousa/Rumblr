@@ -9,6 +9,30 @@ const { Post, User, Make, Model, Tag, TagJoin, RerumbleJoin } = require('../../d
 
 const router = express.Router();
 
+router.put('/', asyncHandler(async (req, res) => {
+    const { tags, postId, title, body } = req.body;
+    const updatedPost = await Post.findOne({ where: { id: postId } });
+    await TagJoin.destroy({ where: { postId: postId } });
+
+    for (let tag in tags) {
+        const dbTag = await Tag.findOne({ where: { name: tags[tag] } });
+        if (!dbTag) {
+            const newTag = await Tag.create({ name: tags[tag] });
+            const tagId = newTag.dataValues.id;
+            const newPostTag = await TagJoin.create({ tagId, postId });
+            newPostTag.save();
+        } else {
+            const tagId = dbTag.dataValues.id;
+            const newPostTag = await TagJoin.create({ tagId, postId })
+            newPostTag.save();
+        }
+    }
+
+    updatedPost.update({ title: title, body: body });
+    updatedPost.save();
+    return res.json({ updatedPost })
+}));
+
 router.post('/rerumble', asyncHandler(async (req, res) => {
     const { userId, postId } = req.body;
     const rerumble = await RerumbleJoin.create({ userId, postId });

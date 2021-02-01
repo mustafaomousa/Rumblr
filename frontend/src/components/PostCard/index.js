@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
-import { createRerumble, removeRerumble } from '../../store/post';
+import { createRerumble, removeRerumble, updatePost } from '../../store/post';
 
 const PostCard = ({ post, rerumbles }) => {
     const dispatch = useDispatch();
@@ -82,6 +82,25 @@ const PostCard = ({ post, rerumbles }) => {
         dispatch(removeRerumble(payload))
     };
 
+    const [updateOpen, setUpdateOpen] = useState(false);
+    const [title, setTitle] = useState(post.title);
+    const [body, setBody] = useState(post.body);
+
+    const onUpdate = (e) => {
+        e.preventDefault();
+
+        const tags = body.match(/#[A-Za-z0-9]*/g)
+
+        const payload = {
+            tags,
+            postId: post.id,
+            title,
+            body,
+        };
+        dispatch(updatePost(payload));
+        setUpdateOpen(false);
+    };
+
     useEffect(() => {
         if (like) setLiked(true);
     }, [like])
@@ -99,9 +118,12 @@ const PostCard = ({ post, rerumbles }) => {
 
                 <div className='post-title-container'>
                     <div className='user-post-link-container'>
-                        <Link className='username' to={`/discover`} id='tag'>{post.title}</Link>
+                        <Link className={updateOpen ? 'hidden' : ''} to={`/discover`} id='tag'>{post.title}</Link>
+                        <div className={updateOpen ? 'update-fields' : 'hidden'}>
+                            <label id={'tag'}>Update title:</label>
+                            <input id='title-input' value={title} onChange={(e) => setTitle(e.target.value)}></input>
+                        </div>
                     </div>
-
                     <div className={toolsOpen ? 'hidden' : 'tools'}>
                         <FontAwesomeIcon onClick={() => setToolsOpen(true)} icon={faChevronDown} size={'2x'} />
                     </div>
@@ -114,11 +136,10 @@ const PostCard = ({ post, rerumbles }) => {
                     {liked && <p onClick={removeLike} id={toolsOpen ? 'tool-select' : 'hidden'} >Unlike</p>}
                     {!rerumble && <p onClick={addRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Rerumble</p>}
                     {rerumble && <p onClick={deleteRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Unrerumble</p>}
-                    {sessionUser.id === post.userId && <p id={toolsOpen ? 'tool-select' : 'hidden'}>Edit</p>}
+                    {sessionUser.id === post.userId && <p onClick={() => { setUpdateOpen(true); setToolsOpen(false); }} id={toolsOpen ? 'tool-select' : 'hidden'}>Edit</p>}
                     {sessionUser.id === post.userId && <p id={toolsOpen ? 'tool-select' : 'hidden'}>Delete</p>}
                 </div>
                 <div className='post-media'>
-
                     {post.content.includes('youtube') && (
                         <p>Video Player Here</p>
                         // <ReactPlayer width='450px' height='250px' url={post.content} />
@@ -127,13 +148,21 @@ const PostCard = ({ post, rerumbles }) => {
                 </div>
                 <div className='post-body'>
                     <Link className='username' to={`/${post.User.username}`}>{post.User.username}:</Link>
-                    <p>{post.body.split(' ').map((string, index) => {
+                    <p className={updateOpen ? 'hidden' : ''}>{post.body.split(' ').map((string, index) => {
                         if (listOfTags.includes(string)) {
                             return <Link key={index} to={`/tag/${string.replace('#', '')}`}>{` ${string}`}</Link>
                         } else {
                             return ` ${string}`
                         }
-                    })}</p>
+                    })}
+                    </p>
+                    <div className={updateOpen ? 'update-fields' : 'hidden'} >
+                        <label id={'tag'}>Update body:</label>
+                        <textarea id='edit-textarea' value={body} onChange={(e) => setBody(e.target.value)}></textarea>
+                        <div style={{ textAlign: 'center' }}>
+                            <button onClick={onUpdate}>Save</button>
+                        </div>
+                    </div>
                 </div>
                 <div className='user-control-panel'>
                     {liked && (
