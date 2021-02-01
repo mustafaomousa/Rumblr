@@ -145,3 +145,37 @@
     font-size: 30px;
     padding-right: 15px;
 }
+
+.tools-control {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    position: relative;
+    padding-top: 10px;
+    margin-bottom: 15px;
+    background-color: rgb(206, 201, 219);
+    -webkit-transition: height 0.5s linear;
+    -moz-transition: height 0.5s linear;
+    -ms-transition: height 0.5s linear;
+    -o-transition: height 0.5s linear;
+    transition: height 0.5s linear;
+}
+
+.tools-control-closed {
+    height: 0px;
+    -webkit-transition: height 0.5s linear;
+    -moz-transition: height 0.5s linear;
+    -ms-transition: height 0.5s linear;
+    -o-transition: height 0.5s linear;
+    transition: height 0.5s linear;
+}
+
+#hidden {
+    display: none;
+}
+
+#tool-select {
+    margin: 0px 20px;
+    padding: 7px 0px;
+    border-bottom: 1px rgba(99, 90, 129, 0.164) solid;
+}

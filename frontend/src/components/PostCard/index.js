@@ -96,15 +96,12 @@ const PostCard = ({ post, rerumbles }) => {
                 </div>
             </Modal>
             <div className={'post-card'}>
+
                 <div className='post-title-container'>
                     <div className='user-post-link-container'>
                         <Link className='username' to={`/discover`} id='tag'>{post.title}</Link>
                     </div>
-                    <div className='tools-control'>
-                        <button>Like post</button>
-                        <button>Rerumble post</button>
-                        <button>Edit</button>
-                    </div>
+
                     <div className={toolsOpen ? 'hidden' : 'tools'}>
                         <FontAwesomeIcon onClick={() => setToolsOpen(true)} icon={faChevronDown} size={'2x'} />
                     </div>
@@ -112,14 +109,21 @@ const PostCard = ({ post, rerumbles }) => {
                         <FontAwesomeIcon onClick={() => setToolsOpen(false)} icon={faChevronUp} size={'2x'} />
                     </div>
                 </div>
-
+                <div className={toolsOpen ? 'tools-control' : 'tools-control-closed'}>
+                    {!liked && <p onClick={likePost} id={toolsOpen ? 'tool-select' : 'hidden'} >Like</p>}
+                    {liked && <p onClick={removeLike} id={toolsOpen ? 'tool-select' : 'hidden'} >Unlike</p>}
+                    {!rerumble && <p onClick={addRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Rerumble</p>}
+                    {rerumble && <p onClick={deleteRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Unrerumble</p>}
+                    {sessionUser.id === post.userId && <p id={toolsOpen ? 'tool-select' : 'hidden'}>Edit</p>}
+                    {sessionUser.id === post.userId && <p id={toolsOpen ? 'tool-select' : 'hidden'}>Delete</p>}
+                </div>
                 <div className='post-media'>
+
                     {post.content.includes('youtube') && (
                         <p>Video Player Here</p>
                         // <ReactPlayer width='450px' height='250px' url={post.content} />
                     )}
                     <img onClick={openSelectedPicture} class='post-image' src={post.content} alt=''></img >
-
                 </div>
                 <div className='post-body'>
                     <Link className='username' to={`/${post.User.username}`}>{post.User.username}:</Link>

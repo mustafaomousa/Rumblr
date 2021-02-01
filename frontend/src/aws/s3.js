@@ -4,8 +4,8 @@ const config = {
     bucketName: 'rumblrbucket',
     dirName: 'Pictures',
     region: 'us-east-2',
-    accessKeyId: 'AKIAIGDITG4HH4QHJAOA',
-    secretAccessKey: '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'
+    accessKeyId: 'AKIAJSPJVB25ZPAEXC5A',
+    secretAccessKey: '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'
 }
 
 const UploadPictureS3Client = new S3(config);

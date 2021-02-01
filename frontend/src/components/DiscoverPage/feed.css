@@ -25,10 +25,6 @@
 
 .update {
     box-sizing: border-box;
-    /* display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start; */
 
     width: auto;
     height: 400px;
@@ -48,12 +44,8 @@
 
     width: 450px;
     min-width: 350px;
-    /* width: 500px; */
-
     border-radius: 0.25em;
 
-    /* margin-bottom: 280px; */
-    
 }
 
 .sticky {
@@ -80,8 +72,6 @@
     position: sticky;
     top: 0px;
 
-    /* margin-top: 50px;
-    margin-bottom: 30px; */
     display: flex;
     flex-direction: column;
     align-items: center;
