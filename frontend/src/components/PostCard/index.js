@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 
 import { createNewLike, deleteLike } from '../../store/like';
 import './post-card.css'
-import { createRerumble, removeRerumble, updatePost } from '../../store/post';
+import { createRerumble, deletePost, removeRerumble, updatePost } from '../../store/post';
 
 const PostCard = ({ post, rerumbles }) => {
     const dispatch = useDispatch();
@@ -137,7 +137,7 @@ const PostCard = ({ post, rerumbles }) => {
                     {!rerumble && <p onClick={addRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Rerumble</p>}
                     {rerumble && <p onClick={deleteRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Unrerumble</p>}
                     {sessionUser.id === post.userId && <p onClick={() => { setUpdateOpen(true); setToolsOpen(false); }} id={toolsOpen ? 'tool-select' : 'hidden'}>Edit</p>}
-                    {sessionUser.id === post.userId && <p id={toolsOpen ? 'tool-select' : 'hidden'}>Delete</p>}
+                    {sessionUser.id === post.userId && <p onClick={() => dispatch(deletePost({ postId: post.id }))} id={toolsOpen ? 'tool-select' : 'hidden'}>Delete</p>}
                 </div>
                 <div className='post-media'>
                     {post.content.includes('youtube') && (

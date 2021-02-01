@@ -73,7 +73,7 @@ const FeedPage = () => {
             <div className='feed-body'>
                 <h1 style={{ textDecoration: 'underline', textUnderlineOffset: '5px', textUnderlinePosition: 'right' }}>Discover</h1>
                 <CreatePost user={sessionUser} makes={makes} models={models} />
-                <button onClick={() => getPosts()}>Load newest</button>
+                <button onClick={() => dispatch(getPosts())}>Load newest</button>
                 {allPosts && allPosts.map((post, idx) => {
                     if (idx < count) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
                 })}

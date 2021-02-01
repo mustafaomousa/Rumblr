@@ -5,9 +5,19 @@ const asyncHandler = require('express-async-handler');
 // const { handleValidationErrors } = require('../../utils/validation');
 
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post, User, Make, Model, Tag, TagJoin, RerumbleJoin } = require('../../db/models');
+const { Post, User, Make, Model, Tag, TagJoin, RerumbleJoin, Like } = require('../../db/models');
 
 const router = express.Router();
+
+router.delete('/', asyncHandler(async (req, res) => {
+    const { postId } = req.body;
+    const deletedPost = await Post.findOne({ where: { id: postId } });
+    await Like.destroy({ where: { postId: postId } });
+    await TagJoin.destroy({ where: { postId: postId } });
+    await RerumbleJoin.destroy({ where: { postId: postId } });
+    await deletedPost.destroy();
+    return res.json({ deletedPost });
+}));
 
 router.put('/', asyncHandler(async (req, res) => {
     const { tags, postId, title, body } = req.body;

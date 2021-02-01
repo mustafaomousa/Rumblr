@@ -46,6 +46,17 @@ export const updatePost = ({ tags, postId, title, body }) => async dispatch => {
     }
 };
 
+export const deletePost = ({ postId }) => async dispatch => {
+    const response = await fetch(`/api/posts`, {
+        method: 'DELETE',
+        body: JSON.stringify({ postId })
+    });
+
+    if (response.ok) {
+        dispatch(getPosts());
+    }
+};
+
 export const getRerumbles = () => async dispatch => {
     const response = await fetch('/api/posts/rerumble');
 

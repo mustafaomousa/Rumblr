@@ -31,8 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     Post.belongsTo(models.Make, { foreignKey: 'makeId' });
     Post.belongsTo(models.Model, { foreignKey: 'modelId' });
     Post.belongsTo(models.User, { foreignKey: 'userId' });
-    Post.belongsToMany(models.Tag, { through: 'TagJoins', foreignKey: 'postId', otherKey: 'tagId' });
-    Post.hasMany(models.RerumbleJoin, { foreignKey: 'postId' });
+    Post.belongsToMany(models.Tag, { through: 'TagJoins', foreignKey: 'postId', otherKey: 'tagId', onDelete: 'CASCADE' });
+    Post.hasMany(models.RerumbleJoin, { foreignKey: 'postId', onDelete: 'CASCADE' });
+    Post.hasMany(models.Like, { foreignKey: 'postId', onDelete: 'CASCADE' })
   };
   return Post;
 };

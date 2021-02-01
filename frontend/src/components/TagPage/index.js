@@ -14,6 +14,7 @@ const TagPage = () => {
 
     const [toggle, setToggle] = useState(false);
 
+    const rerumbles = useSelector(state => state.posts.rerumbles);
     const { tagPosts } = useSelector(state => state.posts);
     const searchedTag = location.pathname.match(/[^\/]*$/)[0]
 
@@ -23,11 +24,10 @@ const TagPage = () => {
 
     useEffect(() => window.scrollTo(0, 0), [])
 
-    return (
+    return rerumbles && (
         <div className='tag'>
             <div className='tag-box'>
                 <div className='tag-box-header'>
-
                     <div className='tag-box-control'>
                         <div className='selector recent'>
                             <h4 onClick={() => setToggle(false)} className={toggle ? '' : 'active'}>Recent</h4>
@@ -38,7 +38,7 @@ const TagPage = () => {
                     </div>
                 </div>
                 <div className='tag-cards'>
-                    {tagPosts && tagPosts.map((post) => <PostCard post={post} />)}
+                    {tagPosts && tagPosts.map((post) => <PostCard rerumbles={rerumbles} post={post} />)}
                 </div>
             </div>
             <div className='side-box'>

@@ -5,9 +5,10 @@
 
 .tag {
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 80% 20%;
 
-    height: 100%;
+    height: auto;
+    margin-left: 90px;
 }
 
 h4.active {
@@ -17,12 +18,13 @@ h4.active {
 .tag-box {
     display: flex;
     flex-direction: column;
-
-    /* background-color: rgb(53, 18, 53); */
-
-    height: 100%;
+    height: auto;
     padding: 60px 0px;
 
+}
+
+.side-box {
+    padding: 150px 0px;
 }
 
 .tag-box-control {
@@ -30,28 +32,36 @@ h4.active {
     flex-direction: row;
     justify-content: flex-start;
 
-    margin: 0px 20px;
+    margin: 0px 10px;
 }
 
 .tag-cards {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    overflow: scroll;
-    justify-content: space-evenly;
 
-    margin: 0px 20px;
     background-color: rgb(9, 7, 43);
+}
 
-    height: 100%;
+@media (max-width: 1550px) {
+    .tag-cards {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .searched-tag-info {
-    position: fixed;
-    z-index: 1;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 70px;
+    width: 100%;
+    height: 100px;
+    background-color: darkslateblue;
+    border-radius: 0.25em;
 
     text-align: center;
-    padding: 0px 20px;
-    padding-bottom: 20px;
+    margin: 0px -50px;
+    /* padding-bottom: 20px; */
 }

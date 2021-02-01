@@ -50,6 +50,18 @@
     padding: 15em 5%;
 }
 
+@media (max-width: 1300px) {
+    .rerumbled {
+        display:none;
+    }
+
+    .split-cont {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 
 
 .profile-card {
