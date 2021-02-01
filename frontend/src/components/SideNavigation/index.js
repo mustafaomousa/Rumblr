@@ -10,7 +10,7 @@ const SideNavigation = ({ sideOpen }) => {
     const sessionUser = useSelector(state => state.session.user)
 
     if (sessionUser) return (
-        <div className={sideOpen ? 'side-navigation-container' : 'side-navigation-container'}>
+        <div className={sideOpen ? 'side-navigation-container-closed' : 'side-navigation-container'}>
             <NavLink className={sideOpen ? 'hidden-side' : ''} to={`/${sessionUser.username}`}>
                 <FontAwesomeIcon icon={faUser} size={'2x'} />
             </NavLink>

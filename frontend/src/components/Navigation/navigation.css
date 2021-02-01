@@ -87,14 +87,14 @@ a.active {
     position: sticky;
     top: -2px;
 
-    height: 60px;
+    height: 65px;
     width: 100%;
     background-color: rgb(9, 7, 43);
     z-index: 1;
 
 }
 
-    .nav-bar a {
+.nav-bar a {
     margin: 0px 25px
 }
 
@@ -139,6 +139,7 @@ a.active {
 }
 
 .nav-logo-container h2 {
+    font-size: 25px;
     color: whitesmoke;
     font-style: oblique;
 }

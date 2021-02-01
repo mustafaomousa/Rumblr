@@ -1,6 +1,5 @@
 .side-navigation-container {
     background-color: rgb(9, 7, 43);
-    /* background-color: rgb(36, 7, 43); */
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -8,21 +7,35 @@
     align-items: center;
     z-index: 4;
 
+    margin-top: 50px;
     width: 80px;
     height: 100%;
 
-    /* padding-top: 70px; */
-    margin-top: 60px;
+    -webkit-transition: width 0.5s linear;
+    -moz-transition: width 0.5s linear;
+    -ms-transition: width 0.5s linear;
+    -o-transition: width 0.5s linear;
+    transition: width 0.5s linear;
+}
 
+.side-navigation-container-closed {
+    width: 0px;
+    -webkit-transition: width 0.5s linear;
+    -moz-transition: width 0.5s linear;
+    -ms-transition: width 0.5s linear;
+    -o-transition: width 0.5s linear;
+    transition: width 0.5s linear;
 }
 
 .hidden-side  {
     display: none;
 }
 
+.fa-user {
+    /* padding-top: 60px; */
+}
+
 .fa-user, .fa-compass, .fa-question {
-    position: sticky;
-    top: 0;
     margin: 10px 0px;
     color: white;
 }
