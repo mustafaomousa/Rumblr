@@ -12,20 +12,70 @@
   <li>
    <a href="#test">About The Project</a>
    <ul>
-    <li><a href="#about">Description</a></li>
+    <li><a href="#description">Description</a></li>
     <li><a href="#technologies-used">Technologies Used</a></li>
    </ul>
   </li>
+  <li><a href="#usage">Usage</a></li>
+  <li><a href="#contact">Contact</a></li>
  </ol>
 </details>
      
-## About
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+## Description
 
 about the project
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Technologies Used
 
 technologies used
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Usage
 
 **HEROKU LAUNCH**
 
@@ -50,5 +100,21 @@ In order to launch Rumblr please utilize the following:
  4. Navigate to http://localhost:3000/ to interact with the Rumblr app!
 
 
-## Test
-test test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Contact
