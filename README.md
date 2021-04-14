@@ -1,3 +1,10 @@
+<p align="center">
+ <a href="" alt="">
+  <h1>Rumblr<h1>
+ </a>
+</p>
+
+
 **HEROKU LAUNCH**
 
 https://rumblr-solo-project.herokuapp.com/
