@@ -4,7 +4,6 @@
    <p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
 </p>
 
-<p align="center">
 <details open="open">
  <summary><h3 style="display: inline-block">Table of Contents</h2></summary>
  <ol>
@@ -19,22 +18,8 @@
   <li><a href="#contact">Contact</a></li>
  </ol>
 </details>
-</p>     
      
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+   
      
 ## Description
 
@@ -48,7 +33,9 @@ about the project
 
 
 
+## Screenshots
 
+[![Product Name Screen Shot][login-screenshot]](https://rumblr-solo-project.herokuapp.com/)
 
 
 
@@ -117,3 +104,10 @@ In order to launch Rumblr please utilize the following:
 
 
 ## Contact
+
+
+
+
+
+
+[login-screenshot]: images/login-screenshot.png
