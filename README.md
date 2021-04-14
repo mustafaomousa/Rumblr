@@ -1,13 +1,10 @@
 <p align="center">
- <a href="" alt="">
-  <h1>Rumblr<h1>
- </a>
    <h3 align="center">Rumblr</h3>
    <a href="https://rumblr-solo-project.herokuapp.com/"><strong>Try Rumblr »</strong></a>
    <p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
 </p>
 
-<p>
+<p align="center">
 <details open="open">
  <summary><h3 style="display: inline-block">Table of Contents</h2></summary>
  <ol>
