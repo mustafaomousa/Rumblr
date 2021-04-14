@@ -18,49 +18,19 @@
  </ol>
 </details>
      
-   
-     
 ## Description
 
 <p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
 
-
-## Screenshots
+## Visuals
 
 [![Product Name Screen Shot][login-screenshot]](https://rumblr-solo-project.herokuapp.com/)
-
-
-
-
-
-
-
 
 ## Technologies Used
 
 technologies used
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Usage
-
-**HEROKU LAUNCH**
-
-https://rumblr-solo-project.herokuapp.com/
-
-**DEV LAUNCHING Rumblr APPLICATION**
-
 In order to launch Rumblr please utilize the following:
 
  1. 
@@ -76,23 +46,6 @@ In order to launch Rumblr please utilize the following:
     > 2. cd frontend && npm start
 
  4. Navigate to http://localhost:3000/ to interact with the Rumblr app!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## Contact
