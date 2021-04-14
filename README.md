@@ -14,6 +14,7 @@
     <li><a href="#technologies-used">Technologies Used</a></li>
    </ul>
   </li>
+  <li><a href="#visuals">Visuals</a></li>
   <li><a href="#usage">Usage</a></li>
   <li><a href="#contact">Contact</a></li>
  </ol>
