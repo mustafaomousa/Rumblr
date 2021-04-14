@@ -7,7 +7,8 @@
    <p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
 </p>
 
-<details align="center" open="open">
+<p>
+<details open="open">
  <summary><h3 style="display: inline-block">Table of Contents</h2></summary>
  <ol>
   <li>
@@ -21,7 +22,7 @@
   <li><a href="#contact">Contact</a></li>
  </ol>
 </details>
-     
+</p>     
      
      
      
