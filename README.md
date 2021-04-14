@@ -1,12 +1,9 @@
 <p align="center">
-   <h3 align="center">Rumblr</h3>
-   <a align="center" href="https://rumblr-solo-project.herokuapp.com/"><strong>Try Rumblr »</strong></a>
-   <p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
+<h3 align="center"><a href="https://rumblr-solo-project.herokuapp.com/">Rumblr »</a></h3>
 </p>
 
-<p align="center">
 <details open="open">
- <summary><h3 style="display: inline-block">Table of Contents</h2></summary>
+ <summary>Table Of Contents</summary>
  <ol>
   <li>
    <a href="#test">About The Project</a>
@@ -15,73 +12,38 @@
     <li><a href="#technologies-used">Technologies Used</a></li>
    </ul>
   </li>
+  <li><a href="#visuals">Visuals</a></li>
   <li><a href="#usage">Usage</a></li>
   <li><a href="#contact">Contact</a></li>
  </ol>
 </details>
-</p>     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
      
 ## Description
 
-about the project
+<p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
 
+## Visuals
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[![Product Name Screen Shot][login-screenshot]](https://rumblr-solo-project.herokuapp.com/)
 
 ## Technologies Used
 
-technologies used
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>
+ <h3>Back-end:</h3>
+ <ul>
+ <li>Sequelize</li>
+ <li>Express</li>
+ </ul>
+ <br/>
+ <h3>Front-end:</h3>
+ <ul>
+ <li>React</li>
+ <li>Redux</li>
+ <li>AWS S3</li>
+ </ul>
+</p>
 
 ## Usage
-
-**HEROKU LAUNCH**
-
-https://rumblr-solo-project.herokuapp.com/
-
-**DEV LAUNCHING Rumblr APPLICATION**
-
 In order to launch Rumblr please utilize the following:
 
  1. 
@@ -99,21 +61,16 @@ In order to launch Rumblr please utilize the following:
  4. Navigate to http://localhost:3000/ to interact with the Rumblr app!
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Contact
+
+<p>name: Mustafa Mousa</p>
+<p>email: mustafaomousa@icloud.com</p>
+<ul>
+ <a href="http://mustafaomousa.github.io/">Portfolio</a>
+ <a href="https://www.linkedin.com/in/mustafa-mousa-8b8053157/">LinkedIn</a>
+</ul>
+
+
+
+
+[login-screenshot]: images/login-screenshot.png
