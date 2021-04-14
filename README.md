@@ -12,8 +12,8 @@
   <li>
    <a href="#test">About The Project</a>
    <ul>
-    <li><a href="#about">Description></a></li>
-    <li><a href="#technologies-used"</a></li>
+    <li><a href="#about">Description</a></li>
+    <li><a href="#technologies-used">Technologies Used</a></li>
    </ul>
   </li>
  </ol>
