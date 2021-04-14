@@ -10,10 +10,22 @@
  <summary><h3 style="display: inline-block">Table of Contents</h2></summary>
  <ol>
   <li>
-   <a href="#test">Test</a>
+   <a href="#test">About The Project</a>
+   <ul>
+    <li><a href="#about">Description></a></li>
+    <li><a href="#technologies-used"</a></li>
+   </ul>
   </li>
  </ol>
 </details>
+     
+## About
+
+about the project
+
+## Technologies Used
+
+technologies used
 
 **HEROKU LAUNCH**
 
