@@ -26,6 +26,8 @@
 
 [![Product Name Screen Shot][login-screenshot]](https://rumblr-solo-project.herokuapp.com/)
 
+[![Product Name Screen Shot][home-page-screenshot]](https://rumblr-solo-project.herokuapp.com/)
+
 ## Technologies Used
 
 <p>
@@ -74,3 +76,4 @@ In order to launch Rumblr please utilize the following:
 
 
 [login-screenshot]: images/login-screenshot.png
+[home-page-screenshot]: images/home-page-screenshot.png
