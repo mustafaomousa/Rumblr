@@ -2,6 +2,8 @@
  <a href="" alt="">
   <h1>Rumblr<h1>
  </a>
+   <h3 align="center">Rumblr</h3>
+   <p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
 </p>
 
 
