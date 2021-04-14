@@ -1,7 +1,5 @@
 <p align="center">
-   <h3 align="center">Rumblr</h3>
-   <a align="center" href="https://rumblr-solo-project.herokuapp.com/"><strong>Try Rumblr »</strong></a>
-   <p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
+<h3 align="center"><a href="https://rumblr-solo-project.herokuapp.com/">Rumblr »</a></h3>
 </p>
 
 <details open="open">
@@ -24,14 +22,7 @@
      
 ## Description
 
-about the project
-
-
-
-
-
-
-
+<p align="center">Rumblr is a "Tumblr" clone where users can post vehicle related images along with a message</p>
 
 
 ## Screenshots
