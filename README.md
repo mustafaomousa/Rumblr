@@ -3,7 +3,7 @@
 </p>
 
 <details open="open">
- <summary><h3 style="display: inline-block">Table of Contents</h2></summary>
+ <summary>Table Of Contents</summary>
  <ol>
   <li>
    <a href="#test">About The Project</a>
@@ -28,7 +28,18 @@
 
 ## Technologies Used
 
-technologies used
+<p>
+ <h3>Back-end:</h3>
+ <ul>
+ <li>Sequelize</li>
+ <li>Express</li>
+ </ul>
+ <br/>
+ <h3>Front-end:</h3>
+ <ul>
+ <li>Item</li>
+ </ul>
+</p>
 
 ## Usage
 In order to launch Rumblr please utilize the following:
