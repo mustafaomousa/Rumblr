@@ -37,7 +37,9 @@
  <br/>
  <h3>Front-end:</h3>
  <ul>
- <li>Item</li>
+ <li>React</li>
+ <li>Redux</li>
+ <li>AWS S3</li>
  </ul>
 </p>
 
@@ -61,7 +63,12 @@ In order to launch Rumblr please utilize the following:
 
 ## Contact
 
-
+<p>name: Mustafa Mousa</p>
+<p>email: mustafaomousa@icloud.com</p>
+<ul>
+ <a href="http://mustafaomousa.github.io/">Portfolio</a>
+ <a href="https://www.linkedin.com/in/mustafa-mousa-8b8053157/">LinkedIn</a>
+</ul>
 
 
 
