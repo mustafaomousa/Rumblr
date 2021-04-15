@@ -35,7 +35,13 @@ const FeedPage = () => {
         <Redirect to='/' />
     );
 
-
+    const loadMorePosts = (e) => {
+        e.preventDefault();
+        if (allPosts.length < count) {
+            return alert("no new posts")
+        }
+        setCount(count + 5)
+    };
 
     if (sessionUser && allPosts && makes && models && newestBlogs) return (
         <div className='body'>
@@ -81,7 +87,7 @@ const FeedPage = () => {
                     return
                 })}
                 <div className='load-more'>
-                    <button id='tag-submit-button' onClick={() => setCount(count + 5)}>Load more</button>
+                    {allPosts.length > count && (<button id='tag-submit-button' onClick={loadMorePosts}>Load more</button>)}
                 </div>
             </div >
         </div>
