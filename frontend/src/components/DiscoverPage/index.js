@@ -50,7 +50,7 @@ const FeedPage = () => {
                                     <div className='newest-blog-box' key={idx}>
                                         <img className='profile-picture' alt='' src={blog.profilePicture} />
                                         <div className='profile-info'>
-                                            <h3>{blog.username}</h3>
+                                            <a href={`/${blog.username}`}><h3>{blog.username}</h3></a>
                                             <p>{blog.header}</p>
                                         </div>
                                     </div>
