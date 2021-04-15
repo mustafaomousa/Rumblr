@@ -10,12 +10,12 @@ const LoginFormPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const [credential, setCredential] = useState('demo-user');
-    const [password, setPassword] = useState('password');
+    const [credential, setCredential] = useState('');
+    const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
     const updateCredential = (e) => setCredential(e.target.value);
-    const updatedPassword = (e) => setPassword(e.target.value);
+    const updatePassword = (e) => setPassword(e.target.value);
 
     if (sessionUser) return (
         <Redirect to='/discover' />
@@ -25,21 +25,24 @@ const LoginFormPage = () => {
         e.preventDefault();
         setErrors([]);
 
-        dispatch(sessionActions.login({ credential, password }))
+        dispatch(sessionActions.login(credential, password))
             .catch(res => {
                 if (res.data && res.data.errors) setErrors(res.data.errors);
+                alert(res.data.errors)
             })
 
         return history.push('/discover')
     };
 
-    const demoLogin = (e) => {
+    const demoLogin = async (e) => {
         e.preventDefault();
         setErrors([]);
-
-        dispatch(sessionActions.login({ credential, password }))
+        let demoCredential = "demo-user";
+        let demoPassword = "password";
+        dispatch(sessionActions.login(demoCredential, demoPassword))
             .catch(res => {
                 if (res.data && res.data.errors) setErrors(res.data.errors);
+                alert(res.data.errors)
             })
 
         return history.push('/discover')
@@ -58,7 +61,7 @@ const LoginFormPage = () => {
                     <label id='label'>Username/email</label>
                     <input id='input' type='text' onChange={updateCredential} value={credential} placeholder='username/email' required />
                     <label id='label'>Password</label>
-                    <input id='input' type='password' onChange={updatedPassword} placeholder='password' required />
+                    <input id='input' type='password' onChange={updatePassword} value={password} placeholder='password' required />
                     <div id='submit-container'>
                         <button type='submit' id='submit'>Log in</button>
                         <button onClick={demoLogin} id='submit'>Demo</button>
