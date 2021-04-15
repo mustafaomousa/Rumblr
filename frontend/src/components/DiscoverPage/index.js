@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 import { getAllUsers, getAllNewestUsers } from '../../store/session';
 import { getPosts, getRerumbles, getTags } from '../../store/post';
@@ -12,6 +12,7 @@ import './feed.css';
 
 const FeedPage = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const allPosts = useSelector(state => state.posts.allPosts);
     const makes = useSelector(state => state.vehicles.makes);
@@ -66,7 +67,7 @@ const FeedPage = () => {
                         <div className='tag-header'>
                             <h1>#expensive</h1>
                         </div>
-                        <button id='tag-submit-button'>View related posts</button>
+                        <button onClick={() => history.push('/tag/expensive')} id='tag-submit-button'>View related posts</button>
                     </div>
                 </div>
             </div>
