@@ -14,7 +14,6 @@
 
 .NewestBlogsContainer {
     background-color: #120E57;
-    width: 450px;
     border-radius: 0.25em;
 }
 
@@ -22,9 +21,6 @@
     text-align: center;
 }
 
-.NewestBlogs {
-
-}
 
 .load-more {
     width: 100%;
@@ -37,17 +33,7 @@
 
 
 .TagDayContainer {
-    position: sticky;
-    top: 0px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
     background-color: #120E57;
-
-    width: 450px;
-
     border-radius: 0.25em;
-
-    z-index: 1;
 }

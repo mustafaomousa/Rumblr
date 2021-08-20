@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
+import { Container, Image, Section, Heading } from "react-bulma-components";
 
 import CreatePost from '../CreatePost';
 import PostCard from '../PostCard';
@@ -26,26 +27,35 @@ const ProfilePage = () => {
     );
 
     if (profileUser.username === sessionUser.username) return (
-
-        <div className='main'>
-            <div className='profile-card'>
-                <div className='profile-user-info'>
-                    <img id='profile-picture' alt='' src={profileUser.profilePicture}></img>
-                    <h1>{sessionUser.username}</h1>
-                </div>
-                <div className='bio-header'>
-                    <h4>{profileUser.header}</h4>
-                    <p>{profileUser.bio}</p>
-                </div>
-            </div>
-            <div className='split-cont'>
-                <div className='profile-body'>
-                    {allPosts && rerumbles && allPosts.map((post, idx) => {
-                        if (post.userId === sessionUser.id) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
-                    })}
-                </div>
-                <div className='rerumbled'>
-                    <div className='profile-create-post'>
+        <div className='ProfilePage'>
+            <Section display="flex">
+                <Container>
+                    <Heading>
+                        <Image size={96} src={profileUser.profilePicture} alt=''/>  
+                    </Heading>
+                    <Heading subtitle>
+                        {sessionUser.username}
+                    </Heading>
+                </Container>
+                <Container>
+                    <Heading>
+                        {profileUser.header}
+                    </Heading>
+                    <Heading subtitle>
+                        {profileUser.bio}
+                    </Heading>
+                </Container>
+            </Section>
+            <Section className="columns">
+                <Section className="column" display="flex" flexDirection="column" justifyItems="flex-end" marginless>
+                    <Container>
+                        {allPosts && rerumbles && allPosts.map((post, idx) => {
+                            if (post.userId === sessionUser.id) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
+                        })}
+                    </Container>
+                </Section>
+                <Section className="column" display="flex" flexDirection="column" justifyItems="flex-start" marginless>
+                    <Container style={{width:"100%"}}>
                         <CreatePost user={sessionUser} makes={makes} models={models} />
                         <div className='rerumbled-container'>
                             <h2>{username}'s Rerumble's:</h2>
@@ -53,10 +63,9 @@ const ProfilePage = () => {
                                 return (<PostCard post={post.Post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
                             })}
                         </div>
-                    </div>
-                </div>
-            </div>
-
+                    </Container>
+                </Section>
+            </Section>
         </div>
 
     )

@@ -50,33 +50,31 @@ const FeedPage = () => {
                 <Section>
                     <Section>
                         <Container className="NewestBlogsContainer">
-                            <div className='NewestBlogsHeader'>
-                                <h4>Browse our newest blog's</h4>
-                            </div>
-                            <div className='NewestBlogs'>
-                                {newestBlogs && newestBlogs.map((blog, idx) => {
-                                    return (
-                                        <Section key={idx}>
-                                            <Box>
-                                                <Media renderAs="article">
-                                                    <Media.Item align="left">
-                                                        <Image size={64} src={blog.profilePicture}/>    
-                                                    </Media.Item>
-                                                    <Media.Item align="center">
-                                                        <Content>
-                                                            <p>
-                                                                <strong>{blog.username}</strong>
-                                                                <br />
-                                                                {blog.header}
-                                                            </p>
-                                                        </Content>
-                                                    </Media.Item>
-                                                </Media>
-                                            </Box>
-                                        </Section>
-                                    )
-                                })}
-                            </div>
+                            <Heading>
+                                Browse our newest blog's
+                            </Heading>
+                            {newestBlogs && newestBlogs.map((blog, idx) => {
+                                return (
+                                    <Section key={idx}>
+                                        <Box>
+                                            <Media renderAs="article">
+                                                <Media.Item align="left">
+                                                    <Image size={64} src={blog.profilePicture}/>    
+                                                </Media.Item>
+                                                <Media.Item align="center">
+                                                    <Content>
+                                                        <p>
+                                                            <strong>{blog.username}</strong>
+                                                            <br />
+                                                            {blog.header}
+                                                        </p>
+                                                    </Content>
+                                                </Media.Item>
+                                            </Media>
+                                        </Box>
+                                    </Section>
+                                )
+                            })}
                         </Container>
                     </Section>
                     <Section>

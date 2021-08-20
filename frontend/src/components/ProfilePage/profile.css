@@ -1,11 +1,3 @@
-#profile-picture {
-    width: 120px;
-    height: 100px;
-
-    object-fit: cover;
-
-    border-radius: 0.25em;
-}
 
 .profile-create-post {
     padding: 15em 5%;
@@ -28,16 +20,6 @@
     align-items: center;
 }
 
-.profile-user-info {
-    display: flex;
-    flex-direction: column;
-
-    padding: 0px 30px;
-
-}
-.bio-header {
-    width: 100%;
-}
 
 .profile-body {
     display:flex;
