@@ -47,14 +47,14 @@ const ProfilePage = () => {
                 </Container>
             </Section>
             <Section className="columns">
-                <Section className="column" display="flex" flexDirection="column" justifyItems="flex-end" marginless>
+                <Section className="column" display="flex" flexDirection="column" justifyItems="flex-end">
                     <Container>
                         {allPosts && rerumbles && allPosts.map((post, idx) => {
                             if (post.userId === sessionUser.id) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
                         })}
                     </Container>
                 </Section>
-                <Section className="column" display="flex" flexDirection="column" justifyItems="flex-start" marginless>
+                <Section className="column" display="flex" flexDirection="column" justifyItems="flex-start">
                     <Container style={{width:"100%"}}>
                         <CreatePost user={sessionUser} makes={makes} models={models} />
                         <div className='rerumbled-container'>

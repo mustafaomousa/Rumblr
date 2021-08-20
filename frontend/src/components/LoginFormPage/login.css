@@ -19,7 +19,7 @@ li {
 #input {
     width: 200px;
 
-    margin: 10px 0px;
+    /* margin: 10px 0px; */
 }
 
 #label {
@@ -38,7 +38,7 @@ button#submit {
     color: white;
 
     font-size: 15px;
-    margin: 15px;
+    /* margin: 15px; */
     padding: 4px 10px;
     background-color: rgb(81, 71, 117);
 

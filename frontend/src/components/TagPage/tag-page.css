@@ -1,5 +1,5 @@
 .selector {
-    margin: 0px 10px;
+    /* margin: 0px 10px; */
 
 }
 
@@ -32,7 +32,7 @@ h4.active {
     flex-direction: row;
     justify-content: flex-start;
 
-    margin: 0px 10px;
+    /* margin: 0px 10px; */
 }
 
 .tag-cards {
@@ -62,6 +62,6 @@ h4.active {
     border-radius: 0.25em;
 
     text-align: center;
-    margin: 0px -50px;
+    /* margin: 0px -50px; */
     /* padding-bottom: 20px; */
 }

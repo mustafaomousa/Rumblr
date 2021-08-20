@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Navbar } from "react-bulma-components";
+import { Button, Navbar } from "react-bulma-components";
 
 import * as sessionActions from '../../store/session';
 
@@ -19,7 +19,7 @@ const Navigation = () => {
     };
 
     return (
-        <Navbar style={{backgroundColor:"#EAE7DC"}} fixed="top" size="large">
+        <Navbar style={{backgroundColor:"#EAE7DC"}} fixed="top">
             <Navbar.Brand>
                 <Navbar.Item href="#" >
                     <h1 style={{fontSize:"45px", color:"#E85A4F"}}>R</h1>
@@ -37,7 +37,9 @@ const Navigation = () => {
                     {sessionUser && (<Navbar.Item href={`/${sessionUser.username}`}>
                             Profile
                     </Navbar.Item>)}
-                    {sessionUser && (<button id='logout' onClick={handleLogout}>Logout</button>)}
+                    <Navbar.Item>
+                        {sessionUser && (<Button id='logout' onClick={handleLogout}>Logout</Button>)}    
+                    </Navbar.Item>
                 </Navbar.Container>
             </Navbar.Menu>
         </Navbar>

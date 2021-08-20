@@ -7,13 +7,9 @@
     margin-bottom: 20px;
 }
 
-.body {
-    display: flex;
-    flex-direction: row;
-}
 
 .NewestBlogsContainer {
-    background-color: #120E57;
+    background-color: #E98074;
     border-radius: 0.25em;
 }
 
@@ -34,6 +30,6 @@
 
 .TagDayContainer {
     text-align: center;
-    background-color: #120E57;
+    background-color: #E85A4F;
     border-radius: 0.25em;
 }

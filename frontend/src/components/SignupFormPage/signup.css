@@ -43,11 +43,11 @@
 }
 
 .sign-input-container input {
-    margin: 0;
+    /* margin: 0; */
     border: 0;
     max-width: 200px;
 
-    margin: 5px 0px;
+    /* margin: 5px 0px; */
 }
 .sign-input-container label {
     color: whitesmoke;
@@ -73,7 +73,7 @@
     width: auto;
 
     font-size: 15px;
-    margin: 15px;
+    /* margin: 15px; */
     padding: 4px 10px;
     background-color: rgb(81, 71, 117);
 
