@@ -6,10 +6,7 @@
 
 body {
     margin: 0;
-
-    /* background-color: rgb(211, 210, 233); */
-    /* background-color: rgb(54, 6, 54); */
-    background-color: rgb(9, 7, 43);
+    background-color: #3d3a46e5;
 }
 
  a, p, h1, h2, h3, h4 {
