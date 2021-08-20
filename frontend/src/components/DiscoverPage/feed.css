@@ -1,28 +1,3 @@
-.body {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    height: auto;
-}
-
-.feed-body {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px 3%;
-    margin-top: 50px;
-}
-
-.profile-picture {
-    width: 37px;
-    height: 37px;
-
-    object-fit: cover;
-
-    border-radius: 0.25em;
-}
-
 .update {
     box-sizing: border-box;
 
@@ -37,21 +12,18 @@
     flex-direction: row;
 }
 
-.newest-blogs-container {
-    display: flex;
-    flex-direction: column;
+.NewestBlogsContainer {
     background-color: #120E57;
-
     width: 450px;
-    min-width: 350px;
     border-radius: 0.25em;
-
 }
 
-.sticky {
+.NewestBlogsHeader {
+    text-align: center;
+}
 
-    position: sticky;
-    top: 80px;
+.NewestBlogs {
+
 }
 
 .load-more {
@@ -63,12 +35,8 @@
     padding-bottom: 50px;
 }
 
-.tag-day {
-    display: flex;
-    justify-content: flex-end;
-}
 
-.tag-day-container {
+.TagDayContainer {
     position: sticky;
     top: 0px;
 
@@ -78,90 +46,8 @@
     background-color: #120E57;
 
     width: 450px;
-    min-width: 350px;
 
     border-radius: 0.25em;
 
     z-index: 1;
-}
-
-.newest-blogs {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    padding-left: 30px;
-
-    overflow: scroll;
-    height: 200px;
-
-}
-
-.newest-blogs-header {
-    text-align: center;
-    margin-top: -10px;
-    width: 100%;
-}
-
-.newest-blogs-header h4 {
-    padding-bottom: 10px;
-    border-bottom: 0.5px solid rgba(128, 128, 128, 0.295);
-    width: 100%;
-    font-size: 20px;
-}
-
-.newest-blog-box {
-    display: flex;
-    flex-direction: row;
-    margin: 5px -15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.295);;
-    width: 100%;
-}
-
-.profile-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.profile-info h3, p {
-    font-size: 17px;
-    margin: 0 5px;
-}
-
-#tag-submit-button {
-    text-decoration: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-    border: 0;
-
-    color: white;
-
-    font-size: 15px;
-    margin: 15px;
-    padding: 4px 10px;
-    background-color: rgb(81, 71, 117);
-
-    border-radius: 0.25em;
-}
-
-.tag-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 150px;
-    background-color: rgb(81, 71, 117);
-}
-
-.tag-day-container h4{
-    font-size: 20px;
-    margin: 10px 0px;
-}
-
-@media (max-width: 1200px) {
-    .left-side {
-        display: none;
-    }
 }

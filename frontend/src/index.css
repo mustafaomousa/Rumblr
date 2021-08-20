@@ -6,6 +6,7 @@
 
 body {
     background-color: #EAE7DC;
+    min-height: 1500px;
 }
 
  a, p, h1, h2, h3, h4 {

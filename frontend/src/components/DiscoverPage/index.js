@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
+import { Section, Container, Image, Box, Media, Content, Heading, Button } from "react-bulma-components";
 
 import { getAllUsers, getAllNewestUsers } from '../../store/session';
 import { getPosts, getRerumbles, getTags } from '../../store/post';
@@ -44,56 +45,68 @@ const FeedPage = () => {
     };
 
     if (sessionUser && allPosts && makes && models && newestBlogs) return (
-        <div className='body'>
-            <div className='left-side'>
-                <div className='update'>
-                    <div className='newest-blogs-container sticky'>
-                        <div className='newest-blogs-header'>
-                            <h4>Browse our newest blog's</h4>
-                        </div>
-                        <div className='newest-blogs'>
-                            {newestBlogs && newestBlogs.map((blog, idx) => {
-                                return (
-                                    <div className='newest-blog-box' key={idx}>
-                                        <img className='profile-picture' alt='' src={blog.profilePicture} />
-                                        <div className='profile-info'>
-                                            <a href={`/${blog.username}`}><h3>{blog.username}</h3></a>
-                                            <p>{blog.header}</p>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-
-                </div>
-                <div className='tag-day sticky'>
-                    <div className='tag-day-container sticky'>
-                        <h4>Tag of the day</h4>
-                        <div className='tag-header'>
-                            <h1>#expensive</h1>
-                        </div>
-                        <button onClick={() => history.push('/tag/expensive')} id='tag-submit-button'>View related posts</button>
-                    </div>
-                </div>
+        <div className='DiscoverPage columns'>
+            <div className='column'>
+                <Section>
+                    <Section>
+                        <Container className="NewestBlogsContainer">
+                            <div className='NewestBlogsHeader'>
+                                <h4>Browse our newest blog's</h4>
+                            </div>
+                            <div className='NewestBlogs'>
+                                {newestBlogs && newestBlogs.map((blog, idx) => {
+                                    return (
+                                        <Section key={idx}>
+                                            <Box>
+                                                <Media renderAs="article">
+                                                    <Media.Item align="left">
+                                                        <Image size={64} src={blog.profilePicture}/>    
+                                                    </Media.Item>
+                                                    <Media.Item align="center">
+                                                        <Content>
+                                                            <p>
+                                                                <strong>{blog.username}</strong>
+                                                                <br />
+                                                                {blog.header}
+                                                            </p>
+                                                        </Content>
+                                                    </Media.Item>
+                                                </Media>
+                                            </Box>
+                                        </Section>
+                                    )
+                                })}
+                            </div>
+                        </Container>
+                    </Section>
+                    <Section>
+                        <Container className="TagDayContainer">
+                            <Heading>
+                                Tag of the day
+                            </Heading>
+                            <Heading subtitle>
+                                #expensive
+                            </Heading>
+                            <Button onClick={() => history.push('/tag/expensive')}>Browse</Button>
+                        </Container>
+                    </Section>
+                </Section>
             </div>
-            <div className='feed-body'>
-                <h1 style={{ textDecoration: 'underline', textUnderlineOffset: '5px', textUnderlinePosition: 'right' }}>Discover</h1>
+            <div className='column'>
+                <Heading>
+                    Discover
+                </Heading>
                 <CreatePost user={sessionUser} makes={makes} models={models} />
-                <button id='tag-submit-button' onClick={() => dispatch(getPosts())}>Load newest</button>
                 {allPosts && allPosts.map((post, idx) => {
                     if (idx < count) return (<PostCard post={post} rerumbles={rerumbles} user={sessionUser} key={idx} />)
 
                     return
                 })}
-                <div className='load-more'>
-                    {allPosts.length > count && (<button id='tag-submit-button' onClick={loadMorePosts}>Load more</button>)}
-                </div>
-            </div >
+            </div>
         </div>
     )
 
-    return (<h1>Loading</h1>)
+    return (<h1>Loading...</h1>)
 
 };
 
