@@ -1,6 +1,6 @@
 
 
-#logout {
+/* #logout {
     color: whitesmoke;
     text-decoration: none;
 
@@ -9,11 +9,14 @@
     margin: 0px 30px;
 
     border: 0;
-    /* background-color: rgb(54, 6, 54); */
     background-color: rgb(9, 7, 43);
-}
+} 
 
 
+*/
+
+
+/* 
 #search {
     min-width: 200px;
     max-width: 350px;
@@ -101,10 +104,13 @@ a.active {
 .nav-bar-holder {
     position: fixed;
     z-index: 2;
-    /* border-bottom: 1px solid gray; */
     width: 100%;
-}
+} 
 
+
+
+*/
+/* 
 .nav-buttons-container {
     display: flex;
     flex-direction: row;
@@ -148,6 +154,10 @@ a.active {
     text-shadow: rgba(245, 240, 255, 0.24) 0px 2px 5px;
 }
 
+*/
+
+
+/* 
 .search-divider {
     border-top: .15px  rgb(74, 59, 83) solid;
     margin: 8px 30px;
@@ -183,4 +193,6 @@ a.active {
 .post-results, .tag-results, .user-results {
     height: 30px;
     max-height: 100px;
-}
+} 
+
+*/

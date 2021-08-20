@@ -5,28 +5,16 @@
 }
 
 body {
-    margin: 0;
-    background-color: #3d3a46e5;
+    background-color: #EAE7DC;
 }
 
  a, p, h1, h2, h3, h4 {
-    color: whitesmoke;
-    text-decoration: none;
-
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 20px;
 }
 
 input, textarea {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-  outline: none;
-
-  border-radius: 0.5em;
-  text-align: center;
-  height: 25px;
 }
-
 
 /* centering input placeholder */
 ::-webkit-input-placeholder {
