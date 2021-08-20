@@ -4,8 +4,6 @@ import { Navbar } from "react-bulma-components";
 
 import * as sessionActions from '../../store/session';
 
-import './navigation.css';
-
 const Navigation = () => {
     const history = useHistory();
     const dispatch = useDispatch();
