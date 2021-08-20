@@ -1,37 +1,19 @@
-.about-us-body {
-    position: absolute;
-}
-
-.about-us-container {
+.about-us-container, .about-us-container-2, .about-us-container-3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: -webkit-sticky;
     position: sticky;
     top: 100px;
-    padding-left: 80px;
-    height: 50px;
-}
-
-.about-us-container-2 {
-    position: sticky;
-    top: 100px;
-    padding-left: 80px;
-    height: 50px;
-}
-
-.about-us-container-3 {
-    position: sticky;
-    top: 100px;
-    padding-left: 80px;
     height: 50px;
 }
 
 .about-us-container p, .about-us-container-2 p, .about-us-container-3 p{
     font-size: 40px;
-    color: rgb(213, 206, 235);
 }
 
 .about-us-container-4 p {
     font-size: 40px;
-    color: rgb(213, 206, 235);
 }
 
 .divider-container, .divider-container-2, .divider-container-3 {
@@ -45,17 +27,9 @@
 }
 
 .about-us-container-4 {
-    padding-top: 50px;
-    text-align: start;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    align-self: center;
+    justify-content: center;
     width: 100%;
-}
-
-#my-picture {
-    margin-top: 30px;
-    width: 450px;
-    border-radius: 0.25em;
+    height: 100%;
 }
