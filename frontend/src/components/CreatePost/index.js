@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Button, Form } from "react-bulma-components";
 
 import { createNewPost } from '../../store/post'
 import UploadPictureS3Client from '../../aws/s3';
-import './new-post.css';
+
 
 const CreatePost = ({ user, makes, models }) => {
     const dispatch = useDispatch();
@@ -52,61 +53,50 @@ const CreatePost = ({ user, makes, models }) => {
     };
 
     return (
-        <div className='create-post'>
-            <div className='create-post-container speech-bubble'>
-                <div className='create-post-form'>
-                    <form onSubmit={onSubmit}>
-                        <div className='input-container'>
-                            <div className='post-information-container'>
-                                <div className='label'>
-                                    <label>Title:</label>
-                                    <label>Elaborate:</label>
-                                </div>
-                                <div className='input'>
-                                    <input onChange={updateTitle} value={title} placeholder='title'></input>
-                                    <textarea onChange={updateBody} value={body} placeholder="what's on your mind?"></textarea>
-                                </div>
-                            </div>
-                            <div className='upload-media-container'>
-                                <div className='label'>
-                                    <label>Show me:</label>
-                                </div>
-                                <div className='input'>
-                                    <input type='file' onChange={uploadFile} />
-                                </div>
-                            </div>
-                            <label id='label'>Wow.. which car again?</label>
-                            <div className='vehicle-select-container'>
-                                <>
-                                    <select onChange={updateMake} value={makeId}>
-                                        <option value={0}>Select a Make</option>
+        <div className='CreatePost SpeechBubble'>
+                <form onSubmit={onSubmit}>
+                    <Form.Field>
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control>
+                            <Form.Input onChange={updateTitle} value={title}/>
+                        </Form.Control>
+                    </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Body</Form.Label>
+                        <Form.Control>
+                            <Form.Textarea onChange={updateBody} value={body}/>
+                        </Form.Control>
+                    </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Image</Form.Label>
+                        <Form.Control>
+                            <Form.InputFile type='file' onChange={uploadFile}/>
+                        </Form.Control>
+                    </Form.Field>
+                    <Form.Field>
+                        <Form.Label>Make and Model</Form.Label>
+                        <Form.Control>
+                            <Form.Select onChange={updateMake} value={makeId}>
+                                <option value={0}>Select a Make</option>
                                         {makes && makes.map((make, idx) => {
                                             return (
                                                 <option value={make.id} key={idx}>{make.name}</option>
                                             )
                                         })}
-                                    </select>
-                                </>
-                                <>
-                                    <select onChange={updateModel} value={modelId}>
-                                        <option value={0}>Select a Model</option>
+                            </Form.Select>
+                            <Form.Select >
+                                <option value={0}>Select a Model</option>
                                         {models && models.map((model, idx) => {
                                             return (
                                                 <option value={model.id} key={idx}>{model.name}</option>
                                             )
                                         })}
-                                    </select>
-                                </>
-                            </div>
-                        </div>
-                        <div className='post-button-container'>
-                            <button id='submit-button' type='submit'>Create Post</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                            </Form.Select>
+                        </Form.Control>
+                    </Form.Field>
+                    <Button type='submit'>Create Post</Button>
+                </form>
         </div>
-
     )
 };
 

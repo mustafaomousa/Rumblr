@@ -1,16 +1,7 @@
-.update {
-    box-sizing: border-box;
-
-    width: auto;
-    height: 400px;
-    margin-top: 100px;
-    margin-bottom: 20px;
-}
-
-
 .NewestBlogsContainer {
     background-color: #E98074;
     border-radius: 0.25em;
+    padding: 20px;
 }
 
 .NewestBlogsHeader {
@@ -32,4 +23,5 @@
     text-align: center;
     background-color: #E85A4F;
     border-radius: 0.25em;
+    padding: 20px;
 }

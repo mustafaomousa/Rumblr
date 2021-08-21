@@ -10,7 +10,7 @@ import CreatePost from '../CreatePost';
 import NewestPostsComponent from '../NewestPostsComponent';
 import AllPostsComponent from '../AllPostsComponent';
 
-import './feed.css';
+import './index.css';
 
 const FeedPage = () => {
     const dispatch = useDispatch();
@@ -58,11 +58,19 @@ const FeedPage = () => {
                 </Section>
             </div>
             <div className='column'>
-                <Heading>
-                    Discover
-                </Heading>
-                <CreatePost user={sessionUser} makes={makes} models={models} />
-                <AllPostsComponent />
+                <Section>
+                    <Section>
+                        <Heading>
+                            Discover
+                        </Heading>       
+                    </Section>
+                    <Section>
+                        <CreatePost user={sessionUser} makes={makes} models={models} />    
+                    </Section>
+                    <Section>
+                        <AllPostsComponent />    
+                    </Section>
+                </Section>
             </div>
         </div>
     )

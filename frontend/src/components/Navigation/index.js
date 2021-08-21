@@ -4,6 +4,8 @@ import { Button, Navbar } from "react-bulma-components";
 
 import * as sessionActions from '../../store/session';
 
+import "./index.css"
+
 const Navigation = () => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -19,9 +21,9 @@ const Navigation = () => {
     };
 
     return (
-        <Navbar style={{backgroundColor:"#EAE7DC"}} fixed="top">
+        <Navbar style={{backgroundColor:"#EAE7DC"}} fixed="top" className="NavBar">
             <Navbar.Brand>
-                <Navbar.Item href="#" >
+                <Navbar.Item href="#" className="NavbarLogoContainer">
                     <h1 style={{fontSize:"45px", color:"#E85A4F"}}>R</h1>
                 </Navbar.Item>
                 <Navbar.Burger />
