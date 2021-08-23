@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimesCircle, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
-import Modal from 'react-modal';
+import { Card, Media, Image, Heading, Content, Tag, Container } from "react-bulma-components";
 
 import { createNewLike, deleteLike } from '../../store/like';
-import './post-card.css'
 import { createRerumble, deletePost, removeRerumble, updatePost } from '../../store/post';
 
 const PostCard = ({ post, rerumbles }) => {
@@ -105,84 +101,41 @@ const PostCard = ({ post, rerumbles }) => {
         if (like) setLiked(true);
     }, [like])
 
-    if (postLikes && sessionUser && userLikes) return (
-        <>
-            <Modal isOpen={pictureIsOpen} className='picture-modal'>
-                <div className='image-modal-container'>
-                    <FontAwesomeIcon onClick={() => setPictureIsOpen(false)} icon={faTimesCircle} size={'2x'} />
-                    <img style={{ objectFit: 'fill', width: '600px', maxHeight: '1000px', position: 'relative', zIndex: '1000' }} src={post.content} alt=''></img>
-                </div>
-            </Modal>
-            <div className={'post-card'}>
-                <div className='post-title-container'>
-                    <div className='user-post-link-container'>
-                        <Link className={updateOpen ? 'hidden' : ''} to={`/discover`} id='tag'>{post.title}</Link>
-                        <div className={updateOpen ? 'update-fields' : 'hidden'}>
-                            <label id={'tag'}>Update title:</label>
-                            <input id='title-input' value={title} onChange={(e) => setTitle(e.target.value)}></input>
-                        </div>
+  return (
+      <Card>
+            <Card.Image size="4by3" src={post.content} />
+            <Card.Content>
+                <Media>
+                    <Media.Item renderAs="figure" align="left">
+                        <Image size={64} src={post.User.profilePicture} alt="64x64" />
+                    </Media.Item>
+                    <Media.Item>
+                        <Heading size={4}>{post.User.username}</Heading>
+                    </Media.Item>
+                </Media>
+                <Content>{post.body}</Content>
+                <div display="grid" style={{display:"grid", gap:"1px", gridAutoFlow:"column"}}>
+                        <Tag.Group hasAddons paddingless marginless>
+                            <Tag onClick={likePost}>
+                                Like
+                            </Tag>
+                            <Tag>
+                                {userLikes.length}
+                            </Tag>
+                        </Tag.Group>
+                        <Tag.Group hasAddons paddingless marginless>
+                            <Tag onClick={addRerumble}>
+                                Rerumble
+                            </Tag>
+                            <Tag>
+                                {rerumbles.length}
+                            </Tag>
+                        </Tag.Group>    
                     </div>
-                    <div className={toolsOpen ? 'hidden' : 'tools'}>
-                        <FontAwesomeIcon onClick={() => setToolsOpen(true)} icon={faChevronDown} size={'2x'} />
-                    </div>
-                    <div className={toolsOpen ? 'tools' : 'hidden'}>
-                        <FontAwesomeIcon onClick={() => setToolsOpen(false)} icon={faChevronUp} size={'2x'} />
-                    </div>
-                </div>
-                <div className={toolsOpen ? 'tools-control' : 'tools-control-closed'}>
-                    {!liked && <p onClick={likePost} id={toolsOpen ? 'tool-select' : 'hidden'} >Like</p>}
-                    {liked && <p onClick={removeLike} id={toolsOpen ? 'tool-select' : 'hidden'} >Unlike</p>}
-                    {!rerumble && <p onClick={addRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Rerumble</p>}
-                    {rerumble && <p onClick={deleteRerumble} id={toolsOpen ? 'tool-select' : 'hidden'}>Unrerumble</p>}
-                    {sessionUser.id === post.userId && <p onClick={() => { setUpdateOpen(true); setToolsOpen(false); }} id={toolsOpen ? 'tool-select' : 'hidden'}>Edit</p>}
-                    {sessionUser.id === post.userId && <p onClick={() => dispatch(deletePost({ postId: post.id }))} id={toolsOpen ? 'tool-select' : 'hidden'}>Delete</p>}
-                </div>
-                <div className='post-media'>
-                    <FontAwesomeIcon onClick={openSelectedPicture} id={'magnify'} icon={faSearch} size={'3x'} />
-                    {post.content.includes('youtube') && (
-                        <p>Video Player Here</p>
-                        // <ReactPlayer width='450px' height='250px' url={post.content} />
-                    )}
-                    <img onClick={openSelectedPicture} className='post-image' src={post.content} alt=''></img >
-                </div>
-                <div className='post-body'>
-                    <Link className='username' to={`/${post.User.username}`}>{post.User.username}:</Link>
-                    <p className={updateOpen ? 'hidden' : ''}>{post.body.split(' ').map((string, index) => {
-                        if (listOfTags.includes(string)) {
-                            return <Link key={index} to={`/tag/${string.replace('#', '')}`}>{` ${string}`}</Link>
-                        } else {
-                            return ` ${string}`
-                        }
-                    })}
-                    </p>
-                    <div className={updateOpen ? 'update-fields' : 'hidden'} >
-                        <label id={'tag'}>Update body:</label>
-                        <textarea id='edit-textarea' value={body} onChange={(e) => setBody(e.target.value)}></textarea>
-                        <div style={{ textAlign: 'center' }}>
-                            <button onClick={onUpdate}>Save</button>
-                        </div>
-                    </div>
-                </div>
-                <div className='user-control-panel'>
-                    {liked && (
-                        <div className='user-control-buttons'>
-                            <i onClick={removeLike} id='heart' className="far fa-heart selected"></i>
-                            {rerumble && <i onClick={deleteRerumble} className='fas fa-retweet rerumbled'></i>}
-                            {!rerumble && <i onClick={addRerumble} className='fas fa-retweet'></i>}
-                        </div>
-                    )}
-                    {!liked && (
-                        <div className='user-control-buttons'>
-                            <i onClick={likePost} id='heart' className="far fa-heart"></i>
-                            {rerumble && <i onClick={deleteRerumble} className='fas fa-retweet rerumbled'></i>}
-                            {!rerumble && <i onClick={addRerumble} className='fas fa-retweet not-rerumbled'></i>}
-                        </div>
-                    )}
-                    <p id='like-count'>{postLikes.length} Rumbles</p>
-                </div>
-            </div>
-        </>
-    )
+            </Card.Content>
+      </Card>
+      
+  )
 
 };
 
