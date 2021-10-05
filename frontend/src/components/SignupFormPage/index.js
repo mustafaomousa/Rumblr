@@ -1,81 +1,109 @@
-import { useState } from "react"
+import {
+  Avatar,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  TextField,
+  Typography,
+  Button,
+} from "@mui/material";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from "react-router-dom";
 
-import * as sessionActions from '../../store/session';
+import * as sessionActions from "../../store/session";
 
-import './signup.css';
+import "./signup.css";
 
 const SignupFormPage = () => {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user);
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [header, setHeader] = useState('');
-    const [bio, setBio] = useState('');
-    const [profilePicture, setProfilePicture] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-    const updateUsername = (e) => setUsername(e.target.value);
-    const updateEmail = (e) => setEmail(e.target.value);
-    const updateHeader = (e) => setHeader(e.target.value);
-    const updateBio = (e) => setBio(e.target.value);
-    const updateProfilePicture = (e) => setProfilePicture(e.target.value);
-    const updatedPassword = (e) => setPassword(e.target.value);
-    const updatedConfirmPassword = (e) => setConfirmPassword(e.target.value);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return (
-        <Redirect to='/discover' />
-    );
+  const updateUsername = (e) => setUsername(e.target.value);
+  const updateEmail = (e) => setEmail(e.target.value);
+  const updatedPassword = (e) => setPassword(e.target.value);
+  const updatedConfirmPassword = (e) => setConfirmPassword(e.target.value);
 
-    const onSubmit = (e) => {
-        e.preventDefault();
+  const sessionUser = useSelector((state) => state.session.user);
+  if (sessionUser) return <Redirect to="/discover" />;
 
-        if (password === confirmPassword) {
-            setErrors([]);
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-            const payload = { email, username, header, bio, profilePicture, password };
+    if (password === confirmPassword) {
+      setErrors([]);
 
-            dispatch(sessionActions.signup(payload))
-                .catch(res => {
-                    if (res.data && res.data.errors) setErrors(res.data.errors);
-                });
+      const payload = {
+        email,
+        username,
+        password,
+      };
 
-            return history.push('/discover')
+      dispatch(sessionActions.signup(payload)).catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
+
+      return history.push("/discover");
+    }
+    return setErrors([
+      "Confirm Password field must be the same as the Password",
+    ]);
+  };
+
+  return (
+    <Card className="SignupFormPage">
+      <CardHeader
+        align="center"
+        title={
+          <Typography sx={{ fontSize: "20px" }}>Join the family</Typography>
         }
-        return setErrors(['Confirm Password field must be the same as the Password'])
-
-    };
-
-    return (
-        <div>
-            <div className='errors'>
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
-            </div>
-            <form onSubmit={onSubmit}>
-                <div className='sign-input-container'>
-                    <div className='inputs'>
-                        <div id='logo'>
-                            <h2>R</h2>
-                        </div>
-                        <input type='text' onChange={updateUsername} value={username} placeholder='create a username' required />
-                        <input type='text' onChange={updateEmail} value={email} placeholder='enter email' required />
-                        <input type='text' onChange={updateHeader} value={header} placeholder='create a header' required />
-                        <textarea onChange={updateBio} value={bio} placeholder='create a bio' required />
-                        <input type='text' onChange={updateProfilePicture} value={profilePicture} placeholder='Upload profile picture' required />
-                        <input type='password' onChange={updatedPassword} placeholder='create a password' required />
-                        <input type='password' onChange={updatedConfirmPassword} placeholder='confirm password' required />
-                    </div>
-                    <button type='submit' id='submit'>Submit</button>
-                </div>
-            </form>
-        </div>
-    )
+        avatar={<Avatar>R</Avatar>}
+      />
+      <CardContent>
+        <form onSubmit={onSubmit} className="SignupForm">
+          <TextField
+            onChange={updateUsername}
+            value={username}
+            label="create a username"
+            required
+          />
+          <br />
+          <TextField
+            onChange={updateEmail}
+            value={email}
+            label="enter email"
+            required
+          />
+          <br />
+          <TextField
+            type="password"
+            onChange={updatedPassword}
+            label="create a password"
+            required
+          />
+          <br />
+          <TextField
+            type="password"
+            onChange={updatedConfirmPassword}
+            label="confirm password"
+            required
+          />
+        </form>
+      </CardContent>
+      <CardActions className="SignupFormFooter">
+        <Button type="submit" id="submit">
+          Join
+        </Button>
+      </CardActions>
+    </Card>
+  );
 };
 
 export default SignupFormPage;
