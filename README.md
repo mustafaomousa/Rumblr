@@ -1,5 +1,5 @@
 <p align="center">
-<h3 align="center"><a href="https://rumblr-solo-project.herokuapp.com/">Rumblr »</a></h3>
+<h3 align="center"><a href="https://rumblr-app.herokuapp.com/">Rumblr »</a></h3>
 </p>
 
 <details open="open">
