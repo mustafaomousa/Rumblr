@@ -1,10 +1,9 @@
 import { useState } from "react";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
-import { Modal, Typography } from "@mui/material";
+import { Modal } from "@mui/material";
 
 import "./index.css";
-import { Box } from "@mui/system";
 
 const WelcomePage = () => {
   const [showLogin, setShowLogin] = useState(true);

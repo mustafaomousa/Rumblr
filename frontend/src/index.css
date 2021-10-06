@@ -1,10 +1,10 @@
 /* TODO Add site wide styles */
 
-.ReactModal__Overlay {
-  z-index: 1;
-}
-
 /* centering input placeholder */
 ::-webkit-input-placeholder {
   text-align: center;
+}
+
+body {
+  margin: 0;
 }
