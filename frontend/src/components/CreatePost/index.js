@@ -1,103 +1,84 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Button, Form } from "react-bulma-components";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {
+  Card,
+  Button,
+  TextField,
+  CardHeader,
+  Avatar,
+  CardContent,
+  CardActions,
+  Image,
+  IconButton,
+  Input,
+} from "@mui/material";
+import { createNewPost } from "../../store/post";
+import SendIcon from "@mui/icons-material/Send";
+import UploadPictureS3Client from "../../aws/s3";
 
-import { createNewPost } from '../../store/post'
-import UploadPictureS3Client from '../../aws/s3';
+const CreatePost = ({ user }) => {
+  const dispatch = useDispatch();
 
+  const [content, setContent] = useState("");
+  const [body, setBody] = useState("");
 
-const CreatePost = ({ user, makes, models }) => {
-    const dispatch = useDispatch();
+  const updateBody = (e) => setBody(e.target.value);
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [body, setBody] = useState('');
-    const [makeId, setMakeId] = useState(0);
-    const [modelId, setModelId] = useState(0);
-    const updateTitle = (e) => setTitle(e.target.value);
-    const updateBody = (e) => setBody(e.target.value);
-    const updateMake = (e) => setMakeId(e.target.value);
-    const updateModel = (e) => setModelId(e.target.value);
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        const tags = body.match(/#[A-Za-z0-9]*/g)
-
-        const payload = {
-            title,
-            content,
-            body,
-            tags,
-            makeId,
-            modelId,
-            userId: user.id
-        };
-        dispatch(createNewPost(payload));
-        resetFields();
+    const tags = body.match(/#[A-Za-z0-9]*/g);
+    const payload = {
+      content:
+        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/rs-e-tron-gt-tango-red-10-1628022210.jpg?crop=0.845xw:0.842xh;0.0459xw,0.0356xh&resize=640:*",
+      body,
+      tags,
+      userId: user.id,
     };
 
-    const uploadFile = (e) => {
-        e.preventDefault();
+    dispatch(createNewPost(payload))
+      .then(() => {
+        setContent("");
+        setBody("");
+      })
+      .catch((e) => console.log(e));
+  };
 
-        UploadPictureS3Client.uploadFile(e.target.files[0], `${user.id}-${new Date()}`)
-            .then(data => setContent(data.location))
-    };
-
-    const resetFields = () => {
-        setTitle('');
-        setContent('');
-        setBody('');
-        setMakeId(0);
-        setModelId(0);
-    };
-
-    return (
-        <div className='CreatePost SpeechBubble'>
-                <form onSubmit={onSubmit}>
-                    <Form.Field>
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control>
-                            <Form.Input onChange={updateTitle} value={title}/>
-                        </Form.Control>
-                    </Form.Field>
-                    <Form.Field>
-                        <Form.Label>Body</Form.Label>
-                        <Form.Control>
-                            <Form.Textarea onChange={updateBody} value={body}/>
-                        </Form.Control>
-                    </Form.Field>
-                    <Form.Field>
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control>
-                            <Form.InputFile type='file' onChange={uploadFile}/>
-                        </Form.Control>
-                    </Form.Field>
-                    <Form.Field>
-                        <Form.Label>Make and Model</Form.Label>
-                        <Form.Control>
-                            <Form.Select onChange={updateMake} value={makeId}>
-                                <option value={0}>Select a Make</option>
-                                        {makes && makes.map((make, idx) => {
-                                            return (
-                                                <option value={make.id} key={idx}>{make.name}</option>
-                                            )
-                                        })}
-                            </Form.Select>
-                            <Form.Select >
-                                <option value={0}>Select a Model</option>
-                                        {models && models.map((model, idx) => {
-                                            return (
-                                                <option value={model.id} key={idx}>{model.name}</option>
-                                            )
-                                        })}
-                            </Form.Select>
-                        </Form.Control>
-                    </Form.Field>
-                    <Button type='submit'>Create Post</Button>
-                </form>
-        </div>
-    )
+  return (
+    <Card className="CreatePost" sx={{ width: "500px" }}>
+      <CardHeader avatar={<Avatar />} />
+      <form>
+        <CardContent>
+          <label>
+            <Input accept="image/*" style={{ display: "none" }} type="file" />
+            <Button
+              sx={{
+                width: "100%",
+                minHeight: "200px",
+                border: "1px slategray dotted",
+              }}
+              component="span"
+            >
+              Upload
+            </Button>
+          </label>
+          <TextField
+            size="small"
+            onChange={updateBody}
+            value={body}
+            label="Body"
+            multiline
+            sx={{ width: "100%", marginTop: "10px" }}
+          />
+        </CardContent>
+        <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <IconButton>
+            <SendIcon onClick={onSubmit} />
+          </IconButton>
+        </CardActions>
+      </form>
+    </Card>
+  );
 };
 
 export default CreatePost;

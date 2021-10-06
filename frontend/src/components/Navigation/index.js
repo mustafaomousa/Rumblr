@@ -21,7 +21,7 @@ import "./index.css";
 
 const styles = {
   toolbar: {
-    backgroundColor: "purple",
+    backgroundColor: "#301934",
   },
 };
 
@@ -39,7 +39,7 @@ const Navigation = ({ classes }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar className={classes.toolbar}>
         <Grid container spacing={3}>
           <Grid item xs={1} className="NavigationLogoContainer">
