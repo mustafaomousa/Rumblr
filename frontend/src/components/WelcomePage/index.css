@@ -3,3 +3,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.WelcomePage {
+  background-color: purple;
+  width: 100%;
+  height: 100vh;
+}

@@ -48,18 +48,22 @@ const Navigation = ({ classes }) => {
             </Typography>
           </Grid>
           <Grid item xs={4} className="NavigationSearchContainer">
-            <TextField
-              size="small"
-              fullWidth
-              variant="outlined"
-              color="secondary"
-            />
-            <Button startIcon={<SearchIcon />} sx={{ color: "white" }} />
+            {sessionUser && (
+              <>
+                <TextField
+                  size="small"
+                  fullWidth
+                  variant="outlined"
+                  color="secondary"
+                />
+                <Button startIcon={<SearchIcon />} sx={{ color: "white" }} />
+              </>
+            )}
           </Grid>
           <Grid item xs={5} className="NavigationLoginContainer">
             {!sessionUser && (
               <>
-                <TextField
+                {/* <TextField
                   size="small"
                   sx={{ paddingRight: "10px" }}
                   label="username/email"
@@ -73,18 +77,18 @@ const Navigation = ({ classes }) => {
                   variant="outlined"
                   color="secondary"
                 />
-                <Button sx={{ color: "white" }}>Log in</Button>
+                <Button sx={{ color: "white" }}>Log in</Button> */}
               </>
             )}
           </Grid>
           <Grid item xs={2} className="NavigationIconContainer">
-            <NavLink to="/discover">
-              <Button sx={{ color: "white" }}>
-                <ExploreIcon sx={{ fontSize: "40px" }} />
-              </Button>
-            </NavLink>
             {sessionUser && (
               <>
+                <NavLink to="/discover">
+                  <Button sx={{ color: "white" }}>
+                    <ExploreIcon sx={{ fontSize: "40px" }} />
+                  </Button>
+                </NavLink>
                 <NavLink to={`/${sessionUser.username}`}>
                   <Button sx={{ color: "white" }}>
                     <AccountBoxIcon sx={{ fontSize: "40px" }} />
