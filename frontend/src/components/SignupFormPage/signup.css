@@ -4,7 +4,7 @@
   justify-content: space-between;
   background-color: rgb(245, 245, 245);
   width: 400px;
-  height: 500px;
+  min-height: 500px;
 }
 
 .SignupForm {

@@ -11,10 +11,12 @@ import {
   CardActions,
   Input,
   Avatar,
+  Alert,
 } from "@mui/material";
 import "./login.css";
 
 import * as sessionActions from "../../store/session";
+import { Box } from "@mui/system";
 
 const LoginFormPage = ({ switchToSignup }) => {
   const history = useHistory();
@@ -31,14 +33,14 @@ const LoginFormPage = ({ switchToSignup }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     setErrors([]);
 
     dispatch(sessionActions.login(credential, password)).catch((res) => {
-      if (res.data && res.data.errors) setErrors(res.data.errors);
-      alert(res.data.errors);
+      setErrors(res.data.errors);
     });
 
-    return history.push("/discover");
+    // return history.push("/discover");
   };
 
   const demoLogin = async (e) => {
@@ -49,11 +51,10 @@ const LoginFormPage = ({ switchToSignup }) => {
     dispatch(sessionActions.login(demoCredential, demoPassword)).catch(
       (res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
-        alert(res.data.errors);
       }
     );
 
-    return history.push("/discover");
+    // return history.push("/discover");
   };
 
   return (
@@ -64,7 +65,7 @@ const LoginFormPage = ({ switchToSignup }) => {
         avatar={<Avatar>R</Avatar>}
       />
       <CardContent>
-        <form onSubmit={onSubmit} className="LoginForm">
+        <form className="LoginForm">
           <TextField
             id="input"
             type="text"
@@ -83,13 +84,17 @@ const LoginFormPage = ({ switchToSignup }) => {
             required
           />
         </form>
+        <Box sx={{ paddingTop: "20px" }}>
+          {errors &&
+            errors.map((error) => <Alert severity="error">{error}</Alert>)}
+        </Box>
       </CardContent>
       <CardActions className="LoginFormFooter">
         <div>
           <Button onClick={switchToSignup}>Switch to sign up</Button>
         </div>
         <div>
-          <Button type="submit">Log in</Button>
+          <Button onClick={onSubmit}>Log in</Button>
           <Button onClick={demoLogin}>Demo</Button>
         </div>
       </CardActions>

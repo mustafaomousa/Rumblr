@@ -7,7 +7,9 @@ import {
   TextField,
   Typography,
   Button,
+  Alert,
 } from "@mui/material";
+import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
@@ -47,11 +49,11 @@ const SignupFormPage = ({ switchToLogin }) => {
       };
 
       dispatch(sessionActions.signup(payload)).catch((res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
+        console.log(res);
+        setErrors(res.data.errors);
       });
-
-      return history.push("/discover");
     }
+
     return setErrors([
       "Confirm Password field must be the same as the Password",
     ]);
@@ -67,7 +69,7 @@ const SignupFormPage = ({ switchToLogin }) => {
         avatar={<Avatar>R</Avatar>}
       />
       <CardContent>
-        <form onSubmit={onSubmit} className="SignupForm">
+        <form className="SignupForm">
           <TextField
             onChange={updateUsername}
             value={username}
@@ -96,15 +98,20 @@ const SignupFormPage = ({ switchToLogin }) => {
             required
           />
         </form>
+        {errors && (
+          <Box sx={{ paddingTop: "20px" }}>
+            {errors.map((error) => (
+              <Alert severity="error">{error}</Alert>
+            ))}
+          </Box>
+        )}
       </CardContent>
       <CardActions className="SignupFormFooter">
         <div>
           <Button onClick={switchToLogin}>Switch to log in</Button>
         </div>
         <div>
-          <Button type="submit" id="submit">
-            Join
-          </Button>
+          <Button onClick={onSubmit}>Join</Button>
         </div>
       </CardActions>
     </Card>
