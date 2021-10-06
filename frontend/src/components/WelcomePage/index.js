@@ -1,33 +1,33 @@
 import { useState } from "react";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
-import { Typography } from "@mui/material";
+import { Modal, Typography } from "@mui/material";
 
 import "./index.css";
+import { Box } from "@mui/system";
 
 const WelcomePage = () => {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
+  const [showSignup, setShowSignup] = useState(false);
 
-  const switchToLogin = () => setShowLogin(true);
-  const switchToSignup = () => setShowLogin(false);
+  const switchToSignup = () => {
+    setShowLogin(false);
+    setShowSignup(true);
+  };
+
+  const switchToLogin = () => {
+    setShowSignup(false);
+    setShowLogin(true);
+  };
 
   return (
     <div className="WelcomePage">
-      {showLogin ? (
-        <div className="WelcomeContainer">
-          <LoginFormPage />
-          <a text onClick={switchToSignup} id="SwitchButton">
-            Need an account? Sign up
-          </a>
-        </div>
-      ) : (
-        <div className="WelcomeContainer">
-          <SignupFormPage />
-          <a text onClick={switchToLogin} id="SwitchButton">
-            Already have an account? Log in
-          </a>
-        </div>
-      )}
+      <Modal open={showLogin} className="WelcomePageModal">
+        <LoginFormPage switchToSignup={switchToSignup} />
+      </Modal>
+      <Modal open={showSignup} className="WelcomePageModal">
+        <SignupFormPage switchToLogin={switchToLogin} />
+      </Modal>
     </div>
   );
 };

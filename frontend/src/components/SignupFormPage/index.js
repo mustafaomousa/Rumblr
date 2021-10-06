@@ -16,7 +16,7 @@ import * as sessionActions from "../../store/session";
 
 import "./signup.css";
 
-const SignupFormPage = () => {
+const SignupFormPage = ({ switchToLogin }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -98,9 +98,14 @@ const SignupFormPage = () => {
         </form>
       </CardContent>
       <CardActions className="SignupFormFooter">
-        <Button type="submit" id="submit">
-          Join
-        </Button>
+        <div>
+          <Button onClick={switchToLogin}>Switch to log in</Button>
+        </div>
+        <div>
+          <Button type="submit" id="submit">
+            Join
+          </Button>
+        </div>
       </CardActions>
     </Card>
   );

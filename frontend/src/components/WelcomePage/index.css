@@ -1,23 +1,5 @@
-.WelcomePage {
+.WelcomePageModal {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
-}
-
-.WelcomeContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* .WelcomeContainer button {
-  width: 100%;
-} */
-
-#SwitchButton {
-  color: blue;
-  padding-top: 20px;
 }
