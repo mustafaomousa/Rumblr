@@ -10,9 +10,10 @@ import {
   TextField,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import HelpIcon from "@mui/icons-material/Help";
 import ExploreIcon from "@mui/icons-material/Explore";
 import LogoutIcon from "@mui/icons-material/Logout";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 import * as sessionActions from "../../store/session";
 
@@ -38,7 +39,13 @@ const Navigation = ({ classes }) => {
   };
 
   return (
-    <AppBar position="fixed">
+    <AppBar
+      position="fixed"
+      sx={{
+        borderBottom: "1px solid #3c1f41",
+        boxShadow: "none",
+      }}
+    >
       <Toolbar className={classes.toolbar}>
         <Grid container spacing={3}>
           <Grid item xs={1} className="NavigationLogoContainer">
@@ -83,14 +90,28 @@ const Navigation = ({ classes }) => {
           <Grid item xs={2} className="NavigationIconContainer">
             {sessionUser && (
               <>
-                <NavLink to="/discover">
+                <NavLink
+                  to="/discover"
+                  activeStyle={{ borderBottom: "1px solid white" }}
+                >
                   <Button sx={{ color: "white" }}>
                     <ExploreIcon sx={{ fontSize: "30px" }} />
                   </Button>
                 </NavLink>
-                <NavLink to={`/${sessionUser.username}`}>
+                <NavLink
+                  to="/settings"
+                  activeStyle={{ borderBottom: "1px solid white" }}
+                >
                   <Button sx={{ color: "white" }}>
-                    <AccountBoxIcon sx={{ fontSize: "30px" }} />
+                    <SettingsIcon sx={{ fontSize: "30px" }} />
+                  </Button>
+                </NavLink>
+                <NavLink
+                  to="/help"
+                  activeStyle={{ borderBottom: "1px solid white" }}
+                >
+                  <Button sx={{ color: "white" }}>
+                    <HelpIcon sx={{ fontSize: "30px" }} />
                   </Button>
                 </NavLink>
                 <Button sx={{ color: "white" }} onClick={handleLogout}>

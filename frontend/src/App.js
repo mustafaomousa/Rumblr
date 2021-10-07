@@ -6,7 +6,6 @@ import Navigation from "./components/Navigation";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import DiscoverPage from "./components/DiscoverPage";
-import ProfilePage from "./components/ProfilePage";
 import * as sessionActions from "./store/session";
 import { getAllUsers, getAllNewestUsers } from "./store/session";
 import { getPosts, getRerumbles, getTags } from "./store/post";
@@ -42,7 +41,6 @@ function App() {
           <Route path="/about-us" component={AboutUsPage} />
           <Route exact path="/discover" component={DiscoverPage} />
           <Route path={`/tag/`} component={TagPage} />
-          {user && <Route path={`/:username`} component={ProfilePage} />}
           <Route exact path="/results" />
           <Route path="/login" component={LoginFormPage} />
           <Route path="/signup" component={SignupFormPage} />

@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardMedia,
   IconButton,
-  Popover,
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -17,14 +16,15 @@ import SmartButtonIcon from "@mui/icons-material/SmartButton";
 import { deletePost } from "../../store/post";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { Box } from "@mui/system";
+import ProfileDrawer from "../ProfileDrawer";
 
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
-  const [openPopover, setOpenPopover] = useState(false);
+  const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  const togglePopover = () => setOpenPopover(!openPopover);
 
+  const closeProfileDrawer = () => setProfileDrawerOpen(false);
+  const openProfileDrawer = () => setProfileDrawerOpen(true);
   const deleteUserPost = (e) => {
     e.preventDefault();
     dispatch(deletePost({ postId: post.id }));
@@ -32,8 +32,15 @@ const PostCard = ({ post }) => {
 
   return (
     <Card sx={{ width: "500px" }}>
+      <ProfileDrawer
+        userId={post.User.id}
+        profileDrawerOpen={profileDrawerOpen}
+        closeProfileDrawer={closeProfileDrawer}
+      />
       <CardHeader
-        avatar={<Avatar src={post.User.profilePicture} />}
+        avatar={
+          <Avatar src={post.User.profilePicture} onClick={openProfileDrawer} />
+        }
         action={
           sessionUser.id === post.User.id && (
             <>
