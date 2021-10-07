@@ -63,10 +63,14 @@ const SignupFormPage = ({ switchToLogin }) => {
     <Card className="SignupFormPage">
       <CardHeader
         align="center"
+        subheader="Sign up"
         title={
-          <Typography sx={{ fontSize: "20px" }}>Join the family</Typography>
+          <Typography
+            sx={{ fontSize: "50px", color: "#301934", fontWeight: "bolder" }}
+          >
+            Rumblr
+          </Typography>
         }
-        avatar={<Avatar>R</Avatar>}
       />
       <CardContent>
         <form className="SignupForm">

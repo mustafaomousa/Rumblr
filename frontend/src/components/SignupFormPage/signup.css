@@ -15,5 +15,5 @@
 .SignupFormFooter {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(209, 209, 209);
+  background-color: #f3f3f3;
 }

@@ -3,7 +3,6 @@ import { NavLink, useHistory } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import {
   AppBar,
-  Container,
   Grid,
   Toolbar,
   Typography,
@@ -86,16 +85,16 @@ const Navigation = ({ classes }) => {
               <>
                 <NavLink to="/discover">
                   <Button sx={{ color: "white" }}>
-                    <ExploreIcon sx={{ fontSize: "40px" }} />
+                    <ExploreIcon sx={{ fontSize: "30px" }} />
                   </Button>
                 </NavLink>
                 <NavLink to={`/${sessionUser.username}`}>
                   <Button sx={{ color: "white" }}>
-                    <AccountBoxIcon sx={{ fontSize: "40px" }} />
+                    <AccountBoxIcon sx={{ fontSize: "30px" }} />
                   </Button>
                 </NavLink>
                 <Button sx={{ color: "white" }} onClick={handleLogout}>
-                  <LogoutIcon sx={{ fontSize: "40px" }} />
+                  <LogoutIcon sx={{ fontSize: "30px" }} />
                 </Button>
               </>
             )}

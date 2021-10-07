@@ -138,15 +138,15 @@ const postReducer = (state = initialState, action) => {
     case LOAD:
       newState = Object.assign({}, state, { allPosts: action.payload });
       return newState;
-    case LOAD_TAG_POSTS:
-      newState = Object.assign({}, state, { tagPosts: action.payload });
-      return newState;
-    case LOAD_TAGS:
-      newState = Object.assign({}, state, { tags: action.payload });
-      return newState;
-    case LOAD_RERUMBLES:
-      newState = Object.assign({}, state, { rerumbles: action.payload });
-      return newState;
+    // case LOAD_TAG_POSTS:
+    //   newState = Object.assign({}, state, { tagPosts: action.payload });
+    //   return newState;
+    // case LOAD_TAGS:
+    //   newState = Object.assign({}, state, { tags: action.payload });
+    //   return newState;
+    // case LOAD_RERUMBLES:
+    //   newState = Object.assign({}, state, { rerumbles: action.payload });
+    //   return newState;
     default:
       return state;
   }
