@@ -8,8 +8,6 @@ const asyncHandler = require("express-async-handler");
 const {
   Post,
   User,
-  Make,
-  Model,
   Tag,
   TagJoin,
   RerumbleJoin,
@@ -17,17 +15,50 @@ const {
 } = require("../../db/models");
 
 const router = express.Router();
-
-router.delete(
+router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const { postId } = req.body;
-    const deletedPost = await Post.findOne({ where: { id: postId } });
-    await Like.destroy({ where: { postId: postId } });
-    await TagJoin.destroy({ where: { postId: postId } });
-    await RerumbleJoin.destroy({ where: { postId: postId } });
-    await deletedPost.destroy();
-    return res.json({ deletedPost });
+    const { limit, userId } = req.query;
+    const posts = await Post.findAll({
+      include: [User, Tag, Like],
+      order: [["createdAt", "DESC"]],
+      limit,
+    });
+
+    return res.json({ posts });
+  })
+);
+
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const { content, body, tags, userId } = req.body;
+
+    const post = await Post.create({
+      content,
+      body,
+      userId,
+    });
+
+    const postId = post.dataValues.id;
+
+    for (let tag in tags) {
+      const dbTag = await Tag.findOne({ where: { name: tags[tag] } });
+      if (!dbTag) {
+        const newTag = await Tag.create({ name: tags[tag] });
+        const tagId = newTag.dataValues.id;
+        const newPostTag = await TagJoin.create({ tagId, postId });
+        newPostTag.save();
+      } else {
+        const tagId = dbTag.dataValues.id;
+        const newPostTag = await TagJoin.create({ tagId, postId });
+        newPostTag.save();
+      }
+    }
+
+    const newPost = await Post.findByPk(postId, { include: [User, Tag, Like] });
+
+    return res.json({ newPost });
   })
 );
 
@@ -58,43 +89,42 @@ router.put(
   })
 );
 
-router.post(
-  "/rerumble",
-  asyncHandler(async (req, res) => {
-    const { userId, postId } = req.body;
-    const rerumble = await RerumbleJoin.create({ userId, postId });
-    return res.json({ rerumble });
-  })
-);
-
 router.delete(
-  "/rerumble",
-  asyncHandler(async (req, res) => {
-    const { userId, postId } = req.body;
-    const rerumble = await RerumbleJoin.findOne({ userId, postId });
-    rerumble.destroy();
-    return res.json({ rerumble });
-  })
-);
-
-router.get(
-  "/rerumble",
-  asyncHandler(async (req, res) => {
-    const rerumbles = await RerumbleJoin.findAll({
-      include: [{ model: Post, include: [User] }],
-    });
-    return res.json({ rerumbles });
-  })
-);
-
-router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const posts = await Post.findAll({
-      include: [{ model: User }, { model: Tag }],
-      order: [["updatedAt", "DESC"]],
+    const { postId } = req.body;
+    Like.destroy({
+      where: {
+        postId,
+      },
     });
-    return res.json({ posts });
+
+    TagJoin.destroy({
+      where: {
+        postId,
+      },
+    });
+
+    Post.destroy({
+      where: {
+        id: postId,
+      },
+    });
+
+    return res.json({ deleted: true });
+  })
+);
+
+router.post(
+  "/:postId/like",
+  asyncHandler(async (req, res) => {
+    const { postId } = req.params;
+    const { userId } = req.body;
+    const newLike = await Like.create({
+      postId,
+      userId,
+    });
+    return res.json({ newLike });
   })
 );
 
@@ -104,54 +134,6 @@ router.get(
     const tags = await Tag.findAll();
 
     return res.json({ tags });
-  })
-);
-
-router.get(
-  "/:tag",
-  asyncHandler(async (req, res) => {
-    const tagName = req.params.tag;
-    const tagPosts = await Post.findAll({
-      include: [
-        { model: Tag, where: { name: `#${tagName}` } },
-        { model: User },
-        { model: Make },
-        { model: Model },
-      ],
-      order: [["updatedAt", "DESC"]],
-    });
-    return res.json({ tagPosts });
-  })
-);
-
-router.post(
-  "/",
-  asyncHandler(async (req, res) => {
-    const { content, body, tags, userId } = req.body;
-
-    const newPost = await Post.create({
-      content,
-      body,
-      userId,
-    });
-
-    const postId = newPost.dataValues.id;
-
-    for (let tag in tags) {
-      const dbTag = await Tag.findOne({ where: { name: tags[tag] } });
-      if (!dbTag) {
-        const newTag = await Tag.create({ name: tags[tag] });
-        const tagId = newTag.dataValues.id;
-        const newPostTag = await TagJoin.create({ tagId, postId });
-        newPostTag.save();
-      } else {
-        const tagId = dbTag.dataValues.id;
-        const newPostTag = await TagJoin.create({ tagId, postId });
-        newPostTag.save();
-      }
-    }
-
-    return res.json({ newPost });
   })
 );
 

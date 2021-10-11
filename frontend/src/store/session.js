@@ -1,25 +1,9 @@
 import { fetch } from "./csrf";
 
-const initialState = { user: null, allUsers: null };
+const initialState = { user: null };
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
-const ALL_USER = "session/getAllUsers";
-const NEWEST_USER = "session/getNewestUsers";
-
-const getNewestUsers = (newestUsers) => {
-  return {
-    type: NEWEST_USER,
-    payload: newestUsers,
-  };
-};
-
-const getUsers = (users) => {
-  return {
-    type: ALL_USER,
-    payload: users,
-  };
-};
 
 const setUser = (user) => {
   return {
@@ -44,22 +28,6 @@ export const signup = (user) => async (dispatch) => {
   if (response.ok) {
     dispatch(setUser(response.data.user));
     return response;
-  }
-};
-
-export const getAllUsers = () => async (dispatch) => {
-  const response = await fetch("/api/users");
-
-  if (response.ok) {
-    dispatch(getUsers(response.data.users));
-  }
-};
-
-export const getAllNewestUsers = () => async (dispatch) => {
-  const response = await fetch("/api/users/newest");
-
-  if (response.ok) {
-    dispatch(getNewestUsers(response.data.newestUsers));
   }
 };
 
@@ -103,13 +71,6 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
-      return newState;
-    case ALL_USER:
-      newState = Object.assign({}, state);
-      newState.allUsers = action.payload;
-      return newState;
-    case NEWEST_USER:
-      newState = Object.assign({}, state, { newestBlogs: action.payload });
       return newState;
     default:
       return state;

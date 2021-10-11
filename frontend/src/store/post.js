@@ -1,35 +1,35 @@
 import { fetch } from "./csrf";
 
-const LOAD = "post/getAllPosts";
-const LOAD_TAGS = "post/getAllTags";
-const LOAD_TAG_POSTS = "post/LOAD_TAG_POSTS";
-const LOAD_RERUMBLES = "post/LOAD_RERUMBLES";
-
-const getAllTags = (tags) => {
-  return {
-    type: LOAD_TAGS,
-    payload: tags,
-  };
-};
+const LOAD_POSTS = "post/getAllPosts";
+const ADD_POST = "post/createNewPost";
+const DELETE_POST = "post/deletePost";
+const UPDATE_POST = "post/updatePost";
 
 const getAllPosts = (posts) => {
   return {
-    type: LOAD,
+    type: LOAD_POSTS,
     payload: posts,
   };
 };
 
-const getTagPosts = (tagPosts) => {
+const addNewPost = (post) => {
   return {
-    type: LOAD_TAG_POSTS,
-    payload: tagPosts,
+    type: ADD_POST,
+    payload: post,
   };
 };
 
-const getAllRerumbles = (rerumbles) => {
+const deleteUserPost = (postId) => {
   return {
-    type: LOAD_RERUMBLES,
-    payload: rerumbles,
+    type: DELETE_POST,
+    payload: postId,
+  };
+};
+
+const updateUserPost = (post) => {
+  return {
+    type: UPDATE_POST,
+    payload: post,
   };
 };
 
@@ -43,7 +43,6 @@ export const updatePost =
 
     if (response.ok) {
       dispatch(getPosts());
-      dispatch(getTags());
     }
   };
 
@@ -55,64 +54,16 @@ export const deletePost =
       body: JSON.stringify({ postId }),
     });
 
-    if (response.ok) {
-      dispatch(getPosts());
+    if (response.ok && response.data.deleted) {
+      dispatch(deleteUserPost(postId));
     }
   };
 
-export const getRerumbles = () => async (dispatch) => {
-  const response = await fetch("/api/posts/rerumble");
-
-  if (response.ok) {
-    dispatch(getAllRerumbles(response.data.rerumbles));
-  }
-};
-
-export const removeRerumble =
-  ({ userId, postId }) =>
-  async (dispatch) => {
-    const response = await fetch("/api/posts/rerumble", {
-      method: "DELETE",
-      body: JSON.stringify({ userId, postId }),
-    });
-
-    if (response.ok) {
-      dispatch(getRerumbles());
-    }
-  };
-
-export const createRerumble =
-  ({ userId, postId }) =>
-  async (dispatch) => {
-    const response = await fetch("/api/posts/rerumble", {
-      method: "POST",
-      body: JSON.stringify({ userId, postId }),
-    });
-
-    if (response.ok) {
-      dispatch(getRerumbles());
-    }
-  };
-
-export const getTags = () => async (dispatch) => {
-  const response = await fetch(`/api/posts/tags`);
-
-  if (response.ok) {
-    dispatch(getAllTags(response.data.tags));
-  }
-};
-
-export const getRecentTagPosts = (tagName) => async (dispatch) => {
-  const response = await fetch(`/api/posts/${tagName}`);
-  if (response.ok) {
-    dispatch(getTagPosts(response.data.tagPosts));
-  }
-};
-
-export const getPosts = () => async (dispatch) => {
-  const response = await fetch("/api/posts");
+export const getPosts = (limit, userId) => async (dispatch) => {
+  const response = await fetch(`/api/posts?limit=${limit}&userId=${userId}`);
   if (response.ok) {
     dispatch(getAllPosts(response.data.posts));
+    console.log(response.data.posts);
     return response;
   }
 };
@@ -125,28 +76,35 @@ export const createNewPost = (payload) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(getPosts());
+    dispatch(addNewPost(response.data.newPost));
+    console.log(response.data);
     return response;
   }
 };
 
-const initialState = { allPosts: [], tagPosts: [], rerumbles: [] };
+const initialState = {};
 
 const postReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case LOAD:
-      newState = Object.assign({}, state, { allPosts: action.payload });
+    case LOAD_POSTS:
+      newState = { ...state };
+      action.payload.map((post) => (newState["_" + post.id] = post));
       return newState;
-    // case LOAD_TAG_POSTS:
-    //   newState = Object.assign({}, state, { tagPosts: action.payload });
-    //   return newState;
-    // case LOAD_TAGS:
-    //   newState = Object.assign({}, state, { tags: action.payload });
-    //   return newState;
-    // case LOAD_RERUMBLES:
-    //   newState = Object.assign({}, state, { rerumbles: action.payload });
-    //   return newState;
+    case ADD_POST:
+      newState = Object.assign(
+        { ["_" + action.payload.id]: action.payload },
+        state
+      );
+      return newState;
+    case UPDATE_POST:
+      newState = { ...state };
+      newState["_" + action.payload.id] = action.payload;
+      return newState;
+    case DELETE_POST:
+      newState = { ...state };
+      delete newState["_" + action.payload];
+      return newState;
     default:
       return state;
   }

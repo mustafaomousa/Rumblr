@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import SmartButtonIcon from "@mui/icons-material/SmartButton";
 import { deletePost } from "../../store/post";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,7 +32,7 @@ const PostCard = ({ post }) => {
   return (
     <Card sx={{ width: "500px" }}>
       <ProfileDrawer
-        userId={post.User.id}
+        userId={post.userId}
         profileDrawerOpen={profileDrawerOpen}
         closeProfileDrawer={closeProfileDrawer}
       />
@@ -66,9 +65,6 @@ const PostCard = ({ post }) => {
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <div>
-          <IconButton>
-            <FavoriteIcon />
-          </IconButton>
           <IconButton>
             <SmartButtonIcon />
           </IconButton>

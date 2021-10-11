@@ -7,7 +7,6 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   CardMedia,
   Container,
   Drawer,
@@ -74,9 +73,7 @@ const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
           <TabContext value={tab}>
             <Box>
               <TabList onChange={handleChange}>
-                <Tab label="POSTS" value={0} sx={{ color: "white" }}>
-                  <p>heyy</p>
-                </Tab>
+                <Tab label="POSTS" value={0} sx={{ color: "white" }} />
                 <Tab label="PINNED" value={1} sx={{ color: "white" }} />
               </TabList>
             </Box>
