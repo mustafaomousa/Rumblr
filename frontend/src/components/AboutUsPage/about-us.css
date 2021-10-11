@@ -1,35 +1,40 @@
-.about-us-container, .about-us-container-2, .about-us-container-3 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 100px;
-    height: 50px;
+.about-us-container,
+.about-us-container-2,
+.about-us-container-3 {
+  display: flex;
+  justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  padding-top: 20px;
+  top: 100px;
 }
 
-.about-us-container p, .about-us-container-2 p, .about-us-container-3 p{
-    font-size: 40px;
+.about-us-container p,
+.about-us-container-2 p,
+.about-us-container-3 p {
+  /* font-size: 40px; */
 }
 
-.about-us-container-4 p {
-    font-size: 40px;
-}
+/* .about-us-container-4 p {
+  font-size: 40px;
+} */
 
-.divider-container, .divider-container-2, .divider-container-3 {
-    height: 550px;
+.divider-container,
+.divider-container-2,
+.divider-container-3 {
+  height: 550px;
 }
 
 .divider-container-2 {
-    background-color: rgb(30, 19, 51);
-    width: 100%;
-    height: 600px;
+  background-color: rgb(30, 19, 51);
+  width: 100%;
+  height: 600px;
 }
 
 .about-us-container-4 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }

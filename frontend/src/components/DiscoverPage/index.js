@@ -6,6 +6,7 @@ import CreatePost from "../CreatePost";
 import PostCard from "../PostCard";
 import { useEffect, useState } from "react";
 import { getPosts } from "../../store/post";
+import QuickAction from "../QuickAction";
 
 const FeedPage = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const FeedPage = () => {
   return (
     posts && (
       <Stack className="DiscoverPage" spacing={5}>
-        <CreatePost user={sessionUser} />
+        {/* <CreatePost user={sessionUser} /> */}
         {Object.keys(posts).map((idx) => {
           return <PostCard post={posts[idx]} />;
         })}

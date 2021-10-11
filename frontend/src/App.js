@@ -9,6 +9,7 @@ import DiscoverPage from "./components/DiscoverPage";
 import * as sessionActions from "./store/session";
 import WelcomePage from "./components/WelcomePage";
 import AboutUsPage from "./components/AboutUsPage";
+import QuickAction from "./components/QuickAction";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,10 +24,11 @@ function App() {
   return (
     <>
       <Navigation />
+      <QuickAction />
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={WelcomePage} />
-          <Route path="/about-us" component={AboutUsPage} />
+          <Route path="/about" component={AboutUsPage} />
           <Route exact path="/discover" component={DiscoverPage} />
           <Route exact path="/results" />
           <Route path="/login" component={LoginFormPage} />

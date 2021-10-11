@@ -47,13 +47,13 @@ const Navigation = ({ classes }) => {
       }}
     >
       <Toolbar className={classes.toolbar}>
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item xs={1} className="NavigationLogoContainer">
             <Typography variant="h5" fontWeight="bolder" color="white">
               Rumblr
             </Typography>
           </Grid>
-          <Grid item xs={4} className="NavigationSearchContainer">
+          <Grid item xs={5} className="NavigationSearchContainer">
             {sessionUser && (
               <>
                 <TextField
@@ -66,36 +66,27 @@ const Navigation = ({ classes }) => {
               </>
             )}
           </Grid>
-          <Grid item xs={5} className="NavigationLoginContainer">
-            {!sessionUser && (
-              <>
-                {/* <TextField
-                  size="small"
-                  sx={{ paddingRight: "10px" }}
-                  label="username/email"
-                  variant="outlined"
-                  color="secondary"
-                />
-                <TextField
-                  size="small"
-                  sx={{ paddingRight: "10px" }}
-                  label="password"
-                  variant="outlined"
-                  color="secondary"
-                />
-                <Button sx={{ color: "white" }}>Log in</Button> */}
-              </>
-            )}
-          </Grid>
-          <Grid item xs={2} className="NavigationIconContainer">
+          <Grid item xs={6} className="NavigationIconContainer">
             {sessionUser && (
               <>
                 <NavLink
                   to="/discover"
                   activeStyle={{ borderBottom: "1px solid white" }}
+                  style={{ textDecorationLine: "none" }}
                 >
                   <Button sx={{ color: "white" }}>
-                    <ExploreIcon sx={{ fontSize: "30px" }} />
+                    <ExploreIcon sx={{ fontSize: "30px" }} />{" "}
+                    <Typography sx={{ pl: "10px" }}>Discover</Typography>
+                  </Button>
+                </NavLink>
+                <NavLink
+                  to="/about"
+                  activeStyle={{ borderBottom: "1px solid white" }}
+                  style={{ textDecorationLine: "none" }}
+                >
+                  <Button sx={{ color: "white" }}>
+                    <HelpIcon sx={{ fontSize: "30px" }} />
+                    <Typography sx={{ pl: "10px" }}>About</Typography>
                   </Button>
                 </NavLink>
                 <NavLink
@@ -104,16 +95,10 @@ const Navigation = ({ classes }) => {
                 >
                   <Button sx={{ color: "white" }}>
                     <SettingsIcon sx={{ fontSize: "30px" }} />
+                    <Typography sx={{ pl: "10px" }}>Settings</Typography>
                   </Button>
                 </NavLink>
-                <NavLink
-                  to="/help"
-                  activeStyle={{ borderBottom: "1px solid white" }}
-                >
-                  <Button sx={{ color: "white" }}>
-                    <HelpIcon sx={{ fontSize: "30px" }} />
-                  </Button>
-                </NavLink>
+
                 <Button sx={{ color: "white" }} onClick={handleLogout}>
                   <LogoutIcon sx={{ fontSize: "30px" }} />
                 </Button>
