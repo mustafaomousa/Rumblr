@@ -14,23 +14,12 @@ module.exports = (sequelize, DataTypes) => {
           len: [2, 255],
         },
       },
-      userId: DataTypes.INTEGER,
     },
     {}
   );
 
   Post.associate = function (models) {
-    Post.belongsTo(models.User, { foreignKey: "userId", onDelete: "cascade" });
-    Post.belongsToMany(models.Tag, {
-      through: "TagJoins",
-      foreignKey: "postId",
-      onDelete: "cascade",
-    });
-    Post.hasMany(models.RerumbleJoin, {
-      foreignKey: "postId",
-      onDelete: "cascade",
-    });
-    Post.hasMany(models.Like, { foreignKey: "postId" });
+    Post.belongsTo(models.User, { foreignKey: "userId" });
   };
   return Post;
 };

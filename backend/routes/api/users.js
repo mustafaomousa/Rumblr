@@ -29,30 +29,9 @@ router.get(
   "/:userId",
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(userId, { include: Post });
     const posts = await Post.findAll({ where: { userId: userId } });
     return res.json({ user: { user, posts } });
-  })
-);
-
-router.get(
-  "/",
-  asyncHandler(async (req, res) => {
-    const users = await User.findAll();
-
-    return res.json({ users });
-  })
-);
-
-router.get(
-  "/newest",
-  asyncHandler(async (req, res) => {
-    const newestUsers = await User.findAll({
-      limit: 10,
-      order: [["createdAt", "DESC"]],
-    });
-
-    return res.json({ newestUsers });
   })
 );
 

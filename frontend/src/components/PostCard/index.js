@@ -11,26 +11,30 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import SmartButtonIcon from "@mui/icons-material/SmartButton";
-import { deletePost } from "../../store/post";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import SmartButtonIcon from "@mui/icons-material/PushPin";
+import HeartButtonIcon from "@mui/icons-material/ThumbUp";
+import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
+import DeletePost from "../DeletePost";
+import { useSelector } from "react-redux";
+
+import { useEffect, useState } from "react";
 import ProfileDrawer from "../ProfileDrawer";
+import { Box } from "@mui/system";
+import EditPost from "../EditPost";
 
 const PostCard = ({ post }) => {
-  const dispatch = useDispatch();
-  const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
+
+  const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
 
   const closeProfileDrawer = () => setProfileDrawerOpen(false);
   const openProfileDrawer = () => setProfileDrawerOpen(true);
-  const deleteUserPost = (e) => {
-    e.preventDefault();
-    dispatch(deletePost({ postId: post.id }));
-  };
+  const closeEditOpen = () => setEditOpen(false);
+  const openEditOpen = () => setEditOpen(true);
 
   return (
-    <Card sx={{ width: "500px" }}>
+    <Card sx={{ maxWidth: "470px", borderRadius: "0.1em" }}>
       <ProfileDrawer
         userId={post.userId}
         profileDrawerOpen={profileDrawerOpen}
@@ -43,12 +47,19 @@ const PostCard = ({ post }) => {
         action={
           sessionUser.id === post.User.id && (
             <>
-              <IconButton aria-describedby="test">
-                <DeleteIcon onClick={deleteUserPost} />
+              <IconButton aria-describedby="delete-post">
+                <DeletePost postId={post.id} />
               </IconButton>
-              <IconButton>
-                <EditIcon />
-              </IconButton>
+
+              {editOpen ? (
+                <IconButton onClick={closeEditOpen}>
+                  <CancelTwoToneIcon sx={{ color: "red" }} />
+                </IconButton>
+              ) : (
+                <IconButton onClick={openEditOpen}>
+                  <EditIcon />
+                </IconButton>
+              )}
             </>
           )
         }
@@ -61,22 +72,12 @@ const PostCard = ({ post }) => {
         alt="image"
       />
       <CardContent>
-        <Typography>{post.body}</Typography>
+        {editOpen ? (
+          <EditPost post={post} closeEditOpen={closeEditOpen} />
+        ) : (
+          <Typography variant="body1">{post.body}</Typography>
+        )}
       </CardContent>
-      <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-        <div>
-          <IconButton>
-            <SmartButtonIcon />
-          </IconButton>
-        </div>
-        <div style={{ overflow: "scroll" }}>
-          {post.Tags.map((tag) => (
-            <Button size="small">
-              <Typography>{tag.name}</Typography>
-            </Button>
-          ))}
-        </div>
-      </CardActions>
     </Card>
   );
 };

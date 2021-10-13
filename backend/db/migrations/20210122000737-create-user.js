@@ -18,10 +18,6 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      header: {
-        type: Sequelize.STRING(255),
-        allowNull: true,
-      },
       bio: {
         type: Sequelize.STRING(1000),
         allowNull: true,

@@ -2,11 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Button, Stack } from "@mui/material";
 import "./index.css";
-import CreatePost from "../CreatePost";
 import PostCard from "../PostCard";
 import { useEffect, useState } from "react";
 import { getPosts } from "../../store/post";
-import QuickAction from "../QuickAction";
 
 const FeedPage = () => {
   const dispatch = useDispatch();
@@ -25,7 +23,6 @@ const FeedPage = () => {
   return (
     posts && (
       <Stack className="DiscoverPage" spacing={5}>
-        {/* <CreatePost user={sessionUser} /> */}
         {Object.keys(posts).map((idx) => {
           return <PostCard post={posts[idx]} />;
         })}

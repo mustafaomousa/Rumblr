@@ -34,15 +34,15 @@ const updateUserPost = (post) => {
 };
 
 export const updatePost =
-  ({ tags, postId, title, body }) =>
+  ({ postId, body }) =>
   async (dispatch) => {
     const response = await fetch(`/api/posts`, {
       method: "PUT",
-      body: JSON.stringify({ tags, postId, title, body }),
+      body: JSON.stringify({ postId, body }),
     });
 
     if (response.ok) {
-      dispatch(getPosts());
+      dispatch(updateUserPost(response.data.updatedPost));
     }
   };
 

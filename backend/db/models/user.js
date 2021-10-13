@@ -11,11 +11,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: [3, 30],
-          // isNotEmail(value) {
-          //   if (Validator.isEmail(value)) {
-          //     throw new Error('Cannot be an email.');
-          //   }
-          // }
         },
       },
       email: {
@@ -23,13 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: [3, 256],
-        },
-      },
-      header: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        validate: {
-          len: [3, 255],
         },
       },
       bio: {
@@ -72,8 +60,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   User.associate = function (models) {
     User.hasMany(models.Post, { foreignKey: "userId" });
-    User.hasMany(models.Like, { foreignKey: "userId" });
-    User.hasMany(models.RerumbleJoin, { foreignKey: "userId" });
   };
 
   User.prototype.toSafeObject = function () {

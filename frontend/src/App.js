@@ -25,10 +25,11 @@ function App() {
     <>
       <Navigation />
       <QuickAction />
+
       {isLoaded && (
         <Switch>
-          <Route exact path="/" component={WelcomePage} />
           <Route path="/about" component={AboutUsPage} />
+          <Route exact path="/" component={WelcomePage} />
           <Route exact path="/discover" component={DiscoverPage} />
           <Route exact path="/results" />
           <Route path="/login" component={LoginFormPage} />

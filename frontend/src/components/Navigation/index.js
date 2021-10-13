@@ -31,13 +31,6 @@ const Navigation = ({ classes }) => {
 
   const sessionUser = useSelector((state) => state.session.user);
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-
-    dispatch(sessionActions.logout());
-    return history.push("/");
-  };
-
   return (
     <AppBar
       position="fixed"
@@ -48,23 +41,10 @@ const Navigation = ({ classes }) => {
     >
       <Toolbar className={classes.toolbar}>
         <Grid container>
-          <Grid item xs={1} className="NavigationLogoContainer">
+          <Grid item xs={6} className="NavigationLogoContainer">
             <Typography variant="h5" fontWeight="bolder" color="white">
               Rumblr
             </Typography>
-          </Grid>
-          <Grid item xs={5} className="NavigationSearchContainer">
-            {sessionUser && (
-              <>
-                <TextField
-                  size="small"
-                  fullWidth
-                  variant="outlined"
-                  color="secondary"
-                />
-                <Button startIcon={<SearchIcon />} sx={{ color: "white" }} />
-              </>
-            )}
           </Grid>
           <Grid item xs={6} className="NavigationIconContainer">
             {sessionUser && (
@@ -92,16 +72,13 @@ const Navigation = ({ classes }) => {
                 <NavLink
                   to="/settings"
                   activeStyle={{ borderBottom: "1px solid white" }}
+                  style={{ textDecorationLine: "none" }}
                 >
                   <Button sx={{ color: "white" }}>
                     <SettingsIcon sx={{ fontSize: "30px" }} />
                     <Typography sx={{ pl: "10px" }}>Settings</Typography>
                   </Button>
                 </NavLink>
-
-                <Button sx={{ color: "white" }} onClick={handleLogout}>
-                  <LogoutIcon sx={{ fontSize: "30px" }} />
-                </Button>
               </>
             )}
           </Grid>

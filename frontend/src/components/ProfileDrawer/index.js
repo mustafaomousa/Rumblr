@@ -81,7 +81,7 @@ const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
               <Stack spacing={5}>
                 {posts &&
                   posts.map((post) => (
-                    <Card>
+                    <Card sx={{ padding: "0.1em" }}>
                       <CardMedia
                         image={post.content}
                         component="img"
@@ -90,14 +90,6 @@ const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
                       <CardContent>
                         <Typography>{post.body}</Typography>
                       </CardContent>
-                      <CardActions>
-                        <IconButton>
-                          <FavoriteIcon />
-                        </IconButton>
-                        <IconButton>
-                          <SmartButtonIcon />
-                        </IconButton>
-                      </CardActions>
                     </Card>
                   ))}
               </Stack>

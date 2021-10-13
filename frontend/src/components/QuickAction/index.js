@@ -4,14 +4,26 @@ import {
   SpeedDialAction,
   SpeedDialIcon,
 } from "@mui/material";
+import ExitIcon from "@mui/icons-material/ExitToApp";
 import CreateIcon from "@mui/icons-material/Create";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import CreatePost from "../CreatePost";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import * as sessionActions from "../../store/session";
+
 const QuickAction = () => {
+  const dispatch = useDispatch();
   const [createPostVisible, setCreatePostVisible] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+
+    dispatch(sessionActions.logout());
+    // return history.push("/");
+  };
+
   return (
     <Box>
       <Modal
@@ -35,6 +47,12 @@ const QuickAction = () => {
           icon={<CreateIcon />}
           tooltipTitle="Make a post"
           onClick={() => setCreatePostVisible(true)}
+        />
+        <SpeedDialAction
+          key="Hi"
+          icon={<ExitIcon />}
+          tooltipTitle="Log out"
+          onClick={handleLogout}
         />
       </SpeedDial>
     </Box>
