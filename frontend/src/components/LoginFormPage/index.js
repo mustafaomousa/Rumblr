@@ -58,52 +58,54 @@ const LoginFormPage = ({ switchToSignup }) => {
   };
 
   return (
-    <Card className="LoginFormPage">
-      <CardHeader
-        align="center"
-        subheader="Log in"
-        title={
-          <Typography
-            sx={{ fontSize: "50px", color: "#301934", fontWeight: "bolder" }}
-          >
-            Rumblr
-          </Typography>
-        }
-      />
-      <CardContent>
-        <form className="LoginForm">
-          <TextField
-            id="input"
-            type="text"
-            onChange={updateCredential}
-            value={credential}
-            label="username/email"
-            required
-          />
-          <br />
-          <TextField
-            id="input"
-            type="password"
-            onChange={updatePassword}
-            value={password}
-            label="password"
-            required
-          />
-        </form>
-        <Box sx={{ paddingTop: "20px" }}>
-          {errors &&
-            errors.map((error) => <Alert severity="error">{error}</Alert>)}
-        </Box>
-      </CardContent>
-      <CardActions className="LoginFormFooter">
-        <div>
-          <Button onClick={switchToSignup}>Switch to sign up</Button>
-        </div>
-        <div>
-          <Button onClick={onSubmit}>Log in</Button>
-          <Button onClick={demoLogin}>Demo</Button>
-        </div>
-      </CardActions>
+    <Card>
+      <form onSubmit={onSubmit} className="LoginFormPage">
+        <CardHeader
+          align="center"
+          subheader="Log in"
+          title={
+            <Typography
+              sx={{ fontSize: "50px", color: "#301934", fontWeight: "bolder" }}
+            >
+              Rumblr
+            </Typography>
+          }
+        />
+        <CardContent>
+          <div className="LoginForm">
+            <TextField
+              id="input"
+              type="text"
+              onChange={updateCredential}
+              value={credential}
+              label="username/email"
+              required
+            />
+            <br />
+            <TextField
+              id="input"
+              type="password"
+              onChange={updatePassword}
+              value={password}
+              label="password"
+              required
+            />
+          </div>
+          <Box sx={{ paddingTop: "20px" }}>
+            {errors &&
+              errors.map((error) => <Alert severity="error">{error}</Alert>)}
+          </Box>
+        </CardContent>
+        <CardActions className="LoginFormFooter">
+          <div>
+            <Button onClick={switchToSignup}>Switch to sign up</Button>
+          </div>
+          <div>
+            <Button type="submit">Log in</Button>
+            <Button onClick={demoLogin}>Demo</Button>
+          </div>
+        </CardActions>
+      </form>
     </Card>
   );
 };

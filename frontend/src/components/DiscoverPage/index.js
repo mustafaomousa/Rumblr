@@ -9,6 +9,7 @@ import { getPosts } from "../../store/post";
 const FeedPage = () => {
   const dispatch = useDispatch();
   const [loadLimit, setLoadLimit] = useState(5);
+
   const sessionUser = useSelector((state) => state.session.user);
   const posts = useSelector((state) => state.posts);
 
