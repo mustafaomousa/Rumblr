@@ -5,20 +5,17 @@ import "./profile.css";
 import {
   Avatar,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Container,
   Drawer,
-  IconButton,
   Stack,
   Tab,
   Typography,
 } from "@mui/material";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import SmartButtonIcon from "@mui/icons-material/SmartButton";
 import { Box } from "@mui/system";
 import { getUserProfile } from "../../store/user";
+import Notification from "../Notification";
 
 const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
   const dispatch = useDispatch();

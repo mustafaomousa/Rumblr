@@ -11,11 +11,17 @@ import { useState } from "react";
 import CreatePost from "../CreatePost";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
+import Notification from "../Notification";
 
 const QuickAction = () => {
   const dispatch = useDispatch();
   const [createPostVisible, setCreatePostVisible] = useState(false);
+  const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
+
   const sessionUser = useSelector((state) => state.session.user);
+
+  const closeAlertCreatePostSuccess = () => setSuccessNotificationOpen(false);
+  const alertCreatePostSuccess = () => setSuccessNotificationOpen(true);
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -26,6 +32,11 @@ const QuickAction = () => {
 
   return (
     <Box>
+      <Notification
+        open={successNotificationOpen}
+        handleClose={closeAlertCreatePostSuccess}
+        message={"Post created"}
+      />
       <Modal
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
         open={createPostVisible}
@@ -34,6 +45,7 @@ const QuickAction = () => {
           <CreatePost
             user={sessionUser}
             setCreatePostVisible={setCreatePostVisible}
+            alertCreatePostSuccess={alertCreatePostSuccess}
           />
         }
       />

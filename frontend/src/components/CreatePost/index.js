@@ -15,7 +15,7 @@ import SendIcon from "@mui/icons-material/Send";
 
 import S3FileUpload from "react-s3";
 
-const CreatePost = ({ user, setCreatePostVisible }) => {
+const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
   const dispatch = useDispatch();
 
   const [body, setBody] = useState("");
@@ -45,6 +45,7 @@ const CreatePost = ({ user, setCreatePostVisible }) => {
           setSelectedImage(null);
           setBody("");
           setCreatePostVisible(false);
+          alertCreatePostSuccess();
         });
       })
       .catch((error) => console.log(error));

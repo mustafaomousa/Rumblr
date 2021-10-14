@@ -3,8 +3,9 @@ import ArrowForwardTwoToneIcon from "@mui/icons-material/ArrowForwardTwoTone";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updatePost } from "../../store/post";
+import Notification from "../Notification";
 
-const EditPost = ({ post, closeEditOpen }) => {
+const EditPost = ({ post, closeEditOpen, alertUpdateBodySuccess }) => {
   const dispatch = useDispatch();
   const [body, setBody] = useState(post.body);
 
@@ -13,8 +14,8 @@ const EditPost = ({ post, closeEditOpen }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     await dispatch(updatePost({ postId: post.id, body }))
+      .then(() => alertUpdateBodySuccess())
       .then(() => closeEditOpen())
-      .then(() => console.log("popper here"))
       .catch((e) => console.log(e));
   };
 

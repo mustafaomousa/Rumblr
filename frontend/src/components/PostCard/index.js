@@ -21,13 +21,17 @@ import { useEffect, useState } from "react";
 import ProfileDrawer from "../ProfileDrawer";
 import { Box } from "@mui/system";
 import EditPost from "../EditPost";
+import Notification from "../Notification";
 
 const PostCard = ({ post }) => {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
+  const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
+  const closeAlertUpdateBodySuccess = () => setSuccessNotificationOpen(false);
+  const alertUpdateBodySuccess = () => setSuccessNotificationOpen(true);
   const closeProfileDrawer = () => setProfileDrawerOpen(false);
   const openProfileDrawer = () => setProfileDrawerOpen(true);
   const closeEditOpen = () => setEditOpen(false);
@@ -35,6 +39,11 @@ const PostCard = ({ post }) => {
 
   return (
     <Card sx={{ maxWidth: "470px", borderRadius: "0.1em" }}>
+      <Notification
+        open={successNotificationOpen}
+        handleClose={closeAlertUpdateBodySuccess}
+        message={"Post updated"}
+      />
       <ProfileDrawer
         userId={post.userId}
         profileDrawerOpen={profileDrawerOpen}
@@ -73,7 +82,11 @@ const PostCard = ({ post }) => {
       />
       <CardContent>
         {editOpen ? (
-          <EditPost post={post} closeEditOpen={closeEditOpen} />
+          <EditPost
+            post={post}
+            closeEditOpen={closeEditOpen}
+            alertUpdateBodySuccess={alertUpdateBodySuccess}
+          />
         ) : (
           <Typography variant="body1">{post.body}</Typography>
         )}
