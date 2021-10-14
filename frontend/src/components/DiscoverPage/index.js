@@ -26,9 +26,11 @@ const FeedPage = () => {
         {Object.keys(posts).map((idx) => {
           return <PostCard post={posts[idx]} />;
         })}
-        <Button sx={{ color: "white" }} onClick={increaseLimit}>
-          Load more
-        </Button>
+        {Object.keys(posts).length % 5 === 0 && (
+          <Button variant="outlined" onClick={increaseLimit}>
+            Load more
+          </Button>
+        )}
       </Stack>
     )
   );
