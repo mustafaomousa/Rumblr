@@ -10,6 +10,7 @@ import * as sessionActions from "./store/session";
 import WelcomePage from "./components/WelcomePage";
 import AboutUsPage from "./components/AboutUsPage";
 import QuickAction from "./components/QuickAction";
+import SettingsPage from "./components/SettingsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about" component={AboutUsPage} />
           <Route exact path="/" component={WelcomePage} />
           <Route exact path="/discover" component={DiscoverPage} />
+          <Route exact path="/settings" component={SettingsPage} />
           <Route exact path="/results" />
           <Route path="/login" component={LoginFormPage} />
           <Route path="/signup" component={SignupFormPage} />
