@@ -22,13 +22,11 @@
 .divider-container,
 .divider-container-2,
 .divider-container-3 {
-  height: 550px;
+  height: 50vh;
 }
 
 .divider-container-2 {
-  background-color: rgb(30, 19, 51);
-  width: 100%;
-  height: 600px;
+  background-color: #3c1f41;
 }
 
 .about-us-container-4 {

@@ -55,7 +55,7 @@ const Navigation = ({ classes }) => {
                   style={{ textDecorationLine: "none" }}
                 >
                   <Button sx={{ color: "white" }}>
-                    <ExploreIcon sx={{ fontSize: "30px" }} />{" "}
+                    <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
                     <Typography sx={{ pl: "10px" }}>Discover</Typography>
                   </Button>
                 </NavLink>
@@ -65,7 +65,7 @@ const Navigation = ({ classes }) => {
                   style={{ textDecorationLine: "none" }}
                 >
                   <Button sx={{ color: "white" }}>
-                    <HelpIcon sx={{ fontSize: "30px" }} />
+                    <HelpIcon sx={{ fontSize: "25px" }} />
                     <Typography sx={{ pl: "10px" }}>About</Typography>
                   </Button>
                 </NavLink>
@@ -75,7 +75,7 @@ const Navigation = ({ classes }) => {
                   style={{ textDecorationLine: "none" }}
                 >
                   <Button sx={{ color: "white" }}>
-                    <SettingsIcon sx={{ fontSize: "30px" }} />
+                    <SettingsIcon sx={{ fontSize: "25px" }} />
                     <Typography sx={{ pl: "10px" }}>Settings</Typography>
                   </Button>
                 </NavLink>

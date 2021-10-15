@@ -9,6 +9,8 @@ import {
   CardMedia,
   Container,
   Drawer,
+  ImageList,
+  ImageListItem,
   Stack,
   Tab,
   Typography,
@@ -16,7 +18,14 @@ import {
 import { Box } from "@mui/system";
 import { getUserProfile } from "../../store/user";
 import Notification from "../Notification";
-
+function srcset(image, size, rows = 1, cols = 1) {
+  return {
+    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${size * cols}&h=${
+      size * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
+}
 const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.profile_user.user);
@@ -75,21 +84,25 @@ const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
               </TabList>
             </Box>
             <TabPanel value={0}>
-              <Stack spacing={5}>
+              <ImageList variant="quilted" cols={2}>
                 {posts &&
                   posts.map((post) => (
-                    <Card sx={{ padding: "0.1em" }}>
-                      <CardMedia
-                        image={post.content}
-                        component="img"
-                        height="200px"
-                      />
-                      <CardContent>
-                        <Typography>{post.body}</Typography>
-                      </CardContent>
-                    </Card>
+                    <ImageListItem key={post.id}>
+                      <img {...srcset(post.content, 121)} loading="lazy" />
+                    </ImageListItem>
+                    // <Card sx={{ padding: "0.1em" }}>
+                    //   <CardMedia
+                    //     image={post.content}
+                    //     component="img"
+                    //     height="200px"
+                    //   />
+                    //   <CardContent>
+                    //     <Typography>{post.body}</Typography>
+                    //   </CardContent>
+                    // </Card>
                   ))}
-              </Stack>
+              </ImageList>
+              <Stack spacing={5}></Stack>
             </TabPanel>
             <TabPanel value={1}>hi again</TabPanel>
           </TabContext>
