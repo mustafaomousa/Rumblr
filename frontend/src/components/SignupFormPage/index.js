@@ -8,6 +8,7 @@ import {
   Typography,
   Button,
   Alert,
+  Input,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
@@ -76,12 +77,14 @@ const SignupFormPage = ({ switchToLogin }) => {
         <form className="SignupForm">
           <TextField
             onChange={updateUsername}
+            size="small"
             value={username}
             label="create a username"
             required
           />
           <br />
           <TextField
+            size="small"
             onChange={updateEmail}
             value={email}
             label="enter email"
@@ -89,6 +92,7 @@ const SignupFormPage = ({ switchToLogin }) => {
           />
           <br />
           <TextField
+            size="small"
             type="password"
             onChange={updatedPassword}
             label="create a password"
@@ -96,6 +100,7 @@ const SignupFormPage = ({ switchToLogin }) => {
           />
           <br />
           <TextField
+            size="small"
             type="password"
             onChange={updatedConfirmPassword}
             label="confirm password"

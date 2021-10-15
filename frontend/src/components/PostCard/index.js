@@ -14,7 +14,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import SmartButtonIcon from "@mui/icons-material/PushPin";
 import HeartButtonIcon from "@mui/icons-material/ThumbUp";
 import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
-import DeletePost from "../DeletePost";
+import DeletePost from "./DeletePost";
 import { useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
@@ -38,7 +38,7 @@ const PostCard = ({ post }) => {
   const openEditOpen = () => setEditOpen(true);
 
   return (
-    <Card sx={{ maxWidth: "470px", borderRadius: "0.1em" }}>
+    <Card sx={{ width: "550px", borderRadius: "0.1em" }}>
       <Notification
         open={successNotificationOpen}
         handleClose={closeAlertUpdateBodySuccess}
@@ -59,7 +59,6 @@ const PostCard = ({ post }) => {
               <IconButton aria-describedby="delete-post">
                 <DeletePost postId={post.id} />
               </IconButton>
-
               {editOpen ? (
                 <IconButton onClick={closeEditOpen}>
                   <CancelTwoToneIcon sx={{ color: "red" }} />
@@ -74,12 +73,7 @@ const PostCard = ({ post }) => {
         }
         title={post.User.username}
       />
-      <CardMedia
-        component="img"
-        // height="00px"
-        image={post.content}
-        alt="image"
-      />
+      <CardMedia component="img" image={post.content} alt="image" />
       <CardContent>
         {editOpen ? (
           <EditPost

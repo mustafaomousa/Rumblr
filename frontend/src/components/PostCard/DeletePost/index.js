@@ -1,6 +1,6 @@
 import { Button, IconButton, Popover, Typography } from "@mui/material";
 import Delete from "@mui/icons-material/Delete";
-import { deletePost } from "../../store/post";
+import { deletePost } from "../../../store/post";
 import { useDispatch, useSelector } from "react-redux";
 
 import { useState } from "react";
@@ -17,37 +17,33 @@ const DeletePost = ({ postId }) => {
     setAnchorElement(e.currentTarget);
   };
 
-  const deleteUserPost = () => dispatch(deletePost({ postId }));
+  const deleteUserPost = async () =>
+    await dispatch(deletePost({ postId })).then(() => closePopover());
 
   return (
     <>
+      {/* Delete icon that is located next to the edit icon on a post card  */}
       <Delete
         aria-describedby="delete-post"
         variant="contained"
         onClick={openPopover}
       />
+      {/* Popover opens whenever the Delete icon above is clicked */}
       <Popover
         id="delete-post"
         open={popoverOpen}
         onClose={closePopover}
         anchorEl={anchorElement}
-        anchorOrigin={{
-          vertical: "center",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "center",
-          horizontal: "left",
-        }}
       >
         <Box
           sx={{
             display: "flex",
             justifyContent: "space-around",
+            padding: "5px",
           }}
         >
           <Button
-            sx={{ backgroundColor: "red" }}
+            sx={{ backgroundColor: "red", mr: "10px" }}
             variant="contained"
             onClick={deleteUserPost}
           >

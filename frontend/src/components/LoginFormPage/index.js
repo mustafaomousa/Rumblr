@@ -74,6 +74,7 @@ const LoginFormPage = ({ switchToSignup }) => {
         <CardContent>
           <div className="LoginForm">
             <TextField
+              size="small"
               id="input"
               type="text"
               onChange={updateCredential}
@@ -84,6 +85,7 @@ const LoginFormPage = ({ switchToSignup }) => {
             <br />
             <TextField
               id="input"
+              size="small"
               type="password"
               onChange={updatePassword}
               value={password}
