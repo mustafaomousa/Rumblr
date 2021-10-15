@@ -2,7 +2,7 @@ import { fetch } from "./csrf";
 
 const LOAD = "user/getUser";
 
-const getUser = (user) => {
+const getProfileUser = (user) => {
   return {
     type: LOAD,
     payload: user,
@@ -13,7 +13,7 @@ export const getUserProfile = (userId) => async (dispatch) => {
   const response = await fetch(`/api/users/${userId}`);
 
   if (response.ok) {
-    dispatch(getUser(response.data.user));
+    dispatch(getProfileUser(response.data.user));
   }
 };
 

@@ -4,6 +4,7 @@ const initialState = { user: null };
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+const UPDATE_USER = "session/updateUser";
 
 const setUser = (user) => {
   return {
@@ -15,6 +16,13 @@ const setUser = (user) => {
 const removeUser = () => {
   return {
     type: REMOVE_USER,
+  };
+};
+
+const updateUser = (user) => {
+  return {
+    type: UPDATE_USER,
+    payload: user,
   };
 };
 
@@ -60,6 +68,18 @@ export const restoreUser = () => async (dispatch) => {
   return res;
 };
 
+export const updateProfilePicture =
+  (userId, profilePicture) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/profile_picture`, {
+      method: "PUT",
+      body: JSON.stringify({ profilePicture }),
+    });
+
+    if (response.ok) {
+      return dispatch(updateUser(response.data.updatedUser));
+    }
+  };
+
 const sessionReducer = (state = initialState, action) => {
   let newState;
 
@@ -71,6 +91,10 @@ const sessionReducer = (state = initialState, action) => {
     case REMOVE_USER:
       newState = Object.assign({}, state);
       newState.user = null;
+      return newState;
+    case UPDATE_USER:
+      newState = Object.assign({}, state);
+      newState.user = action.payload;
       return newState;
     default:
       return state;

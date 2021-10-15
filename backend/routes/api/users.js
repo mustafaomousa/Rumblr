@@ -35,6 +35,19 @@ router.get(
   })
 );
 
+router.put(
+  "/:userId/profile_picture",
+  asyncHandler(async (req, res) => {
+    const { userId } = req.params;
+    const { profilePicture } = req.body;
+    const user = await User.findByPk(userId);
+    user.profilePicture = profilePicture;
+    await user.save();
+
+    return res.json({ updatedUser: user });
+  })
+);
+
 router.post(
   "/",
   validateSignup,

@@ -9,11 +9,35 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import S3FileUpload from "react-s3";
+import { restoreUser, updateProfilePicture } from "../../store/session";
 import "./index.css";
 
 const SettingsPage = () => {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const updateSelectedImage = (e) => setSelectedImage(e.target.files[0]);
+
+  const config = {
+    bucketName: "rumblr-app",
+    dirName: sessionUser.username.profile_picture,
+    region: "us-east-2",
+    accessKeyId: process.env.REACT_APP_ACCESS_ID,
+    secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_ID,
+  };
+
+  const updateProfilePic = async (e) => {
+    e.preventDefault();
+
+    await S3FileUpload.uploadFile(e.target.files[0], config)
+      .then((data) => {
+        dispatch(updateProfilePicture(sessionUser.id, data.location));
+      })
+      .then(() => restoreUser());
+  };
 
   return (
     <div className="settings-page">
@@ -70,7 +94,10 @@ const SettingsPage = () => {
               width: "100%",
             }}
           >
-            <Avatar sx={{ width: "180px", height: "180px" }} />
+            <Avatar
+              src={sessionUser.profilePicture}
+              sx={{ width: "180px", height: "180px" }}
+            />
             <div
               style={{
                 height: "50%",
@@ -79,7 +106,16 @@ const SettingsPage = () => {
                 display: "flex",
               }}
             >
-              <Button>Upload</Button>
+              <label>
+                <Input
+                  onChange={updateProfilePic}
+                  style={{ display: "none" }}
+                  accept="image/*"
+                  type="file"
+                  value={selectedImage}
+                />
+                <Button component="span">Upload</Button>
+              </label>
               <Button sx={{ color: "red" }}>Delete</Button>
             </div>
           </Box>
