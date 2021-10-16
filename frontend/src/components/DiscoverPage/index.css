@@ -1,7 +1,26 @@
-.DiscoverPage {
+.discover-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.discover-page-side {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  padding: 120px 0px;
+}
+
+.discover-page-side-newest-members {
+  width: 350px;
+  height: 300px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+}
+
+.discover-page-side-post {
+  width: 350px;
+  height: 300px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 400px;
 }

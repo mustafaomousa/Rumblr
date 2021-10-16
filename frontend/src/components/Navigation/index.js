@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import {
   AppBar,
@@ -42,9 +42,11 @@ const Navigation = ({ classes }) => {
       <Toolbar className={classes.toolbar}>
         <Grid container>
           <Grid item xs={6} className="NavigationLogoContainer">
-            <Typography variant="h5" fontWeight="bolder" color="white">
-              Rumblr
-            </Typography>
+            <Link style={{ textDecoration: "none" }} to="/discover">
+              <Typography variant="h5" fontWeight="bolder" color="white">
+                Rumblr
+              </Typography>
+            </Link>
           </Grid>
           <Grid item xs={6} className="NavigationIconContainer">
             {sessionUser && (

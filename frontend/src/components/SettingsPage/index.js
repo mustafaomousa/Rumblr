@@ -41,7 +41,8 @@ const SettingsPage = () => {
 
   return (
     <div className="settings-page">
-      <Container sx={{ width: "600px", padding: "20px" }}>
+      <Typography variant="h5">Settings</Typography>
+      {/* <Container sx={{ width: "600px", padding: "20px" }}>
         <form style={{ display: "flex" }}>
           <Stack spacing={4}>
             <Box>
@@ -120,7 +121,7 @@ const SettingsPage = () => {
             </div>
           </Box>
         </form>
-      </Container>
+      </Container> */}
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Button, Stack } from "@mui/material";
-import "./index.css";
+import { Button, Card, CardHeader, Stack, Typography } from "@mui/material";
 import PostCard from "../PostCard";
 import { useEffect, useState } from "react";
 import { getPosts } from "../../store/post";
+import "./index.css";
 
 const FeedPage = () => {
   const dispatch = useDispatch();
@@ -23,16 +23,35 @@ const FeedPage = () => {
 
   return (
     posts && (
-      <Stack className="DiscoverPage" spacing={5}>
-        {Object.keys(posts).map((idx) => {
-          return <PostCard post={posts[idx]} />;
-        })}
-        {Object.keys(posts).length % 5 === 0 && (
-          <Button variant="outlined" onClick={increaseLimit}>
-            Load more
-          </Button>
-        )}
-      </Stack>
+      <div className="discover-page">
+        <Stack spacing={5} className="discover-page-posts">
+          {Object.keys(posts).map((idx) => {
+            return <PostCard post={posts[idx]} />;
+          })}
+          {Object.keys(posts).length % 5 === 0 && (
+            <Button variant="outlined" onClick={increaseLimit}>
+              Load more
+            </Button>
+          )}
+        </Stack>
+        <Stack spacing={5} className="discover-page-side">
+          <Card
+            className="discover-page-side-newest-members"
+            variant="outlined"
+          >
+            <CardHeader
+              align="center"
+              title={<Typography>Our newest members</Typography>}
+            />
+          </Card>
+          <Card className="discover-page-side-post" variant="outlined">
+            <CardHeader
+              align="center"
+              title={<Typography>Check this out</Typography>}
+            />
+          </Card>
+        </Stack>
+      </div>
     )
   );
 };
