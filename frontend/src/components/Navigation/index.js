@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { Link, NavLink, useHistory, Redirect } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import {
   AppBar,
@@ -8,16 +8,23 @@ import {
   Typography,
   Button,
   TextField,
+  Avatar,
+  Menu,
+  MenuItem,
+  Stack,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import HelpIcon from "@mui/icons-material/Help";
 import ExploreIcon from "@mui/icons-material/Explore";
+import PersonIcon from "@mui/icons-material/PersonRounded";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 import * as sessionActions from "../../store/session";
 
 import "./index.css";
+import { useState } from "react";
+import ProfileDrawer from "../ProfileDrawer";
 
 const styles = {
   toolbar: {
@@ -28,6 +35,23 @@ const styles = {
 const Navigation = ({ classes }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
+  const userOpen = Boolean(anchorEl);
+
+  const openUser = (e) => setAnchorEl(e.currentTarget);
+  const closeUser = () => setAnchorEl(null);
+
+  const openProfileDrawer = () => {
+    setProfileDrawerOpen(true);
+    closeUser();
+  };
+  const closeProfileDrawer = () => setProfileDrawerOpen(false);
+
+  const handleLogout = async () => {
+    dispatch(sessionActions.logout());
+    return history.push("/");
+  };
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -39,6 +63,13 @@ const Navigation = ({ classes }) => {
         boxShadow: "none",
       }}
     >
+      {sessionUser && (
+        <ProfileDrawer
+          userId={sessionUser.id}
+          profileDrawerOpen={profileDrawerOpen}
+          closeProfileDrawer={closeProfileDrawer}
+        />
+      )}
       <Toolbar className={classes.toolbar}>
         <Grid container>
           <Grid item xs={6} className="NavigationLogoContainer">
@@ -53,34 +84,58 @@ const Navigation = ({ classes }) => {
               <>
                 <NavLink
                   to="/discover"
-                  activeStyle={{ borderBottom: "1px solid white" }}
-                  style={{ textDecorationLine: "none" }}
+                  activeStyle={{ opacity: "1" }}
+                  style={{ textDecorationLine: "none", opacity: "0.2" }}
                 >
                   <Button sx={{ color: "white" }}>
                     <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
-                    <Typography sx={{ pl: "10px" }}>Discover</Typography>
+                    {/* <Typography sx={{ pl: "10px" }}>Discover</Typography> */}
                   </Button>
                 </NavLink>
                 <NavLink
                   to="/about"
-                  activeStyle={{ borderBottom: "1px solid white" }}
-                  style={{ textDecorationLine: "none" }}
+                  activeStyle={{ opacity: "1" }}
+                  style={{
+                    textDecorationLine: "none",
+                    marginRight: "25px",
+                    opacity: "0.2",
+                  }}
                 >
                   <Button sx={{ color: "white" }}>
                     <HelpIcon sx={{ fontSize: "25px" }} />
-                    <Typography sx={{ pl: "10px" }}>About</Typography>
+                    {/* <Typography sx={{ pl: "10px" }}>About</Typography> */}
                   </Button>
                 </NavLink>
-                <NavLink
-                  to="/settings"
-                  activeStyle={{ borderBottom: "1px solid white" }}
-                  style={{ textDecorationLine: "none" }}
-                >
-                  <Button sx={{ color: "white" }}>
-                    <SettingsIcon sx={{ fontSize: "25px" }} />
-                    <Typography sx={{ pl: "10px" }}>Settings</Typography>
+                <div>
+                  <Button onClick={openUser}>
+                    <Avatar src={sessionUser.profilePicture} />
+                    <Typography sx={{ pl: "10px", color: "white" }}>
+                      {sessionUser.username}
+                    </Typography>
                   </Button>
-                </NavLink>
+                  <Menu anchorEl={anchorEl} open={userOpen} onClose={closeUser}>
+                    <Stack sx={{ width: "200px" }}>
+                      <MenuItem
+                        sx={{ width: "100%" }}
+                        onClick={openProfileDrawer}
+                      >
+                        <PersonIcon sx={{ pr: "10px" }} />
+                        Profile
+                      </MenuItem>
+                      <MenuItem
+                        sx={{ width: "100%" }}
+                        onClick={() => history.push("/settings")}
+                      >
+                        <SettingsIcon sx={{ pr: "10px" }} />
+                        Settings
+                      </MenuItem>
+                      <MenuItem sx={{ width: "100%" }} onClick={handleLogout}>
+                        <LogoutIcon sx={{ pr: "10px" }} />
+                        Log out
+                      </MenuItem>
+                    </Stack>
+                  </Menu>
+                </div>
               </>
             )}
           </Grid>

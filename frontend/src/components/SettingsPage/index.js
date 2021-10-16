@@ -33,6 +33,9 @@ const SettingsPage = () => {
     e.preventDefault();
 
     await S3FileUpload.uploadFile(e.target.files[0], config)
+      .on("httpUploadProgress", function (progress) {
+        console.log(progress.loaded);
+      })
       .then((data) => {
         dispatch(updateProfilePicture(sessionUser.id, data.location));
       })
@@ -42,7 +45,7 @@ const SettingsPage = () => {
   return (
     <div className="settings-page">
       <Typography variant="h5">Settings</Typography>
-      {/* <Container sx={{ width: "600px", padding: "20px" }}>
+      <Container sx={{ width: "600px", padding: "20px" }}>
         <form style={{ display: "flex" }}>
           <Stack spacing={4}>
             <Box>
@@ -121,7 +124,7 @@ const SettingsPage = () => {
             </div>
           </Box>
         </form>
-      </Container> */}
+      </Container>
     </div>
   );
 };

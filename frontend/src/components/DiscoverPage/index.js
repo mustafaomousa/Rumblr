@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Button, Card, CardHeader, Stack, Typography } from "@mui/material";
+
 import PostCard from "../PostCard";
-import { useEffect, useState } from "react";
 import { getPosts } from "../../store/post";
+
 import "./index.css";
 
 const FeedPage = () => {
@@ -24,7 +26,7 @@ const FeedPage = () => {
   return (
     posts && (
       <div className="discover-page">
-        <Stack spacing={5} className="discover-page-posts">
+        <Stack spacing={2} className="discover-page-posts">
           {Object.keys(posts).map((idx) => {
             return <PostCard post={posts[idx]} />;
           })}
@@ -34,7 +36,7 @@ const FeedPage = () => {
             </Button>
           )}
         </Stack>
-        <Stack spacing={5} className="discover-page-side">
+        <Stack spacing={10} className="discover-page-side">
           <Card
             className="discover-page-side-newest-members"
             variant="outlined"

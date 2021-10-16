@@ -4,8 +4,9 @@ import "./about-us.css";
 
 const AboutUsPage = () => {
   useEffect(() => window.scrollTo(0, 0), []);
+
   return (
-    <div className="AboutUsPage">
+    <div className="about-us-page">
       <div className="divider-container">
         <div className="about-us-container">
           <Typography fontSize="35px" align="center">
@@ -15,7 +16,7 @@ const AboutUsPage = () => {
       </div>
       <div className="divider-container-2">
         <div className="about-us-container-2">
-          <Typography fontSize="35px" color="white" align="center">
+          <Typography fontSize="35px" align="center">
             Rumblr's front-end was created using React and Redux.
           </Typography>
         </div>
@@ -29,7 +30,7 @@ const AboutUsPage = () => {
       </div>
       <div className="divider-container-2">
         <div className="about-us-container-4">
-          <Typography color="white" fontSize="35px" align="center">
+          <Typography fontSize="35px" align="center">
             Rumblr was created by Mustafa Mousa.
           </Typography>
         </div>

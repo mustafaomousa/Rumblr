@@ -11,7 +11,6 @@ import WelcomePage from "./components/WelcomePage";
 import AboutUsPage from "./components/AboutUsPage";
 import QuickAction from "./components/QuickAction";
 import SettingsPage from "./components/SettingsPage";
-import { autocompleteClasses } from "@mui/material";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,9 +31,8 @@ function App() {
         <div
           style={{
             margin: "auto",
-            padding: "100px 0px",
+            padding: "100px 50px",
             width: "990px",
-            // backgroundColor: "yellow",
           }}
         >
           <Switch>
