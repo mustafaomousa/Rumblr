@@ -5,8 +5,10 @@ import {
   Avatar,
   Button,
   Card,
+  CardActionArea,
   CardContent,
   CardHeader,
+  CardMedia,
   Divider,
   Stack,
   Typography,
@@ -16,7 +18,7 @@ import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
 
 import "./index.css";
-import { getNewestUsers } from "../../store/discover";
+import { getNewestUsers, getRandomPost } from "../../store/discover";
 import { Box } from "@mui/system";
 
 const FeedPage = () => {
@@ -25,6 +27,7 @@ const FeedPage = () => {
 
   const sessionUser = useSelector((state) => state.session.user);
   const newestUsers = useSelector((state) => state.discover.newestUsers);
+  const randomPost = useSelector((state) => state.discover.randomPost);
   const posts = useSelector((state) => state.posts);
 
   const increaseLimit = () => setLoadLimit(loadLimit + 5);
@@ -32,6 +35,7 @@ const FeedPage = () => {
   useEffect(() => {
     dispatch(getPosts(loadLimit, sessionUser.id));
     dispatch(getNewestUsers());
+    dispatch(getRandomPost());
   }, [dispatch, loadLimit]);
 
   if (!sessionUser) return <Redirect to="/" />;
@@ -53,6 +57,7 @@ const FeedPage = () => {
           <Card
             className="discover-page-side-newest-members"
             variant="outlined"
+            sx={{ borderRadius: "0.1em" }}
           >
             <CardHeader
               align="center"
@@ -78,12 +83,24 @@ const FeedPage = () => {
                 })}
             </CardContent>
           </Card>
-          <Card className="discover-page-side-post" variant="outlined">
-            <CardHeader
-              align="center"
-              title={<Typography>Check this out</Typography>}
-            />
-          </Card>
+          {randomPost && (
+            <Card
+              className="discover-page-side-post"
+              variant="outlined"
+              sx={{ borderRadius: "0.1em" }}
+            >
+              <CardHeader
+                align="center"
+                title={
+                  <Typography>
+                    Check out this post by {randomPost.User.username}
+                  </Typography>
+                }
+              />
+              <CardMedia component="img" src={randomPost.content} />
+              <CardContent>{randomPost.body}</CardContent>
+            </Card>
+          )}
         </Stack>
       </div>
     )

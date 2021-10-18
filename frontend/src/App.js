@@ -35,6 +35,7 @@ function App() {
             marginLeft: 240,
             padding: "100px 50px",
             backgroundColor: "#301934",
+            minHeight: "100vh",
           }}
         >
           <Switch>

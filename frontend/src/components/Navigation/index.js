@@ -149,7 +149,14 @@ const Navigation = ({ classes }) => {
               opacity: "0.2",
             }}
           >
-            <Button sx={{ color: "white", width: "100%" }}>
+            <Button
+              sx={{
+                color: "white",
+                width: "100%",
+                justifyContent: "space-between",
+                padding: "0px 60px",
+              }}
+            >
               <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
               <Typography sx={{ pl: "10px" }}>Discover</Typography>
             </Button>
@@ -163,9 +170,37 @@ const Navigation = ({ classes }) => {
               opacity: "0.2",
             }}
           >
-            <Button sx={{ color: "white", width: "100%" }}>
+            <Button
+              sx={{
+                color: "white",
+                width: "100%",
+                justifyContent: "space-between",
+                padding: "0px 60px",
+              }}
+            >
               <HelpIcon sx={{ fontSize: "25px" }} />
               <Typography sx={{ pl: "10px" }}>About</Typography>
+            </Button>
+          </NavLink>
+          <NavLink
+            to="/settings"
+            activeStyle={{ opacity: "1" }}
+            style={{
+              textDecorationLine: "none",
+              marginRight: "25px",
+              opacity: "0.2",
+            }}
+          >
+            <Button
+              sx={{
+                color: "white",
+                width: "100%",
+                justifyContent: "space-between",
+                padding: "0px 60px",
+              }}
+            >
+              <SettingsIcon sx={{ fontSize: "25px" }} />
+              <Typography sx={{ pl: "10px" }}>Settings</Typography>
             </Button>
           </NavLink>
         </Stack>

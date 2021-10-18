@@ -6,7 +6,7 @@ const db = require("../../db/models");
 // const { handleValidationErrors } = require('../../utils/validation');
 
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post, User } = require("../../db/models");
+const { Post, User, sequelize } = require("../../db/models");
 
 const router = express.Router();
 router.get(
@@ -20,6 +20,17 @@ router.get(
     });
 
     return res.json({ posts });
+  })
+);
+
+router.get(
+  "/random",
+  asyncHandler(async (req, res) => {
+    const randomPost = await Post.findOne({
+      order: sequelize.random(),
+      include: ["User"],
+    });
+    return res.json({ randomPost });
   })
 );
 

@@ -4,9 +4,6 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 import "./profile.css";
 import {
   Avatar,
-  Card,
-  CardContent,
-  CardMedia,
   Container,
   Drawer,
   ImageList,
@@ -17,7 +14,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { getUserProfile } from "../../store/user";
-import Notification from "../Notification";
+
 function srcset(image, size, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
@@ -90,16 +87,6 @@ const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
                     <ImageListItem key={post.id}>
                       <img {...srcset(post.content, 121)} loading="lazy" />
                     </ImageListItem>
-                    // <Card sx={{ padding: "0.1em" }}>
-                    //   <CardMedia
-                    //     image={post.content}
-                    //     component="img"
-                    //     height="200px"
-                    //   />
-                    //   <CardContent>
-                    //     <Typography>{post.body}</Typography>
-                    //   </CardContent>
-                    // </Card>
                   ))}
               </ImageList>
               <Stack spacing={5}></Stack>

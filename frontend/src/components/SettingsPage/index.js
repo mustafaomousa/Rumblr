@@ -33,9 +33,6 @@ const SettingsPage = () => {
     e.preventDefault();
 
     await S3FileUpload.uploadFile(e.target.files[0], config)
-      .on("httpUploadProgress", function (progress) {
-        console.log(progress.loaded);
-      })
       .then((data) => {
         dispatch(updateProfilePicture(sessionUser.id, data.location));
       })
@@ -44,25 +41,66 @@ const SettingsPage = () => {
 
   return (
     <div className="settings-page">
-      <Typography variant="h5">Settings</Typography>
-      <Container sx={{ width: "600px", padding: "20px" }}>
-        <form style={{ display: "flex" }}>
+      <Typography paddingBottom="100px" color="white" variant="h6">
+        Settings
+      </Typography>
+      <Container
+        sx={{
+          width: "750px",
+          padding: "20px",
+          // backgroundColor: "whitesmoke ",
+          borderRadius: "0.1em",
+        }}
+      >
+        <form style={{ display: "flex", flexDirection: "column" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              paddingBottom: "50px",
+            }}
+          >
+            <Avatar
+              src={sessionUser.profilePicture}
+              sx={{ width: "180px", height: "180px", marginBottom: "20px" }}
+            />
+            <div
+              style={{
+                height: "50%",
+                justifyContent: "center",
+                alignItems: "center",
+                display: "flex",
+              }}
+            >
+              <label>
+                <Input
+                  onChange={updateProfilePic}
+                  style={{ display: "none" }}
+                  accept="image/*"
+                  type="file"
+                  value={selectedImage}
+                />
+                <Button component="span">Upload</Button>
+              </label>
+              <Button sx={{ color: "red" }}>Delete</Button>
+            </div>
+          </Box>
+
           <Stack spacing={4}>
             <Box>
-              <InputLabel sx={{ color: "whitesmoke", fontSize: "20px" }}>
-                Username
-              </InputLabel>
+              <InputLabel sx={{ fontSize: "20px" }}>Username</InputLabel>
               <Input
-                sx={{ color: "lightblue", borderBottom: "1px solid white" }}
+                sx={{ borderBottom: "1px solid white" }}
                 value={sessionUser.username}
               />
             </Box>
             <Box>
-              <InputLabel sx={{ color: "whitesmoke", fontSize: "20px" }}>
-                Email
-              </InputLabel>
+              <InputLabel sx={{ fontSize: "20px" }}>Email</InputLabel>
               <Input
-                sx={{ color: "lightblue", borderBottom: "1px solid white" }}
+                sx={{ borderBottom: "1px solid white" }}
                 value={sessionUser.email}
               />
             </Box>
@@ -88,41 +126,6 @@ const SettingsPage = () => {
               </Button>
             </Box>
           </Stack>
-
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-            }}
-          >
-            <Avatar
-              src={sessionUser.profilePicture}
-              sx={{ width: "180px", height: "180px" }}
-            />
-            <div
-              style={{
-                height: "50%",
-                justifyContent: "center",
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <label>
-                <Input
-                  onChange={updateProfilePic}
-                  style={{ display: "none" }}
-                  accept="image/*"
-                  type="file"
-                  value={selectedImage}
-                />
-                <Button component="span">Upload</Button>
-              </label>
-              <Button sx={{ color: "red" }}>Delete</Button>
-            </div>
-          </Box>
         </form>
       </Container>
     </div>
