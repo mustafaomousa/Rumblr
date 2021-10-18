@@ -7,13 +7,12 @@ import {
   Toolbar,
   Typography,
   Button,
-  TextField,
   Avatar,
   Menu,
   MenuItem,
   Stack,
+  Drawer,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import HelpIcon from "@mui/icons-material/Help";
 import ExploreIcon from "@mui/icons-material/Explore";
 import PersonIcon from "@mui/icons-material/PersonRounded";
@@ -61,6 +60,7 @@ const Navigation = ({ classes }) => {
       sx={{
         borderBottom: "1px solid #3c1f41",
         boxShadow: "none",
+        border: "none",
       }}
     >
       {sessionUser && (
@@ -73,74 +73,103 @@ const Navigation = ({ classes }) => {
       <Toolbar className={classes.toolbar}>
         <Grid container>
           <Grid item xs={6} className="NavigationLogoContainer">
-            <Link style={{ textDecoration: "none" }} to="/discover">
-              <Typography variant="h5" fontWeight="bolder" color="white">
+            <Link
+              style={{
+                textDecoration: "none",
+                marginLeft: "40px",
+                position: "fixed",
+                marginTop: "60px",
+                zIndex: "10000",
+              }}
+              to="/discover"
+            >
+              <Typography variant="h4" fontWeight="bolder" color="white">
                 Rumblr
               </Typography>
             </Link>
           </Grid>
           <Grid item xs={6} className="NavigationIconContainer">
             {sessionUser && (
-              <>
-                <NavLink
-                  to="/discover"
-                  activeStyle={{ opacity: "1" }}
-                  style={{ textDecorationLine: "none", opacity: "0.2" }}
-                >
-                  <Button sx={{ color: "white" }}>
-                    <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
-                    {/* <Typography sx={{ pl: "10px" }}>Discover</Typography> */}
-                  </Button>
-                </NavLink>
-                <NavLink
-                  to="/about"
-                  activeStyle={{ opacity: "1" }}
-                  style={{
-                    textDecorationLine: "none",
-                    marginRight: "25px",
-                    opacity: "0.2",
-                  }}
-                >
-                  <Button sx={{ color: "white" }}>
-                    <HelpIcon sx={{ fontSize: "25px" }} />
-                    {/* <Typography sx={{ pl: "10px" }}>About</Typography> */}
-                  </Button>
-                </NavLink>
-                <div>
-                  <Button onClick={openUser}>
-                    <Avatar src={sessionUser.profilePicture} />
-                    <Typography sx={{ pl: "10px", color: "white" }}>
-                      {sessionUser.username}
-                    </Typography>
-                  </Button>
-                  <Menu anchorEl={anchorEl} open={userOpen} onClose={closeUser}>
-                    <Stack sx={{ width: "200px" }}>
-                      <MenuItem
-                        sx={{ width: "100%" }}
-                        onClick={openProfileDrawer}
-                      >
-                        <PersonIcon sx={{ pr: "10px" }} />
-                        Profile
-                      </MenuItem>
-                      <MenuItem
-                        sx={{ width: "100%" }}
-                        onClick={() => history.push("/settings")}
-                      >
-                        <SettingsIcon sx={{ pr: "10px" }} />
-                        Settings
-                      </MenuItem>
-                      <MenuItem sx={{ width: "100%" }} onClick={handleLogout}>
-                        <LogoutIcon sx={{ pr: "10px" }} />
-                        Log out
-                      </MenuItem>
-                    </Stack>
-                  </Menu>
-                </div>
-              </>
+              <div>
+                <Button onClick={openUser}>
+                  <Avatar src={sessionUser.profilePicture} />
+                  <Typography sx={{ pl: "10px", color: "white" }}>
+                    {sessionUser.username}
+                  </Typography>
+                </Button>
+                <Menu anchorEl={anchorEl} open={userOpen} onClose={closeUser}>
+                  <Stack sx={{ width: "200px" }}>
+                    <MenuItem
+                      sx={{ width: "100%" }}
+                      onClick={openProfileDrawer}
+                    >
+                      <PersonIcon sx={{ pr: "10px" }} />
+                      Profile
+                    </MenuItem>
+                    <MenuItem
+                      sx={{ width: "100%" }}
+                      onClick={() => history.push("/settings")}
+                    >
+                      <SettingsIcon sx={{ pr: "10px" }} />
+                      Settings
+                    </MenuItem>
+                    <MenuItem sx={{ width: "100%" }} onClick={handleLogout}>
+                      <LogoutIcon sx={{ pr: "10px" }} />
+                      Log out
+                    </MenuItem>
+                  </Stack>
+                </Menu>
+              </div>
             )}
           </Grid>
         </Grid>
       </Toolbar>
+      <Drawer
+        sx={{
+          width: 240,
+          flexShrink: 0,
+          border: "none",
+          "& .MuiDrawer-paper": {
+            marginTop: "64px",
+            width: 240,
+            boxSizing: "border-box",
+            backgroundColor: "#301934",
+            border: "none",
+          },
+        }}
+        variant="permanent"
+        anchor="left"
+      >
+        <Stack spacing={1} marginTop="100px">
+          <NavLink
+            to="/discover"
+            activeStyle={{ opacity: "1" }}
+            style={{
+              textDecorationLine: "none",
+              opacity: "0.2",
+            }}
+          >
+            <Button sx={{ color: "white", width: "100%" }}>
+              <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
+              <Typography sx={{ pl: "10px" }}>Discover</Typography>
+            </Button>
+          </NavLink>
+          <NavLink
+            to="/about"
+            activeStyle={{ opacity: "1" }}
+            style={{
+              textDecorationLine: "none",
+              marginRight: "25px",
+              opacity: "0.2",
+            }}
+          >
+            <Button sx={{ color: "white", width: "100%" }}>
+              <HelpIcon sx={{ fontSize: "25px" }} />
+              <Typography sx={{ pl: "10px" }}>About</Typography>
+            </Button>
+          </NavLink>
+        </Stack>
+      </Drawer>
     </AppBar>
   );
 };

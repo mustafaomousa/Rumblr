@@ -30,9 +30,11 @@ function App() {
       {isLoaded && (
         <div
           style={{
-            margin: "auto",
+            display: "flex",
+            justifyContent: "center",
+            marginLeft: 240,
             padding: "100px 50px",
-            width: "990px",
+            backgroundColor: "#301934",
           }}
         >
           <Switch>
