@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import postReducer from "./post";
 import userReducer from "./user";
+import discoverReducer from "./discover";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   posts: postReducer,
   user: userReducer,
+  discover: discoverReducer,
 });
 
 let enhancer;

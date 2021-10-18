@@ -26,6 +26,17 @@ const validateSignup = [
 ];
 
 router.get(
+  "/newest",
+  asyncHandler(async (req, res) => {
+    const newestUsers = await User.findAll({
+      limit: 4,
+      order: [["createdAt", "DESC"]],
+    });
+    return res.json({ newestUsers });
+  })
+);
+
+router.get(
   "/:userId",
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
