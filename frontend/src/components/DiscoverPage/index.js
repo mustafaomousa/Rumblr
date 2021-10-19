@@ -35,8 +35,11 @@ const FeedPage = () => {
   useEffect(() => {
     dispatch(getPosts(loadLimit, sessionUser.id));
     dispatch(getNewestUsers());
-    dispatch(getRandomPost());
   }, [dispatch, loadLimit]);
+
+  useEffect(() => {
+    dispatch(getRandomPost());
+  }, []);
 
   if (!sessionUser) return <Redirect to="/" />;
 
