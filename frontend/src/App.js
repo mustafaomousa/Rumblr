@@ -20,27 +20,24 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  const user = useSelector((state) => state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <>
-      <Navigation />
-      <QuickAction />
-
-      {isLoaded && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginLeft: 240,
-            padding: "100px 50px",
-            backgroundColor: "#301934",
-            minHeight: "100vh",
-          }}
-        >
+    isLoaded && (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginLeft: sessionUser && 240,
+          padding: "100px 50px",
+        }}
+      >
+        <div>
+          <Navigation />
+          <QuickAction />
           <Switch>
-            <Route path="/about" component={AboutUsPage} />
             <Route exact path="/" component={WelcomePage} />
+            <Route path="/about" component={AboutUsPage} />
             <Route exact path="/discover" component={DiscoverPage} />
             <Route exact path="/settings" component={SettingsPage} />
             <Route exact path="/results" />
@@ -48,8 +45,8 @@ function App() {
             <Route path="/signup" component={SignupFormPage} />
           </Switch>
         </div>
-      )}
-    </>
+      </div>
+    )
   );
 }
 

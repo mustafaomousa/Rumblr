@@ -106,13 +106,6 @@ const Navigation = ({ classes }) => {
                       <PersonIcon sx={{ pr: "10px" }} />
                       Profile
                     </MenuItem>
-                    <MenuItem
-                      sx={{ width: "100%" }}
-                      onClick={() => history.push("/settings")}
-                    >
-                      <SettingsIcon sx={{ pr: "10px" }} />
-                      Settings
-                    </MenuItem>
                     <MenuItem sx={{ width: "100%" }} onClick={handleLogout}>
                       <LogoutIcon sx={{ pr: "10px" }} />
                       Log out
@@ -124,87 +117,89 @@ const Navigation = ({ classes }) => {
           </Grid>
         </Grid>
       </Toolbar>
-      <Drawer
-        sx={{
-          width: 240,
-          flexShrink: 0,
-          border: "none",
-          "& .MuiDrawer-paper": {
-            marginTop: "64px",
+      {sessionUser && (
+        <Drawer
+          sx={{
             width: 240,
-            boxSizing: "border-box",
-            backgroundColor: "#301934",
+            flexShrink: 0,
             border: "none",
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Stack spacing={1} marginTop="100px">
-          <NavLink
-            to="/discover"
-            activeStyle={{ opacity: "1" }}
-            style={{
-              textDecorationLine: "none",
-              opacity: "0.2",
-            }}
-          >
-            <Button
-              sx={{
-                color: "white",
-                width: "100%",
-                justifyContent: "space-between",
-                padding: "0px 60px",
+            "& .MuiDrawer-paper": {
+              marginTop: "64px",
+              width: 240,
+              boxSizing: "border-box",
+              backgroundColor: "#301934",
+              border: "none",
+            },
+          }}
+          variant="permanent"
+          anchor="left"
+        >
+          <Stack spacing={1} marginTop="100px">
+            <NavLink
+              to="/discover"
+              activeStyle={{ opacity: "1" }}
+              style={{
+                textDecorationLine: "none",
+                opacity: "0.2",
               }}
             >
-              <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
-              <Typography sx={{ pl: "10px" }}>Discover</Typography>
-            </Button>
-          </NavLink>
-          <NavLink
-            to="/about"
-            activeStyle={{ opacity: "1" }}
-            style={{
-              textDecorationLine: "none",
-              marginRight: "25px",
-              opacity: "0.2",
-            }}
-          >
-            <Button
-              sx={{
-                color: "white",
-                width: "100%",
-                justifyContent: "space-between",
-                padding: "0px 60px",
+              <Button
+                sx={{
+                  color: "white",
+                  width: "100%",
+                  justifyContent: "space-between",
+                  padding: "0px 60px",
+                }}
+              >
+                <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
+                <Typography sx={{ pl: "10px" }}>Discover</Typography>
+              </Button>
+            </NavLink>
+            <NavLink
+              to="/about"
+              activeStyle={{ opacity: "1" }}
+              style={{
+                textDecorationLine: "none",
+                marginRight: "25px",
+                opacity: "0.2",
               }}
             >
-              <HelpIcon sx={{ fontSize: "25px" }} />
-              <Typography sx={{ pl: "10px" }}>About</Typography>
-            </Button>
-          </NavLink>
-          <NavLink
-            to="/settings"
-            activeStyle={{ opacity: "1" }}
-            style={{
-              textDecorationLine: "none",
-              marginRight: "25px",
-              opacity: "0.2",
-            }}
-          >
-            <Button
-              sx={{
-                color: "white",
-                width: "100%",
-                justifyContent: "space-between",
-                padding: "0px 60px",
+              <Button
+                sx={{
+                  color: "white",
+                  width: "100%",
+                  justifyContent: "space-between",
+                  padding: "0px 60px",
+                }}
+              >
+                <HelpIcon sx={{ fontSize: "25px" }} />
+                <Typography sx={{ pl: "10px" }}>About</Typography>
+              </Button>
+            </NavLink>
+            <NavLink
+              to="/settings"
+              activeStyle={{ opacity: "1" }}
+              style={{
+                textDecorationLine: "none",
+                marginRight: "25px",
+                opacity: "0.2",
               }}
             >
-              <SettingsIcon sx={{ fontSize: "25px" }} />
-              <Typography sx={{ pl: "10px" }}>Settings</Typography>
-            </Button>
-          </NavLink>
-        </Stack>
-      </Drawer>
+              <Button
+                sx={{
+                  color: "white",
+                  width: "100%",
+                  justifyContent: "space-between",
+                  padding: "0px 60px",
+                }}
+              >
+                <SettingsIcon sx={{ fontSize: "25px" }} />
+                <Typography sx={{ pl: "10px" }}>Settings</Typography>
+              </Button>
+            </NavLink>
+          </Stack>
+        </Drawer>
+      )}
     </AppBar>
   );
 };

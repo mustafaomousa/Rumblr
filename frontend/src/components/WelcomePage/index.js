@@ -21,12 +21,8 @@ const WelcomePage = () => {
 
   return (
     <div className="WelcomePage">
-      <Modal open={showLogin} className="WelcomePageModal">
-        <LoginFormPage switchToSignup={switchToSignup} />
-      </Modal>
-      <Modal open={showSignup} className="WelcomePageModal">
-        <SignupFormPage switchToLogin={switchToLogin} />
-      </Modal>
+      {showLogin && <LoginFormPage switchToSignup={switchToSignup} />}
+      {showSignup && <SignupFormPage switchToLogin={switchToLogin} />}
     </div>
   );
 };

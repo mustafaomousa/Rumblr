@@ -22,3 +22,10 @@
   position: sticky;
   top: 400px;
 }
+
+#newest-user-button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5px;
+}

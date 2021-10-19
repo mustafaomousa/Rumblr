@@ -1,8 +1,4 @@
-.WelcomePageModal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .WelcomePage {
+  position: fixed;
+  left: 50%;
 }
