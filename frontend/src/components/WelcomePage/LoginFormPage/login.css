@@ -1,4 +1,4 @@
-.LoginFormPage {
+.login-form-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7,12 +7,12 @@
   height: 500px;
 }
 
-.LoginForm {
+.login-form {
   display: flex;
   flex-direction: column;
 }
 
-.LoginFormFooter {
+.login-form-footer {
   display: flex;
   justify-content: space-between;
   background-color: #f3f3f3;

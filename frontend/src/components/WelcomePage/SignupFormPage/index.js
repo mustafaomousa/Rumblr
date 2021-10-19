@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Card,
   CardActions,
   CardContent,
@@ -8,19 +7,17 @@ import {
   Typography,
   Button,
   Alert,
-  Input,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../../store/session";
 
 import "./signup.css";
 
 const SignupFormPage = ({ switchToLogin }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
@@ -29,12 +26,13 @@ const SignupFormPage = ({ switchToLogin }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const sessionUser = useSelector((state) => state.session.user);
+
   const updateUsername = (e) => setUsername(e.target.value);
   const updateEmail = (e) => setEmail(e.target.value);
   const updatedPassword = (e) => setPassword(e.target.value);
   const updatedConfirmPassword = (e) => setConfirmPassword(e.target.value);
 
-  const sessionUser = useSelector((state) => state.session.user);
   if (sessionUser) return <Redirect to="/discover" />;
 
   const onSubmit = (e) => {
@@ -61,7 +59,7 @@ const SignupFormPage = ({ switchToLogin }) => {
   };
 
   return (
-    <Card className="SignupFormPage">
+    <Card className="signup-form-page">
       <CardHeader
         align="center"
         subheader="Sign up"
@@ -74,7 +72,7 @@ const SignupFormPage = ({ switchToLogin }) => {
         }
       />
       <CardContent>
-        <form className="SignupForm">
+        <form className="signup-form">
           <TextField
             onChange={updateUsername}
             size="small"
@@ -115,7 +113,7 @@ const SignupFormPage = ({ switchToLogin }) => {
           </Box>
         )}
       </CardContent>
-      <CardActions className="SignupFormFooter">
+      <CardActions className="signup-form-footer">
         <div>
           <Button onClick={switchToLogin}>Switch to log in</Button>
         </div>

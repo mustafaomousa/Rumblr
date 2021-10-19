@@ -1,7 +1,7 @@
 import { useState } from "react";
-import LoginFormPage from "../LoginFormPage";
-import SignupFormPage from "../SignupFormPage";
-import { Modal } from "@mui/material";
+
+import LoginFormPage from "./LoginFormPage";
+import SignupFormPage from "./SignupFormPage";
 
 import "./index.css";
 
@@ -20,7 +20,7 @@ const WelcomePage = () => {
   };
 
   return (
-    <div className="WelcomePage">
+    <div className="welcome-page">
       {showLogin && <LoginFormPage switchToSignup={switchToSignup} />}
       {showSignup && <SignupFormPage switchToLogin={switchToLogin} />}
     </div>

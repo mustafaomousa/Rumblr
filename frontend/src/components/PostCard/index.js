@@ -1,25 +1,19 @@
 import {
   Avatar,
-  Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   CardMedia,
   IconButton,
   Typography,
 } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import SmartButtonIcon from "@mui/icons-material/PushPin";
-import HeartButtonIcon from "@mui/icons-material/ThumbUp";
 import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
-import DeletePost from "./DeletePost";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
 import ProfileDrawer from "../ProfileDrawer";
-import { Box } from "@mui/system";
+import DeletePost from "./DeletePost";
 import EditPost from "../EditPost";
 import Notification from "../Notification";
 

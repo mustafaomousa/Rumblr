@@ -1,4 +1,6 @@
-.WelcomePage {
-  position: fixed;
-  left: 50%;
+.welcome-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }

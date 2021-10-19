@@ -9,19 +9,18 @@ import {
   CardHeader,
   Typography,
   CardActions,
-  Input,
-  Avatar,
   Alert,
 } from "@mui/material";
-import "./login.css";
-
-import * as sessionActions from "../../store/session";
 import { Box } from "@mui/system";
 
+import "./login.css";
+import * as sessionActions from "../../../store/session";
+
 const LoginFormPage = ({ switchToSignup }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
+
   const sessionUser = useSelector((state) => state.session.user);
+
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -39,8 +38,6 @@ const LoginFormPage = ({ switchToSignup }) => {
     dispatch(sessionActions.login(credential, password)).catch((res) => {
       setErrors(res.data.errors);
     });
-
-    // return history.push("/discover");
   };
 
   const demoLogin = async (e) => {
@@ -53,13 +50,11 @@ const LoginFormPage = ({ switchToSignup }) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       }
     );
-
-    // return history.push("/discover");
   };
 
   return (
     <Card>
-      <form onSubmit={onSubmit} className="LoginFormPage">
+      <form onSubmit={onSubmit} className="login-form-page">
         <CardHeader
           align="center"
           subheader="Log in"
@@ -72,7 +67,7 @@ const LoginFormPage = ({ switchToSignup }) => {
           }
         />
         <CardContent>
-          <div className="LoginForm">
+          <div className="login-form">
             <TextField
               size="small"
               id="input"
@@ -98,7 +93,7 @@ const LoginFormPage = ({ switchToSignup }) => {
               errors.map((error) => <Alert severity="error">{error}</Alert>)}
           </Box>
         </CardContent>
-        <CardActions className="LoginFormFooter">
+        <CardActions className="login-form-footer">
           <div>
             <Button onClick={switchToSignup}>Switch to sign up</Button>
           </div>

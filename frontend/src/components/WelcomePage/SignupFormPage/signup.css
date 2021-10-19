@@ -1,4 +1,4 @@
-.SignupFormPage {
+.signup-form-page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -7,12 +7,12 @@
   min-height: 500px;
 }
 
-.SignupForm {
+.signup-form {
   display: flex;
   flex-direction: column;
 }
 
-.SignupFormFooter {
+.signup-form-footer {
   display: flex;
   justify-content: space-between;
   background-color: #f3f3f3;
