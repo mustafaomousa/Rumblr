@@ -63,7 +63,6 @@ export const getPosts = (limit, userId) => async (dispatch) => {
   const response = await fetch(`/api/posts?limit=${limit}&userId=${userId}`);
   if (response.ok) {
     dispatch(getAllPosts(response.data.posts));
-    console.log(response.data.posts);
     return response;
   }
 };

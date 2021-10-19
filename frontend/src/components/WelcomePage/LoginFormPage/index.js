@@ -98,7 +98,9 @@ const LoginFormPage = ({ switchToSignup }) => {
             <Button onClick={switchToSignup}>Switch to sign up</Button>
           </div>
           <div>
-            <Button type="submit">Log in</Button>
+            <Button onClick={onSubmit} type="submit">
+              Log in
+            </Button>
             <Button onClick={demoLogin}>Demo</Button>
           </div>
         </CardActions>

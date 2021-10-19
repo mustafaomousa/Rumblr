@@ -38,7 +38,7 @@ const NewestMembers = () => {
             {newestUsers &&
               newestUsers.map((newestUser) => {
                 return (
-                  <Button id="newest-user-button">
+                  <Button key={newestUser.id} id="newest-user-button">
                     <Avatar src={newestUser.profilePicture} />
                     <Typography>{newestUser.username}</Typography>
                     <Divider />

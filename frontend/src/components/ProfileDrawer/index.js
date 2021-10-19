@@ -27,7 +27,7 @@ const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.profile_user.user);
   const posts = useSelector((state) => state.user.profile_user.posts);
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState("0");
 
   const handleChange = (e, newValue) => {
     setTab(newValue);
@@ -76,22 +76,26 @@ const ProfileDrawer = ({ userId, profileDrawerOpen, closeProfileDrawer }) => {
           <TabContext value={tab}>
             <Box>
               <TabList onChange={handleChange}>
-                <Tab label="POSTS" value={0} sx={{ color: "white" }} />
-                <Tab label="PINNED" value={1} sx={{ color: "white" }} />
+                <Tab label="POSTS" value="0" sx={{ color: "white" }} />
+                <Tab label="PINNED" value="1" sx={{ color: "white" }} />
               </TabList>
             </Box>
-            <TabPanel value={0}>
-              <ImageList variant="quilted" cols={2}>
-                {posts &&
+            <TabPanel value="0">
+              <ImageList
+                variant="quilted"
+                cols={2}
+                children={
+                  posts &&
                   posts.map((post) => (
                     <ImageListItem key={post.id}>
                       <img {...srcset(post.content, 121)} loading="lazy" />
                     </ImageListItem>
-                  ))}
-              </ImageList>
+                  ))
+                }
+              />
               <Stack spacing={5}></Stack>
             </TabPanel>
-            <TabPanel value={1}>hi again</TabPanel>
+            <TabPanel value="1">hi again</TabPanel>
           </TabContext>
         </div>
       </Container>

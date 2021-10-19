@@ -36,14 +36,13 @@ const QuickAction = () => {
           }}
           open={createPostVisible}
           onClose={() => setCreatePostVisible(false)}
-          children={
-            <CreatePost
-              user={sessionUser}
-              setCreatePostVisible={setCreatePostVisible}
-              alertCreatePostSuccess={alertCreatePostSuccess}
-            />
-          }
-        />
+        >
+          <CreatePost
+            user={sessionUser}
+            setCreatePostVisible={setCreatePostVisible}
+            alertCreatePostSuccess={alertCreatePostSuccess}
+          />
+        </Modal>
         <SpeedDial
           ariaLabel="Hello"
           sx={{

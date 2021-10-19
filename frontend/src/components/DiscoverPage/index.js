@@ -31,7 +31,7 @@ const FeedPage = () => {
       <div className="discover-page">
         <Stack spacing={2} className="discover-page-posts">
           {Object.keys(posts).map((idx) => {
-            return <PostCard post={posts[idx]} />;
+            return <PostCard key={idx} post={posts[idx]} />;
           })}
           {Object.keys(posts).length % 5 === 0 && (
             <Button variant="outlined" onClick={increaseLimit}>
