@@ -10,6 +10,7 @@ import {
   Typography,
   CardActions,
   Alert,
+  InputLabel,
 } from "@mui/material";
 import { Box } from "@mui/system";
 
@@ -53,59 +54,66 @@ const LoginFormPage = ({ switchToSignup }) => {
   };
 
   return (
-    <Card>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Typography
+        sx={{ fontSize: "50px", color: "white", fontWeight: "bolder" }}
+      >
+        Rumblr
+      </Typography>
       <form onSubmit={onSubmit} className="login-form-page">
-        <CardHeader
-          align="center"
-          subheader="Log in"
-          title={
-            <Typography
-              sx={{ fontSize: "50px", color: "#301934", fontWeight: "bolder" }}
-            >
-              Rumblr
-            </Typography>
-          }
-        />
-        <CardContent>
-          <div className="login-form">
-            <TextField
-              size="small"
-              id="input"
-              type="text"
-              onChange={updateCredential}
-              value={credential}
-              label="username/email"
-              required
-            />
-            <br />
-            <TextField
-              id="input"
-              size="small"
-              type="password"
-              onChange={updatePassword}
-              value={password}
-              label="password"
-              required
-            />
-          </div>
-          <Box sx={{ paddingTop: "20px" }}>
-            {errors &&
-              errors.map((error) => <Alert severity="error">{error}</Alert>)}
-          </Box>
-        </CardContent>
-        <CardActions className="login-form-footer">
+        <div className="login-form">
+          <InputLabel sx={{ color: "white" }}>Username or email</InputLabel>
+          <TextField
+            size="small"
+            id="input"
+            type="text"
+            onChange={updateCredential}
+            value={credential}
+            color="secondary"
+            sx={{ background: "white", borderRadius: "0.5em" }}
+            required
+          />
+          <br />
+          <InputLabel sx={{ color: "white" }}>Password</InputLabel>
+          <TextField
+            variant="outlined"
+            id="input"
+            size="small"
+            type="password"
+            onChange={updatePassword}
+            value={password}
+            color="secondary"
+            sx={{ background: "white", borderRadius: "0.5em" }}
+            required
+          />
+        </div>
+        <Box sx={{ paddingTop: "20px" }}>
+          {errors &&
+            errors.map((error) => <Alert severity="error">{error}</Alert>)}
+        </Box>
+        <div className="login-form-footer">
           <div>
-            <Button onClick={switchToSignup}>Switch to sign up</Button>
+            <Button color="secondary" onClick={switchToSignup}>
+              Switch to sign up
+            </Button>
           </div>
           <div>
-            <Button onClick={onSubmit} type="submit">
+            <Button color="secondary" onClick={onSubmit} type="submit">
               Log in
             </Button>
-            <Button onClick={demoLogin}>Demo</Button>
+            <Button color="secondary" onClick={demoLogin}>
+              Demo
+            </Button>
           </div>
-        </CardActions>
+        </div>
       </form>
-    </Card>
+    </div>
   );
 };
 

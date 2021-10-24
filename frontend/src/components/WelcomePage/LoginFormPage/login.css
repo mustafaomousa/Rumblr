@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgb(245, 245, 245);
   width: 400px;
-  height: 500px;
 }
 
 .login-form {
@@ -15,5 +13,4 @@
 .login-form-footer {
   display: flex;
   justify-content: space-between;
-  background-color: #f3f3f3;
 }

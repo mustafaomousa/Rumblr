@@ -2,18 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rgb(245, 245, 245);
   width: 400px;
-  min-height: 500px;
 }
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .signup-form-footer {
   display: flex;
   justify-content: space-between;
-  background-color: #f3f3f3;
 }

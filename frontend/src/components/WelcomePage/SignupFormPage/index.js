@@ -7,6 +7,7 @@ import {
   Typography,
   Button,
   Alert,
+  InputLabel,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
@@ -59,69 +60,68 @@ const SignupFormPage = ({ switchToLogin }) => {
   };
 
   return (
-    <Card className="signup-form-page">
-      <CardHeader
-        align="center"
-        subheader="Sign up"
-        title={
-          <Typography
-            sx={{ fontSize: "50px", color: "#301934", fontWeight: "bolder" }}
-          >
-            Rumblr
-          </Typography>
-        }
-      />
-      <CardContent>
-        <form className="signup-form">
-          <TextField
-            onChange={updateUsername}
-            size="small"
-            value={username}
-            label="create a username"
-            required
-          />
-          <br />
-          <TextField
-            size="small"
-            onChange={updateEmail}
-            value={email}
-            label="enter email"
-            required
-          />
-          <br />
-          <TextField
-            size="small"
-            type="password"
-            onChange={updatedPassword}
-            label="create a password"
-            required
-          />
-          <br />
-          <TextField
-            size="small"
-            type="password"
-            onChange={updatedConfirmPassword}
-            label="confirm password"
-            required
-          />
-        </form>
-        {errors && (
-          <Box sx={{ paddingTop: "20px" }}>
-            {errors.map((error) => (
-              <Alert severity="error">{error}</Alert>
-            ))}
-          </Box>
-        )}
-      </CardContent>
-      <CardActions className="signup-form-footer">
-        <div>
-          <Button onClick={switchToLogin}>Switch to log in</Button>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <Typography
+        sx={{ fontSize: "50px", color: "white", fontWeight: "bolder" }}
+      >
+        Rumblr
+      </Typography>
+      <form className="signup-form-page">
+        <InputLabel sx={{ color: "white" }}>Username</InputLabel>
+        <TextField
+          onChange={updateUsername}
+          size="small"
+          value={username}
+          required
+          sx={{ background: "white", borderRadius: "0.5em" }}
+        />
+        <br />
+        <InputLabel sx={{ color: "white" }}>Email</InputLabel>
+        <TextField
+          size="small"
+          onChange={updateEmail}
+          value={email}
+          required
+          sx={{ background: "white", borderRadius: "0.5em" }}
+        />
+        <br />
+        <InputLabel sx={{ color: "white" }}>Password</InputLabel>
+        <TextField
+          size="small"
+          type="password"
+          onChange={updatedPassword}
+          required
+          sx={{ background: "white", borderRadius: "0.5em" }}
+        />
+        <br />
+        <InputLabel sx={{ color: "white" }}>Confirm Password</InputLabel>
+        <TextField
+          size="small"
+          type="password"
+          onChange={updatedConfirmPassword}
+          required
+          sx={{ background: "white", borderRadius: "0.5em" }}
+        />
+        <Box sx={{ paddingTop: "20px" }}>
+          {errors &&
+            errors.map((error) => <Alert severity="error">{error}</Alert>)}
+        </Box>
+        <div className="signup-form-footer">
+          <div>
+            <Button color="secondary" onClick={switchToLogin}>
+              Switch to log in
+            </Button>
+          </div>
+          <div>
+            <Button type="submit" color="secondary" onClick={onSubmit}>
+              Join
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button onClick={onSubmit}>Join</Button>
-        </div>
-      </CardActions>
-    </Card>
+      </form>
+    </div>
   );
 };
 
