@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory, Redirect } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import {
-  AppBar,
-  Grid,
-  Toolbar,
   Typography,
   Button,
   Avatar,
@@ -31,7 +28,7 @@ const styles = {
   },
 };
 
-const Navigation = ({ classes }) => {
+const Navigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -66,11 +63,11 @@ const Navigation = ({ classes }) => {
       {sessionUser && (
         <Drawer
           sx={{
-            width: 240,
+            width: "15vw",
             flexShrink: 0,
             border: "none",
             "& .MuiDrawer-paper": {
-              width: 240,
+              width: "15vw",
               boxSizing: "border-box",
               backgroundColor: "#301934",
               border: "none",
@@ -83,9 +80,8 @@ const Navigation = ({ classes }) => {
             },
           }}
           variant="permanent"
-          anchor="left"
         >
-          <Stack spacing={2}>
+          <Stack spacing={0}>
             <Typography
               textAlign="center"
               color="white"
@@ -107,10 +103,9 @@ const Navigation = ({ classes }) => {
                 sx={{
                   color: "white",
                   justifyContent: "space-between",
-                  // padding: "0px 60px",
                 }}
               >
-                <ExploreIcon sx={{ fontSize: "25px" }} />{" "}
+                <ExploreIcon />
                 <Typography sx={{ pl: "10px" }}>Discover</Typography>
               </Button>
             </NavLink>
@@ -127,10 +122,9 @@ const Navigation = ({ classes }) => {
                 sx={{
                   color: "white",
                   justifyContent: "space-between",
-                  // padding: "0px 60px",
                 }}
               >
-                <HelpIcon sx={{ fontSize: "25px" }} />
+                <HelpIcon />
                 <Typography sx={{ pl: "10px" }}>About</Typography>
               </Button>
             </NavLink>
@@ -147,11 +141,10 @@ const Navigation = ({ classes }) => {
                 sx={{
                   color: "white",
                   justifyContent: "space-between",
-                  // padding: "0px 60px",
                 }}
               >
-                <SettingsIcon sx={{ fontSize: "25px" }} />
-                <Typography sx={{ pl: "10px" }}>Settings</Typography>
+                <SettingsIcon />
+                <Typography sx={{ pl: "10px" }}>Account</Typography>
               </Button>
             </NavLink>
           </Stack>

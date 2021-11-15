@@ -99,15 +99,15 @@ const LoginFormPage = ({ switchToSignup }) => {
         </Box>
         <div className="login-form-footer">
           <div>
-            <Button color="secondary" onClick={switchToSignup}>
+            <Button sx={{ color: "white" }} onClick={switchToSignup}>
               Switch to sign up
             </Button>
           </div>
           <div>
-            <Button color="secondary" onClick={onSubmit} type="submit">
+            <Button sx={{ color: "white" }} onClick={onSubmit} type="submit">
               Log in
             </Button>
-            <Button color="secondary" onClick={demoLogin}>
+            <Button sx={{ color: "white" }} onClick={demoLogin}>
               Demo
             </Button>
           </div>

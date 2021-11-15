@@ -25,12 +25,13 @@ function App() {
       <div
         style={{
           display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
           justifyContent: "center",
-          marginLeft: sessionUser && 240,
         }}
       >
+        {sessionUser && <Navigation />}
         <div>
-          {sessionUser && <Navigation />}
           <QuickAction />
           <Switch>
             <Route exact path="/" component={WelcomePage} />

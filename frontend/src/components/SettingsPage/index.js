@@ -2,24 +2,36 @@ import {
   Avatar,
   Button,
   Container,
+  Divider,
   IconButton,
   Input,
   InputLabel,
+  ListItemIcon,
+  ListItemText,
+  MenuItem,
+  MenuList,
+  Paper,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
+import AccountIcon from "@mui/icons-material/Person";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import S3FileUpload from "react-s3";
 import { restoreUser, updateProfilePicture } from "../../store/session";
 import "./index.css";
+import AccountSettings from "./AccountSettings";
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [settingsView, setSettingsView] = useState(0);
   const updateSelectedImage = (e) => setSelectedImage(e.target.files[0]);
+
+  const updateSettingsView = (viewNumber) => setSettingsView(viewNumber);
 
   const config = {
     bucketName: "rumblr-app",
@@ -41,93 +53,42 @@ const SettingsPage = () => {
 
   return (
     <div className="settings-page">
-      <Typography paddingBottom="100px" color="white" variant="h6">
-        Settings
+      <Typography letterSpacing={2} color="white" padding={"10px 0px 50px 0px"}>
+        {sessionUser.username} - {sessionUser.email}
       </Typography>
-      <Container
-        sx={{
-          width: "750px",
-          padding: "20px",
-          // backgroundColor: "whitesmoke ",
-          borderRadius: "0.1em",
-        }}
-      >
-        <form style={{ display: "flex", flexDirection: "column" }}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "100%",
-              paddingBottom: "50px",
-            }}
-          >
-            <Avatar
-              src={sessionUser.profilePicture}
-              sx={{ width: "180px", height: "180px", marginBottom: "20px" }}
-            />
-            <div
-              style={{
-                height: "50%",
-                justifyContent: "center",
-                alignItems: "center",
-                display: "flex",
-              }}
-            >
-              <label>
-                <Input
-                  onChange={updateProfilePic}
-                  style={{ display: "none" }}
-                  accept="image/*"
-                  type="file"
-                  value={selectedImage}
-                />
-                <Button component="span">Upload</Button>
-              </label>
-              <Button sx={{ color: "red" }}>Delete</Button>
-            </div>
-          </Box>
-
-          <Stack spacing={4}>
-            <Box>
-              <InputLabel sx={{ fontSize: "20px" }}>Username</InputLabel>
-              <Input
-                sx={{ borderBottom: "1px solid white" }}
-                value={sessionUser.username}
-              />
-            </Box>
-            <Box>
-              <InputLabel sx={{ fontSize: "20px" }}>Email</InputLabel>
-              <Input
-                sx={{ borderBottom: "1px solid white" }}
-                value={sessionUser.email}
-              />
-            </Box>
-            <Box>
-              <Button
-                variant="outlined"
-                size="small"
-                fullWidth
-                sx={{ mb: "10px" }}
-              >
-                Update
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                fullWidth
-                sx={{ mb: "10px" }}
-              >
-                Change Password
-              </Button>
-              <Button variant="outlined" size="small" fullWidth>
-                Delete Account
-              </Button>
-            </Box>
-          </Stack>
-        </form>
-      </Container>
+      <AccountSettings
+        sessionUser={sessionUser}
+        updateProfilePic={updateProfilePic}
+        selectedImage={selectedImage}
+      />
+      <br />
+      <Box sx={{ width: "100%" }}>
+        <Box>
+          <InputLabel sx={{ color: "white" }}>New Password</InputLabel>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            color="secondary"
+            sx={{ background: "white", borderRadius: "0.5em" }}
+          />
+        </Box>
+        <br />
+        <Box>
+          <InputLabel sx={{ color: "white" }}>Confirm Password</InputLabel>
+          <TextField
+            variant="outlined"
+            size="small"
+            fullWidth
+            color="secondary"
+            sx={{ background: "white", borderRadius: "0.5em" }}
+          />
+        </Box>
+        <br />
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button variant="outlined">Change Password</Button>
+        </Box>
+      </Box>
     </div>
   );
 };

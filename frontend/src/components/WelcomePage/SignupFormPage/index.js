@@ -1,8 +1,4 @@
 import {
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
   TextField,
   Typography,
   Button,
@@ -110,12 +106,12 @@ const SignupFormPage = ({ switchToLogin }) => {
         </Box>
         <div className="signup-form-footer">
           <div>
-            <Button color="secondary" onClick={switchToLogin}>
+            <Button sx={{ color: "white" }} onClick={switchToLogin}>
               Switch to log in
             </Button>
           </div>
           <div>
-            <Button type="submit" color="secondary" onClick={onSubmit}>
+            <Button type="submit" sx={{ color: "white" }} onClick={onSubmit}>
               Join
             </Button>
           </div>
