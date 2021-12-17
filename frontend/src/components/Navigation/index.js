@@ -91,12 +91,12 @@ const Navigation = () => {
             height="100%"
             alignItems="center"
             justifyContent="flex-end"
-            spacing={1}
+            spacing={0.8}
           >
-            <Button href="/discover" color="secondary">
+            <Button href="/discover" size="small" color="secondary">
               <HomeIcon />
             </Button>
-            <Button href="/about" color="secondary">
+            <Button href="/about" size="small" color="secondary">
               <HelpIcon />
             </Button>
             <Button
@@ -137,9 +137,23 @@ const Navigation = () => {
                   src={sessionUser.profilePicture}
                 />
                 <Stack alignItems="center">
-                  <MenuItem sx={{ width: "100%" }}>Profile</MenuItem>
-                  <MenuItem sx={{ width: "100%" }}>My account</MenuItem>
-                  <MenuItem sx={{ width: "100%" }} onClick={handleLogout}>
+                  <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
+                    <Link
+                      underline="none"
+                      href={`/user/${sessionUser.username}`}
+                    >
+                      Profile
+                    </Link>
+                  </MenuItem>
+                  <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
+                    <Link underline="none" href="/settings">
+                      Settings
+                    </Link>
+                  </MenuItem>
+                  <MenuItem
+                    sx={{ width: "100%", justifyContent: "center" }}
+                    onClick={handleLogout}
+                  >
                     Logout
                   </MenuItem>
                 </Stack>
@@ -147,7 +161,7 @@ const Navigation = () => {
             </Menu>
             <Button
               size="small"
-              variant="contained"
+              variant="outlined"
               color="secondary"
               onClick={() => setCreatePostVisible(true)}
             >
