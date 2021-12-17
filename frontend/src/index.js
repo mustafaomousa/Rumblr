@@ -31,6 +31,9 @@ const theme = createTheme({
     primary: {
       main: "#333A56",
     },
+    secondary: {
+      main: "#e8e8e8",
+    },
   },
   typography: {
     fontFamily: "Montserrat",

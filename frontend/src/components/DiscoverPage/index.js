@@ -19,10 +19,10 @@ const FeedPage = () => {
 
   const increaseLimit = () => setLoadLimit(loadLimit + 5);
 
-  useEffect(
-    () => dispatch(getPosts(loadLimit, sessionUser.id)),
-    [dispatch, loadLimit]
-  );
+  useEffect(() => {
+    if (!sessionUser) return <Redirect to="/" />;
+    dispatch(getPosts(loadLimit, sessionUser.id));
+  }, [dispatch, loadLimit]);
 
   if (!sessionUser) return <Redirect to="/" />;
 

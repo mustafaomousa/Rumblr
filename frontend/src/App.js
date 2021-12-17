@@ -25,16 +25,14 @@ function App() {
     isLoaded && (
       <>
         {sessionUser && <Navigation />}
-        <div>
-          <QuickAction />
-          <Switch>
-            <Route exact path="/" component={WelcomePage} />
-            <Route path="/about" component={AboutUsPage} />
-            <Route exact path="/discover" component={DiscoverPage} />
-            <Route exact path="/settings" component={SettingsPage} />
-            <Route exact path="/results" />
-          </Switch>
-        </div>
+        <QuickAction />
+        <Switch>
+          <Route exact path="/" component={WelcomePage} />
+          <Route path="/about" component={AboutUsPage} />
+          <Route exact path="/discover" component={DiscoverPage} />
+          <Route exact path="/settings" component={SettingsPage} />
+          <Route exact path="/results" />
+        </Switch>
       </>
     )
   );
