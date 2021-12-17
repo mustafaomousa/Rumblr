@@ -3,45 +3,50 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  CircularProgress,
   Typography,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getRandomPost } from "../../store/discover";
 
+const useStyles = makeStyles(() => ({
+  root: {
+    width: "400px",
+  },
+  cardHeader: {
+    backgroundColor: "#333A56",
+  },
+}));
+
 const CheckoutPost = () => {
   const dispatch = useDispatch();
-
+  const classes = useStyles();
   const randomPost = useSelector((state) => state.discover.randomPost);
 
   useEffect(() => {
     dispatch(getRandomPost());
   }, []);
 
-  if (randomPost)
-    return (
-      <div>
-        <Card
-          className="discover-page-side-post"
-          variant="outlined"
-          sx={{ borderRadius: "0.1em" }}
-        >
+  return (
+    <Card className={classes.root}>
+      {randomPost && (
+        <>
           <CardHeader
-            align="center"
+            className={classes.cardHeader}
             title={
-              <Typography>
-                Check out this post by {randomPost.User.username}
+              <Typography fontWeight="bold" color="#ffffff">
+                Checkout this post by {randomPost.User.username}
               </Typography>
             }
           />
           <CardMedia component="img" src={randomPost.content} />
           <CardContent>{randomPost.body}</CardContent>
-        </Card>
-      </div>
-    );
-  else return <CircularProgress />;
+        </>
+      )}
+    </Card>
+  );
 };
 
 export default CheckoutPost;
