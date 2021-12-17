@@ -33,9 +33,9 @@ const Discover = () => {
 
   return (
     <Grid className={classes.root} container direction="row">
-      <Grid item xs={7} paddingRight={2} height="85vh" overflow="scroll">
+      <Grid item xs={7} paddingRight={2}>
         {posts && (
-          <Stack spacing={4} alignItems="flex-end">
+          <Stack spacing={1} alignItems="flex-end">
             {Object.keys(posts).map((idx) => {
               return <PostCard key={idx} post={posts[idx]} />;
             })}
@@ -48,7 +48,7 @@ const Discover = () => {
         )}
       </Grid>
       <Grid item xs={5} paddingLeft={2}>
-        <Stack spacing={4} alignItems="flex-start">
+        <Stack spacing={3} alignItems="flex-start">
           <NewestMembers />
           <CheckoutPost />
         </Stack>
