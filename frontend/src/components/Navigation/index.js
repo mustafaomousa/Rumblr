@@ -1,16 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
-import { Typography, Button, Stack, AppBar, Grid, Link } from "@mui/material";
+import {
+  Typography,
+  Button,
+  Stack,
+  AppBar,
+  Grid,
+  Link,
+  IconButton,
+} from "@mui/material";
 import PersonIcon from "@mui/icons-material/PersonRounded";
+import HelpIcon from "@mui/icons-material/Help";
 import * as sessionActions from "../../store/session";
+import HomeIcon from "@mui/icons-material/Home";
 
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     justifyContent: "center",
     padding: "0 30px",
-    height: 75,
+    height: 60,
   },
   searchInput: {
     width: 200,
@@ -37,32 +47,33 @@ const Navigation = () => {
 
   return (
     <AppBar className={classes.root}>
-      <Grid container>
-        <Grid item xs={4}>
-          <Typography fontSize="30px">Rumblr</Typography>
+      <Grid container alignItems="center">
+        <Grid item xs={6}>
+          <Link
+            href="/discover"
+            fontSize="35px"
+            fontWeight="bold"
+            color="secondary"
+            underline="none"
+          >
+            R
+          </Link>
         </Grid>
-        <Grid item xs={4}>
-          <Stack direction="row" alignItems="center" height="100%" spacing={5}>
-            <Link underline="none" href="/discover" color="#ffffff">
-              Discover
-            </Link>
-            <Link underline="none" href="/about" color="#ffffff">
-              Search
-            </Link>
-            <Link underline="none" href="/about" color="#ffffff">
-              About
-            </Link>
-          </Stack>
-        </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Stack
             width="100%"
             direction="row"
             height="100%"
             alignItems="center"
             justifyContent="flex-end"
-            spacing={2}
+            spacing={1}
           >
+            <IconButton href="/discover" color="secondary">
+              <HomeIcon />
+            </IconButton>
+            <IconButton href="/about" color="secondary">
+              <HelpIcon />
+            </IconButton>
             <Button
               className={classes.userIcon}
               variant="outlined"
@@ -71,13 +82,13 @@ const Navigation = () => {
               <PersonIcon />
               <Typography marginLeft={0.5}>{sessionUser.username}</Typography>
             </Button>
-            <Button
+            {/* <Button
               variant="contained"
               color="secondary"
               onClick={handleLogout}
             >
               Log out
-            </Button>
+            </Button> */}
           </Stack>
         </Grid>
       </Grid>

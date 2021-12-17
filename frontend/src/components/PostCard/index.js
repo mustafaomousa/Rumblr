@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Button,
   Card,
   CardContent,
   CardHeader,
@@ -8,16 +9,19 @@ import {
   Grid,
   IconButton,
   Link,
+  Stack,
   Typography,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import DeletePost from "./DeletePost";
-import EditPost from "../EditPost";
+import EditPost from "./EditPost";
 import Notification from "../Notification";
 import { makeStyles } from "@mui/styles";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -32,16 +36,16 @@ const PostCard = ({ post }) => {
   const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
   const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
+  const [liked, setLiked] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
   const closeAlertUpdateBodySuccess = () => setSuccessNotificationOpen(false);
   const alertUpdateBodySuccess = () => setSuccessNotificationOpen(true);
-  const closeProfileDrawer = () => setProfileDrawerOpen(false);
-  const openProfileDrawer = () => setProfileDrawerOpen(true);
   const closeEditOpen = () => setEditOpen(false);
   const openEditOpen = () => setEditOpen(true);
+  const like = () => setLiked(true);
+  const dislike = () => setLiked(false);
 
   return (
     <Grid container direction="row" justifyContent="flex-end" spacing={2}>
@@ -103,7 +107,20 @@ const PostCard = ({ post }) => {
                 alertUpdateBodySuccess={alertUpdateBodySuccess}
               />
             ) : (
-              <Typography>{post.body}</Typography>
+              <Stack spacing={2}>
+                <Typography variant="body1" gutterBottom={10}>
+                  {post.body}
+                </Typography>
+                <Stack alignItems="flex-end">
+                  <Button color="warning">
+                    {liked ? (
+                      <FavoriteIcon onClick={dislike} />
+                    ) : (
+                      <FavoriteBorderIcon onClick={like} />
+                    )}
+                  </Button>
+                </Stack>
+              </Stack>
             )}
           </CardContent>
         </Card>
