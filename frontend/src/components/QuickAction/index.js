@@ -43,16 +43,6 @@ const QuickAction = () => {
             alertCreatePostSuccess={alertCreatePostSuccess}
           />
         </Modal>
-        <SpeedDial
-          ariaLabel="Hello"
-          sx={{
-            position: "fixed",
-            bottom: 30,
-            right: 30,
-          }}
-          icon={<CreateIcon />}
-          onClick={() => setCreatePostVisible(true)}
-        />
       </Box>
     );
 

@@ -9,11 +9,17 @@ import {
   Grid,
   Link,
   IconButton,
+  Modal,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/PersonRounded";
 import HelpIcon from "@mui/icons-material/Help";
 import * as sessionActions from "../../store/session";
 import HomeIcon from "@mui/icons-material/Home";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useState } from "react";
+import { Box } from "@mui/system";
+import Notification from "../Notification";
+import CreatePost from "../CreatePost";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -37,6 +43,11 @@ const Navigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const [createPostVisible, setCreatePostVisible] = useState(false);
+  const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
+  const closeAlertCreatePostSuccess = () => setSuccessNotificationOpen(false);
+  const alertCreatePostSuccess = () => setSuccessNotificationOpen(true);
 
   const handleLogout = async () => {
     dispatch(sessionActions.logout());
@@ -68,13 +79,14 @@ const Navigation = () => {
             justifyContent="flex-end"
             spacing={1}
           >
-            <IconButton href="/discover" color="secondary">
+            <Button href="/discover" color="secondary">
               <HomeIcon />
-            </IconButton>
-            <IconButton href="/about" color="secondary">
+            </Button>
+            <Button href="/about" color="secondary">
               <HelpIcon />
-            </IconButton>
+            </Button>
             <Button
+              size="small"
               className={classes.userIcon}
               variant="outlined"
               color="secondary"
@@ -82,13 +94,36 @@ const Navigation = () => {
               <PersonIcon />
               <Typography marginLeft={0.5}>{sessionUser.username}</Typography>
             </Button>
-            {/* <Button
+            <Button
+              size="small"
               variant="contained"
               color="secondary"
-              onClick={handleLogout}
+              onClick={() => setCreatePostVisible(true)}
             >
-              Log out
-            </Button> */}
+              <AddCircleOutlineIcon />
+              <Box>
+                <Notification
+                  open={successNotificationOpen}
+                  handleClose={closeAlertCreatePostSuccess}
+                  message={"Post created"}
+                />
+                <Modal
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  open={createPostVisible}
+                  onClose={() => setCreatePostVisible(false)}
+                >
+                  <CreatePost
+                    user={sessionUser}
+                    setCreatePostVisible={setCreatePostVisible}
+                    alertCreatePostSuccess={alertCreatePostSuccess}
+                  />
+                </Modal>
+              </Box>
+            </Button>
           </Stack>
         </Grid>
       </Grid>
