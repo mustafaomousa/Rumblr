@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 import WelcomePage from "./components/WelcomePage";
-import AboutUsPage from "./components/AboutUsPage";
+import AboutUs from "./components/AboutUs";
 import QuickAction from "./components/QuickAction";
 import SettingsPage from "./components/SettingsPage";
 import { createTheme } from "@mui/system";
@@ -28,7 +28,7 @@ function App() {
         <QuickAction />
         <Switch>
           <Route exact path="/" component={WelcomePage} />
-          <Route path="/about" component={AboutUsPage} />
+          <Route path="/about" component={AboutUs} />
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/settings" component={SettingsPage} />
           <Route exact path="/results" />
