@@ -12,6 +12,8 @@ import configureStore from "./store";
 import { restoreCSRF, fetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import * as postActions from "./store/post";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/system";
 
 const store = configureStore();
 
@@ -24,12 +26,25 @@ if (process.env.NODE_ENV !== "production") {
   window.postActions = postActions;
 }
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#333A56",
+    },
+  },
+  typography: {
+    fontFamily: "Montserrat",
+  },
+});
+
 function Root() {
   return (
     <ReduxProvider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </ReduxProvider>
   );
 }

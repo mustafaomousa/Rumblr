@@ -1,11 +1,32 @@
 import { useState } from "react";
 
-import LoginFormPage from "./LoginFormPage";
-import SignupFormPage from "./SignupFormPage";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
-import "./index.css";
+import { Box } from "@mui/system";
+import { makeStyles } from "@mui/styles";
+import { Button, Stack, Typography } from "@mui/material";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    position: "fixed",
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    margin: "auto",
+    width: 450,
+    height: 500,
+  },
+}));
 
 const WelcomePage = () => {
+  const classes = useStyles();
+
   const [showLogin, setShowLogin] = useState(true);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -20,10 +41,22 @@ const WelcomePage = () => {
   };
 
   return (
-    <div className="welcome-page">
-      {showLogin && <LoginFormPage switchToSignup={switchToSignup} />}
-      {showSignup && <SignupFormPage switchToLogin={switchToLogin} />}
-    </div>
+    <Box className={classes.root}>
+      <Typography fontSize="70px" color="#333A56" fontWeight="bold">
+        Rumblr
+      </Typography>
+      {showLogin && <LoginForm />}
+      {showSignup && <SignupForm switchToLogin={switchToLogin} />}
+      <Stack alignItems="flex-end" width={305}>
+        <Button
+          size="small"
+          variant="text"
+          onClick={showLogin ? switchToSignup : switchToLogin}
+        >
+          {showLogin ? "Don't have an account?" : "Already have an account?"}
+        </Button>
+      </Stack>
+    </Box>
   );
 };
 

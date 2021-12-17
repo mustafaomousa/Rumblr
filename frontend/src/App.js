@@ -9,6 +9,7 @@ import WelcomePage from "./components/WelcomePage";
 import AboutUsPage from "./components/AboutUsPage";
 import QuickAction from "./components/QuickAction";
 import SettingsPage from "./components/SettingsPage";
+import { createTheme } from "@mui/system";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,14 +23,7 @@ function App() {
 
   return (
     isLoaded && (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <>
         {sessionUser && <Navigation />}
         <div>
           <QuickAction />
@@ -41,7 +35,7 @@ function App() {
             <Route exact path="/results" />
           </Switch>
         </div>
-      </div>
+      </>
     )
   );
 }

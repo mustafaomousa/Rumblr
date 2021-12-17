@@ -5,11 +5,6 @@
   text-align: center;
 }
 
-#root {
-  min-width: 100vw;
-  min-height: 100vh;
-}
-
 body {
-  background-color: #301934fb;
+  background-color: #e8e8e8;
 }
