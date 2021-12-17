@@ -10,6 +10,9 @@ import {
   Link,
   IconButton,
   Modal,
+  Menu,
+  MenuItem,
+  Avatar,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/PersonRounded";
 import HelpIcon from "@mui/icons-material/Help";
@@ -43,6 +46,17 @@ const Navigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const [createPostVisible, setCreatePostVisible] = useState(false);
   const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
@@ -87,13 +101,50 @@ const Navigation = () => {
             </Button>
             <Button
               size="small"
+              id="user-button"
+              aria-controls="user-menu"
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
               className={classes.userIcon}
               variant="outlined"
               color="secondary"
             >
               <PersonIcon />
               <Typography marginLeft={0.5}>{sessionUser.username}</Typography>
-            </Button>
+            </Button>{" "}
+            <Menu
+              id="user-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClick={handleClose}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "user-button",
+              }}
+              PaperProps={{}}
+              sx={{ marginTop: 1 }}
+            >
+              <Stack
+                direction="row"
+                padding="0px 20px"
+                alignItems="center"
+                spacing={2}
+              >
+                <Avatar
+                  variant="square"
+                  sx={{ width: 100, height: 100 }}
+                  src={sessionUser.profilePicture}
+                />
+                <Stack alignItems="center">
+                  <MenuItem sx={{ width: "100%" }}>Profile</MenuItem>
+                  <MenuItem sx={{ width: "100%" }}>My account</MenuItem>
+                  <MenuItem sx={{ width: "100%" }} onClick={handleLogout}>
+                    Logout
+                  </MenuItem>
+                </Stack>
+              </Stack>
+            </Menu>
             <Button
               size="small"
               variant="contained"
