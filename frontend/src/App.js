@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
 import Navigation from "./components/Navigation";
-import DiscoverPage from "./components/DiscoverPage";
 import * as sessionActions from "./store/session";
 import WelcomePage from "./components/WelcomePage";
 import AboutUsPage from "./components/AboutUsPage";
 import QuickAction from "./components/QuickAction";
 import SettingsPage from "./components/SettingsPage";
 import { createTheme } from "@mui/system";
+import Discover from "./components/Discover";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={WelcomePage} />
           <Route path="/about" component={AboutUsPage} />
-          <Route exact path="/discover" component={DiscoverPage} />
+          <Route exact path="/discover" component={Discover} />
           <Route exact path="/settings" component={SettingsPage} />
           <Route exact path="/results" />
         </Switch>

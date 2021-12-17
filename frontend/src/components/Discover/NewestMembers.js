@@ -13,8 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getNewestUsers } from "../../store/discover";
 
-import "./index.css";
-
 const NewestMembers = () => {
   const dispatch = useDispatch();
 
