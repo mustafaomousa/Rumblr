@@ -25,14 +25,14 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: 500,
+    width: 550,
   },
   cardHeader: {
     backgroundColor: "#333A56",
   },
 }));
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, width }) => {
   const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -48,84 +48,80 @@ const PostCard = ({ post }) => {
   const dislike = () => setLiked(false);
 
   return (
-    <Grid container direction="row" justifyContent="flex-end" spacing={2}>
-      <Grid item>
-        <Link href={`/user/${post.User.username}`}>
-          <Avatar
-            variant="square"
-            src={post.User.profilePicture}
-            sx={{ height: 60, width: 60 }}
+    <Card className={width ? width : classes.root}>
+      <Notification
+        open={successNotificationOpen}
+        handleClose={closeAlertUpdateBodySuccess}
+        message={"Post updated"}
+      />
+      <CardHeader
+        avatar={
+          <Link href={`/user/${post.User.username}`}>
+            <Avatar
+              variant="square"
+              src={post.User.profilePicture}
+              sx={{ height: 60, width: 60 }}
+            />
+          </Link>
+        }
+        className={classes.cardHeader}
+        action={
+          sessionUser.id === post.User.id && (
+            <>
+              <IconButton aria-describedby="delete-post" color="secondary">
+                <DeletePost postId={post.id} />
+              </IconButton>
+              {editOpen ? (
+                <IconButton onClick={closeEditOpen} color="secondary">
+                  <CancelTwoToneIcon sx={{ color: "red" }} />
+                </IconButton>
+              ) : (
+                <IconButton onClick={openEditOpen} color="secondary">
+                  <EditIcon />
+                </IconButton>
+              )}
+            </>
+          )
+        }
+        title={
+          <Link
+            underline="hover"
+            href={`/user/${post.User.username}`}
+            fontWeight="bold"
+            fontSize="medium"
+            color="#ffffff"
+          >
+            {post.User.username}
+          </Link>
+        }
+      />
+      <CardMedia component="img" image={post.content} alt="image" />
+      <Divider />
+      <CardContent>
+        {editOpen ? (
+          <EditPost
+            post={post}
+            closeEditOpen={closeEditOpen}
+            alertUpdateBodySuccess={alertUpdateBodySuccess}
           />
-        </Link>
-      </Grid>
-      <Grid item>
-        <Card className={classes.root}>
-          <Notification
-            open={successNotificationOpen}
-            handleClose={closeAlertUpdateBodySuccess}
-            message={"Post updated"}
-          />
-          <CardHeader
-            className={classes.cardHeader}
-            action={
-              sessionUser.id === post.User.id && (
-                <>
-                  <IconButton aria-describedby="delete-post" color="secondary">
-                    <DeletePost postId={post.id} />
-                  </IconButton>
-                  {editOpen ? (
-                    <IconButton onClick={closeEditOpen} color="secondary">
-                      <CancelTwoToneIcon sx={{ color: "red" }} />
-                    </IconButton>
-                  ) : (
-                    <IconButton onClick={openEditOpen} color="secondary">
-                      <EditIcon />
-                    </IconButton>
-                  )}
-                </>
-              )
-            }
-            title={
-              <Link
-                underline="hover"
-                href={`/user/${post.User.username}`}
-                fontWeight="bold"
-                fontSize="medium"
-                color="#ffffff"
-              >
-                {post.User.username}
-              </Link>
-            }
-          />
-          <CardMedia component="img" image={post.content} alt="image" />
-          <Divider />
-          <CardContent>
-            {editOpen ? (
-              <EditPost
-                post={post}
-                closeEditOpen={closeEditOpen}
-                alertUpdateBodySuccess={alertUpdateBodySuccess}
-              />
-            ) : (
-              <Stack spacing={2}>
-                <Typography variant="body1" gutterBottom={10}>
-                  {post.body}
-                </Typography>
-                <Stack alignItems="flex-end">
-                  <Button color="warning">
-                    {liked ? (
-                      <FavoriteIcon onClick={dislike} />
-                    ) : (
-                      <FavoriteBorderIcon onClick={like} />
-                    )}
-                  </Button>
-                </Stack>
-              </Stack>
-            )}
-          </CardContent>
-        </Card>
-      </Grid>
-    </Grid>
+        ) : (
+          <Stack spacing={2}>
+            <Typography variant="body1" gutterBottom={10}>
+              {post.body}
+            </Typography>
+            <Stack alignItems="flex-end">
+              <Button color="warning">
+                {liked ? (
+                  <FavoriteIcon onClick={dislike} />
+                ) : (
+                  <FavoriteBorderIcon onClick={like} />
+                )}
+              </Button>
+            </Stack>
+          </Stack>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 

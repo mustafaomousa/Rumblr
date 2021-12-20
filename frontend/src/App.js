@@ -10,6 +10,7 @@ import QuickAction from "./components/QuickAction";
 import SettingsPage from "./components/SettingsPage";
 import { createTheme } from "@mui/system";
 import Discover from "./components/Discover";
+import Profile from "./components/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/settings" component={SettingsPage} />
           <Route exact path="/results" />
+          <Route exact path="/user/:username" component={Profile} />
         </Switch>
       </>
     )

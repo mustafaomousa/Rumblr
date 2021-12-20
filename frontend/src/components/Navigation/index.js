@@ -107,12 +107,14 @@ const Navigation = () => {
               aria-expanded={open ? "true" : undefined}
               onClick={handleClick}
               className={classes.userIcon}
-              variant="outlined"
+              // variant="outlined"
               color="secondary"
             >
               <PersonIcon />
-              <Typography marginLeft={0.5}>{sessionUser.username}</Typography>
-            </Button>{" "}
+              <Typography marginLeft={0.5} marginRight={0.5}>
+                {sessionUser.username}
+              </Typography>
+            </Button>
             <Menu
               id="user-menu"
               anchorEl={anchorEl}
@@ -122,21 +124,27 @@ const Navigation = () => {
               MenuListProps={{
                 "aria-labelledby": "user-button",
               }}
-              PaperProps={{}}
               sx={{ marginTop: 1 }}
             >
               <Stack
-                direction="row"
+                direction="column"
                 padding="0px 20px"
                 alignItems="center"
                 spacing={2}
               >
-                <Avatar
-                  variant="square"
-                  sx={{ width: 100, height: 100 }}
-                  src={sessionUser.profilePicture}
-                />
-                <Stack alignItems="center">
+                <Stack
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="start"
+                  spacing={2}
+                >
+                  <Avatar
+                    variant="square"
+                    sx={{ width: 100, height: 100 }}
+                    src={sessionUser.profilePicture}
+                  />
+                </Stack>
+                <Stack alignItems="center" width="100%">
                   <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
                     <Link
                       underline="none"

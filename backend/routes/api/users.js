@@ -37,12 +37,14 @@ router.get(
 );
 
 router.get(
-  "/:userId",
+  "/:username",
   asyncHandler(async (req, res) => {
-    const { userId } = req.params;
-    const user = await User.findByPk(userId, { include: Post });
-    const posts = await Post.findAll({ where: { userId: userId } });
-    return res.json({ user: { user, posts } });
+    const { username } = req.params;
+    const user = await User.findOne({
+      where: { username },
+      include: [{ model: Post, include: User }],
+    });
+    return res.json({ user });
   })
 );
 
