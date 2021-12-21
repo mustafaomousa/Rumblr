@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     justifyContent: "center",
     padding: "0 30px",
-    height: 60,
+    height: 65,
   },
   searchInput: {
     width: 200,
@@ -81,7 +81,9 @@ const Navigation = () => {
             color="secondary"
             underline="none"
           >
-            R
+            <Typography variant="h4" fontWeight={"bold"}>
+              Rumblr
+            </Typography>
           </Link>
         </Grid>
         <Grid item xs={6}>
@@ -128,23 +130,11 @@ const Navigation = () => {
             >
               <Stack
                 direction="column"
-                padding="0px 20px"
+                padding="10px 20px"
                 alignItems="center"
-                spacing={2}
+                spacing={1}
                 width={200}
               >
-                <Stack
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="start"
-                  spacing={2}
-                >
-                  <Avatar
-                    variant="square"
-                    sx={{ width: 100, height: 100 }}
-                    src={sessionUser.profilePicture}
-                  />
-                </Stack>
                 <Stack alignItems="center" width="100%">
                   <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
                     <Link
@@ -154,7 +144,10 @@ const Navigation = () => {
                       Profile
                     </Link>
                   </MenuItem>
-                  <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
+                  <MenuItem
+                    sx={{ width: "100%", justifyContent: "center" }}
+                    disabled
+                  >
                     <Link underline="none" href="/settings">
                       Settings
                     </Link>

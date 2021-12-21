@@ -42,7 +42,11 @@ const Discover = () => {
               return <PostCard key={idx} post={posts[idx]} />;
             })}
             {Object.keys(posts).length % 5 === 0 && (
-              <Button variant="contained" onClick={increaseLimit}>
+              <Button
+                variant="contained"
+                onClick={increaseLimit}
+                sx={{ width: 580, marginRight: "10px" }}
+              >
                 Load more
               </Button>
             )}

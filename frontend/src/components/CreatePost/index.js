@@ -3,23 +3,22 @@ import { useDispatch } from "react-redux";
 import {
   Card,
   Button,
-  TextField,
   CardContent,
   CardActions,
-  IconButton,
   Input,
   CardMedia,
+  Typography,
 } from "@mui/material";
 import { createNewPost } from "../../store/post";
 import SendIcon from "@mui/icons-material/Send";
-
+import ImageIcon from "@mui/icons-material/Image";
 import S3FileUpload from "react-s3";
+import useGlobalStyles from "../useGlobalStyles";
 
 const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
   const dispatch = useDispatch();
-
+  const globalStyles = useGlobalStyles();
   const [body, setBody] = useState("");
-  const [uploadProgress, setUploadProgress] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
 
   const updateSelectedImage = (e) => setSelectedImage(e.target.files[0]);
@@ -52,7 +51,10 @@ const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
   };
 
   return (
-    <Card className="CreatePost" sx={{ width: "500px", marginBottom: "20px" }}>
+    <Card
+      className="CreatePost"
+      sx={{ width: "500px", marginBottom: "20px", backgroundColor: "#52658F" }}
+    >
       <form>
         <CardContent>
           {selectedImage && (
@@ -70,30 +72,37 @@ const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
             />
             {!selectedImage && (
               <Button
+                color="secondary"
+                variant="contained"
                 sx={{
                   width: "100%",
-                  minHeight: "200px",
-                  border: "1px slategray dotted",
+                  height: "200px",
                 }}
                 component="span"
               >
-                Upload
+                <ImageIcon color="primary" />
               </Button>
             )}
           </label>
-          <TextField
-            size="small"
+          <Input
+            disableUnderline
+            className={globalStyles.input}
+            multiline
             onChange={updateBody}
             value={body}
             label="Body"
-            multiline
-            sx={{ width: "100%", marginTop: "10px" }}
+            sx={{
+              width: "100%",
+              marginTop: "10px",
+              padding: 1,
+            }}
           />
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <IconButton>
-            <SendIcon onClick={onSubmit} />
-          </IconButton>
+          <Button type="submit" variant="contained" onClick={onSubmit}>
+            <SendIcon sx={{ marginRight: 1 }} />
+            <Typography>Post</Typography>
+          </Button>
         </CardActions>
       </form>
     </Card>

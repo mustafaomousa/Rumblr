@@ -82,9 +82,15 @@ const Profile = () => {
             <Grid item xs={4} padding={"0px 20px"}></Grid>
             <Grid xs={4} padding={"0px 20px"} marginTop={2} marginBottom={2}>
               <Stack spacing={2}>
-                <Button variant="outlined">Follow</Button>
-                <Button variant="outlined">Like</Button>
-                <Button variant="outlined">Message</Button>
+                <Button variant="outlined" disabled>
+                  Follow
+                </Button>
+                <Button variant="outlined" disabled>
+                  Like
+                </Button>
+                <Button variant="outlined" disabled>
+                  Message
+                </Button>
               </Stack>
             </Grid>
           </Grid>
