@@ -13,7 +13,7 @@ import { getRandomPost } from "../../store/discover";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: "400px",
+    width: "500px",
   },
   cardHeader: {
     backgroundColor: "#333A56",

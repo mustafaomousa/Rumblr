@@ -3,7 +3,10 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Container,
   Divider,
+  Grid,
+  Button,
   Skeleton,
   Stack,
   Typography,
@@ -20,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: "120px 50px",
     margin: "0 auto",
-    maxWidth: "1200px",
+    maxWidth: "1300px",
   },
 }));
 
@@ -39,51 +42,75 @@ const Profile = () => {
   }, []);
 
   return (
-    <Stack className={classes.root} alignItems="center">
-      <Card
-        sx={{
-          width: "100%",
-        }}
-      >
-        <CardHeader
-          avatar={
-            userProfile ? (
-              <Avatar src={userProfile.profilePicture} />
-            ) : (
-              <Skeleton width="30px" height="50px" />
-            )
-          }
-          title={
-            userProfile ? (
-              <Typography>{userProfile.username}</Typography>
-            ) : (
-              <Skeleton height={50} width={150} />
-            )
-          }
-        />
-        <Divider />
-        <CardContent>
-          {userProfile ? (
-            <>
-              <Typography variant="h5" gutterBottom={3}>
-                {userProfile.username}'s bio
-              </Typography>
-              <Typography gutterBottom={6}>{userProfile.bio}</Typography>
-            </>
-          ) : (
-            <>
-              <Skeleton width={200} height={50} />
-              <Skeleton height={50} />
-            </>
-          )}
-        </CardContent>
-      </Card>
-      <Stack marginTop={3} spacing={3} alignItems="center" direction="column">
-        {userProfile &&
-          userProfile.Posts.map((post) => (
-            <PostCard post={post} width={"100%"} />
-          ))}
-      </Stack>
+    <Stack direction="column" className={classes.root}>
+      {userProfile && (
+        <Container
+          sx={{
+            border: "1px solid black",
+            backgroundColor: "#333A56",
+            paddingBottom: 10,
+            borderRadius: 1,
+          }}
+        >
+          <Container
+            align="center"
+            sx={{
+              height: 100,
+            }}
+          >
+            <Avatar
+              sx={{
+                height: 150,
+                width: 150,
+                border: "5px solid #333A56",
+                position: "relative",
+                top: 20,
+              }}
+            />
+          </Container>
+          <Grid container sx={{ backgroundColor: "#ffffff", borderRadius: 1 }}>
+            <Grid item xs={4} padding={"20px 20px"}>
+              <Stack sx={{ height: "100%" }} alignItems="flex-end">
+                <Typography variant="h2" noWrap>
+                  {userProfile.username}
+                </Typography>
+                <Typography align="end" paragraph variant="body2" mt={2}>
+                  {userProfile.bio}
+                </Typography>
+              </Stack>
+            </Grid>
+            <Grid item xs={4} padding={"0px 20px"}></Grid>
+            <Grid xs={4} padding={"0px 20px"} marginTop={2} marginBottom={2}>
+              <Stack spacing={2}>
+                <Button variant="outlined">Follow</Button>
+                <Button variant="outlined">Like</Button>
+                <Button variant="outlined">Message</Button>
+              </Stack>
+            </Grid>
+          </Grid>
+          <Grid
+            direction="row"
+            container
+            marginTop={2}
+            sx={{ backgroundColor: "#ffffff", borderRadius: 1 }}
+          >
+            {userProfile.Posts.map((post) => (
+              <Grid
+                item
+                xs={12}
+                md={6}
+                lg={4}
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                }}
+              >
+                <PostCard post={post} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      )}
     </Stack>
   );
 };

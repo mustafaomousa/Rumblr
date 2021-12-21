@@ -25,7 +25,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: 550,
+    width: 580,
+    margin: "10px 10px",
   },
   cardHeader: {
     backgroundColor: "#333A56",
@@ -97,7 +98,13 @@ const PostCard = ({ post, width }) => {
       />
       <CardMedia component="img" image={post.content} alt="image" />
       <Divider />
-      <CardContent>
+      <CardContent
+        sx={{
+          display: "flex",
+          width: "100%",
+          height: "100%",
+        }}
+      >
         {editOpen ? (
           <EditPost
             post={post}
@@ -105,19 +112,23 @@ const PostCard = ({ post, width }) => {
             alertUpdateBodySuccess={alertUpdateBodySuccess}
           />
         ) : (
-          <Stack spacing={2}>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="flex-start"
+            width="100%"
+            paddingRight="10px"
+          >
             <Typography variant="body1" gutterBottom={10}>
               {post.body}
             </Typography>
-            <Stack alignItems="flex-end">
-              <Button color="warning">
-                {liked ? (
-                  <FavoriteIcon onClick={dislike} />
-                ) : (
-                  <FavoriteBorderIcon onClick={like} />
-                )}
-              </Button>
-            </Stack>
+            <Button color="warning">
+              {liked ? (
+                <FavoriteIcon onClick={dislike} />
+              ) : (
+                <FavoriteBorderIcon onClick={like} />
+              )}
+            </Button>
           </Stack>
         )}
       </CardContent>

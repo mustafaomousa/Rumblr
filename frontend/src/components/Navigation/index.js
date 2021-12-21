@@ -131,6 +131,7 @@ const Navigation = () => {
                 padding="0px 20px"
                 alignItems="center"
                 spacing={2}
+                width={200}
               >
                 <Stack
                   direction="row"

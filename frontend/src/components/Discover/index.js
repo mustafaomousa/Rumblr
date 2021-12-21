@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Button, Stack, Grid } from "@mui/material";
+import { Button, Stack, Grid, useMediaQuery } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
 import CheckoutPost from "./CheckoutPost";
 import NewestMembers from "./NewestMembers";
+import { useTheme } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles(() => ({
 const Discover = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const theme = useTheme();
   const [loadLimit, setLoadLimit] = useState(5);
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -33,9 +35,9 @@ const Discover = () => {
 
   return (
     <Grid className={classes.root} container direction="row">
-      <Grid item xs={0} md={7} lg={6} paddingRight={2}>
+      <Grid item xs={12} md={6}>
         {posts && (
-          <Stack spacing={1} alignItems="flex-end">
+          <Stack alignItems={"flex-end"}>
             {Object.keys(posts).map((idx) => {
               return <PostCard key={idx} post={posts[idx]} />;
             })}
@@ -47,8 +49,8 @@ const Discover = () => {
           </Stack>
         )}
       </Grid>
-      <Grid item xs={0} md={5} lg={6} paddingLeft={2}>
-        <Stack spacing={3} alignItems="flex-start">
+      <Grid item xs={12} md={6}>
+        <Stack spacing={3} className={classes.wigits}>
           <NewestMembers />
           <CheckoutPost />
         </Stack>
