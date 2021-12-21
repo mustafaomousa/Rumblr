@@ -11,6 +11,7 @@ import {
 import { makeStyles } from "@mui/styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { getNewestUsers } from "../../store/discover";
 
@@ -26,6 +27,7 @@ const useStyles = makeStyles(() => ({
 const NewestMembers = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const history = useHistory();
 
   const newestUsers = useSelector((state) => state.discover.newestUsers);
 
@@ -50,8 +52,10 @@ const NewestMembers = () => {
                 variant="outlined"
                 key={newestUser.id}
                 sx={{ justifyContent: "start" }}
+                onClick={() => history.push(`/user/${newestUser.username}`)}
               >
                 <Avatar
+                  variant="square"
                   src={newestUser.profilePicture}
                   sx={{ marginRight: 2 }}
                 />

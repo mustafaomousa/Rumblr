@@ -59,19 +59,22 @@ const Profile = () => {
             }}
           >
             <Avatar
+              variant="square"
+              src={userProfile.profilePicture}
               sx={{
                 height: 150,
                 width: 150,
-                border: "5px solid #333A56",
+                border: "15px solid #333A56",
                 position: "relative",
-                top: 20,
+                top: 0,
+                objectFit: "contain",
               }}
             />
           </Container>
           <Grid container sx={{ backgroundColor: "#ffffff", borderRadius: 1 }}>
             <Grid item xs={4} padding={"20px 20px"}>
-              <Stack sx={{ height: "100%" }} alignItems="flex-end">
-                <Typography variant="h2" noWrap>
+              <Stack sx={{ height: "100%" }}>
+                <Typography variant="h2" paragraph align="end">
                   {userProfile.username}
                 </Typography>
                 <Typography align="end" paragraph variant="body2" mt={2}>

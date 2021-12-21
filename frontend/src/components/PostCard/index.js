@@ -5,6 +5,7 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  Container,
   Divider,
   Grid,
   IconButton,
@@ -22,6 +23,8 @@ import EditPost from "./EditPost";
 import Notification from "../Notification";
 import { makeStyles } from "@mui/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import CommentIcon from "@mui/icons-material/Comment";
+import { Box } from "@mui/system";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -49,7 +52,7 @@ const PostCard = ({ post, width }) => {
   const dislike = () => setLiked(false);
 
   return (
-    <Card className={width ? width : classes.root}>
+    <Card className={classes.root}>
       <Notification
         open={successNotificationOpen}
         handleClose={closeAlertUpdateBodySuccess}
@@ -98,13 +101,7 @@ const PostCard = ({ post, width }) => {
       />
       <CardMedia component="img" image={post.content} alt="image" />
       <Divider />
-      <CardContent
-        sx={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-        }}
-      >
+      <CardContent>
         {editOpen ? (
           <EditPost
             post={post}
@@ -112,24 +109,35 @@ const PostCard = ({ post, width }) => {
             alertUpdateBodySuccess={alertUpdateBodySuccess}
           />
         ) : (
-          <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="flex-start"
-            width="100%"
-            paddingRight="10px"
-          >
-            <Typography variant="body1" gutterBottom={10}>
-              {post.body}
-            </Typography>
-            <Button color="warning">
-              {liked ? (
-                <FavoriteIcon onClick={dislike} />
-              ) : (
-                <FavoriteBorderIcon onClick={like} />
-              )}
-            </Button>
-          </Stack>
+          <Grid container spacing={1}>
+            <Grid item xs={9}>
+              <Box>
+                <Typography variant="body1" paragraph>
+                  {post.body}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid
+              item
+              xs={3}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Button variant="outlined" sx={{ marginBottom: 1 }}>
+                <CommentIcon />
+              </Button>
+              <Button
+                color="warning"
+                variant="outlined"
+                onClick={liked ? dislike : like}
+              >
+                {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </Button>
+            </Grid>
+          </Grid>
         )}
       </CardContent>
     </Card>
