@@ -21,10 +21,10 @@
 <p>Rumblr is a single page web application "Tumblr" clone where users can post vehicle related images along with a message.</p>
 
 <br />
-
+<!-- 
 [![Product Name Screen Shot][login-screenshot]](https://rumblr-solo-project.herokuapp.com/)
 
-[![Product Name Screen Shot][home-page-screenshot]](https://rumblr-solo-project.herokuapp.com/)
+[![Product Name Screen Shot][home-page-screenshot]](https://rumblr-solo-project.herokuapp.com/) -->
 
 ### Technologies Used
 
