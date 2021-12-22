@@ -112,7 +112,11 @@ const PostCard = ({ post, width }) => {
           <Grid container spacing={1}>
             <Grid item xs={9}>
               <Box>
-                <Typography variant="body1" paragraph>
+                <Typography
+                  variant="body1"
+                  sx={{ wordWrap: "break-word" }}
+                  paragraph
+                >
                   {post.body}
                 </Typography>
               </Box>

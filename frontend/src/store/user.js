@@ -1,6 +1,7 @@
 import { fetch } from "./csrf";
 
 const LOAD = "user/getUser";
+const UPDATE = "user/updateUser";
 
 const getProfileUser = (user) => {
   return {
@@ -22,7 +23,10 @@ const initialState = { profile_user: {} };
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
-      state.profile_user = action.payload;
+      state.profile_user = { ...action.payload };
+      return state;
+    case UPDATE:
+      state.profile_user = { ...state.profile_user, ...action.payload };
       return state;
     default:
       return state;

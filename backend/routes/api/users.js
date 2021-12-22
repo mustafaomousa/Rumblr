@@ -2,6 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
+const bcrypt = require("bcryptjs");
 
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User, Post } = require("../../db/models");
@@ -44,6 +45,23 @@ router.get(
       where: { username },
       include: [{ model: Post, include: User }],
     });
+    return res.json({ user });
+  })
+);
+
+router.put(
+  "/:userId",
+  asyncHandler(async (req, res) => {
+    let updatedUser = { ...req.body };
+    const { userId } = req.params;
+    const user = await User.findByPk(userId);
+    if (updatedUser.password) {
+      let hashedPassword = bcrypt.hashSync(updatedUser.password);
+      delete updatedUser.password;
+      updatedUser["hashedPassword"] = hashedPassword;
+    }
+    user.set(updatedUser);
+    await user.save();
     return res.json({ user });
   })
 );

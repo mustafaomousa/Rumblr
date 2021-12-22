@@ -80,6 +80,18 @@ export const updateProfilePicture =
     }
   };
 
+export const updateSessionUser = (userId, user) => async (dispatch) => {
+  const res = await fetch(`/api/users/${userId}`, {
+    method: "PUT",
+    body: JSON.stringify(user),
+  });
+
+  if (res.ok) {
+    console.log(res.data);
+    return dispatch(updateUser(res.data.user));
+  }
+};
+
 const sessionReducer = (state = initialState, action) => {
   let newState;
 
@@ -93,8 +105,7 @@ const sessionReducer = (state = initialState, action) => {
       newState.user = null;
       return newState;
     case UPDATE_USER:
-      newState = Object.assign({}, state);
-      newState.user = action.payload;
+      newState = { ...state, user: action.payload };
       return newState;
     default:
       return state;

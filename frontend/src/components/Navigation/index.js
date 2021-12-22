@@ -144,10 +144,7 @@ const Navigation = () => {
                       Profile
                     </Link>
                   </MenuItem>
-                  <MenuItem
-                    sx={{ width: "100%", justifyContent: "center" }}
-                    disabled
-                  >
+                  <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
                     <Link underline="none" href="/settings">
                       Settings
                     </Link>

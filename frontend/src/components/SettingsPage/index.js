@@ -1,37 +1,29 @@
 import {
   Avatar,
   Button,
-  Container,
-  Divider,
-  IconButton,
-  Input,
-  InputLabel,
-  ListItemIcon,
-  ListItemText,
-  MenuItem,
-  MenuList,
-  Paper,
+  Grid,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import AccountIcon from "@mui/icons-material/Person";
 import { Box } from "@mui/system";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import S3FileUpload from "react-s3";
-import { restoreUser, updateProfilePicture } from "../../store/session";
-import "./index.css";
-import AccountSettings from "./AccountSettings";
+import {
+  restoreUser,
+  updateProfilePicture,
+  updateSessionUser,
+} from "../../store/session";
+import { fetch } from "../../store/csrf";
+import useGlobalStyles from "../useGlobalStyles";
+import UpdateBio from "./UpdateBio";
+import UpdatePersonalInformation from "./UpdatePersonalInformation";
+import UpdatePassword from "./UpdatePassword";
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
+  const globalStyles = useGlobalStyles();
   const sessionUser = useSelector((state) => state.session.user);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [settingsView, setSettingsView] = useState(0);
-  const updateSelectedImage = (e) => setSelectedImage(e.target.files[0]);
-
-  const updateSettingsView = (viewNumber) => setSettingsView(viewNumber);
 
   const config = {
     bucketName: "rumblr-app",
@@ -51,45 +43,94 @@ const SettingsPage = () => {
       .then(() => restoreUser());
   };
 
+  const testupdateUsername = async () => {
+    await fetch(`/api/users/${sessionUser.username}`, {
+      method: "PUT",
+      body: JSON.stringify({ username: "demouser" }),
+    });
+  };
+
   return (
-    <div className="settings-page">
-      <Typography letterSpacing={2} color="white" padding={"10px 0px 50px 0px"}>
-        {sessionUser.username} - {sessionUser.email}
-      </Typography>
-      <AccountSettings
-        sessionUser={sessionUser}
-        updateProfilePic={updateProfilePic}
-        selectedImage={selectedImage}
-      />
-      <br />
-      <Box sx={{ width: "100%" }}>
-        <Box>
-          <InputLabel sx={{ color: "white" }}>New Password</InputLabel>
-          <TextField
-            variant="outlined"
-            size="small"
-            fullWidth
-            color="secondary"
-            sx={{ background: "white", borderRadius: "0.5em" }}
-          />
-        </Box>
-        <br />
-        <Box>
-          <InputLabel sx={{ color: "white" }}>Confirm Password</InputLabel>
-          <TextField
-            variant="outlined"
-            size="small"
-            fullWidth
-            color="secondary"
-            sx={{ background: "white", borderRadius: "0.5em" }}
-          />
-        </Box>
-        <br />
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="outlined">Change Password</Button>
-        </Box>
-      </Box>
-    </div>
+    <Grid container marginTop="100px" align="center" padding="0px 20px">
+      <Grid item xs={12}>
+        <Stack direction="column" maxWidth="1200px" align="start">
+          <Box sx={{ backgroundColor: "#333A56", padding: "10px 20px" }}>
+            <Typography variant="h5" color="secondary">
+              Account Settings
+            </Typography>
+          </Box>
+        </Stack>
+      </Grid>
+      <Grid item xs={12}>
+        <Stack direction="column" maxWidth="1200px" align="start">
+          <Box sx={{ border: "5px solid #333A56", padding: "10px 25px" }}>
+            <Grid container padding={2} spacing={3} gridAutoFlow={"row"}>
+              <Grid item xs={4}>
+                <Typography color="primary" variant="h6" gutterBottom={2}>
+                  Profile picture
+                </Typography>
+                <Avatar
+                  variant="square"
+                  sx={{
+                    width: "100%",
+                    height: "auto",
+                    background: "#ffffff",
+                    boxShadow:
+                      "rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px",
+                  }}
+                  src={sessionUser.profilePicture}
+                />
+                <Stack
+                  spacing={1}
+                  direction="row"
+                  justifyContent={"flex-end"}
+                  padding="10px 0px"
+                >
+                  <Button size="small" variant="contained">
+                    Select Image
+                  </Button>
+                  <Button color="warning" size="small" variant="contained">
+                    Delete
+                  </Button>
+                </Stack>
+              </Grid>
+              <Grid item xs={8}>
+                <UpdateBio
+                  sessionUser={sessionUser}
+                  updateSessionUser={updateSessionUser}
+                />
+              </Grid>
+            </Grid>
+            <Grid container padding={2} spacing={3} gridAutoFlow={"row"}>
+              <Grid item xs={4}>
+                <UpdatePersonalInformation
+                  sessionUser={sessionUser}
+                  updateSessionUser={updateSessionUser}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <UpdatePassword
+                  sessionUser={sessionUser}
+                  updateSessionUser={updateSessionUser}
+                />
+              </Grid>
+              <Grid item xs={4}>
+                <Stack justifyContent="flex-end" height="100%">
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="warning"
+                    disabled={sessionUser.username === "demo-user"}
+                  >
+                    Delete Account
+                  </Button>
+                </Stack>
+              </Grid>
+            </Grid>
+          </Box>
+        </Stack>
+      </Grid>
+    </Grid>
   );
 };
 
