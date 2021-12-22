@@ -30,10 +30,14 @@ router.get(
 
 router.get(
   "/random",
+  restoreUser,
   asyncHandler(async (req, res) => {
     const randomPost = await Post.findOne({
       order: sequelize.random(),
-      include: ["User", "Like"],
+      include: [
+        User,
+        { model: Like, where: { userId: req.user.id }, required: false },
+      ],
     });
     return res.json({ randomPost });
   })
@@ -52,7 +56,12 @@ router.post(
 
     const postId = post.dataValues.id;
 
-    const newPost = await Post.findByPk(postId, { include: [User, Like] });
+    const newPost = await Post.findByPk(postId, {
+      include: [
+        User,
+        { model: Like, where: { userId: req.user.id }, required: false },
+      ],
+    });
 
     return res.json({ newPost });
   })
@@ -64,7 +73,10 @@ router.put(
     const { postId, body } = req.body;
     const updatedPost = await Post.findOne({
       where: { id: postId },
-      include: ["User", "Like"],
+      include: [
+        User,
+        { model: Like, where: { userId: req.user.id }, required: false },
+      ],
     });
 
     updatedPost.update({ body: body });

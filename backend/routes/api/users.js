@@ -5,7 +5,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const bcrypt = require("bcryptjs");
 
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User, Post } = require("../../db/models");
+const { User, Post, Like } = require("../../db/models");
 
 const router = express.Router();
 
@@ -38,12 +38,20 @@ router.get(
 );
 
 router.get(
-  "/:username",
+  "/:userId",
   asyncHandler(async (req, res) => {
-    const { username } = req.params;
+    const { userId } = req.params;
     const user = await User.findOne({
-      where: { username },
-      include: [{ model: Post, include: User }],
+      where: { id: userId },
+      include: [
+        {
+          model: Post,
+          include: [
+            User,
+            { model: Like, where: { userId: userId }, required: false },
+          ],
+        },
+      ],
     });
     return res.json({ user });
   })

@@ -86,7 +86,7 @@ const PostCard = (props) => {
       />
       <CardHeader
         avatar={
-          <Link href={`/user/${post.User.username}`}>
+          <Link href={`/user/${post.User.id}`}>
             <Avatar
               variant="square"
               src={post.User.profilePicture}
@@ -120,7 +120,7 @@ const PostCard = (props) => {
         title={
           <Link
             underline="hover"
-            href={`/user/${post.User.username}`}
+            href={`/user/${post.User.id}`}
             fontWeight="bold"
             fontSize="medium"
             color="#ffffff"

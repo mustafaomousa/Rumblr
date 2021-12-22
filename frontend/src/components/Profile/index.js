@@ -30,12 +30,12 @@ const useStyles = makeStyles((theme) => ({
 const Profile = () => {
   const [userProfile, setUserProfile] = useState(null);
   const classes = useStyles();
-  const { username } = useParams();
+  const { userId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     (async () => {
-      await fetch(`/api/users/${username}`).then((res) =>
+      await fetch(`/api/users/${userId}`).then((res) =>
         setUserProfile(res.data.user)
       );
     })();

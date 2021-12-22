@@ -75,7 +75,7 @@ function App() {
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/settings" component={SettingsPage} />
           <Route exact path="/results" />
-          <Route exact path="/user/:username" component={Profile} />
+          <Route exact path="/user/:userId" component={Profile} />
         </Switch>
       </>
     )
