@@ -1,7 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Button, Alert, FormControl, Input, Grid, Stack } from "@mui/material";
+import {
+  Button,
+  Alert,
+  FormControl,
+  Input,
+  Grid,
+  Stack,
+  TextField,
+} from "@mui/material";
 
 import * as sessionActions from "../../../store/session";
 import { makeStyles } from "@mui/styles";
@@ -57,8 +65,9 @@ const LoginForm = () => {
       <Grid container direction="column" spacing={2}>
         <Grid item>
           <FormControl className={classes.formControl}>
-            <Input
-              placeholder="Username or Email"
+            <TextField
+              size="small"
+              label="Username or Email"
               className={globalStyles.input}
               disableUnderline
               onChange={updateCredential}
@@ -69,8 +78,9 @@ const LoginForm = () => {
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
-            <Input
-              placeholder="Password"
+            <TextField
+              size="small"
+              label="Password"
               className={globalStyles.input}
               disableUnderline
               type="password"
@@ -84,6 +94,7 @@ const LoginForm = () => {
           <FormControl className={classes.formControl}>
             <Stack direction="row" spacing={2} justifyContent="flex-end">
               <Button
+                size="small"
                 loading={sessionUser}
                 variant="contained"
                 onClick={onSubmit}
@@ -92,6 +103,7 @@ const LoginForm = () => {
                 Log in
               </Button>
               <Button
+                size="small"
                 loading={sessionUser}
                 variant="outlined"
                 className={globalStyles.button}

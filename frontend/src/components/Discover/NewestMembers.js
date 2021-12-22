@@ -43,13 +43,14 @@ const NewestMembers = () => {
           </Typography>
         }
       />
-      <Divider />
-      <CardContent>
-        <Stack spacing={2}>
+      <CardContent sx={{ backgroundColor: "#333A56" }}>
+        <Stack spacing={1}>
           {newestUsers &&
             newestUsers.map((newestUser) => (
               <Button
+                size="small"
                 variant="outlined"
+                color="secondary"
                 key={newestUser.id}
                 sx={{ justifyContent: "start" }}
                 onClick={() => history.push(`/user/${newestUser.username}`)}
@@ -59,8 +60,9 @@ const NewestMembers = () => {
                   src={newestUser.profilePicture}
                   sx={{ marginRight: 2 }}
                 />
-                <Typography>{newestUser.username}</Typography>
-                <Divider />
+                <Typography variant="subtitle2">
+                  {newestUser.username}
+                </Typography>
               </Button>
             ))}
         </Stack>

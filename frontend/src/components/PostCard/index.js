@@ -2,6 +2,7 @@ import {
   Avatar,
   Button,
   Card,
+  CardActionArea,
   CardContent,
   CardHeader,
   CardMedia,
@@ -19,6 +20,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import DeletePost from "./DeletePost";
+import moment from "moment";
 import EditPost from "./EditPost";
 import Notification from "../Notification";
 import { makeStyles } from "@mui/styles";
@@ -28,11 +30,10 @@ import { Box } from "@mui/system";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: 580,
-    margin: "10px 10px",
+    width: 450,
   },
   cardHeader: {
-    backgroundColor: "#333A56",
+    backgroundColor: "#53648F",
   },
 }));
 
@@ -64,7 +65,11 @@ const PostCard = ({ post, width }) => {
             <Avatar
               variant="square"
               src={post.User.profilePicture}
-              sx={{ height: 60, width: 60 }}
+              sx={{
+                height: 40,
+                width: 40,
+                backgroundColor: post.User.profilePicture && "#BDBDBD",
+              }}
             />
           </Link>
         }
@@ -77,7 +82,7 @@ const PostCard = ({ post, width }) => {
               </IconButton>
               {editOpen ? (
                 <IconButton onClick={closeEditOpen} color="secondary">
-                  <CancelTwoToneIcon sx={{ color: "red" }} />
+                  <CancelTwoToneIcon color="warning" />
                 </IconButton>
               ) : (
                 <IconButton onClick={openEditOpen} color="secondary">
@@ -101,7 +106,7 @@ const PostCard = ({ post, width }) => {
       />
       <CardMedia component="img" image={post.content} alt="image" />
       <Divider />
-      <CardContent>
+      <CardContent sx={{ background: "#53648F" }}>
         {editOpen ? (
           <EditPost
             post={post}
@@ -109,41 +114,42 @@ const PostCard = ({ post, width }) => {
             alertUpdateBodySuccess={alertUpdateBodySuccess}
           />
         ) : (
-          <Grid container spacing={1}>
-            <Grid item xs={9}>
-              <Box>
-                <Typography
-                  variant="body1"
-                  sx={{ wordWrap: "break-word" }}
-                  paragraph
-                >
-                  {post.body}
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid
-              item
-              xs={3}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-              }}
+          <Box>
+            <Typography
+              variant="body1"
+              sx={{ wordWrap: "break-word" }}
+              paragraph
+              color="secondary"
             >
-              <Button variant="outlined" sx={{ marginBottom: 1 }}>
-                <CommentIcon />
-              </Button>
-              <Button
-                color="warning"
-                variant="outlined"
-                onClick={liked ? dislike : like}
-              >
-                {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              </Button>
-            </Grid>
-          </Grid>
+              {post.body}
+            </Typography>
+          </Box>
         )}
       </CardContent>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="flex-end"
+        padding={1}
+        sx={{ background: "#53648F" }}
+      >
+        <Stack direction="row" spacing={1}>
+          <Button variant="contained" size="small">
+            <CommentIcon />
+          </Button>
+          <Button
+            color="warning"
+            variant="contained"
+            size="small"
+            onClick={liked ? dislike : like}
+          >
+            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          </Button>
+        </Stack>
+        <Typography color="secondary" variant="caption">
+          {moment(post.createdAt).format("MMMM DD, YYYY")}
+        </Typography>
+      </Stack>
     </Card>
   );
 };

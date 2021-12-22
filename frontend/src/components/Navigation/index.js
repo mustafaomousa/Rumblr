@@ -13,6 +13,8 @@ import {
   Menu,
   MenuItem,
   Avatar,
+  useScrollTrigger,
+  Zoom,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/PersonRounded";
 import HelpIcon from "@mui/icons-material/Help";
@@ -41,6 +43,43 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
 }));
+
+function ScrollTop(props) {
+  const { children, window } = props;
+  // Note that you normally won't need to set the window ref as useScrollTrigger
+  // will default to window.
+  // This is only being set here because the demo is in an iframe.
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+    disableHysteresis: true,
+    threshold: 100,
+  });
+
+  const handleClick = (event) => {
+    const anchor = (event.target.ownerDocument || document).querySelector(
+      "#back-to-top-anchor"
+    );
+
+    if (anchor) {
+      anchor.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
+
+  return (
+    <Zoom in={trigger}>
+      <Box
+        onClick={handleClick}
+        role="presentation"
+        sx={{ position: "fixed", bottom: 16, right: 16 }}
+      >
+        {children}
+      </Box>
+    </Zoom>
+  );
+}
 
 const Navigation = () => {
   const history = useHistory();
@@ -71,7 +110,7 @@ const Navigation = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <AppBar className={classes.root}>
+    <AppBar className={classes.root} boxShadow={0}>
       <Grid container alignItems="center">
         <Grid item xs={6}>
           <Link
@@ -136,19 +175,26 @@ const Navigation = () => {
                 width={200}
               >
                 <Stack alignItems="center" width="100%">
-                  <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
-                    <Link
-                      underline="none"
-                      href={`/user/${sessionUser.username}`}
-                    >
+                  <Link
+                    underline="none"
+                    href={`/user/${sessionUser.username}`}
+                    sx={{ width: "100%" }}
+                  >
+                    <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
                       Profile
-                    </Link>
-                  </MenuItem>
-                  <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
-                    <Link underline="none" href="/settings">
+                    </MenuItem>
+                  </Link>
+
+                  <Link
+                    underline="none"
+                    href="/settings"
+                    sx={{ width: "100%" }}
+                  >
+                    <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
                       Settings
-                    </Link>
-                  </MenuItem>
+                    </MenuItem>
+                  </Link>
+
                   <MenuItem
                     sx={{ width: "100%", justifyContent: "center" }}
                     onClick={handleLogout}

@@ -89,20 +89,12 @@ const Profile = () => {
                   Follow
                 </Button>
                 <Button variant="outlined" disabled>
-                  Like
-                </Button>
-                <Button variant="outlined" disabled>
                   Message
                 </Button>
               </Stack>
             </Grid>
           </Grid>
-          <Grid
-            direction="row"
-            container
-            marginTop={2}
-            sx={{ backgroundColor: "#ffffff", borderRadius: 1 }}
-          >
+          <Grid direction="row" container marginTop={2} spacing={2}>
             {userProfile.Posts.map((post) => (
               <Grid
                 item

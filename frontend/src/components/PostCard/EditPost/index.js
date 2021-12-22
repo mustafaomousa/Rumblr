@@ -25,14 +25,20 @@ const EditPost = ({ post, closeEditOpen, alertUpdateBodySuccess }) => {
   };
 
   return (
-    <form onSubmit={onSubmit} style={{ width: "90%" }}>
+    <form onSubmit={onSubmit}>
       <Stack direction="column" spacing={2}>
         <FormControl>
-          <TextField fullWidth multiline value={body} onChange={updateBody} />
+          <TextField
+            label="Body"
+            fullWidth
+            multiline
+            value={body}
+            onChange={updateBody}
+          />
         </FormControl>
         <FormControl>
           <Stack alignItems="flex-end">
-            <Button type="submit" variant="contained">
+            <Button size="small" type="submit" variant="contained">
               <Typography marginRight={1} variant="body2">
                 Update Post
               </Typography>

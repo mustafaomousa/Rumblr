@@ -1,4 +1,12 @@
-import { Button, Alert, Grid, FormControl, Input, Stack } from "@mui/material";
+import {
+  Button,
+  Alert,
+  Grid,
+  FormControl,
+  Input,
+  Stack,
+  TextField,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -61,8 +69,9 @@ const SignupForm = () => {
       <Grid container direction="column" spacing={2}>
         <Grid item>
           <FormControl className={classes.formControl}>
-            <Input
-              placeholder="Username"
+            <TextField
+              size="small"
+              label="Username"
               className={globalStyles.input}
               disableUnderline
               onChange={updateUsername}
@@ -73,8 +82,9 @@ const SignupForm = () => {
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
-            <Input
-              placeholder="Email"
+            <TextField
+              size="small"
+              label="Email"
               className={globalStyles.input}
               disableUnderline
               onChange={updateEmail}
@@ -85,8 +95,9 @@ const SignupForm = () => {
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
-            <Input
-              placeholder="Password"
+            <TextField
+              size="small"
+              label="Password"
               type="password"
               className={globalStyles.input}
               disableUnderline
@@ -98,8 +109,9 @@ const SignupForm = () => {
         </Grid>
         <Grid item>
           <FormControl className={classes.formControl}>
-            <Input
-              placeholder="Confirm password"
+            <TextField
+              size="small"
+              label="Confirm password"
               type="password"
               className={globalStyles.input}
               disableUnderline
@@ -113,6 +125,7 @@ const SignupForm = () => {
           <FormControl className={classes.formControl}>
             <Stack direction="row" spacing={2} justifyContent="flex-end">
               <Button
+                size="small"
                 loading={sessionUser}
                 variant="contained"
                 onClick={onSubmit}

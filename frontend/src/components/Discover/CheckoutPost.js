@@ -8,6 +8,7 @@ import {
 import { makeStyles } from "@mui/styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import PostCard from "../PostCard";
 
 import { getRandomPost } from "../../store/discover";
 
@@ -41,8 +42,16 @@ const CheckoutPost = () => {
               </Typography>
             }
           />
-          <CardMedia component="img" src={randomPost.content} />
-          <CardContent>{randomPost.body}</CardContent>
+          <CardContent
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#333A56",
+            }}
+          >
+            <PostCard post={randomPost} />
+          </CardContent>
         </>
       )}
     </Card>

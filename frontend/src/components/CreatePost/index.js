@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
-  Card,
   Button,
-  CardContent,
   CardActions,
   Input,
   CardMedia,
   Typography,
+  TextField,
+  Stack,
+  Container,
 } from "@mui/material";
 import { createNewPost } from "../../store/post";
 import SendIcon from "@mui/icons-material/Send";
@@ -51,23 +52,30 @@ const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
   };
 
   return (
-    <Card
-      className="CreatePost"
-      sx={{ width: "500px", marginBottom: "20px", backgroundColor: "#52658F" }}
-    >
-      <form>
-        <CardContent>
+    <form>
+      <Stack
+        padding={5}
+        spacing={3}
+        sx={{
+          width: "500px",
+          marginBottom: "20px",
+          backgroundColor: "#ffffff",
+          borderRadius: 1,
+        }}
+      >
+        <Container sx={{ width: "100%" }}>
           {selectedImage && (
             <CardMedia
+              sx={{ backgroundColor: "#ffffff", width: "100%" }}
               component="img"
               image={URL.createObjectURL(selectedImage)}
             />
           )}
-          <label>
+          <label style={{ width: "100%" }}>
             <Input
               accept="image/*"
               onChange={updateSelectedImage}
-              style={{ display: "none" }}
+              style={{ display: "none", width: "100%" }}
               type="file"
             />
             {!selectedImage && (
@@ -84,28 +92,24 @@ const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
               </Button>
             )}
           </label>
-          <Input
-            disableUnderline
-            className={globalStyles.input}
-            multiline
-            onChange={updateBody}
-            value={body}
-            label="Body"
-            sx={{
-              width: "100%",
-              marginTop: "10px",
-              padding: 1,
-            }}
-          />
-        </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button type="submit" variant="contained" onClick={onSubmit}>
-            <SendIcon sx={{ marginRight: 1 }} />
-            <Typography>Post</Typography>
-          </Button>
-        </CardActions>
-      </form>
-    </Card>
+        </Container>
+        <TextField
+          color="secondary"
+          className={globalStyles.input}
+          multiline
+          onChange={updateBody}
+          value={body}
+          label="Body"
+          sx={{
+            width: "100%",
+          }}
+        />
+        <Button type="submit" variant="contained" onClick={onSubmit}>
+          <SendIcon sx={{ marginRight: 1 }} />
+          <Typography>Post</Typography>
+        </Button>
+      </Stack>
+    </form>
   );
 };
 

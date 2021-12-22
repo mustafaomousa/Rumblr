@@ -41,7 +41,8 @@ const DeletePost = ({ postId }) => {
           }}
         >
           <Button
-            sx={{ backgroundColor: "red", mr: "10px" }}
+            color="warning"
+            sx={{ mr: "10px" }}
             variant="contained"
             onClick={deleteUserPost}
           >
