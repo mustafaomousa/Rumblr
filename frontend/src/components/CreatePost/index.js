@@ -15,8 +15,14 @@ import SendIcon from "@mui/icons-material/Send";
 import ImageIcon from "@mui/icons-material/Image";
 import S3FileUpload from "react-s3";
 import useGlobalStyles from "../useGlobalStyles";
+import { Box } from "@mui/system";
 
-const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
+const CreatePost = ({
+  user,
+  setCreatePostVisible,
+  alertCreatePostSuccess,
+  closeCreatePost,
+}) => {
   const dispatch = useDispatch();
   const globalStyles = useGlobalStyles();
   const [body, setBody] = useState("");
@@ -63,7 +69,7 @@ const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
           borderRadius: 1,
         }}
       >
-        <Container sx={{ width: "100%" }}>
+        <Box sx={{ width: "100%" }}>
           {selectedImage && (
             <CardMedia
               sx={{ backgroundColor: "#ffffff", width: "100%" }}
@@ -92,10 +98,9 @@ const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
               </Button>
             )}
           </label>
-        </Container>
+        </Box>
         <TextField
           color="secondary"
-          className={globalStyles.input}
           multiline
           onChange={updateBody}
           value={body}
@@ -104,10 +109,29 @@ const CreatePost = ({ user, setCreatePostVisible, alertCreatePostSuccess }) => {
             width: "100%",
           }}
         />
-        <Button type="submit" variant="contained" onClick={onSubmit}>
-          <SendIcon sx={{ marginRight: 1 }} />
-          <Typography>Post</Typography>
-        </Button>
+        <Stack direction="row" justifyContent="flex-end" spacing={1}>
+          <Button
+            size="small"
+            variant="contained"
+            color="warning"
+            onClick={
+              selectedImage ? () => setSelectedImage(null) : closeCreatePost
+            }
+          >
+            <Typography>
+              {selectedImage ? "Clear selection" : "Cancel"}
+            </Typography>
+          </Button>
+          <Button
+            size="small"
+            type="submit"
+            variant="contained"
+            onClick={onSubmit}
+          >
+            <SendIcon sx={{ marginRight: 1 }} />
+            <Typography>Post</Typography>
+          </Button>
+        </Stack>
       </Stack>
     </form>
   );

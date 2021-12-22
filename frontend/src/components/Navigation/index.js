@@ -15,6 +15,7 @@ import {
   Avatar,
   useScrollTrigger,
   Zoom,
+  Divider,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/PersonRounded";
 import HelpIcon from "@mui/icons-material/Help";
@@ -102,6 +103,8 @@ const Navigation = () => {
   const closeAlertCreatePostSuccess = () => setSuccessNotificationOpen(false);
   const alertCreatePostSuccess = () => setSuccessNotificationOpen(true);
 
+  const closeCreatePost = () => setCreatePostVisible(false);
+
   const handleLogout = async () => {
     dispatch(sessionActions.logout());
     return history.push("/");
@@ -177,7 +180,7 @@ const Navigation = () => {
                 <Stack alignItems="center" width="100%">
                   <Link
                     underline="none"
-                    href={`/user/${sessionUser.username}`}
+                    href={`/user/${sessionUser.id}`}
                     sx={{ width: "100%" }}
                   >
                     <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
@@ -194,13 +197,21 @@ const Navigation = () => {
                       Settings
                     </MenuItem>
                   </Link>
-
-                  <MenuItem
+                  <Divider />
+                  {/* <MenuItem
                     sx={{ width: "100%", justifyContent: "center" }}
+                    onClick={handleLogout}
+                  > */}
+                  <Button
+                    variant="contained"
+                    color="warning"
+                    size="small"
+                    sx={{ marginTop: 5, width: "100%" }}
                     onClick={handleLogout}
                   >
                     Logout
-                  </MenuItem>
+                  </Button>
+                  {/* </MenuItem> */}
                 </Stack>
               </Stack>
             </Menu>
@@ -217,23 +228,24 @@ const Navigation = () => {
                   handleClose={closeAlertCreatePostSuccess}
                   message={"Post created"}
                 />
-                <Modal
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                  open={createPostVisible}
-                  onClose={() => setCreatePostVisible(false)}
-                >
-                  <CreatePost
-                    user={sessionUser}
-                    setCreatePostVisible={setCreatePostVisible}
-                    alertCreatePostSuccess={alertCreatePostSuccess}
-                  />
-                </Modal>
               </Box>
             </Button>
+            <Modal
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              open={createPostVisible}
+              onClose={closeCreatePost}
+            >
+              <CreatePost
+                user={sessionUser}
+                setCreatePostVisible={setCreatePostVisible}
+                alertCreatePostSuccess={alertCreatePostSuccess}
+                closeCreatePost={closeCreatePost}
+              />
+            </Modal>
           </Stack>
         </Grid>
       </Grid>

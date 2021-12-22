@@ -45,6 +45,7 @@ router.get(
 
 router.post(
   "/",
+  restoreUser,
   asyncHandler(async (req, res) => {
     const { content, body, tags, userId } = req.body;
 
