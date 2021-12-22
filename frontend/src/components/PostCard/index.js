@@ -27,6 +27,7 @@ import { makeStyles } from "@mui/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import { Box } from "@mui/system";
+import { fetch } from "../../store/csrf";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -37,10 +38,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PostCard = ({ post, width }) => {
+const PostCard = (props) => {
   const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
 
+  const [post, setPost] = useState(props.post);
   const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
@@ -49,8 +51,31 @@ const PostCard = ({ post, width }) => {
   const alertUpdateBodySuccess = () => setSuccessNotificationOpen(true);
   const closeEditOpen = () => setEditOpen(false);
   const openEditOpen = () => setEditOpen(true);
-  const like = () => setLiked(true);
-  const dislike = () => setLiked(false);
+  // const like = () => setLiked(true);
+  // const dislike = () => setLiked(false);
+
+  const like = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/api/likes", {
+      method: "POST",
+      body: JSON.stringify({ postId: post.id, userId: sessionUser.id }),
+    });
+
+    if (res.ok) {
+      return setPost({ ...post, Likes: [res.data.like] });
+    }
+  };
+
+  const dislike = async (likeId) => {
+    const res = await fetch("/api/likes", {
+      method: "DELETE",
+      body: JSON.stringify({ likeId }),
+    });
+
+    if (res.ok) {
+      return setPost({ ...post, Likes: [] });
+    }
+  };
 
   return (
     <Card className={classes.root}>
@@ -139,11 +164,11 @@ const PostCard = ({ post, width }) => {
           </Button>
           <Button
             color="warning"
-            variant="contained"
+            variant={post.Likes.length ? "contained" : "outlined"}
             size="small"
-            onClick={liked ? dislike : like}
+            onClick={post.Likes.length ? () => dislike(post.Likes[0].id) : like}
           >
-            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {post.Likes.length ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </Button>
         </Stack>
         <Typography color="secondary" variant="caption">

@@ -6,15 +6,20 @@ const db = require("../../db/models");
 // const { handleValidationErrors } = require('../../utils/validation');
 
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post, User, sequelize } = require("../../db/models");
+const { Post, User, Like, sequelize } = require("../../db/models");
+const { restoreUser } = require("../../utils/auth");
 
 const router = express.Router();
 router.get(
   "/",
+  restoreUser,
   asyncHandler(async (req, res) => {
     const { limit } = req.query;
     const posts = await Post.findAll({
-      include: [User],
+      include: [
+        User,
+        { model: Like, where: { userId: req.user.id }, required: false },
+      ],
       order: [["createdAt", "DESC"]],
       limit,
     });
@@ -28,7 +33,7 @@ router.get(
   asyncHandler(async (req, res) => {
     const randomPost = await Post.findOne({
       order: sequelize.random(),
-      include: ["User"],
+      include: ["User", "Like"],
     });
     return res.json({ randomPost });
   })
@@ -47,7 +52,7 @@ router.post(
 
     const postId = post.dataValues.id;
 
-    const newPost = await Post.findByPk(postId, { include: [User] });
+    const newPost = await Post.findByPk(postId, { include: [User, Like] });
 
     return res.json({ newPost });
   })
@@ -59,7 +64,7 @@ router.put(
     const { postId, body } = req.body;
     const updatedPost = await Post.findOne({
       where: { id: postId },
-      include: "User",
+      include: ["User", "Like"],
     });
 
     updatedPost.update({ body: body });
