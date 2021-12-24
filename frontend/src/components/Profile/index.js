@@ -21,7 +21,7 @@ import PostCard from "../PostCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "120px 50px",
+    padding: "100px 50px",
     margin: "0 auto",
     maxWidth: "1300px",
   },
@@ -47,46 +47,63 @@ const Profile = () => {
         <Container
           sx={{
             paddingBottom: 10,
-            // borderRadius: 1,
           }}
         >
-          <Container
-            align="center"
-            sx={{
-              height: 100,
-            }}
-          >
-            <Avatar
-              variant="square"
-              src={userProfile.profilePicture}
-              sx={{
-                height: 150,
-                width: 150,
-                border: "15px solid #333A56",
-                position: "relative",
-                top: 0,
-                objectFit: "contain",
-              }}
-            />
-          </Container>
-          <Grid container sx={{ backgroundColor: "#ffffff" }}>
-            <Grid item xs={4} padding={"20px 20px"}>
-              <Stack sx={{ height: "100%" }}>
-                <Typography variant="h2" paragraph align="end">
-                  {userProfile.username}
-                </Typography>
-                <Typography align="end" paragraph variant="body2" mt={2}>
-                  {userProfile.bio}
-                </Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={8}>
+              <Stack
+                sx={{ height: "100%" }}
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="center"
+                spacing={2}
+              >
+                <Avatar
+                  variant="square"
+                  src={userProfile.profilePicture}
+                  sx={{
+                    height: 200,
+                    width: 200,
+                    objectFit: "contain",
+                  }}
+                />
+                <Stack
+                  direction="column"
+                  justifyContent="flex-end"
+                  height={"100%"}
+                >
+                  <Typography
+                    color="secondary"
+                    variant="h2"
+                    paragraph
+                    margin={0}
+                  >
+                    {userProfile.username}
+                  </Typography>
+                  <Typography
+                    color="secondary"
+                    align="start"
+                    paragraph
+                    variant="body1"
+                    margin={0}
+                  >
+                    {userProfile.bio}
+                  </Typography>
+                </Stack>
               </Stack>
             </Grid>
-            <Grid item xs={4} padding={"0px 20px"}></Grid>
-            <Grid xs={4} padding={"0px 20px"} marginTop={2} marginBottom={2}>
-              <Stack spacing={2}>
-                <Button variant="outlined" disabled>
+            <Grid xs={4}>
+              <Stack
+                spacing={2}
+                height="100%"
+                direction="row"
+                alignItems="flex-end"
+                justifyContent={"flex-end"}
+              >
+                <Button size="small" color="secondary" variant="outlined">
                   Follow
                 </Button>
-                <Button variant="outlined" disabled>
+                <Button size="small" color="secondary" variant="outlined">
                   Message
                 </Button>
               </Stack>

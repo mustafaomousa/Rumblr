@@ -25,7 +25,7 @@ const Discover = () => {
   useEffect(() => {
     if (!sessionUser) return <Redirect to="/" />;
     dispatch(getPosts(loadLimit));
-  }, [dispatch, loadLimit]);
+  }, [dispatch, loadLimit, sessionUser]);
 
   if (!sessionUser) return <Redirect to="/" />;
 
@@ -40,9 +40,11 @@ const Discover = () => {
               })}
               {Object.keys(posts).length % 5 === 0 && (
                 <Button
-                  variant="outlined"
+                  disableElevation
+                  color="secondary"
+                  variant="contained"
                   onClick={increaseLimit}
-                  sx={{ width: 450, marginRight: "10px" }}
+                  sx={{ width: 500, marginRight: "10px" }}
                 >
                   Load more
                 </Button>
