@@ -62,7 +62,7 @@ function App() {
     isLoaded && (
       <>
         <ScrollTop>
-          <Button variant="contained">
+          <Button color="secondary" variant="contained">
             <ArrowCircleUpIcon />
           </Button>
         </ScrollTop>

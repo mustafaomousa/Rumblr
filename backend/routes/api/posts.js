@@ -6,7 +6,7 @@ const db = require("../../db/models");
 // const { handleValidationErrors } = require('../../utils/validation');
 
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post, User, Like, sequelize } = require("../../db/models");
+const { Post, User, Like, sequelize, Sequelize } = require("../../db/models");
 const { restoreUser } = require("../../utils/auth");
 
 const router = express.Router();
@@ -18,13 +18,16 @@ router.get(
     const posts = await Post.findAll({
       include: [
         User,
-        { model: Like, where: { userId: req.user.id }, required: false },
+        {
+          model: Like,
+          where: { userId: req.user.id },
+          required: false,
+        },
       ],
       order: [["createdAt", "DESC"]],
       limit,
     });
-
-    return res.json({ posts });
+    return res.json(posts);
   })
 );
 

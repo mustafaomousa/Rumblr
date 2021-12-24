@@ -12,8 +12,7 @@ const UpdatePersonalInformation = ({ sessionUser, updateSessionUser }) => {
   const updateUsername = (e) => setUsername(e.target.value);
   const updateEmail = (e) => setEmail(e.target.value);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
     dispatch(updateSessionUser(sessionUser.id, { email, username }));
   };
 
@@ -25,6 +24,8 @@ const UpdatePersonalInformation = ({ sessionUser, updateSessionUser }) => {
         </Typography>
         <Stack direction="column" spacing={2}>
           <TextField
+            color="primary"
+            variant="outlined"
             label="Username"
             onChange={updateUsername}
             value={username}
@@ -33,6 +34,8 @@ const UpdatePersonalInformation = ({ sessionUser, updateSessionUser }) => {
             className={globalStyles.input}
           />
           <TextField
+            color="primary"
+            variant="outlined"
             label="Email"
             onChange={updateEmail}
             value={email}
@@ -43,12 +46,11 @@ const UpdatePersonalInformation = ({ sessionUser, updateSessionUser }) => {
         </Stack>
         <Stack padding="10px 0px">
           <Button
+            color="primary"
+            disableElevation
             size="small"
             variant="contained"
             type="submit"
-            disabled={
-              username === sessionUser.username && email === sessionUser.email
-            }
           >
             Update
           </Button>

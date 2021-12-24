@@ -33,6 +33,8 @@ const UpdatePassword = ({ sessionUser, updateSessionUser }) => {
         </Typography>
         <Stack direction="column" spacing={2}>
           <TextField
+            color="primary"
+            variant="outlined"
             type="password"
             error={confirmPassword && password !== confirmPassword}
             label="New password"
@@ -42,6 +44,8 @@ const UpdatePassword = ({ sessionUser, updateSessionUser }) => {
             className={globalStyles.input}
           />
           <TextField
+            color="primary"
+            variant="outlined"
             type="password"
             error={password !== confirmPassword}
             label="Confirm new password"
@@ -53,10 +57,11 @@ const UpdatePassword = ({ sessionUser, updateSessionUser }) => {
         </Stack>
         <Stack padding="10px 0px">
           <Button
+            disableElevation
+            color="primary"
             type="submit"
             size="small"
             variant="contained"
-            disabled={!password && !confirmPassword}
           >
             Update
           </Button>

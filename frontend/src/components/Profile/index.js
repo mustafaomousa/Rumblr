@@ -46,10 +46,8 @@ const Profile = () => {
       {userProfile && (
         <Container
           sx={{
-            border: "1px solid black",
-            backgroundColor: "#333A56",
             paddingBottom: 10,
-            borderRadius: 1,
+            // borderRadius: 1,
           }}
         >
           <Container
@@ -71,7 +69,7 @@ const Profile = () => {
               }}
             />
           </Container>
-          <Grid container sx={{ backgroundColor: "#ffffff", borderRadius: 1 }}>
+          <Grid container sx={{ backgroundColor: "#ffffff" }}>
             <Grid item xs={4} padding={"20px 20px"}>
               <Stack sx={{ height: "100%" }}>
                 <Typography variant="h2" paragraph align="end">

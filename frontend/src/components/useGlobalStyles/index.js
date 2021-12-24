@@ -1,9 +1,7 @@
 import { makeStyles } from "@mui/styles";
 
 const useGlobalStyles = () => {
-  const useStyles = makeStyles(() => ({
-    input: {},
-  }));
+  const useStyles = makeStyles(() => ({}));
 
   const globalStyles = useStyles();
 

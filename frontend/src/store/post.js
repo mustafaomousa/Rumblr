@@ -59,10 +59,10 @@ export const deletePost =
     }
   };
 
-export const getPosts = (limit, userId) => async (dispatch) => {
-  const response = await fetch(`/api/posts?limit=${limit}&userId=${userId}`);
+export const getPosts = (limit) => async (dispatch) => {
+  const response = await fetch(`/api/posts?limit=${limit}`);
   if (response.ok) {
-    dispatch(getAllPosts(response.data.posts));
+    dispatch(getAllPosts(response.data));
     return response;
   }
 };
@@ -81,7 +81,7 @@ export const createNewPost = (payload) => async (dispatch) => {
   }
 };
 
-const initialState = {};
+const initialState = null;
 
 const postReducer = (state = initialState, action) => {
   let newState;

@@ -2,13 +2,10 @@ import {
   Avatar,
   Button,
   Card,
-  CardActionArea,
   CardContent,
   CardHeader,
   CardMedia,
-  Container,
   Divider,
-  Grid,
   IconButton,
   Link,
   Stack,
@@ -25,13 +22,13 @@ import EditPost from "./EditPost";
 import Notification from "../Notification";
 import { makeStyles } from "@mui/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import CommentIcon from "@mui/icons-material/Comment";
 import { Box } from "@mui/system";
 import { fetch } from "../../store/csrf";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: 450,
+    width: 500,
+    borderRadius: 0,
   },
   cardHeader: {
     backgroundColor: "#53648F",
@@ -44,15 +41,12 @@ const PostCard = (props) => {
 
   const [post, setPost] = useState(props.post);
   const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
-  const [liked, setLiked] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
   const closeAlertUpdateBodySuccess = () => setSuccessNotificationOpen(false);
   const alertUpdateBodySuccess = () => setSuccessNotificationOpen(true);
   const closeEditOpen = () => setEditOpen(false);
   const openEditOpen = () => setEditOpen(true);
-  // const like = () => setLiked(true);
-  // const dislike = () => setLiked(false);
 
   const like = async (e) => {
     e.preventDefault();
@@ -78,7 +72,7 @@ const PostCard = (props) => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={0}>
       <Notification
         open={successNotificationOpen}
         handleClose={closeAlertUpdateBodySuccess}
@@ -159,9 +153,6 @@ const PostCard = (props) => {
         sx={{ background: "#53648F" }}
       >
         <Stack direction="row" spacing={1}>
-          <Button variant="contained" size="small">
-            <CommentIcon />
-          </Button>
           <Button
             color="warning"
             variant={post.Likes.length ? "contained" : "outlined"}

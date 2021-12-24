@@ -1,22 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import {
-  Button,
-  Stack,
-  Grid,
-  useMediaQuery,
-  Zoom,
-  useScrollTrigger,
-  Toolbar,
-} from "@mui/material";
+import { Button, Stack, Grid, Skeleton } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
 import CheckoutPost from "./CheckoutPost";
 import NewestMembers from "./NewestMembers";
-import { useTheme } from "@mui/styles";
-import { Box } from "@mui/system";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -27,17 +17,14 @@ const useStyles = makeStyles(() => ({
 const Discover = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const theme = useTheme();
   const [loadLimit, setLoadLimit] = useState(5);
-
   const sessionUser = useSelector((state) => state.session.user);
   const posts = useSelector((state) => state.posts);
-
   const increaseLimit = () => setLoadLimit(loadLimit + 5);
 
   useEffect(() => {
     if (!sessionUser) return <Redirect to="/" />;
-    dispatch(getPosts(loadLimit, sessionUser.id));
+    dispatch(getPosts(loadLimit));
   }, [dispatch, loadLimit]);
 
   if (!sessionUser) return <Redirect to="/" />;
@@ -46,7 +33,7 @@ const Discover = () => {
     <>
       <Grid className={classes.root} container direction="row" spacing={2}>
         <Grid item xs={12} md={6}>
-          {posts && (
+          {posts ? (
             <Stack alignItems={"flex-end"} spacing={3}>
               {Object.keys(posts).map((idx) => {
                 return <PostCard key={idx} post={posts[idx]} />;
@@ -60,6 +47,27 @@ const Discover = () => {
                   Load more
                 </Button>
               )}
+            </Stack>
+          ) : (
+            <Stack spacing={3} alignItems="flex-end">
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                height={500}
+                width={500}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                height={500}
+                width={500}
+              />
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                height={500}
+                width={500}
+              />
             </Stack>
           )}
         </Grid>

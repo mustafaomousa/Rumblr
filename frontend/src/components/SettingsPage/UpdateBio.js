@@ -22,6 +22,8 @@ const UpdateBio = ({ sessionUser, updateSessionUser }) => {
           Bio
         </Typography>
         <TextField
+          color="primary"
+          variant="outlined"
           onChange={updateBio}
           label="Bio"
           value={bio}
@@ -32,10 +34,11 @@ const UpdateBio = ({ sessionUser, updateSessionUser }) => {
         />
         <Stack padding="10px 0px">
           <Button
+            disableElevation
+            color="primary"
             type="submit"
             size="small"
             variant="contained"
-            disabled={sessionUser.bio === bio}
           >
             Update
           </Button>

@@ -66,7 +66,7 @@ const CreatePost = ({
           width: "500px",
           marginBottom: "20px",
           backgroundColor: "#ffffff",
-          borderRadius: 1,
+          // borderRadius: 1,
         }}
       >
         <Box sx={{ width: "100%" }}>

@@ -10,7 +10,7 @@ import { Button, Stack, Typography } from "@mui/material";
 const useStyles = makeStyles(() => ({
   root: {
     position: "fixed",
-    padding: "20px",
+    // padding: "20px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -19,8 +19,9 @@ const useStyles = makeStyles(() => ({
     bottom: 0,
     right: 0,
     margin: "auto",
-    width: 450,
-    height: 500,
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "#e8e8e8",
   },
 }));
 
@@ -41,8 +42,8 @@ const WelcomePage = () => {
   };
 
   return (
-    <Box className={classes.root}>
-      <Typography fontSize="70px" color="#333A56" fontWeight="bold">
+    <Stack className={classes.root} spacing={3} justifyContent={"center"}>
+      <Typography variant="h3" color="primary" fontWeight="bold">
         Rumblr
       </Typography>
       {showLogin && <LoginForm />}
@@ -51,12 +52,13 @@ const WelcomePage = () => {
         <Button
           size="small"
           variant="text"
+          color="primary"
           onClick={showLogin ? switchToSignup : switchToLogin}
         >
           {showLogin ? "Don't have an account?" : "Already have an account?"}
         </Button>
       </Stack>
-    </Box>
+    </Stack>
   );
 };
 

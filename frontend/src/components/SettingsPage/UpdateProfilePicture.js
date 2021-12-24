@@ -39,9 +39,10 @@ const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
       />
       <Stack
         spacing={1}
-        direction="row"
-        justifyContent={"flex-end"}
+        direction="column"
         padding="10px 0px"
+        justifyContent="flex-end"
+        height="100%"
       >
         <Input
           type="file"
@@ -50,8 +51,8 @@ const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
           onChange={updateProfilePic}
         />
         <label htmlFor="profile-image">
-          <Button size="small" variant="contained" component="span">
-            Select Image
+          <Button size="small" variant="contained" component="span" fullWidth>
+            Upload Image
           </Button>
         </label>
         <Button

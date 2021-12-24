@@ -8,13 +8,9 @@ import {
   AppBar,
   Grid,
   Link,
-  IconButton,
   Modal,
   Menu,
   MenuItem,
-  Avatar,
-  useScrollTrigger,
-  Zoom,
   Divider,
 } from "@mui/material";
 import PersonIcon from "@mui/icons-material/PersonRounded";
@@ -44,43 +40,6 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
   },
 }));
-
-function ScrollTop(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
-
-  const handleClick = (event) => {
-    const anchor = (event.target.ownerDocument || document).querySelector(
-      "#back-to-top-anchor"
-    );
-
-    if (anchor) {
-      anchor.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-  };
-
-  return (
-    <Zoom in={trigger}>
-      <Box
-        onClick={handleClick}
-        role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
-      >
-        {children}
-      </Box>
-    </Zoom>
-  );
-}
 
 const Navigation = () => {
   const history = useHistory();
@@ -113,7 +72,7 @@ const Navigation = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <AppBar className={classes.root} boxShadow={0}>
+    <AppBar className={classes.root} elevation={0}>
       <Grid container alignItems="center">
         <Grid item xs={6}>
           <Link
@@ -123,7 +82,7 @@ const Navigation = () => {
             color="secondary"
             underline="none"
           >
-            <Typography variant="h4" fontWeight={"bold"}>
+            <Typography variant="h5" fontWeight={"bold"}>
               Rumblr
             </Typography>
           </Link>
@@ -135,7 +94,7 @@ const Navigation = () => {
             height="100%"
             alignItems="center"
             justifyContent="flex-end"
-            spacing={0.8}
+            spacing={2}
           >
             <Button href="/discover" size="small" color="secondary">
               <HomeIcon />
@@ -151,7 +110,6 @@ const Navigation = () => {
               aria-expanded={open ? "true" : undefined}
               onClick={handleClick}
               className={classes.userIcon}
-              // variant="outlined"
               color="secondary"
             >
               <PersonIcon />
@@ -198,10 +156,6 @@ const Navigation = () => {
                     </MenuItem>
                   </Link>
                   <Divider />
-                  {/* <MenuItem
-                    sx={{ width: "100%", justifyContent: "center" }}
-                    onClick={handleLogout}
-                  > */}
                   <Button
                     variant="contained"
                     color="warning"
@@ -211,13 +165,12 @@ const Navigation = () => {
                   >
                     Logout
                   </Button>
-                  {/* </MenuItem> */}
                 </Stack>
               </Stack>
             </Menu>
             <Button
               size="small"
-              variant="outlined"
+              variant="contained"
               color="secondary"
               onClick={() => setCreatePostVisible(true)}
             >

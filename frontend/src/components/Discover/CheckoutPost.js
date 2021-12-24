@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+import { Skeleton, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +10,6 @@ const useStyles = makeStyles(() => ({
   root: {
     width: "500px",
   },
-  cardHeader: {
-    backgroundColor: "#333A56",
-  },
 }));
 
 const CheckoutPost = () => {
@@ -26,35 +17,20 @@ const CheckoutPost = () => {
   const classes = useStyles();
   const randomPost = useSelector((state) => state.discover.randomPost);
 
-  useEffect(() => {
-    dispatch(getRandomPost());
-  }, []);
+  useEffect(() => dispatch(getRandomPost()), []);
 
-  return (
-    <Card className={classes.root}>
-      {randomPost && (
-        <>
-          <CardHeader
-            className={classes.cardHeader}
-            title={
-              <Typography fontWeight="bold" color="#ffffff">
-                Checkout this post by {randomPost.User.username}
-              </Typography>
-            }
-          />
-          <CardContent
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#333A56",
-            }}
-          >
-            <PostCard post={randomPost} />
-          </CardContent>
-        </>
-      )}
-    </Card>
+  return randomPost ? (
+    <Stack spacing={2} className={classes.root}>
+      <Typography fontWeight="bold" color="#ffffff">
+        Checkout this post by {randomPost.User.username}
+      </Typography>
+      <PostCard post={randomPost} />
+    </Stack>
+  ) : (
+    <Stack spacing={1} className={classes.root}>
+      <Skeleton animation="wave" variant="rectangular" height={30} />
+      <Skeleton animation="wave" variant="rectangular" height={500} />
+    </Stack>
   );
 };
 
