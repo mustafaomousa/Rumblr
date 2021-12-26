@@ -27,8 +27,10 @@ const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
     padding: "0 30px",
-    height: 65,
+    height: 55,
+    borderBottom: "1px solid #405368",
   },
   searchInput: {
     width: 200,
@@ -73,7 +75,7 @@ const Navigation = () => {
 
   return (
     <AppBar className={classes.root} elevation={0}>
-      <Grid container alignItems="center">
+      <Grid container alignItems="center" maxWidth={1680}>
         <Grid item xs={6}>
           <Link
             href="/discover"
@@ -94,7 +96,7 @@ const Navigation = () => {
             height="100%"
             alignItems="center"
             justifyContent="flex-end"
-            spacing={2}
+            spacing={1}
           >
             <Button href="/discover" size="small" color="secondary">
               <HomeIcon />

@@ -10,7 +10,7 @@ import NewestMembers from "./NewestMembers";
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: "120px 0",
+    marginTop: "95px",
   },
 }));
 
