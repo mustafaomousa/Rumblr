@@ -61,25 +61,30 @@ const PostCard = ({ post }) => {
     <Card className={classes.root} elevation={0}>
       <Notification ref={notificationRef} />
       <CardHeader
-        sx={{ height: 30 }}
         avatar={
-          <Link href={`/user/${post.User.id}`}>
-            <Avatar
-              variant="square"
-              src={post.User.profilePicture}
-              sx={{
-                height: 40,
-                width: 40,
-                backgroundColor: post.User.profilePicture && "#BDBDBD",
-              }}
-            />
-          </Link>
+          window.location.pathname !== "/discover" && (
+            <Link href={`/user/${post.User.id}`}>
+              <Avatar
+                variant="square"
+                src={post.User.profilePicture}
+                sx={{
+                  height: 40,
+                  width: 40,
+                  backgroundColor: post.User.profilePicture && "#BDBDBD",
+                }}
+              />
+            </Link>
+          )
         }
         className={classes.cardHeader}
         action={
           sessionUser.id === post.User.id && (
-            <Stack direction="row" align justifyContent={"center"}>
-              <Button aria-describedby="delete-post" color="secondary">
+            <Stack direction="row" align justifyContent={"center"} spacing={1}>
+              <Button
+                variant="outlined"
+                aria-describedby="delete-post"
+                color="secondary"
+              >
                 <DeletePost postId={post.id} />
               </Button>
               {editOpen ? (
@@ -87,7 +92,11 @@ const PostCard = ({ post }) => {
                   <CancelTwoToneIcon color="warning" />
                 </Button>
               ) : (
-                <Button onClick={openEditOpen} color="secondary">
+                <Button
+                  variant="contained"
+                  onClick={openEditOpen}
+                  color="secondary"
+                >
                   <EditIcon />
                 </Button>
               )}

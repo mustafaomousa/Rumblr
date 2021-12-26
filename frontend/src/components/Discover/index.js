@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Button, Stack, Grid, Skeleton, Box } from "@mui/material";
+import { Button, Stack, Grid, Skeleton, Box, Avatar } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
@@ -11,6 +11,14 @@ import NewestMembers from "./NewestMembers";
 const useStyles = makeStyles(() => ({
   root: {
     margin: "95px 0px",
+  },
+  stickyAvatar: {
+    position: "-webkit-sticky",
+    position: "sticky",
+    top: "65px",
+    height: "60px",
+    width: "60px",
+    backgroundColor: "#e8e8e8",
   },
 }));
 
@@ -33,12 +41,21 @@ const Discover = () => {
     <Grid className={classes.root} container direction="row" spacing={2}>
       <Grid item xs={12} md={6}>
         {posts ? (
-          <Stack alignItems={"flex-end"} spacing={3}>
+          <Stack alignItems={"flex-end"} spacing={3} height="100%">
             {posts.map((post) => {
               return (
-                <Box width={500}>
-                  <PostCard key={post.id} post={post} />
-                </Box>
+                <Stack direction="row">
+                  <Box sx={{ padding: "0 15px" }}>
+                    <Avatar
+                      src={post.User.profilePicture}
+                      variant="square"
+                      className={classes.stickyAvatar}
+                    />
+                  </Box>
+                  <Box width={500}>
+                    <PostCard key={post.id} post={post} />
+                  </Box>
+                </Stack>
               );
             })}
             {Object.keys(posts).length % 5 === 0 && (
