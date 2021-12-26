@@ -14,6 +14,7 @@ module.exports = {
         references: {
           model: "Posts",
         },
+        onDelete: "CASCADE",
       },
       userId: {
         allowNull: false,

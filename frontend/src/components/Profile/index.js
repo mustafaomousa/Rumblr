@@ -14,9 +14,10 @@ import {
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetch } from "../../store/csrf";
+import { getProfilePosts } from "../../store/post";
 import PostCard from "../PostCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,10 +29,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const [userProfile, setUserProfile] = useState(null);
   const classes = useStyles();
   const { userId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
+
+  const userPosts = useSelector((state) => state.posts.loadedPosts);
 
   useEffect(() => {
     (async () => {
@@ -40,6 +44,8 @@ const Profile = () => {
       );
     })();
   }, []);
+
+  useEffect(() => dispatch(getProfilePosts(userId)), []);
 
   return (
     <Stack direction="column" className={classes.root}>
@@ -110,20 +116,21 @@ const Profile = () => {
             </Grid>
           </Grid>
           <Grid direction="row" container marginTop={2} spacing={2}>
-            {userProfile.Posts.map((post) => (
-              <Grid
-                item
-                xs={12}
-                md={6}
-                lg={4}
-                sx={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                }}
-              >
-                <PostCard post={post} />
-              </Grid>
-            ))}
+            {userPosts &&
+              userPosts.map((post) => (
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  lg={4}
+                  sx={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <PostCard post={post} />
+                </Grid>
+              ))}
           </Grid>
         </Container>
       )}

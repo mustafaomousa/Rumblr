@@ -121,6 +121,13 @@ export const getPosts = (limit) => async (dispatch) => {
   }
 };
 
+export const getProfilePosts = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}`);
+  if (response.ok) {
+    dispatch(getAllPosts(response.data.user.Posts));
+  }
+};
+
 export const createNewPost = (payload) => async (dispatch) => {
   const { content, body, tags, userId } = payload;
   const response = await fetch("/api/posts", {
@@ -154,7 +161,7 @@ const postReducer = (state = initialState, action) => {
           }
         }),
         randomPost:
-          state.randomPost.id === action.payload.id
+          state.randomPost && state.randomPost.id === action.payload.id
             ? { ...state.randomPost, ...action.payload }
             : { ...state.randomPost },
       };
@@ -176,7 +183,7 @@ const postReducer = (state = initialState, action) => {
           }
         }),
         randomPost:
-          state.randomPost.id === action.payload.postId
+          state.randomPost && state.randomPost.id === action.payload.postId
             ? {
                 ...state.randomPost,
                 Likes: [...state.randomPost.Likes, action.payload],
@@ -194,7 +201,7 @@ const postReducer = (state = initialState, action) => {
           }
         }),
         randomPost:
-          state.randomPost.id === action.payload.postId
+          state.randomPost && state.randomPost.id === action.payload.postId
             ? {
                 ...state.randomPost,
                 Likes: [],
