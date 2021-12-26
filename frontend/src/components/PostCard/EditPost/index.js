@@ -29,7 +29,7 @@ const EditPost = ({ post, closeEditOpen, alertUpdateBodySuccess }) => {
       <Stack direction="column" spacing={2}>
         <FormControl>
           <TextField
-            label="Body"
+            InputProps={{ sx: { backgroundColor: "#e8e8e8" } }}
             fullWidth
             multiline
             value={body}

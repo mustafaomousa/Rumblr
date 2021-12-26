@@ -73,6 +73,7 @@ router.post(
 
 router.put(
   "/",
+  restoreUser,
   asyncHandler(async (req, res) => {
     const { postId, body } = req.body;
     const updatedPost = await Post.findOne({

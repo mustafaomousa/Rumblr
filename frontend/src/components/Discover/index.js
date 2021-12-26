@@ -19,7 +19,7 @@ const Discover = () => {
   const classes = useStyles();
   const [loadLimit, setLoadLimit] = useState(5);
   const sessionUser = useSelector((state) => state.session.user);
-  const posts = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state.posts.loadedPosts);
   const increaseLimit = () => setLoadLimit(loadLimit + 5);
 
   useEffect(() => {
@@ -30,57 +30,55 @@ const Discover = () => {
   if (!sessionUser) return <Redirect to="/" />;
 
   return (
-    <>
-      <Grid className={classes.root} container direction="row" spacing={2}>
-        <Grid item xs={12} md={6}>
-          {posts ? (
-            <Stack alignItems={"flex-end"} spacing={3}>
-              {Object.keys(posts).map((idx) => {
-                return <PostCard key={idx} post={posts[idx]} />;
-              })}
-              {Object.keys(posts).length % 5 === 0 && (
-                <Button
-                  disableElevation
-                  color="secondary"
-                  variant="contained"
-                  onClick={increaseLimit}
-                  sx={{ width: 500, marginRight: "10px" }}
-                >
-                  Load more
-                </Button>
-              )}
-            </Stack>
-          ) : (
-            <Stack spacing={3} alignItems="flex-end">
-              <Skeleton
-                animation="wave"
-                variant="rectangular"
-                height={500}
-                width={500}
-              />
-              <Skeleton
-                animation="wave"
-                variant="rectangular"
-                height={500}
-                width={500}
-              />
-              <Skeleton
-                animation="wave"
-                variant="rectangular"
-                height={500}
-                width={500}
-              />
-            </Stack>
-          )}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Stack spacing={3} className={classes.wigits}>
-            <NewestMembers />
-            <CheckoutPost />
+    <Grid className={classes.root} container direction="row" spacing={2}>
+      <Grid item xs={12} md={6}>
+        {posts ? (
+          <Stack alignItems={"flex-end"} spacing={3}>
+            {posts.map((post) => {
+              return <PostCard key={post.id} post={post} />;
+            })}
+            {Object.keys(posts).length % 5 === 0 && (
+              <Button
+                disableElevation
+                color="secondary"
+                variant="contained"
+                onClick={increaseLimit}
+                sx={{ width: 500, marginRight: "10px" }}
+              >
+                Load more
+              </Button>
+            )}
           </Stack>
-        </Grid>
+        ) : (
+          <Stack spacing={3} alignItems="flex-end">
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              height={500}
+              width={500}
+            />
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              height={500}
+              width={500}
+            />
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              height={500}
+              width={500}
+            />
+          </Stack>
+        )}
       </Grid>
-    </>
+      <Grid item xs={12} md={6}>
+        <Stack spacing={3} className={classes.wigits}>
+          <NewestMembers />
+          <CheckoutPost />
+        </Stack>
+      </Grid>
+    </Grid>
   );
 };
 

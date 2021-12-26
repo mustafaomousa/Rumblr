@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PostCard from "../PostCard";
 
-import { getRandomPost } from "../../store/discover";
+import { getRandomPost } from "../../store/post";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
 const CheckoutPost = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const randomPost = useSelector((state) => state.discover.randomPost);
+  const randomPost = useSelector((state) => state.posts.randomPost);
 
   useEffect(() => dispatch(getRandomPost()), []);
 

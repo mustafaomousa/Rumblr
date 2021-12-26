@@ -4,11 +4,21 @@ const LOAD_POSTS = "post/getAllPosts";
 const ADD_POST = "post/createNewPost";
 const DELETE_POST = "post/deletePost";
 const UPDATE_POST = "post/updatePost";
+const ADD_LIKE = "post/likePost";
+const DELETE_LIKE = "post/dislikePost";
+const LOAD_RANDOM_POST = "post/loadRandomPost";
 
 const getAllPosts = (posts) => {
   return {
     type: LOAD_POSTS,
     payload: posts,
+  };
+};
+
+const loadRandomPost = (post) => {
+  return {
+    type: LOAD_RANDOM_POST,
+    payload: post,
   };
 };
 
@@ -33,6 +43,28 @@ const updateUserPost = (post) => {
   };
 };
 
+const likePost = (like) => {
+  return {
+    type: ADD_LIKE,
+    payload: like,
+  };
+};
+
+const dislikePost = (like) => {
+  return {
+    type: DELETE_LIKE,
+    payload: like,
+  };
+};
+
+export const getRandomPost = () => async (dispatch) => {
+  const response = await fetch("/api/posts/random");
+
+  if (response.ok) {
+    return dispatch(loadRandomPost(response.data.randomPost));
+  }
+};
+
 export const updatePost =
   ({ postId, body }) =>
   async (dispatch) => {
@@ -45,6 +77,28 @@ export const updatePost =
       dispatch(updateUserPost(response.data.updatedPost));
     }
   };
+
+export const likeUserPost = (postId, userId) => async (dispatch) => {
+  const response = await fetch("/api/likes", {
+    method: "POST",
+    body: JSON.stringify({ postId, userId }),
+  });
+
+  if (response.ok) {
+    dispatch(likePost(response.data.like));
+  }
+};
+
+export const removeLike = (like) => async (dispatch) => {
+  const response = await fetch("/api/likes", {
+    method: "DELETE",
+    body: JSON.stringify({ likeId: like.id }),
+  });
+
+  if (response.ok) {
+    dispatch(dislikePost(like));
+  }
+};
 
 export const deletePost =
   ({ postId }) =>
@@ -81,29 +135,77 @@ export const createNewPost = (payload) => async (dispatch) => {
   }
 };
 
-const initialState = null;
+const initialState = { loadedPosts: null, randomPost: null };
 
 const postReducer = (state = initialState, action) => {
-  let newState;
   switch (action.type) {
     case LOAD_POSTS:
-      newState = { ...state };
-      action.payload.map((post) => (newState["_" + post.id] = post));
-      return newState;
+      return { ...state, loadedPosts: action.payload };
     case ADD_POST:
-      newState = Object.assign(
-        { ["_" + action.payload.id]: action.payload },
-        state
-      );
-      return newState;
+      return { ...state, loadedPosts: [action.payload, ...state.loadedPosts] };
     case UPDATE_POST:
-      newState = { ...state };
-      newState["_" + action.payload.id] = action.payload;
-      return newState;
+      return {
+        ...state,
+        loadedPosts: state.loadedPosts.map((post) => {
+          if (post.id !== action.payload.id) {
+            return post;
+          } else {
+            return { ...post, ...action.payload };
+          }
+        }),
+        randomPost:
+          state.randomPost.id === action.payload.id
+            ? { ...state.randomPost, ...action.payload }
+            : { ...state.randomPost },
+      };
     case DELETE_POST:
-      newState = { ...state };
-      delete newState["_" + action.payload];
-      return newState;
+      return {
+        ...state,
+        loadedPosts: state.loadedPosts.filter(
+          (post) => post.id !== action.payload
+        ),
+      };
+    case ADD_LIKE:
+      return {
+        ...state,
+        loadedPosts: state.loadedPosts.map((post) => {
+          if (post.id !== action.payload.postId) {
+            return post;
+          } else {
+            return { ...post, Likes: [...post.Likes, action.payload] };
+          }
+        }),
+        randomPost:
+          state.randomPost.id === action.payload.postId
+            ? {
+                ...state.randomPost,
+                Likes: [...state.randomPost.Likes, action.payload],
+              }
+            : { ...state.randomPost },
+      };
+    case DELETE_LIKE:
+      return {
+        ...state,
+        loadedPosts: state.loadedPosts.map((post) => {
+          if (post.id !== action.payload.postId) {
+            return post;
+          } else {
+            return { ...post, Likes: [] };
+          }
+        }),
+        randomPost:
+          state.randomPost.id === action.payload.postId
+            ? {
+                ...state.randomPost,
+                Likes: [],
+              }
+            : { ...state.randomPost },
+      };
+    case LOAD_RANDOM_POST:
+      return {
+        ...state,
+        randomPost: action.payload,
+      };
     default:
       return state;
   }

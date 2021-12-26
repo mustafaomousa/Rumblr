@@ -14,7 +14,7 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import DeletePost from "./DeletePost";
 import moment from "moment";
@@ -24,6 +24,7 @@ import { makeStyles } from "@mui/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box } from "@mui/system";
 import { fetch } from "../../store/csrf";
+import { likeUserPost, removeLike } from "../../store/post";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -35,11 +36,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PostCard = (props) => {
+const PostCard = ({ post }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [post, setPost] = useState(props.post);
+  // const [post, setPost] = useState(props.post);
   const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
@@ -48,27 +50,10 @@ const PostCard = (props) => {
   const closeEditOpen = () => setEditOpen(false);
   const openEditOpen = () => setEditOpen(true);
 
-  const like = async (e) => {
-    e.preventDefault();
-    const res = await fetch("/api/likes", {
-      method: "POST",
-      body: JSON.stringify({ postId: post.id, userId: sessionUser.id }),
-    });
+  const like = () => dispatch(likeUserPost(post.id, sessionUser.id));
 
-    if (res.ok) {
-      return setPost({ ...post, Likes: [res.data.like] });
-    }
-  };
-
-  const dislike = async (likeId) => {
-    const res = await fetch("/api/likes", {
-      method: "DELETE",
-      body: JSON.stringify({ likeId }),
-    });
-
-    if (res.ok) {
-      return setPost({ ...post, Likes: [] });
-    }
+  const dislike = (like) => {
+    dispatch(removeLike(like));
   };
 
   return (
@@ -79,6 +64,7 @@ const PostCard = (props) => {
         message={"Post updated"}
       />
       <CardHeader
+        sx={{ height: 30 }}
         avatar={
           <Link href={`/user/${post.User.id}`}>
             <Avatar
@@ -95,27 +81,26 @@ const PostCard = (props) => {
         className={classes.cardHeader}
         action={
           sessionUser.id === post.User.id && (
-            <>
-              <IconButton aria-describedby="delete-post" color="secondary">
+            <Stack direction="row" align justifyContent={"center"}>
+              <Button aria-describedby="delete-post" color="secondary">
                 <DeletePost postId={post.id} />
-              </IconButton>
+              </Button>
               {editOpen ? (
-                <IconButton onClick={closeEditOpen} color="secondary">
+                <Button onClick={closeEditOpen} color="secondary">
                   <CancelTwoToneIcon color="warning" />
-                </IconButton>
+                </Button>
               ) : (
-                <IconButton onClick={openEditOpen} color="secondary">
+                <Button onClick={openEditOpen} color="secondary">
                   <EditIcon />
-                </IconButton>
+                </Button>
               )}
-            </>
+            </Stack>
           )
         }
         title={
           <Link
             underline="hover"
             href={`/user/${post.User.id}`}
-            fontWeight="bold"
             fontSize="medium"
             color="#ffffff"
           >
@@ -157,7 +142,7 @@ const PostCard = (props) => {
             color="warning"
             variant={post.Likes.length ? "contained" : "outlined"}
             size="small"
-            onClick={post.Likes.length ? () => dislike(post.Likes[0].id) : like}
+            onClick={post.Likes.length ? () => dislike(post.Likes[0]) : like}
           >
             {post.Likes.length ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </Button>
