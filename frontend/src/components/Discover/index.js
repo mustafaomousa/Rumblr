@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Button, Stack, Grid, Skeleton, Box, Avatar } from "@mui/material";
+import {
+  Button,
+  Stack,
+  Grid,
+  Skeleton,
+  Box,
+  Avatar,
+  Link,
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
@@ -46,11 +54,13 @@ const Discover = () => {
               return (
                 <Stack direction="row">
                   <Box sx={{ padding: "0 15px" }}>
-                    <Avatar
-                      src={post.User.profilePicture}
-                      variant="square"
-                      className={classes.stickyAvatar}
-                    />
+                    <Link href={`/user/${post.User.id}`}>
+                      <Avatar
+                        src={post.User.profilePicture}
+                        variant="square"
+                        className={classes.stickyAvatar}
+                      />
+                    </Link>
                   </Box>
                   <Box width={500}>
                     <PostCard key={post.id} post={post} />
