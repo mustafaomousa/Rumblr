@@ -51,27 +51,28 @@ const Profile = () => {
   return (
     <Stack direction="column" className={classes.root}>
       {userProfile && (
-        <Container
+        <Box
           sx={{
-            paddingBottom: 5,
+            marginBottom: 5,
           }}
         >
-          <Grid container spacing={3}>
-            <Grid item xs={8}>
+          <Grid container direction="row" spacing={2}>
+            <Grid item xs={10}>
               <Stack
                 sx={{ height: "100%" }}
                 direction="row"
                 justifyContent="flex-start"
                 alignItems="center"
-                spacing={2}
+                spacing={5}
               >
                 <Avatar
                   variant="square"
                   src={userProfile.profilePicture}
                   sx={{
-                    height: 200,
-                    width: 200,
+                    height: 150,
+                    width: 150,
                     objectFit: "contain",
+                    backgroundColor: "#e8e8e8",
                   }}
                 />
                 <Stack
@@ -99,7 +100,7 @@ const Profile = () => {
                 </Stack>
               </Stack>
             </Grid>
-            <Grid xs={4}>
+            <Grid xs={2}>
               <Stack
                 spacing={2}
                 height="100%"
@@ -116,8 +117,9 @@ const Profile = () => {
               </Stack>
             </Grid>
           </Grid>
-        </Container>
+        </Box>
       )}
+      <Divider sx={{ color: "white", marginBottom: "30px" }} />
       <Masonry columns={3} spacing={2}>
         {userPosts && userPosts.map((post) => <PostCard post={post} />)}
       </Masonry>
