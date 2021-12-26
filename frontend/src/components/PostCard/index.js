@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardMedia,
   Divider,
-  IconButton,
   Link,
   Stack,
   Typography,
@@ -23,8 +22,8 @@ import Notification from "../Notification";
 import { makeStyles } from "@mui/styles";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box } from "@mui/system";
-import { fetch } from "../../store/csrf";
 import { likeUserPost, removeLike } from "../../store/post";
+import useNotification from "../Notification/useNotification";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -39,17 +38,20 @@ const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
-
-  // const [post, setPost] = useState(props.post);
-  const [successNotificationOpen, setSuccessNotificationOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
-  const closeAlertUpdateBodySuccess = () => setSuccessNotificationOpen(false);
-  const alertUpdateBodySuccess = () => setSuccessNotificationOpen(true);
   const closeEditOpen = () => setEditOpen(false);
   const openEditOpen = () => setEditOpen(true);
 
-  const like = () => dispatch(likeUserPost(post.id, sessionUser.id));
+  const notificationRef = useNotification();
+
+  const like = (postUser) => {
+    dispatch(likeUserPost(post.id, sessionUser.id));
+    notificationRef.current.toggleNotification({
+      message: `You liked ${postUser}'s post!`,
+      severity: "success",
+    });
+  };
 
   const dislike = (like) => {
     dispatch(removeLike(like));
@@ -57,11 +59,7 @@ const PostCard = ({ post }) => {
 
   return (
     <Card className={classes.root} elevation={0}>
-      <Notification
-        open={successNotificationOpen}
-        handleClose={closeAlertUpdateBodySuccess}
-        message={"Post updated"}
-      />
+      <Notification ref={notificationRef} />
       <CardHeader
         sx={{ height: 30 }}
         avatar={
@@ -112,9 +110,9 @@ const PostCard = ({ post }) => {
       <CardContent sx={{ background: "#53648F" }}>
         {editOpen ? (
           <EditPost
+            notificationRef={notificationRef}
             post={post}
             closeEditOpen={closeEditOpen}
-            alertUpdateBodySuccess={alertUpdateBodySuccess}
           />
         ) : (
           <Box>
@@ -141,7 +139,11 @@ const PostCard = ({ post }) => {
             color="warning"
             variant={post.Likes.length ? "contained" : "outlined"}
             size="small"
-            onClick={post.Likes.length ? () => dislike(post.Likes[0]) : like}
+            onClick={
+              post.Likes.length
+                ? () => dislike(post.Likes[0])
+                : () => like(post.User.username)
+            }
           >
             {post.Likes.length ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </Button>

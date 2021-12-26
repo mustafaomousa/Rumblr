@@ -1,19 +1,34 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useGlobalStyles from "../useGlobalStyles";
 
-const UpdateBio = ({ sessionUser, updateSessionUser }) => {
+const UpdateBio = ({ sessionUser, updateSessionUser, notificationRef }) => {
   const globalStyles = useGlobalStyles();
   const dispatch = useDispatch();
   const [bio, setBio] = useState(sessionUser.bio);
+  const [isChanged, setIsChanged] = useState(false);
 
-  const updateBio = (e) => setBio(e.target.value);
+  const updateBio = (e) => {
+    setIsChanged(true);
+    setBio(e.target.value);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(updateSessionUser(sessionUser.id, { bio }));
+    setIsChanged(false);
+    return notificationRef.current.toggleNotification({
+      message: "Bio updated!",
+      severity: "success",
+    });
   };
+
+  useEffect(() => {
+    if (bio === sessionUser.bio) {
+      setIsChanged(false);
+    }
+  }, [bio]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -39,6 +54,7 @@ const UpdateBio = ({ sessionUser, updateSessionUser }) => {
             type="submit"
             size="small"
             variant="contained"
+            disabled={!isChanged}
           >
             Update
           </Button>

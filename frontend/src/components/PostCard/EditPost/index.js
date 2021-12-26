@@ -10,18 +10,20 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updatePost } from "../../../store/post";
 
-const EditPost = ({ post, closeEditOpen, alertUpdateBodySuccess }) => {
+const EditPost = ({ post, closeEditOpen, notificationRef }) => {
   const dispatch = useDispatch();
   const [body, setBody] = useState(post.body);
-
   const updateBody = (e) => setBody(e.target.value);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(updatePost({ postId: post.id, body }))
-      .then(() => alertUpdateBodySuccess())
-      .then(() => closeEditOpen())
-      .catch((e) => console.log(e));
+    dispatch(updatePost({ postId: post.id, body }));
+    notificationRef.current.toggleNotification({
+      message: "Post updated!",
+      severity: "success",
+    });
+
+    return closeEditOpen();
   };
 
   return (

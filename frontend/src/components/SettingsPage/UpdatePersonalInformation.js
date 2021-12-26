@@ -1,20 +1,43 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useGlobalStyles from "../useGlobalStyles";
 
-const UpdatePersonalInformation = ({ sessionUser, updateSessionUser }) => {
+const UpdatePersonalInformation = ({
+  sessionUser,
+  updateSessionUser,
+  notificationRef,
+}) => {
   const globalStyles = useGlobalStyles();
   const dispatch = useDispatch();
   const [username, setUsername] = useState(sessionUser.username);
   const [email, setEmail] = useState(sessionUser.email);
+  const [isChanged, setIsChanged] = useState(false);
 
-  const updateUsername = (e) => setUsername(e.target.value);
-  const updateEmail = (e) => setEmail(e.target.value);
-
-  const onSubmit = () => {
-    dispatch(updateSessionUser(sessionUser.id, { email, username }));
+  const updateUsername = (e) => {
+    setIsChanged(true);
+    setUsername(e.target.value);
   };
+  const updateEmail = (e) => {
+    setIsChanged(true);
+    setEmail(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateSessionUser(sessionUser.id, { email, username }));
+    setIsChanged(false);
+    return notificationRef.current.toggleNotification({
+      message: "Personal information updated!",
+      severity: "success",
+    });
+  };
+
+  useEffect(() => {
+    if (username === sessionUser.username && email === sessionUser.email) {
+      setIsChanged(false);
+    }
+  }, [username, email]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -51,6 +74,7 @@ const UpdatePersonalInformation = ({ sessionUser, updateSessionUser }) => {
             size="small"
             variant="contained"
             type="submit"
+            disabled={!isChanged}
           >
             Update
           </Button>

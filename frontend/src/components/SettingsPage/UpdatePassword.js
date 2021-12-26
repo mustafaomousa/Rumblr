@@ -5,25 +5,46 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useGlobalStyles from "../useGlobalStyles";
 
-const UpdatePassword = ({ sessionUser, updateSessionUser }) => {
+const UpdatePassword = ({
+  sessionUser,
+  updateSessionUser,
+  notificationRef,
+}) => {
   const globalStyles = useGlobalStyles();
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const updatePassword = (e) => setPassword(e.target.value);
-  const updateConfirmPassword = (e) => setConfirmPassword(e.target.value);
+  const [isChanged, setIsChanged] = useState(false);
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const updateConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      return dispatch(updateSessionUser(sessionUser.id, { password }));
+      notificationRef.current.toggleNotification({
+        message: "Password updated!",
+        severity: "success",
+      });
+      setPassword("");
+      setConfirmPassword("");
+      setIsChanged(false);
+      dispatch(updateSessionUser(sessionUser.id, { password }));
     }
   };
+
+  useEffect(() => {
+    if (password === confirmPassword && password !== "") {
+      setIsChanged(true);
+    }
+  }, [password, confirmPassword]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -36,9 +57,9 @@ const UpdatePassword = ({ sessionUser, updateSessionUser }) => {
             color="primary"
             variant="outlined"
             type="password"
-            error={confirmPassword && password !== confirmPassword}
             label="New password"
             onChange={updatePassword}
+            value={password}
             size="small"
             disableUnderline
             className={globalStyles.input}
@@ -49,6 +70,7 @@ const UpdatePassword = ({ sessionUser, updateSessionUser }) => {
             type="password"
             error={password !== confirmPassword}
             label="Confirm new password"
+            value={confirmPassword}
             onChange={updateConfirmPassword}
             size="small"
             disableUnderline
@@ -62,6 +84,7 @@ const UpdatePassword = ({ sessionUser, updateSessionUser }) => {
             type="submit"
             size="small"
             variant="contained"
+            disabled={!isChanged}
           >
             Update
           </Button>

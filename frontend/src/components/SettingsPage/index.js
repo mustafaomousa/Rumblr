@@ -6,12 +6,16 @@ import UpdateBio from "./UpdateBio";
 import UpdatePersonalInformation from "./UpdatePersonalInformation";
 import UpdatePassword from "./UpdatePassword";
 import UpdateProfilePicture from "./UpdateProfilePicture";
+import Notification from "../Notification";
+import { useRef } from "react";
 
 const SettingsPage = () => {
   const sessionUser = useSelector((state) => state.session.user);
+  const notificationRef = useRef();
 
   return (
     <Stack marginTop="100px" alignItems="center">
+      <Notification ref={notificationRef} />
       <Grid container maxWidth="1200px">
         <Grid item xs={12}>
           <Stack direction="column" align="start">
@@ -38,6 +42,7 @@ const SettingsPage = () => {
                       <UpdateBio
                         sessionUser={sessionUser}
                         updateSessionUser={updateSessionUser}
+                        notificationRef={notificationRef}
                       />
                     </Grid>
                     <Grid item xs={6}>
@@ -46,12 +51,14 @@ const SettingsPage = () => {
                           <UpdatePersonalInformation
                             sessionUser={sessionUser}
                             updateSessionUser={updateSessionUser}
+                            notificationRef={notificationRef}
                           />
                         </Grid>
                         <Grid item xs={6}>
                           <UpdatePassword
                             sessionUser={sessionUser}
                             updateSessionUser={updateSessionUser}
+                            notificationRef={notificationRef}
                           />
                         </Grid>
                       </Grid>

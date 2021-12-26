@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
@@ -13,6 +13,8 @@ import Discover from "./components/Discover";
 import Profile from "./components/Profile";
 import { Button, Toolbar, useScrollTrigger, Zoom } from "@mui/material";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import Notification from "./components/Notification";
+import useNotification from "./components/Notification/useNotification";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -51,7 +53,6 @@ function ScrollTop(props) {
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
