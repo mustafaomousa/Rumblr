@@ -52,6 +52,7 @@ router.get(
           ],
         },
       ],
+      order: [[{ model: Post }, "createdAt", "DESC"]],
     });
     return res.json({ user });
   })

@@ -28,7 +28,6 @@ import { likeUserPost, removeLike } from "../../store/post";
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: 500,
     borderRadius: 0,
   },
   cardHeader: {

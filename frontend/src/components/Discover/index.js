@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Button, Stack, Grid, Skeleton } from "@mui/material";
+import { Button, Stack, Grid, Skeleton, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
@@ -35,7 +35,11 @@ const Discover = () => {
         {posts ? (
           <Stack alignItems={"flex-end"} spacing={3}>
             {posts.map((post) => {
-              return <PostCard key={post.id} post={post} />;
+              return (
+                <Box width={500}>
+                  <PostCard key={post.id} post={post} />
+                </Box>
+              );
             })}
             {Object.keys(posts).length % 5 === 0 && (
               <Button

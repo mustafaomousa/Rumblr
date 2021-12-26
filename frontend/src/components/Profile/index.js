@@ -19,6 +19,7 @@ import { useParams } from "react-router";
 import { fetch } from "../../store/csrf";
 import { getProfilePosts } from "../../store/post";
 import PostCard from "../PostCard";
+import { Masonry } from "@mui/lab";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +53,7 @@ const Profile = () => {
       {userProfile && (
         <Container
           sx={{
-            paddingBottom: 10,
+            paddingBottom: 5,
           }}
         >
           <Grid container spacing={3}>
@@ -115,25 +116,11 @@ const Profile = () => {
               </Stack>
             </Grid>
           </Grid>
-          <Grid direction="row" container marginTop={2} spacing={2}>
-            {userPosts &&
-              userPosts.map((post) => (
-                <Grid
-                  item
-                  xs={12}
-                  md={6}
-                  lg={4}
-                  sx={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <PostCard post={post} />
-                </Grid>
-              ))}
-          </Grid>
         </Container>
       )}
+      <Masonry columns={3} spacing={2}>
+        {userPosts && userPosts.map((post) => <PostCard post={post} />)}
+      </Masonry>
     </Stack>
   );
 };
