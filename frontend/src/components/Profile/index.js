@@ -32,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
     position: "sticky",
     top: "85px",
     height: "100%",
-    width: "100%",
+    maxWidth: "500px",
+    // backgroundColor: "#53648F",
+    padding: "30px 25px",
   },
 }));
 
@@ -55,10 +57,10 @@ const Profile = () => {
   useEffect(() => dispatch(getProfilePosts(userId)), []);
 
   return (
-    <Stack direction="row" className={classes.root}>
+    <Stack direction="row" className={classes.root} spacing={3}>
       {userProfile && (
-        <Box className={classes.profileBox}>
-          <Stack direction="column" alignItems="flex-start">
+        <Stack className={classes.profileBox} spacing={2}>
+          <Stack direction="column" alignItems="flex-start" spacing={2}>
             <Avatar
               variant="square"
               src={userProfile.profilePicture}
@@ -71,10 +73,10 @@ const Profile = () => {
             />
             <Typography
               color="secondary"
-              variant="h2"
+              variant="h3"
               paragraph
               margin={0}
-              align="start"
+              align="end"
             >
               {userProfile.username}
             </Typography>
@@ -84,34 +86,18 @@ const Profile = () => {
             color="secondary"
             align="start"
             paragraph
-            variant="body1"
-            // marginTop={5}
+            variant="body2"
             align="start"
           >
             {userProfile.bio}
           </Typography>
-          <Stack
-            spacing={2}
-            direction="row"
-            marginTop={5}
-            alignItems="flex-start"
-            justifyContent={"flex-start"}
-          >
-            {/* <Button size="small" color="secondary" variant="outlined">
-              Follow
-            </Button>
-            <Button size="small" color="secondary" variant="outlined">
-              Message
-            </Button> */}
-          </Stack>
-        </Box>
+        </Stack>
       )}
       <Stack
         width={600}
-        spacing={3}
+        spacing={2}
         alignItems="center"
         justifyContent="center"
-        width="100%"
       >
         {userPosts &&
           userPosts.map((post) => (
