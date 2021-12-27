@@ -1,13 +1,23 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const { requireAuth } = require("../../utils/auth");
+const { Post, User, Like } = require("../../db/models");
 const db = require("../../db/models");
-// const { where } = require('sequelize/types');
-// const { check } = require('express-validator');
-// const { handleValidationErrors } = require('../../utils/validation');
+const { Op } = require("sequelize");
 
-const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { Post, User, Like, sequelize } = require("../../db/models");
-const { restoreUser } = require("../../utils/auth");
+const arrangeLikes = async (req, posts) => {
+  for (let i = 0; i < posts.length; i++) {
+    let post = posts[i];
+    let postJSON = post.toJSON();
+    const userLike = await Like.findOne({
+      where: { [Op.and]: [{ userId: req.user.id }, { postId: postJSON.id }] },
+    });
+    postJSON.Liked = userLike ? true : false;
+    posts[i] = postJSON;
+  }
+
+  return posts;
+};
 
 const router = express.Router();
 router.get(
@@ -16,18 +26,13 @@ router.get(
   asyncHandler(async (req, res) => {
     const { limit } = req.query;
     const posts = await Post.findAll({
-      include: [
-        User,
-        Like,
-        {
-          model: Like,
-          where: { userId: req.user.id },
-          required: false,
-        },
-      ],
+      include: [Like, User],
       order: [["createdAt", "DESC"]],
       limit,
     });
+
+    await arrangeLikes(req, posts);
+
     return res.json(posts);
   })
 );
@@ -37,13 +42,14 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const randomPost = await Post.findOne({
-      order: sequelize.random(),
-      include: [
-        User,
-        { model: Like, where: { userId: req.user.id }, required: false },
-      ],
+      order: db.sequelize.random(),
+      include: [User, Like],
     });
-    return res.json({ randomPost });
+
+    let posts = [randomPost];
+    await arrangeLikes(req, posts);
+
+    return res.json({ randomPost: posts[0] });
   })
 );
 
@@ -62,13 +68,13 @@ router.post(
     const postId = post.dataValues.id;
 
     const newPost = await Post.findByPk(postId, {
-      include: [
-        User,
-        { model: Like, where: { userId: req.user.id }, required: false },
-      ],
+      include: [User, Like],
     });
 
-    return res.json({ newPost });
+    let posts = [newPost];
+    await arrangeLikes(req, posts);
+
+    return res.json({ newPost: posts[0] });
   })
 );
 
@@ -79,10 +85,7 @@ router.put(
     const { postId, body } = req.body;
     const updatedPost = await Post.findOne({
       where: { id: postId },
-      include: [
-        User,
-        { model: Like, where: { userId: req.user.id }, required: false },
-      ],
+      include: [User, Like],
     });
 
     if (updatedPost.userId !== req.user.id) {
@@ -95,7 +98,11 @@ router.put(
 
     updatedPost.update({ body: body });
     updatedPost.save();
-    return res.json({ updatedPost });
+
+    let posts = [updatedPost];
+    await arrangeLikes(req, posts);
+
+    return res.json({ updatedPost: posts[0] });
   })
 );
 

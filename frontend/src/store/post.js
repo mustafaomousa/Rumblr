@@ -50,10 +50,10 @@ const likePost = (like) => {
   };
 };
 
-const dislikePost = (like) => {
+const dislikePost = (postId, likes) => {
   return {
     type: DELETE_LIKE,
-    payload: like,
+    payload: { postId, likes },
   };
 };
 
@@ -97,7 +97,7 @@ export const removeLike = (like) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(dislikePost(like));
+    dispatch(dislikePost(like.postId, response.data));
   }
 };
 
@@ -178,7 +178,11 @@ const postReducer = (state = initialState, action) => {
           if (post.id !== action.payload.postId) {
             return post;
           } else {
-            return { ...post, Likes: [...post.Likes, action.payload] };
+            return {
+              ...post,
+              Likes: [...post.Likes, action.payload],
+              Liked: true,
+            };
           }
         }),
         randomPost:
@@ -186,24 +190,31 @@ const postReducer = (state = initialState, action) => {
             ? {
                 ...state.randomPost,
                 Likes: [...state.randomPost.Likes, action.payload],
+                Liked: true,
               }
             : { ...state.randomPost },
       };
     case DELETE_LIKE:
+      console.log(action.payload.postId);
       return {
         ...state,
         loadedPosts: state.loadedPosts.map((post) => {
           if (post.id !== action.payload.postId) {
             return post;
           } else {
-            return { ...post, Likes: [] };
+            return {
+              ...post,
+              Likes: action.payload.newLikes ? action.payload.newLikes : [],
+              Liked: false,
+            };
           }
         }),
         randomPost:
           state.randomPost && state.randomPost.id === action.payload.postId
             ? {
                 ...state.randomPost,
-                Likes: [],
+                Likes: action.payload.newLikes,
+                Liked: false,
               }
             : { ...state.randomPost },
       };

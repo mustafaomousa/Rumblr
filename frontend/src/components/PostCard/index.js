@@ -146,15 +146,17 @@ const PostCard = ({ post }) => {
         <Stack direction="row" spacing={1}>
           <Button
             color="warning"
-            variant={post.Likes.length ? "contained" : "outlined"}
+            variant={post.Liked ? "contained" : "outlined"}
             size="small"
             onClick={
-              post.Likes.length
+              post.Liked
                 ? () => dislike(post.Likes[0])
                 : () => like(post.User.username)
             }
+            sx={{ display: "flex", justifyContent: "space-around" }}
           >
-            {post.Likes.length ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {post.Liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            {post.Likes && post.Likes.length > 0 && post.Likes.length}
           </Button>
         </Stack>
         <Typography color="secondary" variant="caption">

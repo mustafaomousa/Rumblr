@@ -2,6 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 const { requireAuth } = require("../../utils/auth");
 const { Like } = require("../../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -28,7 +29,8 @@ router.delete(
     const like = await Like.findByPk(likeId);
     await like.destroy();
 
-    return res.json({ like });
+    const newLikes = await Like.findAll({ where: { postId: like.postId } });
+    return res.json({ newLikes });
   })
 );
 

@@ -35,7 +35,6 @@ const Profile = () => {
   const classes = useStyles();
   const { userId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
-
   const userPosts = useSelector((state) => state.posts.loadedPosts);
 
   useEffect(() => {

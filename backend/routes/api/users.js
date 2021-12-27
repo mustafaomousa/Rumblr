@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { User, Post, Like } = require("../../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -25,6 +26,20 @@ const validateSignup = [
     .withMessage("Password must be 6 characters or more."),
   handleValidationErrors,
 ];
+
+const arrangeLikes = async (req, posts) => {
+  for (let i = 0; i < posts.length; i++) {
+    let post = posts[i];
+    let postJSON = post;
+    const userLike = await Like.findOne({
+      where: { [Op.and]: [{ userId: req.user.id }, { postId: postJSON.id }] },
+    });
+    postJSON.Liked = userLike ? true : false;
+    posts[i] = postJSON;
+  }
+
+  return posts;
+};
 
 router.get(
   "/newest",
@@ -48,15 +63,15 @@ router.get(
       include: [
         {
           model: Post,
-          include: [
-            User,
-            { model: Like, where: { userId: userId }, required: false },
-          ],
+          include: [User, Like],
         },
       ],
       order: [[{ model: Post }, "createdAt", "DESC"]],
     });
-    return res.json({ user });
+
+    let arranged = await arrangeLikes(req, user.toJSON().Posts);
+
+    return res.json({ user: { ...user.toJSON(), Posts: arranged } });
   })
 );
 
