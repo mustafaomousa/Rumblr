@@ -5,19 +5,20 @@ const db = require("../../db/models");
 // const { check } = require('express-validator');
 // const { handleValidationErrors } = require('../../utils/validation');
 
-// const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post, User, Like, sequelize, Sequelize } = require("../../db/models");
+const { setTokenCookie, requireAuth } = require("../../utils/auth");
+const { Post, User, Like, sequelize } = require("../../db/models");
 const { restoreUser } = require("../../utils/auth");
 
 const router = express.Router();
 router.get(
   "/",
-  restoreUser,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { limit } = req.query;
     const posts = await Post.findAll({
       include: [
         User,
+        Like,
         {
           model: Like,
           where: { userId: req.user.id },
@@ -33,7 +34,7 @@ router.get(
 
 router.get(
   "/random",
-  restoreUser,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const randomPost = await Post.findOne({
       order: sequelize.random(),
@@ -48,14 +49,14 @@ router.get(
 
 router.post(
   "/",
-  restoreUser,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { content, body, tags, userId } = req.body;
 
     const post = await Post.create({
       content,
       body,
-      userId,
+      userId: req.user.id,
     });
 
     const postId = post.dataValues.id;
@@ -73,8 +74,8 @@ router.post(
 
 router.put(
   "/",
-  restoreUser,
-  asyncHandler(async (req, res) => {
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
     const { postId, body } = req.body;
     const updatedPost = await Post.findOne({
       where: { id: postId },
@@ -84,6 +85,14 @@ router.put(
       ],
     });
 
+    if (updatedPost.userId !== req.user.id) {
+      const err = new Error("This post does not belong to the current user.");
+      err.status = 401;
+      err.title = "Update failed";
+      err.errors = ["This post does not belong to the current user."];
+      return next(err);
+    }
+
     updatedPost.update({ body: body });
     updatedPost.save();
     return res.json({ updatedPost });
@@ -92,16 +101,26 @@ router.put(
 
 router.delete(
   "/",
-  asyncHandler(async (req, res) => {
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
     const { postId } = req.body;
 
-    Post.destroy({
+    const post = await Post.findOne({
       where: {
         id: postId,
       },
     });
 
-    return res.json({ deleted: true });
+    if (post.userId !== req.user.id) {
+      const err = new Error("This post does not belong to the current user.");
+      err.status = 401;
+      err.title = "Delete failed";
+      err.errors = ["This post does not belong to the current user."];
+      return next(err);
+    } else {
+      post.destroy();
+      return res.json({ deleted: true });
+    }
   })
 );
 

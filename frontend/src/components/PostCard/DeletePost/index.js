@@ -3,11 +3,14 @@ import Delete from "@mui/icons-material/Delete";
 import { deletePost } from "../../../store/post";
 import { useDispatch } from "react-redux";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Box } from "@mui/system";
+import useNotification from "../../Notification/useNotification";
+import Notification from "../../Notification";
 
 const DeletePost = ({ postId }) => {
   const dispatch = useDispatch();
+  const notificationRef = useRef();
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [anchorElement, setAnchorElement] = useState(null);
 
@@ -17,11 +20,14 @@ const DeletePost = ({ postId }) => {
     setAnchorElement(e.currentTarget);
   };
 
-  const deleteUserPost = async () =>
-    await dispatch(deletePost({ postId })).then(() => closePopover());
+  const deleteUserPost = async (e) => {
+    e.preventDefault();
+    await dispatch(deletePost({ postId, notificationRef }));
+  };
 
   return (
     <>
+      <Notification ref={notificationRef} />
       <Delete
         aria-describedby="delete-post"
         variant="contained"

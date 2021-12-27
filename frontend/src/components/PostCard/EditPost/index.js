@@ -17,13 +17,23 @@ const EditPost = ({ post, closeEditOpen, notificationRef }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(updatePost({ postId: post.id, body }));
-    notificationRef.current.toggleNotification({
-      message: "Post updated!",
-      severity: "success",
-    });
+    await dispatch(updatePost({ postId: post.id, body }))
+      .then((response) => {
+        notificationRef.current.toggleNotification({
+          message: "Post updated!",
+          severity: "success",
+        });
 
-    return closeEditOpen();
+        return closeEditOpen();
+      })
+      .catch((response) => {
+        response.data.errors.forEach((error) =>
+          notificationRef.current.toggleNotification({
+            message: error,
+            severity: "error",
+          })
+        );
+      });
   };
 
   return (

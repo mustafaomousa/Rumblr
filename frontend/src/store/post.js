@@ -76,6 +76,7 @@ export const updatePost =
     if (response.ok) {
       dispatch(updateUserPost(response.data.updatedPost));
     }
+    return response;
   };
 
 export const likeUserPost = (postId, userId) => async (dispatch) => {
@@ -108,9 +109,7 @@ export const deletePost =
       body: JSON.stringify({ postId }),
     });
 
-    if (response.ok && response.data.deleted) {
-      dispatch(deleteUserPost(postId));
-    }
+    dispatch(deleteUserPost(postId));
   };
 
 export const getPosts = (limit) => async (dispatch) => {

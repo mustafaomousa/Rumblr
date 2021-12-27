@@ -87,7 +87,6 @@ export const updateSessionUser = (userId, user) => async (dispatch) => {
   });
 
   if (res.ok) {
-    console.log(res.data);
     return dispatch(updateUser(res.data.user));
   }
 };

@@ -1,19 +1,13 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const db = require("../../db/models");
-// const { where } = require('sequelize/types');
-// const { check } = require('express-validator');
-// const { handleValidationErrors } = require('../../utils/validation');
-
-// const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Post, User, Like, sequelize } = require("../../db/models");
-const { restoreUser } = require("../../utils/auth");
+const { requireAuth } = require("../../utils/auth");
+const { Like } = require("../../db/models");
 
 const router = express.Router();
 
 router.post(
   "/",
-  restoreUser,
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { postId, userId } = req.body;
 
@@ -28,6 +22,7 @@ router.post(
 
 router.delete(
   "/",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { likeId } = req.body;
     const like = await Like.findByPk(likeId);

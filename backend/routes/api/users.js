@@ -28,6 +28,7 @@ const validateSignup = [
 
 router.get(
   "/newest",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const newestUsers = await User.findAll({
       limit: 4,
@@ -39,6 +40,7 @@ router.get(
 
 router.get(
   "/:userId",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
     const user = await User.findOne({
@@ -60,10 +62,11 @@ router.get(
 
 router.put(
   "/:userId",
+  requireAuth,
   asyncHandler(async (req, res) => {
     let updatedUser = { ...req.body };
     const { userId } = req.params;
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(req.user.id);
     if (updatedUser.password) {
       let hashedPassword = bcrypt.hashSync(updatedUser.password);
       delete updatedUser.password;
@@ -77,10 +80,11 @@ router.put(
 
 router.put(
   "/:userId/profile_picture",
+  requireAuth,
   asyncHandler(async (req, res) => {
     const { userId } = req.params;
     const { profilePicture } = req.body;
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(req.user.id);
     user.profilePicture = profilePicture;
     await user.save();
 
