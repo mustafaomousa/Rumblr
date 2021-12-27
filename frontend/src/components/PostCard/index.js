@@ -150,26 +150,27 @@ const PostCard = ({ post }) => {
         sx={{ background: "#53648F" }}
       >
         <Stack direction="row" spacing={1}>
-          {!isLoading ? (
-            <Button
-              color="warning"
-              variant={post.Liked ? "contained" : "outlined"}
-              size="small"
-              onClick={
-                post.Liked
-                  ? () => dislike(post.Likes[0])
-                  : () => like(post.User.username)
-              }
-              sx={{ display: "flex", justifyContent: "space-around" }}
-            >
-              {post.Liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              {post.Likes && post.Likes.length > 0 && post.Likes.length}
-            </Button>
-          ) : (
-            <Box paddingLeft={0.5}>
+          <Button
+            color="warning"
+            variant={post.Liked ? "contained" : "outlined"}
+            size="small"
+            onClick={
+              post.Liked
+                ? () => dislike(post.Likes[0])
+                : () => like(post.User.username)
+            }
+            sx={{ display: "flex", justifyContent: "space-around" }}
+            disabled={isLoading}
+          >
+            {!isLoading ? (
+              <>
+                {post.Liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                {post.Likes && post.Likes.length > 0 && post.Likes.length}
+              </>
+            ) : (
               <CircularProgress size={20} />
-            </Box>
-          )}
+            )}
+          </Button>
         </Stack>
         <Typography color="secondary" variant="caption">
           {moment(post.createdAt).format("MMMM DD, YYYY")}
