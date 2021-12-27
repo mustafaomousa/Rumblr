@@ -5,6 +5,7 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  CircularProgress,
   Divider,
   Link,
   Stack,
@@ -39,22 +40,27 @@ const PostCard = ({ post }) => {
   const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
   const [editOpen, setEditOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const closeEditOpen = () => setEditOpen(false);
   const openEditOpen = () => setEditOpen(true);
 
   const notificationRef = useNotification();
 
-  const like = (postUser) => {
-    dispatch(likeUserPost(post.id, sessionUser.id));
+  const like = async (postUser) => {
+    setIsLoading(true);
+    await dispatch(likeUserPost(post.id, sessionUser.id)).then(() => {
+      setIsLoading(false);
+    });
     notificationRef.current.toggleNotification({
       message: `You liked ${postUser}'s post!`,
       severity: "success",
     });
   };
 
-  const dislike = (like) => {
-    dispatch(removeLike(like));
+  const dislike = async (like) => {
+    setIsLoading(true);
+    await dispatch(removeLike(like)).then(() => setIsLoading(false));
   };
 
   return (
@@ -144,20 +150,26 @@ const PostCard = ({ post }) => {
         sx={{ background: "#53648F" }}
       >
         <Stack direction="row" spacing={1}>
-          <Button
-            color="warning"
-            variant={post.Liked ? "contained" : "outlined"}
-            size="small"
-            onClick={
-              post.Liked
-                ? () => dislike(post.Likes[0])
-                : () => like(post.User.username)
-            }
-            sx={{ display: "flex", justifyContent: "space-around" }}
-          >
-            {post.Liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            {post.Likes && post.Likes.length > 0 && post.Likes.length}
-          </Button>
+          {!isLoading ? (
+            <Button
+              color="warning"
+              variant={post.Liked ? "contained" : "outlined"}
+              size="small"
+              onClick={
+                post.Liked
+                  ? () => dislike(post.Likes[0])
+                  : () => like(post.User.username)
+              }
+              sx={{ display: "flex", justifyContent: "space-around" }}
+            >
+              {post.Liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              {post.Likes && post.Likes.length > 0 && post.Likes.length}
+            </Button>
+          ) : (
+            <Box paddingLeft={0.5}>
+              <CircularProgress size={20} />
+            </Box>
+          )}
         </Stack>
         <Typography color="secondary" variant="caption">
           {moment(post.createdAt).format("MMMM DD, YYYY")}

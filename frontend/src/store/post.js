@@ -50,10 +50,10 @@ const likePost = (like) => {
   };
 };
 
-const dislikePost = (postId, likes) => {
+const dislikePost = (postId, newLikes) => {
   return {
     type: DELETE_LIKE,
-    payload: { postId, likes },
+    payload: { postId, newLikes },
   };
 };
 
@@ -97,7 +97,7 @@ export const removeLike = (like) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(dislikePost(like.postId, response.data));
+    dispatch(dislikePost(like.postId, response.data.newLikes));
   }
 };
 
@@ -204,7 +204,7 @@ const postReducer = (state = initialState, action) => {
           } else {
             return {
               ...post,
-              Likes: action.payload.newLikes ? action.payload.newLikes : [],
+              Likes: action.payload.newLikes,
               Liked: false,
             };
           }

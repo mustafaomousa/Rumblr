@@ -12,12 +12,18 @@ router.post(
   asyncHandler(async (req, res) => {
     const { postId, userId } = req.body;
 
-    const like = await Like.create({
-      postId,
-      userId,
+    const possibleLike = await Like.findOne({
+      where: { [Op.and]: { postId, userId } },
     });
 
-    return res.json({ like });
+    if (!possibleLike) {
+      const like = await Like.create({
+        postId,
+        userId,
+      });
+
+      return res.json({ like });
+    }
   })
 );
 
