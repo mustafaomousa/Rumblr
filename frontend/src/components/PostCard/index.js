@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardMedia,
   CircularProgress,
-  Divider,
   Link,
   Stack,
   Typography,
@@ -29,6 +28,7 @@ import useNotification from "../Notification/useNotification";
 const useStyles = makeStyles(() => ({
   root: {
     borderRadius: 0,
+    backgroundColor: "rgba(52, 52, 52, 0)",
   },
   cardHeader: {
     backgroundColor: "#53648F",
@@ -121,7 +121,6 @@ const PostCard = ({ post }) => {
         }
       />
       <CardMedia component="img" image={post.content} alt="image" />
-      <Divider />
       <CardContent sx={{ background: "#53648F" }}>
         {editOpen ? (
           <EditPost

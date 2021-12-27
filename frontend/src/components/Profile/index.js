@@ -25,7 +25,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: "100px 50px",
     margin: "0 auto",
-    maxWidth: "1300px",
+    maxWidth: "1200px",
+  },
+  profileBox: {
+    position: "-webkit-sticky",
+    position: "sticky",
+    top: "85px",
+    height: "100%",
+    width: "100%",
   },
 }));
 
@@ -48,80 +55,71 @@ const Profile = () => {
   useEffect(() => dispatch(getProfilePosts(userId)), []);
 
   return (
-    <Stack direction="column" className={classes.root}>
+    <Stack direction="row" className={classes.root}>
       {userProfile && (
-        <Box
-          sx={{
-            marginBottom: 5,
-          }}
-        >
-          <Grid container direction="row" spacing={2}>
-            <Grid item xs={10}>
-              <Stack
-                sx={{ height: "100%" }}
-                direction="row"
-                justifyContent="flex-start"
-                alignItems="center"
-                spacing={5}
-              >
-                <Avatar
-                  variant="square"
-                  src={userProfile.profilePicture}
-                  sx={{
-                    height: 150,
-                    width: 150,
-                    objectFit: "contain",
-                    backgroundColor: "#e8e8e8",
-                  }}
-                />
-                <Stack
-                  direction="column"
-                  justifyContent="flex-end"
-                  height={"100%"}
-                >
-                  <Typography
-                    color="secondary"
-                    variant="h2"
-                    paragraph
-                    margin={0}
-                  >
-                    {userProfile.username}
-                  </Typography>
-                  <Typography
-                    color="secondary"
-                    align="start"
-                    paragraph
-                    variant="body1"
-                    margin={0}
-                  >
-                    {userProfile.bio}
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Grid>
-            <Grid xs={2}>
-              <Stack
-                spacing={2}
-                height="100%"
-                direction="row"
-                alignItems="flex-end"
-                justifyContent={"flex-end"}
-              >
-                <Button size="small" color="secondary" variant="outlined">
-                  Follow
-                </Button>
-                <Button size="small" color="secondary" variant="outlined">
-                  Message
-                </Button>
-              </Stack>
-            </Grid>
-          </Grid>
+        <Box className={classes.profileBox}>
+          <Stack direction="column" alignItems="flex-start">
+            <Avatar
+              variant="square"
+              src={userProfile.profilePicture}
+              sx={{
+                height: 150,
+                width: 150,
+                objectFit: "contain",
+                backgroundColor: "#e8e8e8",
+              }}
+            />
+            <Typography
+              color="secondary"
+              variant="h2"
+              paragraph
+              margin={0}
+              align="start"
+            >
+              {userProfile.username}
+            </Typography>
+          </Stack>
+
+          <Typography
+            color="secondary"
+            align="start"
+            paragraph
+            variant="body1"
+            // marginTop={5}
+            align="start"
+          >
+            {userProfile.bio}
+          </Typography>
+          <Stack
+            spacing={2}
+            direction="row"
+            marginTop={5}
+            alignItems="flex-start"
+            justifyContent={"flex-start"}
+          >
+            {/* <Button size="small" color="secondary" variant="outlined">
+              Follow
+            </Button>
+            <Button size="small" color="secondary" variant="outlined">
+              Message
+            </Button> */}
+          </Stack>
         </Box>
       )}
-      <Divider sx={{ color: "white", marginBottom: "30px" }} />
-      <Masonry columns={3} spacing={2}>
-        {userPosts && userPosts.map((post) => <PostCard post={post} />)}
-      </Masonry>
+      <Stack
+        width={600}
+        spacing={3}
+        alignItems="center"
+        justifyContent="center"
+        width="100%"
+      >
+        {userPosts &&
+          userPosts.map((post) => (
+            <Box width={550}>
+              <PostCard post={post} />
+            </Box>
+          ))}
+      </Stack>
     </Stack>
   );
 };
