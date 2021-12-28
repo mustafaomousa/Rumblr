@@ -55,7 +55,6 @@ const Discover = () => {
   useEffect(() => {
     if (!sessionUser) return <Redirect to="/" />;
     dispatch(getPosts(loadLimit));
-    setMorePostsLoading(false);
   }, [dispatch, loadLimit, sessionUser]);
 
   useEffect(() => {
