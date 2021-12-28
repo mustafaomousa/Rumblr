@@ -3,14 +3,12 @@ import { useState } from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 
-import { Box } from "@mui/system";
 import { makeStyles } from "@mui/styles";
 import { Button, Stack, Typography } from "@mui/material";
 
 const useStyles = makeStyles(() => ({
   root: {
     position: "fixed",
-    // padding: "20px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

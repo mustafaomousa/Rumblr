@@ -1,5 +1,4 @@
-import { Link, Stack, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Link, Stack } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { useEffect } from "react";

@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import {
-  Button,
   Stack,
   Grid,
   Skeleton,
@@ -16,14 +15,12 @@ import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
 import CheckoutPost from "./CheckoutPost";
 import NewestMembers from "./NewestMembers";
-import useBottomScrollListener from "../useBottomScrollListener";
 
 const useStyles = makeStyles(() => ({
   root: {
     margin: "95px 0px",
   },
   stickyAvatar: {
-    position: "-webkit-sticky",
     position: "sticky",
     top: "65px",
     height: "60px",
@@ -39,7 +36,6 @@ const Discover = () => {
   const [morePostsLoading, setMorePostsLoading] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const posts = useSelector((state) => state.posts.loadedPosts);
-  const increaseLimit = () => setLoadLimit(loadLimit + 5);
 
   const handleScroll = () => {
     const bottom =
@@ -74,7 +70,7 @@ const Discover = () => {
           <Stack alignItems={"flex-end"} spacing={3} height="100%">
             {posts.map((post) => {
               return (
-                <Stack direction="row">
+                <Stack direction="row" key={post.id}>
                   <Box sx={{ padding: "0 15px" }}>
                     <Link href={`/user/${post.User.id}`}>
                       <Avatar

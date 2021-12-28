@@ -2,19 +2,16 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Button,
-  CardActions,
   Input,
   CardMedia,
   Typography,
   TextField,
   Stack,
-  Container,
 } from "@mui/material";
 import { createNewPost } from "../../store/post";
 import SendIcon from "@mui/icons-material/Send";
 import ImageIcon from "@mui/icons-material/Image";
 import S3FileUpload from "react-s3";
-import useGlobalStyles from "../useGlobalStyles";
 import { Box } from "@mui/system";
 
 const CreatePost = ({
@@ -24,7 +21,6 @@ const CreatePost = ({
   closeCreatePost,
 }) => {
   const dispatch = useDispatch();
-  const globalStyles = useGlobalStyles();
   const [body, setBody] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 

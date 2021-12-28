@@ -1,11 +1,10 @@
-import { Button, IconButton, Popover, Typography } from "@mui/material";
+import { Button, Popover } from "@mui/material";
 import Delete from "@mui/icons-material/Delete";
 import { deletePost } from "../../../store/post";
 import { useDispatch } from "react-redux";
 
 import { useRef, useState } from "react";
 import { Box } from "@mui/system";
-import useNotification from "../../Notification/useNotification";
 import Notification from "../../Notification";
 
 const DeletePost = ({ postId }) => {
@@ -23,6 +22,7 @@ const DeletePost = ({ postId }) => {
   const deleteUserPost = async (e) => {
     e.preventDefault();
     await dispatch(deletePost({ postId, notificationRef }));
+    closePopover();
   };
 
   return (

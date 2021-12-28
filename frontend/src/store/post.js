@@ -104,7 +104,7 @@ export const removeLike = (like) => async (dispatch) => {
 export const deletePost =
   ({ postId }) =>
   async (dispatch) => {
-    const response = await fetch(`/api/posts`, {
+    await fetch(`/api/posts`, {
       method: "DELETE",
       body: JSON.stringify({ postId }),
     });

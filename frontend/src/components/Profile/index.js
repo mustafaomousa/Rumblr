@@ -1,16 +1,4 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  Container,
-  Divider,
-  Grid,
-  Button,
-  Skeleton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Avatar, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
@@ -19,22 +7,19 @@ import { useParams } from "react-router";
 import { fetch } from "../../store/csrf";
 import { getProfilePosts } from "../../store/post";
 import PostCard from "../PostCard";
-import { Masonry } from "@mui/lab";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     padding: "100px 50px",
     margin: "0 auto",
     maxWidth: "1200px",
   },
   profileBox: {
-    position: "-webkit-sticky",
-    position: "sticky",
     top: "85px",
     height: "100%",
     maxWidth: "500px",
-    // backgroundColor: "#53648F",
     padding: "30px 25px",
+    position: "sticky",
   },
 }));
 
@@ -43,7 +28,6 @@ const Profile = () => {
   const [userProfile, setUserProfile] = useState(null);
   const classes = useStyles();
   const { userId } = useParams();
-  const sessionUser = useSelector((state) => state.session.user);
   const userPosts = useSelector((state) => state.posts.loadedPosts);
 
   useEffect(() => {
@@ -52,9 +36,9 @@ const Profile = () => {
         setUserProfile(res.data.user)
       );
     })();
-  }, []);
+  }, [userId]);
 
-  useEffect(() => dispatch(getProfilePosts(userId)), []);
+  useEffect(() => dispatch(getProfilePosts(userId)), [dispatch, userId]);
 
   return (
     <Stack direction="row" className={classes.root} spacing={3}>
@@ -76,19 +60,13 @@ const Profile = () => {
               variant="h3"
               paragraph
               margin={0}
-              align="end"
+              align="right"
             >
               {userProfile.username}
             </Typography>
           </Stack>
 
-          <Typography
-            color="secondary"
-            align="start"
-            paragraph
-            variant="body2"
-            align="start"
-          >
+          <Typography color="secondary" align="left" paragraph variant="body2">
             {userProfile.bio}
           </Typography>
         </Stack>
@@ -101,7 +79,7 @@ const Profile = () => {
       >
         {userPosts &&
           userPosts.map((post) => (
-            <Box width={550}>
+            <Box width={550} key={post.id}>
               <PostCard post={post} />
             </Box>
           ))}

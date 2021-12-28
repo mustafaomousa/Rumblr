@@ -37,7 +37,7 @@ const UpdatePersonalInformation = ({
     if (username === sessionUser.username && email === sessionUser.email) {
       setIsChanged(false);
     }
-  }, [username, email]);
+  }, [username, email, sessionUser.email, sessionUser.username]);
 
   return (
     <form onSubmit={onSubmit}>

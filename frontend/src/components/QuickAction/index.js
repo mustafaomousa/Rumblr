@@ -1,14 +1,8 @@
-import {
-  Modal,
-  SpeedDial,
-  SpeedDialAction,
-  SpeedDialIcon,
-} from "@mui/material";
-import CreateIcon from "@mui/icons-material/Create";
+import { Modal } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import CreatePost from "../CreatePost";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Notification from "../Notification";
 
 const QuickAction = () => {

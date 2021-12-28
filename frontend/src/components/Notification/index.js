@@ -24,7 +24,10 @@ const Notification = forwardRef(({ ...rest }, ref) => {
       autoHideDuration={6000}
       onClose={handleClose}
     >
-      <Alert onClose={handleClose} severity={contentSeverity}>
+      <Alert
+        onClose={handleClose}
+        severity={contentSeverity ? contentSeverity : "success"}
+      >
         {message}
       </Alert>
     </Snackbar>

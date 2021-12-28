@@ -22,7 +22,7 @@ const NewestMembers = () => {
 
   const newestUsers = useSelector((state) => state.discover.newestUsers);
 
-  useEffect(() => dispatch(getNewestUsers()), []);
+  useEffect(() => dispatch(getNewestUsers()), [dispatch]);
 
   return newestUsers ? (
     <Stack spacing={2} className={classes.root}>

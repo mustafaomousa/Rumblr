@@ -3,7 +3,6 @@ import {
   Alert,
   Grid,
   FormControl,
-  Input,
   Stack,
   TextField,
 } from "@mui/material";
@@ -138,7 +137,7 @@ const SignupForm = () => {
         </Grid>
         <Stack paddingTop={2} spacing={2}>
           {errors &&
-            errors.map((error) => <Alert severity="warning">{error}</Alert>)}
+            errors.map((error) => <Alert severity="error">{error}</Alert>)}
         </Stack>
       </Grid>
     </form>

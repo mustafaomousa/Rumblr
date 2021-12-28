@@ -5,7 +5,6 @@ import {
   Button,
   Alert,
   FormControl,
-  Input,
   Grid,
   Stack,
   TextField,
@@ -118,7 +117,7 @@ const LoginForm = () => {
         </Grid>
         <Stack paddingTop={2} spacing={2}>
           {errors &&
-            errors.map((error) => <Alert severity="warning">{error}</Alert>)}
+            errors.map((error) => <Alert severity="error">{error}</Alert>)}
         </Stack>
       </Grid>
     </form>

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 
@@ -8,13 +8,11 @@ import WelcomePage from "./components/WelcomePage";
 import AboutUs from "./components/AboutUs";
 import QuickAction from "./components/QuickAction";
 import SettingsPage from "./components/SettingsPage";
-import { Box, createTheme } from "@mui/system";
+import { Box } from "@mui/system";
 import Discover from "./components/Discover";
 import Profile from "./components/Profile";
-import { Button, Toolbar, useScrollTrigger, Zoom } from "@mui/material";
+import { Button, useScrollTrigger, Zoom } from "@mui/material";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import Notification from "./components/Notification";
-import useNotification from "./components/Notification/useNotification";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -67,7 +65,7 @@ function App() {
             <ArrowCircleUpIcon />
           </Button>
         </ScrollTop>
-        <div id="back-to-top-anchor" disableGutters />
+        <div id="back-to-top-anchor" />
         {sessionUser && <Navigation />}
         <QuickAction />
         <Switch>

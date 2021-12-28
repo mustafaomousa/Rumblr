@@ -17,7 +17,7 @@ const CheckoutPost = () => {
   const classes = useStyles();
   const randomPost = useSelector((state) => state.posts.randomPost);
 
-  useEffect(() => dispatch(getRandomPost()), []);
+  useEffect(() => dispatch(getRandomPost()), [dispatch]);
 
   return randomPost ? (
     <Stack spacing={2} className={classes.root}>

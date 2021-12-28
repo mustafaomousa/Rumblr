@@ -28,7 +28,7 @@ const UpdateBio = ({ sessionUser, updateSessionUser, notificationRef }) => {
     if (bio === sessionUser.bio) {
       setIsChanged(false);
     }
-  }, [bio]);
+  }, [bio, sessionUser.bio]);
 
   return (
     <form onSubmit={onSubmit}>
