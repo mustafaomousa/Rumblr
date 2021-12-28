@@ -28,11 +28,10 @@ import useNotification from "../Notification/useNotification";
 const useStyles = makeStyles(() => ({
   root: {
     borderRadius: 0,
-    backgroundColor: "rgba(52, 52, 52, 0)",
+    width: 500,
+    background: "rgba(0,0,0,0)",
   },
-  cardHeader: {
-    backgroundColor: "#53648F",
-  },
+  cardHeader: {},
 }));
 
 const PostCard = ({ post }) => {
@@ -67,6 +66,11 @@ const PostCard = ({ post }) => {
     <Card className={classes.root} elevation={0}>
       <Notification ref={notificationRef} />
       <CardHeader
+        sx={{
+          backgroundColor: "#ffffff",
+          borderTopRightRadius: "0.2em",
+          borderTopLeftRadius: "0.2em",
+        }}
         avatar={
           window.location.pathname !== "/discover" && (
             <Link href={`/user/${post.User.id}`}>
@@ -89,7 +93,7 @@ const PostCard = ({ post }) => {
               <Button
                 variant="outlined"
                 aria-describedby="delete-post"
-                color="secondary"
+                color="primary"
               >
                 <DeletePost postId={post.id} />
               </Button>
@@ -101,7 +105,7 @@ const PostCard = ({ post }) => {
                 <Button
                   variant="contained"
                   onClick={openEditOpen}
-                  color="secondary"
+                  color="primary"
                 >
                   <EditIcon />
                 </Button>
@@ -114,14 +118,13 @@ const PostCard = ({ post }) => {
             underline="hover"
             href={`/user/${post.User.id}`}
             fontSize="medium"
-            color="#ffffff"
           >
             {post.User.username}
           </Link>
         }
       />
-      <CardMedia component="img" image={post.content} alt="image" />
-      <CardContent sx={{ background: "#53648F" }}>
+      <CardMedia component="img" image={post.content} height="300px" />
+      <CardContent sx={{ backgroundColor: "#ffffff" }}>
         {editOpen ? (
           <EditPost
             notificationRef={notificationRef}
@@ -134,7 +137,7 @@ const PostCard = ({ post }) => {
               variant="body1"
               sx={{ wordWrap: "break-word" }}
               paragraph
-              color="secondary"
+              color="primary"
             >
               {post.body}
             </Typography>
@@ -146,7 +149,11 @@ const PostCard = ({ post }) => {
         justifyContent="space-between"
         alignItems="flex-end"
         padding={1}
-        sx={{ background: "#53648F" }}
+        sx={{
+          backgroundColor: "#ffffff",
+          borderBottomLeftRadius: "0.2em",
+          borderBottomRightRadius: "0.2em",
+        }}
       >
         <Stack direction="row" spacing={1}>
           <Button
@@ -171,7 +178,7 @@ const PostCard = ({ post }) => {
             )}
           </Button>
         </Stack>
-        <Typography color="secondary" variant="caption">
+        <Typography color="primary" variant="caption">
           {moment(post.createdAt).format("MMMM DD, YYYY")}
         </Typography>
       </Stack>

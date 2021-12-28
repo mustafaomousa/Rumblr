@@ -40,27 +40,20 @@ const AboutUs = () => {
           </Typography>
         </Box>
       </Box>
-      <Box className="divider-container-2">
-        <Box flexDirection={"column"} className="about-us-container-4">
-          <Typography color="secondary" fontSize="35px" align="center">
-            Rumblr was created by Mustafa Mousa.
-          </Typography>
-          <Stack
-            paddingTop={2}
-            direction="row"
-            width="100%"
-            justifyContent="space-around"
-          >
-            <Link href="https://www.linkedin.com/in/mustafa-mousa-8b8053157/">
-              <LinkedInIcon
-                sx={{ width: 100, height: 100, color: "#ffffff" }}
-              />
-            </Link>
-            <Link href="https://github.com/mustafaomousa">
-              <GitHubIcon sx={{ width: 100, height: 100, color: "#ffffff" }} />
-            </Link>
-          </Stack>
-        </Box>
+      <Box className="divider-container-2" sx={{ width: "100%" }}>
+        <Stack
+          paddingTop={2}
+          direction="row"
+          width="100%"
+          justifyContent="space-around"
+        >
+          <Link href="https://www.linkedin.com/in/mustafa-mousa-8b8053157/">
+            <LinkedInIcon sx={{ width: 100, height: 100, color: "#ffffff" }} />
+          </Link>
+          <Link href="https://github.com/mustafaomousa">
+            <GitHubIcon sx={{ width: 100, height: 100, color: "#ffffff" }} />
+          </Link>
+        </Stack>
       </Box>
     </Stack>
   );
