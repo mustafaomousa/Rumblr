@@ -91,7 +91,7 @@ const PostCard = ({ post }) => {
           sessionUser.id === post.User.id && (
             <Stack direction="row" align justifyContent={"center"} spacing={1}>
               <Button
-                variant="outlined"
+                // variant="outlined"
                 aria-describedby="delete-post"
                 color="primary"
               >
@@ -103,7 +103,7 @@ const PostCard = ({ post }) => {
                 </Button>
               ) : (
                 <Button
-                  variant="contained"
+                  variant="outlined"
                   onClick={openEditOpen}
                   color="primary"
                 >
@@ -123,7 +123,11 @@ const PostCard = ({ post }) => {
           </Link>
         }
       />
-      <CardMedia component="img" image={post.content} height="300px" />
+      <CardMedia
+        component="img"
+        image={post.content}
+        sx={{ backgroundColor: "#ffffff", width: "101%" }}
+      />
       <CardContent sx={{ backgroundColor: "#ffffff" }}>
         {editOpen ? (
           <EditPost

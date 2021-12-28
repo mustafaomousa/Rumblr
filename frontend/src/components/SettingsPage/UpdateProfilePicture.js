@@ -30,10 +30,8 @@ const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
       <Avatar
         variant="square"
         sx={{
-          width: "100%",
-          height: "auto",
-          boxShadow:
-            "rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px",
+          width: "auto",
+          height: 285,
         }}
         src={sessionUser.profilePicture}
       />
@@ -51,11 +49,18 @@ const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
           onChange={updateProfilePic}
         />
         <label htmlFor="profile-image">
-          <Button size="small" variant="contained" component="span" fullWidth>
+          <Button
+            disableElevation
+            size="small"
+            variant="contained"
+            component="span"
+            fullWidth
+          >
             Upload Image
           </Button>
         </label>
         <Button
+          disableElevation
           color="warning"
           size="small"
           variant="contained"
