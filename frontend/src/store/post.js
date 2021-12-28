@@ -146,7 +146,6 @@ const initialState = { loadedPosts: null, randomPost: null };
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_POSTS:
-      console.log(action.payload);
       return { ...state, loadedPosts: action.payload };
     case ADD_POST:
       return { ...state, loadedPosts: [action.payload, ...state.loadedPosts] };

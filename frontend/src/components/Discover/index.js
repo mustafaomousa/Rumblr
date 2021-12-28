@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import {
@@ -9,12 +9,14 @@ import {
   Box,
   Avatar,
   Link,
+  CircularProgress,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../PostCard";
 import { getPosts } from "../../store/post";
 import CheckoutPost from "./CheckoutPost";
 import NewestMembers from "./NewestMembers";
+import useBottomScrollListener from "../useBottomScrollListener";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,14 +36,35 @@ const Discover = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [loadLimit, setLoadLimit] = useState(5);
+  const [morePostsLoading, setMorePostsLoading] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
   const posts = useSelector((state) => state.posts.loadedPosts);
   const increaseLimit = () => setLoadLimit(loadLimit + 5);
 
+  const handleScroll = () => {
+    const bottom =
+      Math.ceil(window.innerHeight + window.scrollY) >=
+      document.documentElement.scrollHeight;
+
+    if (bottom) {
+      setMorePostsLoading(true);
+      setLoadLimit(loadLimit + 5);
+    }
+  };
+
   useEffect(() => {
     if (!sessionUser) return <Redirect to="/" />;
     dispatch(getPosts(loadLimit));
+    setMorePostsLoading(false);
   }, [dispatch, loadLimit, sessionUser]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   if (!sessionUser) return <Redirect to="/" />;
 
@@ -68,7 +91,17 @@ const Discover = () => {
                 </Stack>
               );
             })}
-            {Object.keys(posts).length % 5 === 0 && (
+            <Stack
+              alignItems={"center"}
+              justifyContent={"center"}
+              width={500}
+              paddingTop={5}
+              sx={{ display: morePostsLoading ? "" : "none" }}
+            >
+              <CircularProgress color="secondary" />
+            </Stack>
+
+            {/* {Object.keys(posts).length % 5 === 0 && (
               <Button
                 disableElevation
                 color="secondary"
@@ -78,7 +111,7 @@ const Discover = () => {
               >
                 Load more
               </Button>
-            )}
+            )} */}
           </Stack>
         ) : (
           <Stack spacing={3} alignItems="flex-end">
