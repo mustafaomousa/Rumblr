@@ -5,10 +5,11 @@ import SignupForm from "./SignupForm";
 
 import { makeStyles } from "@mui/styles";
 import { Button, Stack, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 
 const useStyles = makeStyles(() => ({
   root: {
-    position: "fixed",
+    position: "absolute",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -40,7 +41,8 @@ const WelcomePage = () => {
   };
 
   return (
-    <Stack className={classes.root} spacing={3} justifyContent={"center"}>
+    <Stack className={classes.root} spacing={3}>
+      <Box sx={{ height: "25%" }} />
       <Typography variant="h3" color="primary" fontWeight="bold">
         Rumblr
       </Typography>
