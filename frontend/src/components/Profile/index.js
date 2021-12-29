@@ -1,7 +1,6 @@
 import {
   Avatar,
   Button,
-  Divider,
   Grid,
   Skeleton,
   Stack,
@@ -18,18 +17,22 @@ import PhotoSizeSelectActualIcon from "@mui/icons-material/PhotoSizeSelectActual
 import PostCard from "../PostCard";
 import { useHistory } from "react-router-dom";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "100px 50px",
-    margin: "0 auto",
-    maxWidth: "1200px",
+    margin: "100px 0px",
   },
   profileBox: {
     top: "85px",
-    width: "100%",
-    padding: "30px 25px",
+    width: "500px",
     position: "sticky",
-    backgroundColor: "rgba(0, 0, 0, 0.11)",
+    [theme.breakpoints.only("sm")]: {
+      width: "100%",
+    },
+  },
+  userPostsContainer: {
+    [theme.breakpoints.only("sm")]: {
+      justifyContent: "center",
+    },
   },
 }));
 
@@ -54,55 +57,57 @@ const Profile = () => {
 
   return (
     <Grid container direction="row" className={classes.root} spacing={2}>
-      <Grid item xs={5}>
+      <Grid item container sm={12} md={6} justifyContent="flex-end">
         {userProfile && (
-          <Stack className={classes.profileBox} spacing={2}>
-            <Stack direction="column" alignItems="center" spacing={2}>
-              <Avatar
-                variant="square"
-                src={userProfile.profilePicture}
-                sx={{
-                  height: 150,
-                  width: 150,
-                  objectFit: "contain",
-                  backgroundColor: "#e8e8e8",
-                }}
-              />
+          <Box>
+            <Box className={classes.profileBox}>
+              <Stack direction="row" alignItems="flex-end" spacing={2}>
+                <Avatar
+                  variant="square"
+                  src={userProfile.profilePicture}
+                  sx={{
+                    height: 150,
+                    width: 150,
+                    objectFit: "contain",
+                    backgroundColor: "#e8e8e8",
+                  }}
+                />
+                <Typography color="secondary" variant="h4">
+                  {userProfile.username}
+                </Typography>
+              </Stack>
+              <br />
               <Typography
                 color="secondary"
-                variant="h3"
+                align="start"
                 paragraph
-                margin={0}
-                align="right"
+                variant="body1"
               >
-                {userProfile.username}
+                {userProfile.bio}
               </Typography>
-            </Stack>
-            <Divider />
-            <Typography
-              color="secondary"
-              align="left"
-              paragraph
-              variant="body2"
-            >
-              {userProfile.bio}
-            </Typography>
-            <Stack alignItems={"flex-end"}>
-              {sessionUser.username === userProfile.username && (
-                <Button
-                  color="secondary"
-                  variant="outlined"
-                  size="small"
-                  onClick={() => history.push("/settings")}
-                >
-                  Edit
-                </Button>
-              )}
-            </Stack>
-          </Stack>
+              <Stack alignItems={"flex-end"}>
+                {sessionUser.username === userProfile.username && (
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    size="small"
+                    onClick={() => history.push("/settings")}
+                  >
+                    Edit
+                  </Button>
+                )}
+              </Stack>
+            </Box>
+          </Box>
         )}
       </Grid>
-      <Grid item xs={7}>
+      <Grid
+        item
+        container
+        sm={12}
+        md={6}
+        className={classes.userPostsContainer}
+      >
         <Stack
           width={600}
           spacing={2}
