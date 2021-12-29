@@ -16,9 +16,12 @@ import { getPosts } from "../../store/post";
 import CheckoutPost from "./CheckoutPost";
 import NewestMembers from "./NewestMembers";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: "95px 0px",
+    [theme.breakpoints.only("sm")]: {
+      flexDirection: "column-reverse",
+    },
   },
   stickyAvatar: {
     position: "sticky",
@@ -26,6 +29,18 @@ const useStyles = makeStyles(() => ({
     height: "60px",
     width: "60px",
     backgroundColor: "#e8e8e8",
+  },
+  postContainer: {
+    justifyContent: "flex-end",
+    [theme.breakpoints.only("sm")]: {
+      justifyContent: "center",
+      marginLeft: -50,
+    },
+  },
+  extrasContainer: {
+    [theme.breakpoints.only("sm")]: {
+      display: "none",
+    },
   },
 }));
 
@@ -65,9 +80,9 @@ const Discover = () => {
 
   return (
     <Grid className={classes.root} container direction="row" spacing={2}>
-      <Grid item xs={12} md={6}>
+      <Grid item container sm={12} md={6} className={classes.postContainer}>
         {posts ? (
-          <Stack alignItems={"flex-end"} spacing={3} height="100%">
+          <Stack spacing={3} height="100%">
             {posts.map((post) => {
               return (
                 <Stack direction="row" key={post.id}>
@@ -131,7 +146,7 @@ const Discover = () => {
           </Stack>
         )}
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item container sm={12} md={6} className={classes.extrasContainer}>
         <Stack spacing={3} className={classes.wigits}>
           <NewestMembers />
           <CheckoutPost />
