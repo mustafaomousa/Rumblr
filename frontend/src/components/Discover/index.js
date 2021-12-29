@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { isMobile } from "react-device-detect";
 import { Redirect } from "react-router-dom";
 import {
   Stack,
@@ -9,6 +10,7 @@ import {
   Avatar,
   Link,
   CircularProgress,
+  Divider,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import PostCard from "../PostCard";
@@ -18,8 +20,13 @@ import NewestMembers from "./NewestMembers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "95px 0px",
+    margin: "100px 0px",
+    flexDirection: isMobile && "column-reverse",
+    alignItems: isMobile && "center",
     [theme.breakpoints.only("sm")]: {
+      flexDirection: "column-reverse",
+    },
+    [theme.breakpoints.only("xs")]: {
       flexDirection: "column-reverse",
     },
   },
@@ -31,13 +38,23 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#e8e8e8",
   },
   postContainer: {
-    justifyContent: "flex-end",
+    justifyContent: !isMobile && "flex-end",
     [theme.breakpoints.only("sm")]: {
       justifyContent: "center",
       marginLeft: -50,
     },
+    paddingRight: !isMobile && 10,
   },
   extrasContainer: {
+    [theme.breakpoints.only("sm")]: {
+      justifyContent: "center",
+      paddingRight: 30,
+      paddingBottom: 30,
+    },
+    paddingLeft: !isMobile && 10,
+    paddingBottom: isMobile && 30,
+  },
+  avatarBox: {
     [theme.breakpoints.only("sm")]: {
       display: "none",
     },
@@ -79,14 +96,14 @@ const Discover = () => {
   if (!sessionUser) return <Redirect to="/" />;
 
   return (
-    <Grid className={classes.root} container direction="row" spacing={2}>
+    <Grid className={classes.root} container direction="row">
       <Grid item container sm={12} md={6} className={classes.postContainer}>
         {posts ? (
           <Stack spacing={3} height="100%">
             {posts.map((post) => {
               return (
                 <Stack direction="row" key={post.id}>
-                  <Box sx={{ padding: "0 15px" }}>
+                  <Box sx={{ padding: "0 15px" }} display={isMobile && "none"}>
                     <Link href={`/user/${post.User.id}`}>
                       <Avatar
                         src={post.User.profilePicture}
@@ -95,7 +112,7 @@ const Discover = () => {
                       />
                     </Link>
                   </Box>
-                  <Box width={500}>
+                  <Box maxWidth={500}>
                     <PostCard key={post.id} post={post} />
                   </Box>
                 </Stack>
@@ -104,24 +121,11 @@ const Discover = () => {
             <Stack
               alignItems={"center"}
               justifyContent={"center"}
-              width={500}
               paddingTop={5}
               sx={{ display: morePostsLoading ? "" : "none" }}
             >
               <CircularProgress color="secondary" />
             </Stack>
-
-            {/* {Object.keys(posts).length % 5 === 0 && (
-              <Button
-                disableElevation
-                color="secondary"
-                variant="contained"
-                onClick={increaseLimit}
-                sx={{ width: 500, marginRight: "10px" }}
-              >
-                Load more
-              </Button>
-            )} */}
           </Stack>
         ) : (
           <Stack spacing={3} alignItems="flex-end">
@@ -147,7 +151,7 @@ const Discover = () => {
         )}
       </Grid>
       <Grid item container sm={12} md={6} className={classes.extrasContainer}>
-        <Stack spacing={3} className={classes.wigits}>
+        <Stack spacing={3} maxWidth={!isMobile ? 500 : "100%"} width="100%">
           <NewestMembers />
           <CheckoutPost />
         </Stack>

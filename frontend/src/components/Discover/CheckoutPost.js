@@ -7,9 +7,7 @@ import PostCard from "../PostCard";
 import { getRandomPost } from "../../store/post";
 
 const useStyles = makeStyles(() => ({
-  root: {
-    width: "500px",
-  },
+  root: {},
 }));
 
 const CheckoutPost = () => {
@@ -27,9 +25,14 @@ const CheckoutPost = () => {
       <PostCard post={randomPost} />
     </Stack>
   ) : (
-    <Stack spacing={1} className={classes.root}>
-      <Skeleton animation="wave" variant="rectangular" height={30} />
-      <Skeleton animation="wave" variant="rectangular" height={500} />
+    <Stack spacing={1} width="100%">
+      <Skeleton
+        animation="wave"
+        variant="rectangular"
+        width="100%"
+        maxHeight={30}
+      />
+      <Skeleton animation="wave" variant="rectangular" maxHeight={500} />
     </Stack>
   );
 };

@@ -28,7 +28,7 @@ import useNotification from "../Notification/useNotification";
 const useStyles = makeStyles(() => ({
   root: {
     borderRadius: 0,
-    width: 500,
+    // width: 500,
     background: "rgba(0,0,0,0)",
   },
   cardHeader: {},
@@ -90,11 +90,7 @@ const PostCard = ({ post }) => {
         action={
           sessionUser.id === post.User.id && (
             <Stack direction="row" align justifyContent={"center"} spacing={1}>
-              <Button
-                // variant="outlined"
-                aria-describedby="delete-post"
-                color="primary"
-              >
+              <Button aria-describedby="delete-post" color="primary">
                 <DeletePost postId={post.id} />
               </Button>
               {editOpen ? (

@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { isMobile } from "react-device-detect";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,13 +24,22 @@ const useStyles = makeStyles((theme) => ({
   },
   profileBox: {
     top: "85px",
-    width: "500px",
     position: "sticky",
+    maxWidth: "550px",
     [theme.breakpoints.only("sm")]: {
       width: "100%",
+      marginBottom: 10,
     },
   },
   userPostsContainer: {
+    paddingLeft: !isMobile && 10,
+    [theme.breakpoints.only("sm")]: {
+      justifyContent: "center",
+    },
+  },
+  userProfileContainer: {
+    justifyContent: "flex-end",
+    paddingRight: !isMobile && 10,
     [theme.breakpoints.only("sm")]: {
       justifyContent: "center",
     },
@@ -56,36 +66,48 @@ const Profile = () => {
   useEffect(() => dispatch(getProfilePosts(userId)), [dispatch, userId]);
 
   return (
-    <Grid container direction="row" className={classes.root} spacing={2}>
-      <Grid item container sm={12} md={6} justifyContent="flex-end">
+    <Grid
+      container
+      direction="row"
+      justifyContent="center"
+      className={classes.root}
+    >
+      <Grid
+        item
+        container
+        sm={12}
+        md={6}
+        className={classes.userProfileContainer}
+      >
         {userProfile && (
-          <Box>
-            <Box className={classes.profileBox}>
-              <Stack direction="row" alignItems="flex-end" spacing={2}>
+          <Box paddingRight={2}>
+            <Box className={classes.profileBox} id="profileBox">
+              <Stack direction="row" spacing={2}>
                 <Avatar
                   variant="square"
                   src={userProfile.profilePicture}
                   sx={{
-                    height: 150,
-                    width: 150,
+                    height: 120,
+                    width: 120,
                     objectFit: "contain",
                     backgroundColor: "#e8e8e8",
                   }}
                 />
-                <Typography color="secondary" variant="h4">
-                  {userProfile.username}
-                </Typography>
+                <Stack height="100%">
+                  <Typography color="secondary" paragraph align="start">
+                    {userProfile.username}
+                  </Typography>
+                  <Typography
+                    color="secondary"
+                    align="start"
+                    paragraph
+                    variant="body2"
+                  >
+                    {userProfile.bio}
+                  </Typography>
+                </Stack>
               </Stack>
-              <br />
-              <Typography
-                color="secondary"
-                align="start"
-                paragraph
-                variant="body1"
-              >
-                {userProfile.bio}
-              </Typography>
-              <Stack alignItems={"flex-end"}>
+              {/* <Stack alignItems={"flex-end"}>
                 {sessionUser.username === userProfile.username && (
                   <Button
                     color="secondary"
@@ -96,7 +118,7 @@ const Profile = () => {
                     Edit
                   </Button>
                 )}
-              </Stack>
+              </Stack> */}
             </Box>
           </Box>
         )}
@@ -108,16 +130,11 @@ const Profile = () => {
         md={6}
         className={classes.userPostsContainer}
       >
-        <Stack
-          width={600}
-          spacing={2}
-          alignItems="center"
-          justifyContent="center"
-        >
+        <Stack spacing={2} alignItems="center" justifyContent="center">
           {userPosts ? (
             userPosts.length ? (
               userPosts.map((post) => (
-                <Box width={500} key={post.id}>
+                <Box maxWidth={500} key={post.id}>
                   <PostCard post={post} />
                 </Box>
               ))

@@ -7,9 +7,7 @@ import { useHistory } from "react-router-dom";
 import { getNewestUsers } from "../../store/discover";
 
 const useStyles = makeStyles(() => ({
-  root: {
-    width: "500px",
-  },
+  root: {},
   newestUserButton: {
     justifyContent: "start",
   },
