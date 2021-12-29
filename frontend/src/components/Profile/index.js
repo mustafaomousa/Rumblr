@@ -107,18 +107,6 @@ const Profile = () => {
                   </Typography>
                 </Stack>
               </Stack>
-              {/* <Stack alignItems={"flex-end"}>
-                {sessionUser.username === userProfile.username && (
-                  <Button
-                    color="secondary"
-                    variant="outlined"
-                    size="small"
-                    onClick={() => history.push("/settings")}
-                  >
-                    Edit
-                  </Button>
-                )}
-              </Stack> */}
             </Box>
           </Box>
         )}

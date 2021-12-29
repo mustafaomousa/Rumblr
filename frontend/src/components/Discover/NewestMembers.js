@@ -6,8 +6,8 @@ import { useHistory } from "react-router-dom";
 
 import { getNewestUsers } from "../../store/discover";
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles((theme) => ({
+  root: { maxWidth: 500, [theme.breakpoints.only("sm")]: { width: "100%" } },
   newestUserButton: {
     justifyContent: "start",
   },

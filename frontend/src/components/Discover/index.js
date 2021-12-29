@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   extrasContainer: {
     [theme.breakpoints.only("sm")]: {
       justifyContent: "center",
+      width: "100%",
       paddingRight: 30,
       paddingBottom: 30,
     },
@@ -57,6 +58,13 @@ const useStyles = makeStyles((theme) => ({
   avatarBox: {
     [theme.breakpoints.only("sm")]: {
       display: "none",
+    },
+  },
+  extrasStack: {
+    maxWidth: 500,
+    [theme.breakpoints.only("sm")]: {
+      alignItems: "center",
+      maxWidth: 500,
     },
   },
 }));
@@ -151,9 +159,9 @@ const Discover = () => {
         )}
       </Grid>
       <Grid item container sm={12} md={6} className={classes.extrasContainer}>
-        <Stack spacing={3} maxWidth={!isMobile ? 500 : "100%"} width="100%">
+        <Stack spacing={3} width="100%" className={classes.extrasStack}>
           <NewestMembers />
-          <CheckoutPost />
+          {!isMobile && <CheckoutPost />}
         </Stack>
       </Grid>
     </Grid>

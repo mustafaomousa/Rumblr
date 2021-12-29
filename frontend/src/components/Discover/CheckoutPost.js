@@ -7,7 +7,7 @@ import PostCard from "../PostCard";
 import { getRandomPost } from "../../store/post";
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: { maxWidth: 500 },
 }));
 
 const CheckoutPost = () => {
