@@ -1,7 +1,32 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import useGlobalStyles from "../useGlobalStyles";
+
+const StyledTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "white",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "yellow",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#e8e8e8",
+      },
+      "&:hover fieldset": {
+        borderWidth: 2,
+        borderColor: "#e8e8e8",
+      },
+      "&.Mui-focused fieldset": {
+        borderWidth: 3,
+        borderColor: "#e8e8e8",
+      },
+    },
+  },
+})(TextField);
 
 const UpdatePassword = ({
   sessionUser,
@@ -42,47 +67,46 @@ const UpdatePassword = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <Stack>
-        <Typography color="primary" variant="h6" gutterBottom={2}>
-          Password
-        </Typography>
-        <Stack direction="column" spacing={2}>
-          <TextField
-            color="primary"
-            variant="outlined"
-            type="password"
-            label="New password"
-            onChange={updatePassword}
-            value={password}
-            size="small"
-            disableUnderline
-            className={globalStyles.input}
-          />
-          <TextField
-            color="primary"
-            variant="outlined"
-            type="password"
-            error={password !== confirmPassword}
-            label="Confirm new password"
-            value={confirmPassword}
-            onChange={updateConfirmPassword}
-            size="small"
-            disableUnderline
-            className={globalStyles.input}
-          />
-        </Stack>
-        <Stack padding="10px 0px">
-          <Button
-            disableElevation
-            color="primary"
-            type="submit"
-            size="small"
-            variant="contained"
-            disabled={!isChanged}
-          >
-            Update
-          </Button>
-        </Stack>
+      <Stack direction="column" spacing={2}>
+        <StyledTextField
+          color="secondary"
+          variant="outlined"
+          type="password"
+          label="New password"
+          onChange={updatePassword}
+          value={password}
+          inputProps={{ sx: { color: "#ffffff" } }}
+          InputLabelProps={{ sx: { color: "#ffffff" } }}
+          size="small"
+          disableUnderline
+          className={globalStyles.input}
+        />
+        <StyledTextField
+          color="secondary"
+          variant="outlined"
+          type="password"
+          error={password !== confirmPassword}
+          label="Confirm new password"
+          value={confirmPassword}
+          onChange={updateConfirmPassword}
+          inputProps={{ sx: { color: "#ffffff" } }}
+          InputLabelProps={{ sx: { color: "#ffffff" } }}
+          size="small"
+          disableUnderline
+          className={globalStyles.input}
+        />
+      </Stack>
+      <Stack marginTop="10px" alignItems="flex-end">
+        <Button
+          disableElevation
+          color="secondary"
+          type="submit"
+          size="small"
+          variant="contained"
+          disabled={!isChanged}
+        >
+          Update
+        </Button>
       </Stack>
     </form>
   );
