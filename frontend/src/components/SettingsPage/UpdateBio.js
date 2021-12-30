@@ -1,10 +1,33 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import useGlobalStyles from "../useGlobalStyles";
+
+const StyledTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "white",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "yellow",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#e8e8e8",
+      },
+      "&:hover fieldset": {
+        borderWidth: 2,
+        borderColor: "#e8e8e8",
+      },
+      "&.Mui-focused fieldset": {
+        borderWidth: 3,
+        borderColor: "#e8e8e8",
+      },
+    },
+  },
+})(TextField);
 
 const UpdateBio = ({ sessionUser, updateSessionUser, notificationRef }) => {
-  const globalStyles = useGlobalStyles();
   const dispatch = useDispatch();
   const [bio, setBio] = useState(sessionUser.bio);
   const [isChanged, setIsChanged] = useState(false);
@@ -33,24 +56,22 @@ const UpdateBio = ({ sessionUser, updateSessionUser, notificationRef }) => {
   return (
     <form onSubmit={onSubmit}>
       <Stack>
-        <Typography color="primary" variant="h6" gutterBottom={2}>
-          Bio
-        </Typography>
-        <TextField
-          color="primary"
+        <StyledTextField
+          color="secondary"
           variant="outlined"
           onChange={updateBio}
           label="Bio"
           value={bio}
           minRows={5}
+          inputProps={{ sx: { color: "#ffffff" } }}
+          InputLabelProps={{ sx: { color: "#ffffff" } }}
           disableUnderline
           multiline
-          className={globalStyles.input}
         />
-        <Stack padding="10px 0px">
+        <Stack marginTop={"10px"} alignItems="flex-end">
           <Button
             disableElevation
-            color="primary"
+            color="secondary"
             type="submit"
             size="small"
             variant="contained"

@@ -12,8 +12,9 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 100,
+    margin: "100px 0",
     alignItems: "center",
+    padding: "0 20px",
   },
   userSettingsContainer: {
     maxWidth: 1200,
@@ -46,14 +47,14 @@ const SettingsPage = () => {
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
               <Grid container>
-                <Grid item sm={12} md={6}>
+                <Grid item xs={12} sm={12} md={6}>
                   <UpdatePersonalInformation
                     sessionUser={sessionUser}
                     updateSessionUser={updateSessionUser}
                     notificationRef={notificationRef}
                   />
                 </Grid>
-                <Grid item sm={12} md={6}>
+                <Grid item xs={12} sm={12} md={6}>
                   <UpdatePassword
                     sessionUser={sessionUser}
                     updateSessionUser={updateSessionUser}
