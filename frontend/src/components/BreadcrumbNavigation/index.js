@@ -1,7 +1,8 @@
-import { Breadcrumbs, Link } from "@mui/material";
+import { Breadcrumbs, Container, Link } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
 const BreadcrumbNavigation = () => {
   const location = useLocation();
@@ -20,19 +21,27 @@ const BreadcrumbNavigation = () => {
         justifyContent: "center",
         marginTop: "55px",
         width: "100%",
-        padding: "20px 30px",
       }}
     >
-      <Breadcrumbs sx={{ width: "1200px" }}>
-        <Link underline="hover" color="secondary" href="/discover">
-          Discover
-        </Link>
-        {path && path !== "discover" && (
-          <Link underline="hover" color="secondary" href={location.pathname}>
-            {path[0].toUpperCase() + path.substring(1)}
+      <Container>
+        <Breadcrumbs
+          sx={{ maxWidth: "1200px", padding: "20px 20px" }}
+          separator={<ChevronRightIcon color="secondary" />}
+        >
+          <Link
+            underline={path == "discover" ? "always" : "hover"}
+            color="secondary"
+            href="/discover"
+          >
+            Discover
           </Link>
-        )}
-      </Breadcrumbs>
+          {path && path !== "discover" && (
+            <Link underline="always" color="secondary" href={location.pathname}>
+              {path[0].toUpperCase() + path.substring(1)}
+            </Link>
+          )}
+        </Breadcrumbs>
+      </Container>
     </Box>
   );
 };
