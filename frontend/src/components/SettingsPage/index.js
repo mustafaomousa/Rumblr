@@ -11,9 +11,8 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    margin: "100px 0",
     alignItems: "center",
-    padding: "0 20px",
+    padding: "0 30px",
   },
   userSettingsContainer: {
     maxWidth: 1200,

@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Button,
-  Grid,
-  Skeleton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Avatar, Grid, Skeleton, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { isMobile } from "react-device-detect";
 import { Box } from "@mui/system";
@@ -19,9 +12,7 @@ import PostCard from "../PostCard";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "100px 0px",
-  },
+  root: {},
   profileBox: {
     top: "85px",
     position: "sticky",

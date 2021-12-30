@@ -13,6 +13,7 @@ import Discover from "./components/Discover";
 import Profile from "./components/Profile";
 import { Button, useScrollTrigger, Zoom } from "@mui/material";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import BreadcrumbNavigation from "./components/BreadcrumbNavigation";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -66,7 +67,12 @@ function App() {
           </Button>
         </ScrollTop>
         <div id="back-to-top-anchor" />
-        {sessionUser && <Navigation />}
+        {sessionUser && (
+          <>
+            <Navigation />
+            <BreadcrumbNavigation />
+          </>
+        )}
         <QuickAction />
         <Switch>
           <Route exact path="/" component={WelcomePage} />

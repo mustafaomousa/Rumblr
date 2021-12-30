@@ -20,7 +20,6 @@ import NewestMembers from "./NewestMembers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: "100px 0px",
     flexDirection: isMobile && "column-reverse",
     alignItems: isMobile && "center",
     [theme.breakpoints.only("sm")]: {
