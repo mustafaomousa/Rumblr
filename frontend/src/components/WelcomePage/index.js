@@ -43,7 +43,12 @@ const WelcomePage = () => {
   return (
     <Stack className={classes.root} spacing={3}>
       <Box sx={{ height: "25%" }} />
-      <Typography variant="h3" color="primary" fontWeight="bold">
+      <Typography
+        variant="button"
+        color="primary"
+        fontWeight="bold"
+        fontSize={40}
+      >
         Rumblr
       </Typography>
       {showLogin && <LoginForm />}
