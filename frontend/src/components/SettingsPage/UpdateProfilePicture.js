@@ -6,7 +6,6 @@ import S3FileUpload from "react-s3/lib/ReactS3";
 import { updateProfilePicture } from "../../store/session";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
   userAvatar: {
     width: "100%",
   },
@@ -42,10 +41,7 @@ const UpdateProfilePicture = ({ sessionUser }) => {
   };
 
   return (
-    <form className={classes.root}>
-      <Typography color="secondary" variant="h6" gutterBottom={2}>
-        Profile picture
-      </Typography>
+    <Box>
       <Box className={classes.userAvatarBox}>
         <Avatar
           variant="square"
@@ -91,7 +87,7 @@ const UpdateProfilePicture = ({ sessionUser }) => {
           Delete
         </Button>
       </Stack>
-    </form>
+    </Box>
   );
 };
 

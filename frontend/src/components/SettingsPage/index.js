@@ -1,5 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Grid, Stack } from "@mui/material";
 import { useSelector } from "react-redux";
 import { updateSessionUser } from "../../store/session";
 import UpdateBio from "./UpdateBio";
@@ -10,7 +9,7 @@ import Notification from "../Notification";
 import { useRef } from "react";
 import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     margin: "100px 0",
     alignItems: "center",
@@ -29,7 +28,7 @@ const SettingsPage = () => {
   return (
     <Stack className={classes.root}>
       <Notification ref={notificationRef} />
-      <Grid container className={classes.userSettingsContainer} spacing={1}>
+      <Grid container className={classes.userSettingsContainer} spacing={2}>
         <Grid item sx={12} sm={12} md={3}>
           <UpdateProfilePicture
             sessionUser={sessionUser}
@@ -37,7 +36,7 @@ const SettingsPage = () => {
           />
         </Grid>
         <Grid item xs={12} sm={12} md={9}>
-          <Grid container direction="column">
+          <Grid container direction="column" spacing={3}>
             <Grid item xs={12} sm={12} md={6}>
               <UpdateBio
                 sessionUser={sessionUser}
@@ -46,7 +45,7 @@ const SettingsPage = () => {
               />
             </Grid>
             <Grid item xs={12} sm={12} md={6}>
-              <Grid container>
+              <Grid container spacing={3}>
                 <Grid item xs={12} sm={12} md={6}>
                   <UpdatePersonalInformation
                     sessionUser={sessionUser}
