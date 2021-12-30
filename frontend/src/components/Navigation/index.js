@@ -95,8 +95,8 @@ const Navigation = () => {
             color="secondary"
             underline="none"
           >
-            <Button color="secondary" size="small">
-              <Typography fontWeight={"bold"} fontSize={20}>
+            <Button size="small">
+              <Typography fontWeight={"bold"} fontSize={20} color="secondary">
                 Rumblr
               </Typography>
             </Button>
