@@ -102,6 +102,7 @@ const Profile = () => {
                     align="start"
                     paragraph
                     variant="body2"
+                    sx={{ wordBreak: "break-word" }}
                   >
                     {userProfile.bio}
                   </Typography>

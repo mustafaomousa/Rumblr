@@ -19,10 +19,11 @@ const Notification = forwardRef(({ ...rest }, ref) => {
 
   return (
     <Snackbar
-      sx={{ position: "fixed", zIndex: "10000", bottom: 0 }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={open}
-      autoHideDuration={6000}
+      autoHideDuration={3000}
       onClose={handleClose}
+      sx={{ marginTop: "50px" }}
     >
       <Alert
         onClose={handleClose}
