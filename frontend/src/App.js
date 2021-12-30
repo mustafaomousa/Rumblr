@@ -14,6 +14,7 @@ import Profile from "./components/Profile";
 import { Button, useScrollTrigger, Zoom } from "@mui/material";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import BreadcrumbNavigation from "./components/BreadcrumbNavigation";
+import ProtectedRoute from "./ProtectedRoute";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -76,11 +77,11 @@ function App() {
         <QuickAction />
         <Switch>
           <Route exact path="/" component={WelcomePage} />
-          <Route path="/about" component={AboutUs} />
-          <Route exact path="/discover" component={Discover} />
-          <Route exact path="/settings" component={SettingsPage} />
-          <Route exact path="/results" />
-          <Route exact path="/user/:userId" component={Profile} />
+          <ProtectedRoute path="/about" component={AboutUs} />
+          <ProtectedRoute exact path="/discover" component={Discover} />
+          <ProtectedRoute exact path="/settings" component={SettingsPage} />
+          <ProtectedRoute exact path="/results" />
+          <ProtectedRoute exact path="/user/:userId" component={Profile} />
         </Switch>
       </>
     )
