@@ -1,10 +1,24 @@
 import { Avatar, Button, Input, Stack, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/system";
 import { useDispatch } from "react-redux";
 import S3FileUpload from "react-s3/lib/ReactS3";
 import { updateProfilePicture } from "../../store/session";
 
-const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  userAvatar: {
+    width: "100%",
+  },
+  userAvatarBox: {
+    display: "flex",
+    justifyContent: "center",
+  },
+}));
+
+const UpdateProfilePicture = ({ sessionUser }) => {
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const config = {
     bucketName: "rumblr-app",
@@ -20,26 +34,32 @@ const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
     await S3FileUpload.uploadFile(e.target.files[0], config).then((data) => {
       dispatch(updateProfilePicture(sessionUser.id, data.location));
     });
-    //   .then(() => restoreUser());
   };
+
+  const deleteProfilePic = async (e) => {
+    e.preventDefault();
+    await dispatch(updateProfilePicture(sessionUser.id, null));
+  };
+
   return (
-    <form>
-      <Typography color="primary" variant="h6" gutterBottom={2}>
+    <form className={classes.root}>
+      <Typography color="secondary" variant="h6" gutterBottom={2}>
         Profile picture
       </Typography>
-      <Avatar
-        variant="square"
-        sx={{
-          width: "auto",
-          height: 285,
-        }}
-        src={sessionUser.profilePicture}
-      />
+      <Box className={classes.userAvatarBox}>
+        <Avatar
+          variant="square"
+          className={classes.userAvatar}
+          sx={{ width: "100%", height: "auto" }}
+          src={sessionUser.profilePicture}
+        />
+      </Box>
       <Stack
         spacing={1}
-        direction="column"
-        padding="10px 0px"
+        direction="row"
+        marginTop={"10px"}
         justifyContent="flex-end"
+        alignItems="flex-end"
         height="100%"
       >
         <Input
@@ -50,9 +70,10 @@ const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
         />
         <label htmlFor="profile-image">
           <Button
+            color="secondary"
+            variant="outlined"
             disableElevation
             size="small"
-            variant="contained"
             component="span"
             fullWidth
           >
@@ -64,7 +85,8 @@ const UpdateProfilePicture = ({ sessionUser, updateSessionUser }) => {
           color="warning"
           size="small"
           variant="contained"
-          onClick={() => dispatch(updateProfilePicture(sessionUser.id, null))}
+          onClick={deleteProfilePic}
+          disabled={!sessionUser.profilePicture}
         >
           Delete
         </Button>
