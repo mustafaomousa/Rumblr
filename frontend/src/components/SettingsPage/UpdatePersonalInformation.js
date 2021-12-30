@@ -1,14 +1,37 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
+import { withStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import useGlobalStyles from "../useGlobalStyles";
+
+const StyledTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "white",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "yellow",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#e8e8e8",
+      },
+      "&:hover fieldset": {
+        borderWidth: 2,
+        borderColor: "#e8e8e8",
+      },
+      "&.Mui-focused fieldset": {
+        borderWidth: 3,
+        borderColor: "#e8e8e8",
+      },
+    },
+  },
+})(TextField);
 
 const UpdatePersonalInformation = ({
   sessionUser,
   updateSessionUser,
   notificationRef,
 }) => {
-  const globalStyles = useGlobalStyles();
   const dispatch = useDispatch();
   const [username, setUsername] = useState(sessionUser.username);
   const [email, setEmail] = useState(sessionUser.email);
@@ -41,44 +64,41 @@ const UpdatePersonalInformation = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <Stack>
-        <Typography color="primary" variant="h6" gutterBottom={2}>
-          Personal information
-        </Typography>
-        <Stack direction="column" spacing={2}>
-          <TextField
-            color="primary"
-            variant="outlined"
-            label="Username"
-            onChange={updateUsername}
-            value={username}
-            size="small"
-            disableUnderline
-            className={globalStyles.input}
-          />
-          <TextField
-            color="primary"
-            variant="outlined"
-            label="Email"
-            onChange={updateEmail}
-            value={email}
-            size="small"
-            disableUnderline
-            className={globalStyles.input}
-          />
-        </Stack>
-        <Stack padding="10px 0px">
-          <Button
-            color="primary"
-            disableElevation
-            size="small"
-            variant="contained"
-            type="submit"
-            disabled={!isChanged}
-          >
-            Update
-          </Button>
-        </Stack>
+      <Stack direction="column" spacing={2}>
+        <StyledTextField
+          color="secondary"
+          variant="outlined"
+          label="Username"
+          onChange={updateUsername}
+          value={username}
+          inputProps={{ sx: { color: "#ffffff" } }}
+          InputLabelProps={{ sx: { color: "#ffffff" } }}
+          size="small"
+          disableUnderline
+        />
+        <StyledTextField
+          color="secondary"
+          variant="outlined"
+          label="Email"
+          onChange={updateEmail}
+          value={email}
+          inputProps={{ sx: { color: "#ffffff" } }}
+          InputLabelProps={{ sx: { color: "#ffffff" } }}
+          size="small"
+          disableUnderline
+        />
+      </Stack>
+      <Stack marginTop="10px" alignItems="flex-end">
+        <Button
+          color="secondary"
+          disableElevation
+          size="small"
+          variant="contained"
+          type="submit"
+          disabled={!isChanged}
+        >
+          Update
+        </Button>
       </Stack>
     </form>
   );
