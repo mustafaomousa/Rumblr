@@ -65,6 +65,7 @@ const LoginForm = () => {
         <Grid item>
           <FormControl className={classes.formControl}>
             <TextField
+              name="credential"
               size="small"
               label="Username or Email"
               className={globalStyles.input}
@@ -78,6 +79,7 @@ const LoginForm = () => {
         <Grid item>
           <FormControl className={classes.formControl}>
             <TextField
+              name="password"
               size="small"
               label="Password"
               className={globalStyles.input}
