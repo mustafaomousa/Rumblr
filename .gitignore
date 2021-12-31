@@ -5,3 +5,5 @@ build
 save-for-later
 .aws
 .eslintcache
+/frontend/cypress/videos
+/frontend/cypress/screenshots
