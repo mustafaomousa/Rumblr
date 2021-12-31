@@ -57,6 +57,7 @@
   },
   "devDependencies": {
     "cypress": "^9.2.0",
+    "cypress-file-upload": "^5.0.8",
     "redux-logger": "^3.0.6",
     "sequelize-cli": "^6.2.0"
   },

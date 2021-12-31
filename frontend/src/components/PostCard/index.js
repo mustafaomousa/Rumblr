@@ -136,6 +136,7 @@ const PostCard = ({ post }) => {
               sx={{ wordWrap: "break-word" }}
               paragraph
               color="primary"
+              id={`postInput-${post.User.username}`}
             >
               {post.body}
             </Typography>

@@ -79,6 +79,7 @@ const CreatePost = ({
               onChange={updateSelectedImage}
               style={{ display: "none", width: "100%" }}
               type="file"
+              name="image"
             />
             {!selectedImage && (
               <Button
@@ -101,6 +102,7 @@ const CreatePost = ({
           onChange={updateBody}
           value={body}
           label="Body"
+          name="body"
           sx={{
             width: "100%",
           }}
