@@ -9,21 +9,27 @@ import { fetch } from "../../store/csrf";
 import { getProfilePosts } from "../../store/post";
 import PhotoSizeSelectActualIcon from "@mui/icons-material/PhotoSizeSelectActual";
 import PostCard from "../PostCard";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    padding: "0 20px",
+  },
+  profileContainer: {
+    maxWidth: 1200,
+  },
   profileBox: {
     top: "85px",
     position: "sticky",
-    maxWidth: "550px",
+    maxWidth: 500,
+    backgroundColor: "rgba(0,0,0,0.1)",
+    padding: 20,
     [theme.breakpoints.only("sm")]: {
       width: "100%",
       marginBottom: 10,
     },
   },
   userPostsContainer: {
-    paddingLeft: !isMobile && 10,
+    maxWidth: 500,
     [theme.breakpoints.only("sm")]: {
       justifyContent: "center",
     },
@@ -39,12 +45,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const [userProfile, setUserProfile] = useState(null);
   const classes = useStyles();
-  const history = useHistory();
   const { userId } = useParams();
+
+  const [userProfile, setUserProfile] = useState(null);
+
   const userPosts = useSelector((state) => state.posts.loadedPosts);
-  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     (async () => {
@@ -57,114 +63,119 @@ const Profile = () => {
   useEffect(() => dispatch(getProfilePosts(userId)), [dispatch, userId]);
 
   return (
-    <Grid
-      container
-      direction="row"
-      justifyContent="center"
-      className={classes.root}
-    >
+    <Box display="flex" justifyContent="center" className={classes.root}>
       <Grid
-        item
         container
-        sm={12}
-        md={6}
-        className={classes.userProfileContainer}
+        direction="row"
+        justifyContent="center"
+        className={classes.profileContainer}
+        spacing={2}
       >
-        {userProfile && (
-          <Box paddingRight={2}>
-            <Box className={classes.profileBox} id="profileBox">
-              <Stack direction="row" spacing={2}>
-                <Avatar
-                  variant="square"
-                  src={userProfile.profilePicture}
-                  sx={{
-                    height: 120,
-                    width: 120,
-                    objectFit: "contain",
-                    backgroundColor: "#e8e8e8",
-                  }}
-                />
-                <Stack height="100%">
-                  <Typography color="secondary" paragraph align="start">
-                    {userProfile.username}
-                  </Typography>
-                  <Typography
-                    color="secondary"
-                    align="start"
-                    paragraph
-                    variant="body2"
-                    sx={{ wordBreak: "break-word" }}
-                  >
-                    {userProfile.bio}
-                  </Typography>
-                </Stack>
-              </Stack>
+        <Grid
+          item
+          container
+          xs={12}
+          sm={12}
+          md={4}
+          className={classes.userProfileContainer}
+        >
+          {userProfile && (
+            <Box>
+              <Box className={classes.profileBox} id="profileBox">
+                <Grid container spacing={2}>
+                  <Grid container item xs={6}>
+                    <Avatar
+                      variant="square"
+                      src={userProfile.profilePicture}
+                      sx={{
+                        height: "auto",
+                        width: "100%",
+                        objectFit: "contain",
+                        backgroundColor: "#e8e8e8",
+                      }}
+                    />
+                  </Grid>
+                  <Grid container item>
+                    <Typography variant="h5" color="secondary" gutterBottom={1}>
+                      {userProfile.username}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="secondary"
+                      sx={{ wordBreak: "break-word" }}
+                    >
+                      {userProfile.bio}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Box>
             </Box>
-          </Box>
-        )}
-      </Grid>
-      <Grid
-        item
-        container
-        sm={12}
-        md={6}
-        className={classes.userPostsContainer}
-      >
-        <Stack spacing={2} alignItems="center" justifyContent="center">
-          {userPosts ? (
-            userPosts.length ? (
-              userPosts.map((post) => (
-                <Box maxWidth={500} key={post.id}>
-                  <PostCard post={post} />
-                </Box>
-              ))
+          )}
+        </Grid>
+        <Grid
+          item
+          container
+          xs={12}
+          sm={12}
+          md={8}
+          className={classes.userPostsContainer}
+        >
+          <Stack spacing={2} width="100%">
+            {userPosts ? (
+              userPosts.length ? (
+                userPosts.map((post) => (
+                  <Box maxWidth={500} key={post.id}>
+                    <PostCard post={post} />
+                  </Box>
+                ))
+              ) : (
+                <>
+                  <Stack
+                    width={"100%"}
+                    height={500}
+                    variant="rectangular"
+                    alignItems="center"
+                    justifyContent="center"
+                    sx={{ backgroundColor: "rgba(0, 0, 0, 0.11)" }}
+                  >
+                    <PhotoSizeSelectActualIcon color="secondary" />
+                    <Typography color="secondary">Nothing here yet</Typography>
+                  </Stack>
+                  <Stack
+                    width={"100%"}
+                    height={500}
+                    alignItems="center"
+                    justifyContent="center"
+                    variant="rectangular"
+                    sx={{ backgroundColor: "rgba(0, 0, 0, 0.11)" }}
+                  >
+                    <PhotoSizeSelectActualIcon color="secondary" />
+                    <Typography color="secondary">Nothing here yet</Typography>
+                  </Stack>
+                  <Stack
+                    width={"100%"}
+                    height={500}
+                    alignItems="center"
+                    justifyContent="center"
+                    variant="rectangular"
+                    sx={{ backgroundColor: "rgba(0, 0, 0, 0.11)" }}
+                  >
+                    <PhotoSizeSelectActualIcon color="secondary" />
+                    <Typography color="secondary">Nothing here yet</Typography>
+                  </Stack>
+                </>
+              )
             ) : (
               <>
-                <Stack
-                  width={500}
-                  height={600}
-                  variant="rectangular"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{ backgroundColor: "rgba(0, 0, 0, 0.11)" }}
-                >
-                  <PhotoSizeSelectActualIcon color="secondary" />
-                  <Typography color="secondary">Nothing here yet</Typography>
-                </Stack>
-                <Stack
-                  width={500}
-                  height={600}
-                  alignItems="center"
-                  justifyContent="center"
-                  variant="rectangular"
-                  sx={{ backgroundColor: "rgba(0, 0, 0, 0.11)" }}
-                >
-                  <PhotoSizeSelectActualIcon color="secondary" />
-                  <Typography color="secondary">Nothing here yet</Typography>
-                </Stack>
-                <Stack
-                  width={500}
-                  height={600}
-                  alignItems="center"
-                  justifyContent="center"
-                  variant="rectangular"
-                  sx={{ backgroundColor: "rgba(0, 0, 0, 0.11)" }}
-                >
-                  <PhotoSizeSelectActualIcon color="secondary" />
-                  <Typography color="secondary">Nothing here yet</Typography>
-                </Stack>
+                <Skeleton width={"100%"} height={500} variant="rectangular" />
+                <Skeleton width={"100%"} height={500} variant="rectangular" />
+                <Skeleton width={"100%"} height={500} variant="rectangular" />
               </>
-            )
-          ) : (
-            <>
-              <Skeleton width={500} height={600} variant="rectangular" />
-              <Skeleton width={500} height={600} variant="rectangular" />
-              <Skeleton width={500} height={600} variant="rectangular" />
-            </>
-          )}
-        </Stack>
+            )}
+          </Stack>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 
