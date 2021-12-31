@@ -54,7 +54,7 @@ const CreatePost = ({
   };
 
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <Stack
         padding={5}
         spacing={3}
@@ -121,10 +121,10 @@ const CreatePost = ({
             </Typography>
           </Button>
           <Button
+            id="submitCreatePost"
             size="small"
             type="submit"
             variant="contained"
-            onClick={onSubmit}
           >
             <SendIcon sx={{ marginRight: 1 }} />
             <Typography>Post</Typography>

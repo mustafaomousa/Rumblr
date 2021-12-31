@@ -95,6 +95,7 @@ const LoginForm = () => {
           <FormControl className={classes.formControl}>
             <Stack direction="row" spacing={2} justifyContent="flex-end">
               <Button
+                id="loginButton"
                 disableElevation
                 size="small"
                 loading={sessionUser}

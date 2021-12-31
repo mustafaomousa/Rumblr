@@ -100,6 +100,10 @@ const Discover = () => {
     };
   });
 
+  useEffect(() => {
+    document.title = "Rumblr - Discover";
+  }, []);
+
   if (!sessionUser) return <Redirect to="/" />;
 
   return (
