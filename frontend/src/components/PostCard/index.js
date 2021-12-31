@@ -68,8 +68,6 @@ const PostCard = ({ post }) => {
       <CardHeader
         sx={{
           backgroundColor: "#ffffff",
-          borderTopRightRadius: "0.2em",
-          borderTopLeftRadius: "0.2em",
         }}
         avatar={
           window.location.pathname !== "/discover" && (
@@ -151,8 +149,6 @@ const PostCard = ({ post }) => {
         padding={1}
         sx={{
           backgroundColor: "#ffffff",
-          borderBottomLeftRadius: "0.2em",
-          borderBottomRightRadius: "0.2em",
         }}
       >
         <Stack direction="row" spacing={1}>

@@ -95,8 +95,13 @@ const Profile = () => {
                       }}
                     />
                   </Grid>
-                  <Grid container item>
-                    <Typography variant="h5" color="secondary" gutterBottom={1}>
+                  <Grid container item direction={"column"}>
+                    <Typography
+                      variant="h5"
+                      color="secondary"
+                      fontWeight="bold"
+                      gutterBottom={1}
+                    >
                       {userProfile.username}
                     </Typography>
                     <Typography

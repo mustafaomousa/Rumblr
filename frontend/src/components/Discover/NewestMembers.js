@@ -34,6 +34,7 @@ const NewestMembers = () => {
             variant="outlined"
             color="secondary"
             key={newestUser.id}
+            sx={{ borderRadius: 0 }}
             className={classes.newestUserButton}
             onClick={() => history.push(`/user/${newestUser.id}`)}
           >
