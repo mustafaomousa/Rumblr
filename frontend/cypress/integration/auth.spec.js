@@ -26,8 +26,6 @@ describe("Welcome Page", () => {
   });
 
   it("Can be logged in as demo-user", () => {
-    cy.request("/api/csrf/restore");
-
     cy.get("input[name=credential]").type("demo-user");
     cy.get("input[name=password]").type("password");
     cy.get("form").submit();
