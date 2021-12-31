@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import {
   Typography,
   Button,
@@ -41,6 +42,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: 0,
   },
 }));
 
@@ -192,6 +194,7 @@ const Navigation = () => {
               size="small"
               variant="contained"
               color="secondary"
+              sx={{ borderRadius: 0 }}
               onClick={() => setCreatePostVisible(true)}
             >
               <AddCircleOutlineIcon />
@@ -215,7 +218,7 @@ const Navigation = () => {
                   aria-expanded={dropdownOpen ? "true" : undefined}
                   onClick={handleDropdownClick}
                 >
-                  ...
+                  <MoreHorizIcon />
                 </Button>
                 <Menu
                   id="dropdown-menu"

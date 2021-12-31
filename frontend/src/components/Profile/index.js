@@ -21,8 +21,6 @@ const useStyles = makeStyles((theme) => ({
     top: "85px",
     position: "sticky",
     maxWidth: 500,
-    backgroundColor: "rgba(0,0,0,0.1)",
-    padding: 20,
     [theme.breakpoints.only("sm")]: {
       width: "100%",
       marginBottom: 10,
