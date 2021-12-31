@@ -15,6 +15,7 @@ import { Button, useScrollTrigger, Zoom } from "@mui/material";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import BreadcrumbNavigation from "./components/BreadcrumbNavigation";
 import ProtectedRoute from "./ProtectedRoute";
+import Footer from "./components/Footer";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -42,7 +43,7 @@ function ScrollTop(props) {
       <Box
         onClick={handleClick}
         role="presentation"
-        sx={{ position: "fixed", bottom: 16, right: 16 }}
+        sx={{ position: "fixed", bottom: 76, right: 16 }}
       >
         {children}
       </Box>
@@ -83,6 +84,7 @@ function App() {
           <ProtectedRoute exact path="/results" />
           <ProtectedRoute exact path="/user/:userId" component={Profile} />
         </Switch>
+        <Footer />
       </>
     )
   );
