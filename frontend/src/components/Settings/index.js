@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SettingsPage = () => {
+const Settings = () => {
   const classes = useStyles();
   const notificationRef = useRef();
   const sessionUser = useSelector((state) => state.session.user);
@@ -68,4 +68,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default Settings;

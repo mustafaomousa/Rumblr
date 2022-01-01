@@ -160,7 +160,7 @@ const Navigation = () => {
                 <Stack alignItems="center" width="100%">
                   <Link
                     underline="none"
-                    href={`/user/${sessionUser.id}`}
+                    href={`/users/${sessionUser.id}`}
                     sx={{ width: "100%" }}
                   >
                     <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
@@ -263,7 +263,7 @@ const Navigation = () => {
                       </Link>
                       <Link
                         underline="none"
-                        href={`/user/${sessionUser.id}`}
+                        href={`/users/${sessionUser.id}`}
                         sx={{ width: "100%" }}
                       >
                         <MenuItem

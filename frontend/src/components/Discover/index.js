@@ -13,13 +13,14 @@ import {
   Divider,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import PostCard from "../PostCard";
+import Post from "../Post";
 import { getPosts } from "../../store/post";
 import CheckoutPost from "./CheckoutPost";
 import NewestMembers from "./NewestMembers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginBottom: 75,
     flexDirection: isMobile && "column-reverse",
     alignItems: isMobile && "center",
     [theme.breakpoints.only("sm")]: {
@@ -110,12 +111,12 @@ const Discover = () => {
     <Grid className={classes.root} container direction="row">
       <Grid item container sm={12} md={6} className={classes.postContainer}>
         {posts ? (
-          <Stack spacing={3} height="100%">
+          <Stack spacing={3} height="100%" alignItems="flex-end">
             {posts.map((post) => {
               return (
                 <Stack direction="row" key={post.id}>
                   <Box sx={{ padding: "0 15px" }} display={isMobile && "none"}>
-                    <Link href={`/user/${post.User.id}`}>
+                    <Link href={`/users/${post.User.id}`}>
                       <Avatar
                         src={post.User.profilePicture}
                         variant="square"
@@ -124,19 +125,11 @@ const Discover = () => {
                     </Link>
                   </Box>
                   <Box maxWidth={500}>
-                    <PostCard key={post.id} post={post} />
+                    <Post key={post.id} post={post} />
                   </Box>
                 </Stack>
               );
             })}
-            <Stack
-              alignItems={"center"}
-              justifyContent={"center"}
-              paddingTop={5}
-              sx={{ display: morePostsLoading ? "" : "none" }}
-            >
-              <CircularProgress color="secondary" />
-            </Stack>
           </Stack>
         ) : (
           <Stack spacing={3} alignItems="flex-end">

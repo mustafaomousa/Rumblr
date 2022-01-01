@@ -2,7 +2,7 @@ import { Skeleton, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PostCard from "../PostCard";
+import Post from "../Post";
 
 import { getRandomPost } from "../../store/post";
 
@@ -22,7 +22,7 @@ const CheckoutPost = () => {
       <Typography fontWeight="bold" color="#ffffff">
         Checkout this post by {randomPost.User.username}
       </Typography>
-      <PostCard post={randomPost} />
+      <Post post={randomPost} />
     </Stack>
   ) : (
     <Stack spacing={1} width="100%">

@@ -8,11 +8,12 @@ import { useParams } from "react-router";
 import { fetch } from "../../store/csrf";
 import { getProfilePosts } from "../../store/post";
 import PhotoSizeSelectActualIcon from "@mui/icons-material/PhotoSizeSelectActual";
-import PostCard from "../PostCard";
+import Post from "../Post";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "0 20px",
+    marginBottom: 75,
   },
   profileContainer: {
     maxWidth: 1200,
@@ -128,7 +129,7 @@ const Profile = () => {
               userPosts.length ? (
                 userPosts.map((post) => (
                   <Box maxWidth={500} key={post.id}>
-                    <PostCard post={post} />
+                    <Post post={post} />
                   </Box>
                 ))
               ) : (

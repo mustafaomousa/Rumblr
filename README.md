@@ -1,92 +1,161 @@
-<div align="center">
-  <h2>Rumblr</h2>
+# Rumblr
 
 [Live Site](https://rumblr-app.herokuapp.com/)
 
-</div>
+<p>Rumblr is a single page web application "Tumblr" clone where users can post vehicle related images along with a message.</p>
+
+<br/>
+
+# Table of Contents
+
+<br/>
+
+- [Usage](#usage)
+- [Technologies Used](#technologiesused)
+- [MVP Feature List](#mvpfeaturelist)
+- [Frontend Routes](#frontendroutes)
+- [Database Schema](#databaseschema)
+- [API Routes](#apiroutes)
+- [Tests](#tests)
+- [Contact](#contact)
+
+<br/>
 
 ---
 
-## Table of Contents
+<a name="usage"></a>
 
-- [Feature List](#feature_list)
-- [Component List (React)](#component_list)
-- [Database Schema](#database_schema)
-- [Frontend Routes](#front_end_routes)
-- [API Routes](#api_routes)
-- [Redux Store Tree](#redux_store_tree)
+# Usage
 
-## About
+<br/>
 
-<p>Rumblr is a single page web application "Tumblr" clone where users can post vehicle related images along with a message.</p>
+## To launch Rumblr in a development environment:
 
-<br />
-<!-- 
-[![Product Name Screen Shot][login-screenshot]](https://rumblr-solo-project.herokuapp.com/)
+1.  cd backend and create a .env based off .env.example. Fill in the newly created .env file with your PSQL user and database credentials.
 
-[![Product Name Screen Shot][home-page-screenshot]](https://rumblr-solo-project.herokuapp.com/) -->
+2.  Install dependencies in both backend and front-end directories
 
-### Technologies Used
+    > 1. cd backend && npm install
+    > 2. cd frontend && npm install
 
-<p>
- <h3>Back-end:</h3>
- <ul>
- <li>Sequelize</li>
- <li>Express</li>
- </ul>
- <br/>
- <h3>Front-end:</h3>
- <ul>
- <li>React</li>
- <li>Redux</li>
- <li>AWS S3</li>
- </ul>
-</p>
-
-### Usage
-
-In order to launch Rumblr please utilize the following:
-
-1.  cd backend/ and create a .env based off .env.example. Fill in the newly created .env file with your PSQL user and database credentials.
-
-2.  In the backend/ folder run the following command to create,migrate, and seed the database.
+3.  In the backend/ folder run the following command to create,migrate, and seed the database.
 
     > 1. npx dotenv sequelize db:create && npx dotenv sequelize db:migrate && npx dotenv sequelize db:seed:all
 
-3.  Run the following two commands from the root folder each on seperate terminal windows:
+4.  Run the following two commands from the root folder each on seperate terminal windows:
 
     > 1. cd backend && npm start
     > 2. cd frontend && npm start
 
-4.  Navigate to http://localhost:3000/ to interact with the Rumblr app!
+5.  Navigate to http://localhost:3000/ to interact with the Rumblr app!
+
+<br/>
 
 ---
 
-## Feature List
+<a name="technologiesused"></a>
+
+# Technologies Used
+
+<br/>
+
+### Server (backend)
+
+> - Sequelize ORM
+> - PostgreSQL
+> - Express
+
+<br/>
+
+### Client (frontend)
+
+> - React
+> - Redux
+> - AWS S3
+> - Material UI
+> - Cypress.io
+
+<br/>
 
 ---
 
-## Component List
+<a name="mvpfeaturelist" ></a>
+
+# MVP Feature List
+
+<br/>
+
+## 1. Sign up, log in, log out, and demo-user login.
+
+> - Users can sign up, log in, and log out.
+> - Users can login as demo-user to interact with the application.
+> - Authenticated users can navigate to their Profile which displays their profile picture, bio, and posts.
+> - Authenticated users can navigate to Settings which allows them to update their profile picture, bio, username, email, and/or password.
+
+<br/>
+
+## 2. User posts.
+
+> - Authenticated users can create posts with a image and message.
+> - Authenticated users can like, edit, and delete their own posts.
+> - Authenticated users can view the newest posts, and a random post on the Discover page.
+
+<br/>
+
+## 3. User likes.
+
+> - Authenticated users can like other users posts as well as their own.
+> - Authenticated users can remove their like from other users posts as well as their own.
+
+<br/>
 
 ---
 
-## Database Schema
+<a name="frontendroutes"></a>
+
+# Client (backend) Routes
+
+<br/>
 
 ---
 
-## Frontend Routes
+<a name="apiroutes"></a>
+
+# Server (frontend) Routes
+
+<br/>
 
 ---
 
-## API Routes
+<a name="databaseschema"></a>
+
+# Database Schema
+
+<br/>
 
 ---
 
-## Redux Store Tree
+<a name="tests"></a>
+
+# Tests
+
+<br/>
+
+## Cypress.io
+
+> 1. cd backend && npx dotenv sequelize db:seed:all
+> 2. cd frontend && npx cypress open
+> 3. Run individual or all integration specs.
+
+<br/>
 
 ---
 
-## Contact
+<a name="contact"></a>
+
+# Contact
+
+<br/>
 
 <p>name: Mustafa Mousa</p>
 <p>email: contact@mustafamousa.com</p>

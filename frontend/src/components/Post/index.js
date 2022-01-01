@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   cardHeader: {},
 }));
 
-const PostCard = ({ post }) => {
+const Post = ({ post }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const sessionUser = useSelector((state) => state.session.user);
@@ -71,7 +71,7 @@ const PostCard = ({ post }) => {
         }}
         avatar={
           window.location.pathname !== "/discover" && (
-            <Link href={`/user/${post.User.id}`}>
+            <Link href={`/users/${post.User.id}`}>
               <Avatar
                 variant="square"
                 src={post.User.profilePicture}
@@ -110,7 +110,7 @@ const PostCard = ({ post }) => {
         title={
           <Link
             underline="hover"
-            href={`/user/${post.User.id}`}
+            href={`/users/${post.User.id}`}
             fontSize="medium"
           >
             {post.User.username}
@@ -183,4 +183,4 @@ const PostCard = ({ post }) => {
   );
 };
 
-export default PostCard;
+export default Post;

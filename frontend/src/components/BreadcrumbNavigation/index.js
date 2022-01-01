@@ -9,10 +9,11 @@ const BreadcrumbNavigation = () => {
   const [path, setPath] = useState("");
 
   useEffect(() => {
-    setPath(location.pathname.split("/")[1]);
+    let pathArray = location.pathname.split("/");
+    pathArray.shift();
+    setPath(pathArray);
   }, [location]);
 
-  console.log(path);
   return (
     <Box
       sx={{
@@ -35,11 +36,20 @@ const BreadcrumbNavigation = () => {
           >
             Discover
           </Link>
-          {path && path !== "discover" && (
-            <Link underline="always" color="secondary" href={location.pathname}>
-              {path[0].toUpperCase() + path.substring(1)}
-            </Link>
-          )}
+          {path &&
+            path.map(
+              (pathname) =>
+                pathname &&
+                pathname !== "discover" && (
+                  <Link
+                    underline="always"
+                    color="secondary"
+                    href={`/${pathname}`}
+                  >
+                    {pathname[0].toUpperCase() + pathname.slice(1)}
+                  </Link>
+                )
+            )}
         </Breadcrumbs>
       </Container>
     </Box>

@@ -36,7 +36,7 @@ const NewestMembers = () => {
             key={newestUser.id}
             sx={{ borderRadius: 0 }}
             className={classes.newestUserButton}
-            onClick={() => history.push(`/user/${newestUser.id}`)}
+            onClick={() => history.push(`/users/${newestUser.id}`)}
           >
             <Avatar
               variant="square"
