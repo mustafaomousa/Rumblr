@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { Button, useScrollTrigger, Zoom, Box } from "@mui/material";
+import { Button } from "@mui/material";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import * as sessionActions from "./store/session";
 import ProtectedRoute from "./ProtectedRoute";
@@ -34,7 +34,7 @@ function App() {
         )}
         <Switch>
           <Route exact path="/" component={components.WelcomePage} />
-          <ProtectedRoute path="/about" component={components.AboutUs} />
+          <ProtectedRoute path="/about" component={components.About} />
           <ProtectedRoute
             exact
             path="/discover"
