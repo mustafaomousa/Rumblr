@@ -6,9 +6,13 @@ import {
   CardHeader,
   CardMedia,
   CircularProgress,
+  Collapse,
+  Grow,
   Link,
+  Slide,
   Stack,
   Typography,
+  Zoom,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CancelTwoToneIcon from "@mui/icons-material/CancelTwoTone";
@@ -63,123 +67,130 @@ const Post = ({ post }) => {
   };
 
   return (
-    <Card className={classes.root} elevation={0}>
-      <Notification ref={notificationRef} />
-      <CardHeader
-        sx={{
-          backgroundColor: "#ffffff",
-        }}
-        avatar={
-          window.location.pathname !== "/discover" && (
-            <Link href={`/users/${post.User.id}`}>
-              <Avatar
-                variant="square"
-                src={post.User.profilePicture}
-                sx={{
-                  height: 40,
-                  width: 40,
-                  backgroundColor: post.User.profilePicture && "#BDBDBD",
-                }}
-              />
-            </Link>
-          )
-        }
-        className={classes.cardHeader}
-        action={
-          sessionUser.id === post.User.id && (
-            <Stack direction="row" align justifyContent={"center"} spacing={1}>
-              <Button aria-describedby="delete-post" color="primary">
-                <DeletePost postId={post.id} />
-              </Button>
-              {editOpen ? (
-                <Button onClick={closeEditOpen} color="secondary">
-                  <CancelTwoToneIcon color="warning" />
+    <Grow in={post ? true : false}>
+      <Card className={classes.root} elevation={0}>
+        <Notification ref={notificationRef} />
+        <CardHeader
+          sx={{
+            backgroundColor: "#ffffff",
+          }}
+          avatar={
+            window.location.pathname !== "/discover" && (
+              <Link href={`/users/${post.User.id}`}>
+                <Avatar
+                  variant="square"
+                  src={post.User.profilePicture}
+                  sx={{
+                    height: 40,
+                    width: 40,
+                    backgroundColor: post.User.profilePicture && "#BDBDBD",
+                  }}
+                />
+              </Link>
+            )
+          }
+          className={classes.cardHeader}
+          action={
+            sessionUser.id === post.User.id && (
+              <Stack
+                direction="row"
+                align
+                justifyContent={"center"}
+                spacing={1}
+              >
+                <Button aria-describedby="delete-post" color="primary">
+                  <DeletePost postId={post.id} />
                 </Button>
-              ) : (
-                <Button
-                  variant="outlined"
-                  onClick={openEditOpen}
-                  color="primary"
-                >
-                  <EditIcon />
-                </Button>
-              )}
-            </Stack>
-          )
-        }
-        title={
-          <Link
-            underline="hover"
-            href={`/users/${post.User.id}`}
-            fontSize="medium"
-          >
-            {post.User.username}
-          </Link>
-        }
-      />
-      <CardMedia
-        component="img"
-        image={post.content}
-        sx={{ backgroundColor: "#ffffff", width: "101%" }}
-      />
-      <CardContent sx={{ backgroundColor: "#ffffff" }}>
-        {editOpen ? (
-          <EditPost
-            notificationRef={notificationRef}
-            post={post}
-            closeEditOpen={closeEditOpen}
-          />
-        ) : (
-          <Box>
-            <Typography
-              variant="body1"
-              sx={{ wordWrap: "break-word" }}
-              paragraph
-              color="primary"
-              id={`postInput-${post.User.username}`}
+                {editOpen ? (
+                  <Button onClick={closeEditOpen} color="secondary">
+                    <CancelTwoToneIcon color="warning" />
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    onClick={openEditOpen}
+                    color="primary"
+                  >
+                    <EditIcon />
+                  </Button>
+                )}
+              </Stack>
+            )
+          }
+          title={
+            <Link
+              underline="hover"
+              href={`/users/${post.User.id}`}
+              fontSize="medium"
             >
-              {post.body}
-            </Typography>
-          </Box>
-        )}
-      </CardContent>
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="flex-end"
-        padding={1}
-        sx={{
-          backgroundColor: "#ffffff",
-        }}
-      >
-        <Stack direction="row" spacing={1}>
-          <Button
-            color="warning"
-            variant={post.Liked ? "contained" : "outlined"}
-            size="small"
-            onClick={
-              post.Liked
-                ? () => dislike(post.Likes[0])
-                : () => like(post.User.username)
-            }
-            sx={{ display: "flex", justifyContent: "space-around" }}
-            disabled={isLoading}
-          >
-            {!isLoading ? (
-              <>
-                {post.Liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                {post.Likes && post.Likes.length > 0 && post.Likes.length}
-              </>
-            ) : (
-              <CircularProgress size={20} />
-            )}
-          </Button>
+              {post.User.username}
+            </Link>
+          }
+        />
+        <CardMedia
+          component="img"
+          image={post.content}
+          sx={{ backgroundColor: "#ffffff", width: "101%" }}
+        />
+        <CardContent sx={{ backgroundColor: "#ffffff" }}>
+          {editOpen ? (
+            <EditPost
+              notificationRef={notificationRef}
+              post={post}
+              closeEditOpen={closeEditOpen}
+            />
+          ) : (
+            <Box>
+              <Typography
+                variant="body1"
+                sx={{ wordWrap: "break-word" }}
+                paragraph
+                color="primary"
+                id={`postInput-${post.User.username}`}
+              >
+                {post.body}
+              </Typography>
+            </Box>
+          )}
+        </CardContent>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="flex-end"
+          padding={1}
+          sx={{
+            backgroundColor: "#ffffff",
+          }}
+        >
+          <Stack direction="row" spacing={1}>
+            <Button
+              color="warning"
+              variant={post.Liked ? "contained" : "outlined"}
+              size="small"
+              onClick={
+                post.Liked
+                  ? () => dislike(post.Likes[0])
+                  : () => like(post.User.username)
+              }
+              sx={{ display: "flex", justifyContent: "space-around" }}
+              disabled={isLoading}
+            >
+              {!isLoading ? (
+                <>
+                  {post.Liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                  {post.Likes && post.Likes.length > 0 && post.Likes.length}
+                </>
+              ) : (
+                <CircularProgress size={20} />
+              )}
+            </Button>
+          </Stack>
+          <Typography color="primary" variant="caption">
+            {moment(post.createdAt).format("MMMM DD, YYYY")}
+          </Typography>
         </Stack>
-        <Typography color="primary" variant="caption">
-          {moment(post.createdAt).format("MMMM DD, YYYY")}
-        </Typography>
-      </Stack>
-    </Card>
+      </Card>
+    </Grow>
   );
 };
 

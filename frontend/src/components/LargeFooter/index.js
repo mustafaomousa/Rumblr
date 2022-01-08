@@ -42,7 +42,7 @@ const LargeFooter = () => {
                 Material UI
               </Typography>
               <Typography color="#fff" variant="body2" gutterBottom={true}>
-                Lodash
+                AWS S3
               </Typography>
             </Stack>
           </Grid>
