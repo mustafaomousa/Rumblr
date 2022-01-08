@@ -55,19 +55,20 @@
 
 <a name="technologiesused"></a>
 
-# Technologies Used
+# Technologies and Libraries Used
 
 <br/>
 
-### Server (backend)
+### Server (Node.js)
 
 > - Sequelize ORM
 > - PostgreSQL
 > - Express
+> - bcrypt
 
 <br/>
 
-### Client (frontend)
+### Client (Javascript)
 
 > - React
 > - Redux
