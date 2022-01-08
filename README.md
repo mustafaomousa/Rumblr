@@ -59,7 +59,7 @@
 
 <a name="technologiesused"></a>
 
-# Technologies Used
+# Technologies and Libraries Used
 
 ### Server (backend)
 
@@ -69,7 +69,7 @@
 
 <br/>
 
-### Client (frontend)
+### Client (Javascript)
 
 - React
 - Redux
