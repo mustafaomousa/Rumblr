@@ -11,11 +11,10 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    alignItems: "center",
+    marginInline: "auto",
     padding: "0 30px",
-  },
-  userSettingsContainer: {
-    maxWidth: 1200,
+    minHeight: "100vh",
+    width: "min(90%, 1200px)",
   },
 }));
 
@@ -27,14 +26,14 @@ const Settings = () => {
   return (
     <Stack className={classes.root}>
       <Notification ref={notificationRef} />
-      <Grid container className={classes.userSettingsContainer} spacing={2}>
-        <Grid item sx={12} sm={12} md={3}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={4} md={5} lg={4}>
           <UpdateProfilePicture
             sessionUser={sessionUser}
             updateSessionUser={updateSessionUser}
           />
         </Grid>
-        <Grid item xs={12} sm={12} md={9}>
+        <Grid item xs={12} sm={8} md={7}>
           <Grid container direction="column" spacing={3}>
             <Grid item xs={12} sm={12} md={6}>
               <UpdateBio

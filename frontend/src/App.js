@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import * as sessionActions from "./store/session";
 import ProtectedRoute from "./ProtectedRoute";
@@ -51,6 +51,7 @@ function App() {
             component={components.Profile}
           />
         </Switch>
+        <components.LargeFooter />
         <components.Footer />
       </>
     )

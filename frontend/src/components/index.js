@@ -7,6 +7,7 @@ import Discover from "./Discover";
 import Settings from "./Settings";
 import Profile from "./Profile";
 import ScrollToTop from "./ScrollToTop";
+import LargeFooter from "./LargeFooter";
 
 export default {
   BreadcrumbNavigation,
@@ -18,4 +19,5 @@ export default {
   Settings,
   Profile,
   ScrollToTop,
+  LargeFooter,
 };
