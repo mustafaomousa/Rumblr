@@ -1,7 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { Provider as ReduxProvider } from "react-redux";
+import {
+  Provider as ReduxProvider,
+  TypedUseSelectorHook,
+  useDispatch,
+  useSelector,
+} from "react-redux";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/system";
+
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -9,22 +17,14 @@ import "@fontsource/roboto/700.css";
 import "./index.css";
 import App from "./App";
 import configureStore from "./store";
-import { restoreCSRF, fetch } from "./store/csrf";
-import * as sessionActions from "./store/session";
-import * as postActions from "./store/post";
-import { createTheme } from "@mui/material";
-import { ThemeProvider } from "@mui/system";
 
 const store = configureStore();
 
-if (process.env.NODE_ENV !== "production") {
-  restoreCSRF();
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
-  window.csrfFetch = fetch;
-  window.store = store;
-  window.sessionActions = sessionActions;
-  window.postActions = postActions;
-}
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const theme = createTheme({
   palette: {
