@@ -10,9 +10,6 @@ export default makeStyles(() => ({
     height: 55,
     borderBottom: "1px solid #405368",
   },
-  searchInput: {
-    width: 200,
-  },
   userIcon: {
     minWidth: 50,
     display: "flex",
@@ -20,4 +17,5 @@ export default makeStyles(() => ({
     justifyContent: "center",
     borderRadius: 0,
   },
+  navigationLink: {},
 }));
