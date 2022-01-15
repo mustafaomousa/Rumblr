@@ -6,14 +6,14 @@ import * as sessionActions from "../../../store/session";
 import { useHistory } from "react-router-dom";
 import { useAppDispatch } from "../../..";
 
-type MobileNavigationProps = {
+type MobileMenuProps = {
   sessionUser: {
     id: number;
     username: string;
   };
 };
 
-const MobileNavigationMenu = ({ sessionUser }: MobileNavigationProps) => {
+const MobileMenu = ({ sessionUser }: MobileMenuProps) => {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
@@ -82,4 +82,4 @@ const MobileNavigationMenu = ({ sessionUser }: MobileNavigationProps) => {
   );
 };
 
-export default MobileNavigationMenu;
+export default MobileMenu;

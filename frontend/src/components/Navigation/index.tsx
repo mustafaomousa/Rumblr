@@ -7,7 +7,7 @@ import CreatePostModal from "../CreatePostModal";
 import { useAppSelector } from "../..";
 import SessionUserMenu from "./SessionUserMenu";
 import useStyles from "./useStyles";
-import MobileNavigationMenu from "./MobileNavigationMenu";
+import MobileMenu from "./MobileMenu";
 import Logo from "./Logo";
 
 const Navigation = () => {
@@ -29,7 +29,7 @@ const Navigation = () => {
             spacing={1}
           >
             {isMobile ? (
-              <MobileNavigationMenu sessionUser={sessionUser} />
+              <MobileMenu sessionUser={sessionUser} />
             ) : (
               <>
                 <Link href="/discover">
