@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import {
   Typography,
@@ -15,57 +14,27 @@ import {
   Divider,
 } from "@mui/material";
 import { isMobile } from "react-device-detect";
-import PersonIcon from "@mui/icons-material/PersonRounded";
 import HelpIcon from "@mui/icons-material/Help";
 import * as sessionActions from "../../store/session";
 import HomeIcon from "@mui/icons-material/Home";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useState } from "react";
 import { Box } from "@mui/system";
-import Notification from "../Notification";
 import CreatePost from "../CreatePost";
-
-const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: isMobile ? "0 10px" : "0 30px",
-    height: 55,
-    borderBottom: "1px solid #405368",
-  },
-  searchInput: {
-    width: 200,
-  },
-  userIcon: {
-    minWidth: 50,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 0,
-  },
-}));
+import { useAppSelector } from "../..";
+import SessionUserMenu from "./SessionUserMenu";
+import useStyles from "./useStyles";
 
 const Navigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
-
-  const [anchorEl, setAnchorEl] = useState(null);
   const [dropdownAnchorEl, setDropdownAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+
   const dropdownOpen = Boolean(dropdownAnchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleDropdownClick = (event) => {
-    setDropdownAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleDropdownClick = (event: React.MouseEvent<HTMLElement>) => {
+    // setDropdownAnchorEl(event.currentTarget);
   };
 
   const handleDropdownClose = () => {
@@ -84,24 +53,16 @@ const Navigation = () => {
     return history.push("/");
   };
 
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useAppSelector((state) => state.session.user);
 
   return (
     <AppBar className={classes.root} elevation={0}>
       <Grid container alignItems="center" maxWidth={1680}>
         <Grid item xs={1}>
-          <Link
-            href="/discover"
-            fontSize="35px"
-            fontWeight="bold"
-            color="secondary"
-            underline="none"
-          >
-            <Button size="small">
-              <Typography fontWeight={"bold"} fontSize={20} color="secondary">
-                Rumblr
-              </Typography>
-            </Button>
+          <Link href="/discover" color="secondary" underline="none">
+            <Typography fontWeight="bold" fontSize="25px">
+              Rumblr
+            </Typography>
           </Link>
         </Grid>
         <Grid item xs={11}>
@@ -121,75 +82,9 @@ const Navigation = () => {
                 <Button href="/about" size="small" color="secondary">
                   <HelpIcon />
                 </Button>
-                <Button
-                  size="small"
-                  id="user-button"
-                  aria-controls="user-menu"
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                  className={classes.userIcon}
-                  color="secondary"
-                  variant="outlined"
-                >
-                  <PersonIcon />
-                  <Typography marginLeft={0.5} marginRight={0.5}>
-                    {sessionUser.username}
-                  </Typography>
-                </Button>
+                <SessionUserMenu sessionUser={sessionUser} />
               </>
             )}
-            <Menu
-              id="user-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClick={handleClose}
-              onClose={handleClose}
-              MenuListProps={{
-                "aria-labelledby": "user-button",
-              }}
-              sx={{ marginTop: 1 }}
-            >
-              <Stack
-                direction="column"
-                padding="10px 20px"
-                alignItems="center"
-                spacing={1}
-                width={200}
-              >
-                <Stack alignItems="center" width="100%">
-                  <Link
-                    underline="none"
-                    href={`/users/${sessionUser.id}`}
-                    sx={{ width: "100%" }}
-                  >
-                    <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
-                      Profile
-                    </MenuItem>
-                  </Link>
-
-                  <Link
-                    underline="none"
-                    href="/settings"
-                    sx={{ width: "100%" }}
-                  >
-                    <MenuItem sx={{ width: "100%", justifyContent: "center" }}>
-                      Settings
-                    </MenuItem>
-                  </Link>
-                  <Divider />
-                  <Button
-                    variant="contained"
-                    color="warning"
-                    size="small"
-                    sx={{ marginTop: 5, width: "100%" }}
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </Button>
-                </Stack>
-              </Stack>
-            </Menu>
             <Button
               size="small"
               variant="contained"
@@ -199,11 +94,11 @@ const Navigation = () => {
             >
               <AddCircleOutlineIcon />
               <Box>
-                <Notification
+                {/* <Notification
                   open={successNotificationOpen}
                   handleClose={closeAlertCreatePostSuccess}
                   message={"Post created"}
-                />
+                /> */}
               </Box>
             </Button>
             {isMobile && (
