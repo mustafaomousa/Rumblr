@@ -2,7 +2,7 @@
   "name": "react-solo-project",
   "version": "1.0.0",
   "description": "** DEV LAUNCHING Rumblr APPLICATION**",
-  "main": "index.js",
+  "main": "index.tsx",
   "dependencies": {
     "react-player": "^2.8.1"
   },
