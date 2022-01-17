@@ -65,13 +65,15 @@ const theme = createTheme({
 
 function Root() {
   return (
-    <ReduxProvider store={store}>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ThemeProvider>
-    </ReduxProvider>
+    <>
+      <ReduxProvider store={store}>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ThemeProvider>
+      </ReduxProvider>
+    </>
   );
 }
 
