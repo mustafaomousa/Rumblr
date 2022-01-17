@@ -133,9 +133,7 @@ const Navigation = () => {
                   variant="outlined"
                 >
                   <PersonIcon />
-                  <Typography marginLeft={0.5} marginRight={0.5}>
-                    {sessionUser.username}
-                  </Typography>
+                  {sessionUser.username}
                 </Button>
               </>
             )}
