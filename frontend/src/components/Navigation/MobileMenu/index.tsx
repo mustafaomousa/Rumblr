@@ -1,6 +1,11 @@
-import { Button, Divider, Link, Menu, MenuItem } from "@mui/material";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import React from "react";
+import { Button, Link, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import ExploreIcon from "@mui/icons-material/Explore";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import SettingsIcon from "@mui/icons-material/Settings";
+import HelpIcon from "@mui/icons-material/Help";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import * as sessionActions from "../../../store/session";
 import { useHistory } from "react-router-dom";
@@ -62,21 +67,47 @@ const MobileMenu = ({ sessionUser }: MobileMenuProps) => {
         MenuListProps={{
           "aria-labelledby": "dropdown-button",
         }}
+        style={{ top: 10, left: -80 }}
+        PaperProps={{ style: { minWidth: 180 } }}
       >
         <Link underline="none" href="/discover">
-          <MenuItem>Discover</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <ExploreIcon fontSize="small" />
+            </ListItemIcon>
+            Discover
+          </MenuItem>
         </Link>
         <Link underline="none" href="/about">
-          <MenuItem>About</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <HelpIcon fontSize="small" />
+            </ListItemIcon>
+            About
+          </MenuItem>
         </Link>
         <Link underline="none" href={`/users/${sessionUser.id}`}>
-          <MenuItem>Profile</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <AccountBoxIcon fontSize="small" />
+            </ListItemIcon>
+            Profile
+          </MenuItem>
         </Link>
         <Link underline="none" href="/settings">
-          <MenuItem>Settings</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <SettingsIcon fontSize="small" />
+            </ListItemIcon>
+            Settings
+          </MenuItem>
         </Link>
-        <Divider />
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <ListItemIcon>
+            <LogoutIcon fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );

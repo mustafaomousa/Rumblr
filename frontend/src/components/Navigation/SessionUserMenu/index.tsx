@@ -1,6 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Link, Menu, MenuItem } from "@mui/material";
+import { Button, Link, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import * as sessionActions from "../../../store/session";
 import useStyles from "../useStyles";
@@ -51,6 +55,7 @@ const SessionUserMenu = ({ sessionUser }: SessionUserMenuProps) => {
         className={classes.userIcon}
         color="secondary"
         variant="outlined"
+        endIcon={<PersonIcon />}
       >
         {sessionUser.username}
       </Button>
@@ -60,17 +65,34 @@ const SessionUserMenu = ({ sessionUser }: SessionUserMenuProps) => {
         open={open}
         onClick={handleClose}
         onClose={handleClose}
+        style={{ top: 10, left: -60 }}
         MenuListProps={{
           "aria-labelledby": "user-button",
         }}
+        PaperProps={{ style: { minWidth: 180 } }}
       >
         <Link href={`/users/${sessionUser.id}`} underline="none">
-          <MenuItem>Profile</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <AccountBoxIcon fontSize="small" />
+            </ListItemIcon>
+            Profile
+          </MenuItem>
         </Link>
         <Link href="/settings" underline="none">
-          <MenuItem>Settings</MenuItem>
+          <MenuItem>
+            <ListItemIcon>
+              <SettingsIcon fontSize="small" />
+            </ListItemIcon>
+            Settings
+          </MenuItem>
         </Link>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <ListItemIcon>
+            <LogoutIcon fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );
