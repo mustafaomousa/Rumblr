@@ -123,7 +123,25 @@
 
 # Server (frontend) Routes
 
+## `/`
+
+This page displays the Welcome Page where users can log in or sign up.
+
 <br/>
+
+## `/discover`
+
+<br/>
+
+## `/users/:userId`
+
+<br/>
+
+## `/settings`
+
+<br/>
+
+## `/about`
 
 ---
 
