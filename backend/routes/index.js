@@ -28,12 +28,10 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-if (process.env.NODE_ENV !== "production") {
-  router.get("/api/csrf/restore", (req, res) => {
-    const token = req.csrfToken();
-    res.cookie("XSRF-TOKEN", token);
-    return res.json({ csrfToken: token });
-  });
-}
+router.get("/api/csrf/restore", (req, res) => {
+  const token = req.csrfToken();
+  res.cookie("XSRF-TOKEN", token);
+  return res.json({ csrfToken: token });
+});
 
 module.exports = router;
