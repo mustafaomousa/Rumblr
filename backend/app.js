@@ -23,9 +23,9 @@ app.use(express.json());
 
 //adding several security middlewares:
 //cors, helment, csurf
-// if (!isProduction) {
-// app.use(cors({ origin: "*" }));
-// }
+if (!isProduction) {
+  app.use(cors({ origin: "*" }));
+}
 
 app.use(
   helmet({
@@ -33,15 +33,15 @@ app.use(
   })
 );
 
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true,
-    },
-  })
-);
+// app.use(
+//   csurf({
+//     cookie: {
+//       secure: isProduction,
+//       sameSite: isProduction && "Lax",
+//       httpOnly: true,
+//     },
+//   })
+// );
 
 app.use(routes);
 
